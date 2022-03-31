@@ -1,0 +1,14 @@
+r2e
+composer.lock
+composer.phar
+vendor/
+xml/
+download_lattes/
+inc/config.php
+prodmais/
+tools/lattes/curriculo.xml
+tools/lattes/zip.zip
+tools/reindex.sh
+data/
+backup/
+tools/data/
