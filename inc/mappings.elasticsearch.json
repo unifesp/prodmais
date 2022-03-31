@@ -1,0 +1,234 @@
+DELETE coletaprod
+
+PUT coletaprod
+{
+	"settings": {
+		"number_of_shards": 4,
+		"number_of_replicas": 1,
+		"analysis": {
+			"filter": {
+				"portuguese_stop": {
+					"type": "stop",
+					"stopwords": "_portuguese_"
+				},
+				"my_ascii_folding": {
+					"type": "asciifolding",
+					"preserve_original": true
+				},
+				"portuguese_stemmer": {
+					"type": "stemmer",
+					"language": "light_portuguese"
+				}
+			},
+			"analyzer": {
+				"portuguese": {
+					"tokenizer": "standard",
+					"filter": [
+						"standard",
+						"lowercase",
+						"my_ascii_folding",
+						"portuguese_stop",
+						"portuguese_stemmer"
+					]
+				}
+			}
+		}
+	}
+}
+
+
+PUT /coletaprod/_mapping
+{
+	"properties": {
+		"name": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"alternateName": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"author": {
+			"properties": {
+				"person": {
+					"properties": {
+						"name": {
+							"type": "text",
+							"analyzer": "portuguese",
+							"fields": {
+								"keyword": {
+									"type": "keyword",
+									"ignore_above": 256
+								}
+							}
+						}
+					}
+				},
+				"organization": {
+					"properties": {
+						"name": {
+							"type": "text",
+							"analyzer": "portuguese",
+							"fields": {
+								"keyword": {
+									"type": "keyword",
+									"ignore_above": 256
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"source": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"about": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"description": {
+			"type": "text",
+			"analyzer": "portuguese"
+		},
+		"datePublished": {
+			"type": "text",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"facebook": {
+			"properties": {
+				"facebook_total": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
+
+PUT /coletaprodsource/_mapping
+{
+	"properties": {
+		"name": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"alternateName": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"author": {
+			"properties": {
+				"person": {
+					"properties": {
+						"name": {
+							"type": "text",
+							"analyzer": "portuguese",
+							"fields": {
+								"keyword": {
+									"type": "keyword",
+									"ignore_above": 256
+								}
+							}
+						}
+					}
+				},
+				"organization": {
+					"properties": {
+						"name": {
+							"type": "text",
+							"analyzer": "portuguese",
+							"fields": {
+								"keyword": {
+									"type": "keyword",
+									"ignore_above": 256
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"source": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"about": {
+			"type": "text",
+			"analyzer": "portuguese",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"description": {
+			"type": "text",
+			"analyzer": "portuguese"
+		},
+		"datePublished": {
+			"type": "text",
+			"fields": {
+				"keyword": {
+					"type": "keyword",
+					"ignore_above": 256
+				}
+			}
+		},
+		"facebook": {
+			"properties": {
+				"facebook_total": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+    "require": {
+        "elasticsearch/elasticsearch": "~7.4",
+        "caseyamcl/phpoaipmh": "~3.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "gettext/gettext": "~5.1",
+        "renanbr/crossref-client": "^1.0",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
+    }
+}
