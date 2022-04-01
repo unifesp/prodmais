@@ -32,7 +32,7 @@ Por padrão, o elasticseach não exige senha na instalação.
 
 Você pode clonar em qualquer pasta, mas é recomendável clonar na pasta pública do apache (ex. /var/www/html): 
 
-    git clone https://github.com/trmurakami/coletaprod.git
+    git clone https://github.com/unifesp/prodmais.git
 
 Na pasta do repositório, rodar: 
 
