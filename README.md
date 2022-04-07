@@ -11,7 +11,7 @@ Fontes possíveis:
 
 1. Elasticsearch 7.4 ou superior
 2. PHP 7.4 ou superior
-* Dependências do PHP: php-cgi | php-curl
+* Dependências do PHP: php-cgi | php-curl | php-xml
 
 ## Instalação 
 
