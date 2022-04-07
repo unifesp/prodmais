@@ -46,28 +46,6 @@ com este programa, Se não, veja <http://www.gnu.org/licenses/>.
     <meta property="og:type" content="website">
     <!-- Facebook Tags - END -->
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .jumbotron {
-            background-image: url("<?php echo $background_1 ?>");
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
-    </style>
     <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
