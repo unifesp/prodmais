@@ -1787,4 +1787,4 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
 
 
-sleep(5); echo '<script>window.location = \'index.php\'</script>';
+//sleep(5); echo '<script>window.location = \'index.php\'</script>';
