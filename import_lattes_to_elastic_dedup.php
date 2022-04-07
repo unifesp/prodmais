@@ -16,7 +16,6 @@ function comparaprod_doi($doi)
     $params['body'] = $query;
     $cursor = $client->search($params);
     $total = $cursor['hits']['total']['value'];
-    // echo 'Resultado total com DOI: '.$total.'';
     foreach ($cursor['hits']['hits'] as $r) {
         // echo '<br/>';
         // echo ''.$r['_id'].' - '.$r['_source']['name'].' - '.$r['_source']['datePublished'].' - '.$r['_source']['tipo'].'';
@@ -405,15 +404,6 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'RESUMO-CV'})) {
     }
 }
 
-// // if (isset($cursor["docs"][0]["linksPesquisador"])){
-// //     foreach ($cursor["docs"][0]["linksPesquisador"] as $links_pesquisador) {
-// //         //print_r($links_pesquisador);
-// //         if ($links_pesquisador["origemLink"] == "orcid") {
-// //             $doc_curriculo_array["doc"]["orcid"] = $links_pesquisador["link"]["path"];
-// //         }
-// //     }
-// // }
-
 // Endereço profissional atual
 if (isset($curriculo->{'DADOS-GERAIS'}->{'ENDERECO'})) {
     $doc_curriculo_array["doc"]["endereco"]["flagDePreferencia"] = (string)$curriculo->{'DADOS-GERAIS'}->{'ENDERECO'}->attributes()->{'FLAG-DE-PREFERENCIA'};
@@ -427,24 +417,6 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'ENDERECO'})) {
         }
     }
 }
-
-// // // Quadro de citações
-// // if (isset($cursor["docs"][0]["producaoBibliografica"]["artigosPublicados"]["totalQuadroCitacoes"])) {
-// //     $i = 0;
-// //     foreach ($cursor["docs"][0]["producaoBibliografica"]["artigosPublicados"]["totalQuadroCitacoes"] as $citacoes) {
-// //         foreach (["nomeBase","codigoBase","sequencialIndicador","numeroCitacoes","dataCitacao","textoArgumento","indiceH","numeroTrabalhos","uriPesquisadorBase","uriLogoBase"] as $citacoes_campos) {
-// //             if (isset ($citacoes[$citacoes_campos])) {
-// //                 $doc_curriculo_array["doc"]["citacoes"][$citacoes["nomeBase"]][$citacoes_campos] = $citacoes[$citacoes_campos];
-// //             }
-// //         }
-// //         foreach (["uriPesquisadorBase"] as $identificador_pesquisador) {
-// //             if (!empty($citacoes[$identificador_pesquisador])) {
-// //                 $doc_curriculo_array["doc"]["uri_pesquisador"][] = $citacoes[$identificador_pesquisador];
-// //             }
-// //         }
-// //         $i++;
-// //     }
-// // }
 
 // Formação Acadêmica Titulação
 if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
@@ -865,7 +837,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         }
 
 
-        //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+        
         $doc["doc"]["concluido"] = "Não";
         $doc["doc_as_upsert"] = true;
 
@@ -971,7 +943,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         }
 
 
-        //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+        
         $doc["doc"]["concluido"] = "Não";
         $doc["doc_as_upsert"] = true;
 
@@ -1078,7 +1050,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             }
 
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1179,7 +1151,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
                 $sha256 = hash('sha256', ''.implode("", $sha_array).'');
             }
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1288,7 +1260,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         }
 
 
-        //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+        
         $doc["doc"]["concluido"] = "Não";
         $doc["doc_as_upsert"] = true;
 
@@ -1389,7 +1361,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1489,7 +1461,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1593,7 +1565,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1683,7 +1655,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
 
-            //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+            
             $doc["doc"]["concluido"] = "Não";
             $doc["doc_as_upsert"] = true;
 
@@ -1781,7 +1753,6 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
                 // Constroi sha256
 
-
                 if (!empty($doc["doc"]["doi"])) {
                     $sha256 = hash('sha256', ''.$doc["doc"]["doi"].'');
                 } else {
@@ -1792,9 +1763,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
                     $sha_array[] = $doc["doc"]["url"];
                     $sha256 = hash('sha256', ''.implode("", $sha_array).'');
                 }
-
-
-                //$doc["doc"]["bdpi"] = DadosExternos::query_bdpi_index($doc["doc"]["name"], $doc["doc"]["datePublished"]);
+                
                 $doc["doc"]["concluido"] = "Não";
                 $doc["doc_as_upsert"] = true;
 
@@ -1818,4 +1787,4 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
 
 
-//sleep(5); echo '<script>window.location = \'result.php?filter[]=lattes_ids:"'.$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'}.'"\'</script>';
+sleep(5); echo '<script>window.location = \'index.php\'</script>';

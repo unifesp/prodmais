@@ -187,39 +187,9 @@ $get_data = $_GET;
 
                                 ?>
 
-                                <?php if (!empty($r["_source"]['doi'])) : ?>
-                                    <?php if (isset($elsevier_apikey)) : ?>
-                                        <!--
-                                        <object height="50" data="https://api.elsevier.com/content/abstract/citation-count?doi=< ?php echo $r["_source"]['doi']; ?>&httpAccept=text/html&apiKey=< ?php echo $elsevier_apikey; ?>"></object>
-                                        -->
-                                    <?php endif; ?>
-                                <?php endif; ?>
-
-
                                 <!--
                                     <div class="btn-group mt-3" role="group" aria-label="Botoes">
 
-                                        <form method="post">
-                                            < ?php if(isset($r["_source"]["concluido"])) : ?>
-                                                < ?php if($r["_source"]["concluido"] == "Sim") : ?>
-                                                    
-                                                        <label><input type='hidden' value='Não' name="< ?php echo $r['_id'];?>"></label>
-                                                        <button class="btn btn-primary">Desmarcar como concluído</button>
-                                                
-                                                < ?php else : ?>
-
-                                                        <label><input type='hidden' value='Sim' name="< ?php echo $r['_id'];?>"></label>
-                                                        <button class="btn btn-primary">Marcar como concluído</button>
-                                                    
-                                                < ?php endif; ?>
-                                            < ?php else : ?>
-                                                    
-                                                        <label><input type='hidden' value='Sim' name="< ?php echo $r['_id'];?>"></label>
-                                                        <button class="btn btn-primary">Marcar como concluído</button>
-                                                    
-                                             < ?php endif; ?>
-                                            
-                                        </form>
                                         
                                         < ?php
                                         if (!empty($dspaceRest)) {
@@ -229,16 +199,11 @@ $get_data = $_GET;
                                                 <button class="btn btn-secondary" name="btn_submit">Criar registro no DSpace</button>
                                                 </form>';  
                                         }
-                                        ?>
-                                        
-                                        < ?php 
-                                        if ($instituicao == "USP") {
-                                            echo '<a href="tools/export.php?search[]=_id:'.$r['_id'].'&format=alephseq" class="btn btn-secondary">Exportar Alephseq</a>';
-                                        }
-                                        ?>
+                                        ?>                                    
+
 
                                     </div>
-                                    -->
+                                -->
 
                             </div>
                         </div>
