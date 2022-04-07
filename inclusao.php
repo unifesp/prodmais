@@ -9,32 +9,15 @@
     ?>
     <title><?php echo $branch ?> - Inclusão</title>
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .jumbotron {
-            background-image: url("<?php echo $background_1 ?>");
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
-    </style>
+    <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
 <body>
+
+    <!-- NAV -->
+    <?php require 'inc/navbar.php'; ?>
+    <!-- /NAV -->
 
 
     <div class="jumbotron">
@@ -169,6 +152,8 @@
 
         </div>
     </div>
+
+    <?php include('inc/footer.php'); ?>
 
 
 </body>
