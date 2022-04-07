@@ -54,3 +54,26 @@ Editar no arquivo config.php as variáveis: $branch, $branch_description, $url_b
 Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usando o endereço htttp://localhost/NOMEDODIRETÓRIO
 
 Ao rodar pela primeira vez, o sistema irá criar os índices no elasticsearch.
+
+### Inclusão automática
+
+Parâmetros aceitos no import_lattes_to_elastic_dedup.php
+
+    tag
+    unidade
+    departamento
+    tipvin
+    numfuncional
+    divisao
+    secao
+    ppg_nome
+    ppg_capes
+    genero
+    etnia
+    desc_nivel
+    desc_curso
+    ano_ingresso
+    campus
+    desc_gestora
+
+Exemplo de código para a inclusão automática: tools/automatic_index.php
