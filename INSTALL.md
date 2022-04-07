@@ -20,7 +20,7 @@ Por padrão, o elasticseach não exige senha na instalação.
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
     sudo apt update
     sudo apt -y install php7.4
-    sudo apt-get install php7.4-{cgi,curl,mbstring,zip}
+    sudo apt-get install php7.4-{cgi,curl,mbstring,zip,xml}
 
 
 ### Instalação do Apache2 
