@@ -110,9 +110,11 @@ if (!empty($_REQUEST["lattesID"])) {
 
             <div class="row">
                 <div class="col-12">
-<?php 
+<!--
+< ?php 
     echo "<pre>".print_r($profile,true)."</pre>";
 ?>
+-->
                     <h1><?php echo $profile["nome_completo"] ?></h1>
                     <br />
                     <img class="rounded img-thumbnail" width="200px" height="200px" src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=<?php echo $lattesID10; ?>" style="margin-bottom: 10px;">
@@ -159,13 +161,13 @@ if (!empty($_REQUEST["lattesID"])) {
                     $resultaboutfacet = $authorfacets->authorfacet(basename(__FILE__), "about", 120, "Palavras-chave do autor", null, "_term", $_GET);
                     $resultcitedfacet = $authorfacets->authorfacet(basename(__FILE__), "counts_by_year", 120, "Cited", null, "_term", $_GET);
 
-                    var_dump($resultcitedfacet);
+                    //var_dump($resultcitedfacet);
 
 
                     ?>
 
 <?php 
-    var_dump($resultaboutfacet, true);
+    //var_dump($resultaboutfacet, true);
 ?>
 
 
@@ -509,7 +511,7 @@ if (!empty($_REQUEST["lattesID"])) {
                     <?php
                     foreach ($cursor_works["hits"]["hits"] as $works) {
                         //echo "<br /><br />";
-                        var_dump($works);
+                        //var_dump($works);
                         echo '
                             <div class="card">
                                 <h5 class="card-header">' . $works["_source"]["tipo"] . '</h5>
