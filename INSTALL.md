@@ -49,7 +49,7 @@ Editar o arquivo config.php
 
     nano inc/config.php
 
-Editar no arquivo config.php as variáveis: $branch, $branch_description, $url_base, $background_1, $facebook_image (opcional) e $instituicao.
+Editar no arquivo config.php as variáveis: $branch, $branch_description, $url_base, $facebook_image (opcional) e $instituicao.
 
 Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usando o endereço htttp://localhost/NOMEDODIRETÓRIO
 

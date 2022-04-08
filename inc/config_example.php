@@ -7,8 +7,7 @@
 
     $branch = "Prodmais";
     $branch_description = "Descrição";
-    $url_base = "http://localhost/prodmais";
-    $background_1 = "http://imagens.usp.br/wp-content/uploads/Faculdade-de-Direito-312-15-Foto-Marcos-Santos-028.jpg";
+    $url_base = "http://localhost/prodmais";    
     $facebook_image = "";
 
     // Definir Instituição
