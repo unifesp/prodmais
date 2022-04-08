@@ -28,9 +28,6 @@
 	/* Load Elasticsearch Client */ 
 	$client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build(); 
 
-    /* Load Elasticsearch Client for BDPI */ 
-    $client_bdpi = \Elasticsearch\ClientBuilder::create()->setHosts($host_bdpi)->build(); 
-
     /* Login */
     $login_user = "admin";
     $login_password = "admin";
