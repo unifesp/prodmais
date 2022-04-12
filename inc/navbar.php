@@ -1,3 +1,10 @@
+<?php 
+  if (file_exists('../inc/config.php')) {
+      include '../inc/config.php';
+  } elseif (file_exists('../../inc/config.php')) {
+      include '../../inc/config.php';
+  }
+?>
 <header class="myheader">
     <svg class="logo-header" viewBox="0 0 418.2 64.2">
       <path d="M151 52.7h-12.5c-2.6 0-4.7-2.1-4.7-4.7V35.5c0-2.6 2.1-4.7 4.7-4.7H151c2.6 0 4.7 2.1 4.7 4.7V48C155.6 50.6 153.5 52.7 151 52.7zM138.5 33.8c-1 0-1.7 0.8-1.7 1.7V48c0 1 0.8 1.7 1.7 1.7H151c1 0 1.7-0.8 1.7-1.7V35.5c0-1-0.8-1.7-1.7-1.7H138.5z" />
