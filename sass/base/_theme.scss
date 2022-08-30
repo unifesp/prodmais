@@ -1,0 +1,67 @@
+// == THEME == // 
+
+$palette: (
+  theme: #1C9AD1,
+  theme-light-1:#51b7e3,
+  theme-light-2:#7fd1f5,
+  theme-light-3:#c4edff,
+  theme-light-4:#E0F7FA,
+  theme-light-5:#f7fcfd,
+  theme-dark: #1580ad,
+  bg-primary: #fff,
+  bg-secondary: #F1F1F1,
+  bg-input: rgb(252, 249, 249),
+
+  // text
+  normal: #000,
+  title: #000,
+  t-gray: #8B8B8B,
+  t-gray-light: #b8b8b8,
+  t-gray-dark: #535353,
+
+  //button
+  btn-bg: #fff,
+  btn-fg: #1C9AD1,
+  btn-bg-hover: #7fd1f5,
+  btn-fg-hover: #fff,
+
+  // footer
+  footer-bg: #5D866C,
+  footer-fg: #EAEAEA,
+  footer-link: #EAEAEA,
+  footer-hover: #D4DFD8,
+  footer-border:#A5C698,
+
+  // graphbar
+  gb1: #0091cf,
+  gb2: #51b7e3,
+  gb3: #7fd1f5,
+  gb4: #0084ae,
+  gb5: #22C73B,
+  gb6: #A5C698,
+
+  // graph
+  g0: #ededed,
+  g1: #acd5f2,
+  g2: #7fa8c9,
+  g3: #527ba0,
+  g4: #254e77,
+);
+
+$effects: (
+  shadow: 0 0 15px 0 rgba(0, 0, 0, .5),
+
+);
+
+.manual-body {
+  background-color: _palette(bg-secondary);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: _palette(theme);
+}

@@ -1,5 +1,6 @@
   #!/bin/bash
 
-  curl -X DELETE "localhost:9200/prodmais?pretty"
-  curl -X DELETE "localhost:9200/prodmaiscv?pretty"
-  curl -X DELETE "localhost:9200/prodmaisaut?pretty"
+  curl -X DELETE "localhost:9200/coletaprod2?pretty"
+  curl -X DELETE "localhost:9200/coletaprodcv2?pretty"
+  curl -X DELETE "localhost:9200/coletaprodaut2?pretty"
+  curl -X DELETE "localhost:9200/unifesp2?pretty"

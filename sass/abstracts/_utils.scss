@@ -1,0 +1,74 @@
+// === ALIGNAMENTS === //
+
+// === SPACING === //
+
+$spaceAmounts: (1, 2, 3, 4);
+
+@each $space in $spaceAmounts {
+	.u-m-#{$space} {
+		margin: #{$space}rem;
+	}
+
+	.u-mx-#{$space} {
+		margin-left: #{$space}rem;
+		margin-right: #{$space}rem;
+	}
+
+	.u-my-#{$space} {
+		margin-bottom: #{$space}rem;
+		margin-top: #{$space}rem;
+	}
+
+	.u-mb-#{$space} {
+		margin-bottom: #{$space}rem;
+	}
+
+	.u-mt-#{$space} {
+		margin-top: #{$space}rem;
+	}
+}
+
+.u-mb-1h {
+	margin-bottom: 1.5rem;
+}
+
+.u-mx-02 {
+	margin-inline: 0.2rem;
+}
+
+.u-mr-05 {
+	margin-right: 0.5rem;
+}
+
+.u-ml-05 {
+	margin-left: 0.5rem;
+}
+
+// === Screen Reader Only === //
+
+.u-sr-only {
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+// === SKIP LINK === //
+
+.u-skip {
+	height: 1px;
+	left: -10000px;
+	overflow: hidden;
+	position: absolute;
+	top: auto;
+	width: 1px;
+}
+  .u-skip:focus {
+	height: auto;
+	position: static;
+	width: auto;
+}

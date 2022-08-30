@@ -1,0 +1,11 @@
+# invoke rewrite engine
+    RewriteEngine On
+    RewriteBase /
+
+# redirect to trailing shash (/)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !(.*)/$
+    RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1/ [L,R=301]
+
+# profile
+    RewriteRule ^profile/([-\w]+)$ profile.php?lattesID=$1 [NC,L]

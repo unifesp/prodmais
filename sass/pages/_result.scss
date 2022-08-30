@@ -1,0 +1,52 @@
+/* === LAYOUT === */
+
+.p-result {
+	&-container,
+	&-main,
+	&-nav {
+		width: 100%;
+	}
+
+	&-container {
+		display: block;
+	}
+
+	&-main,
+	&-nav {
+		margin: 2rem 0.5rem;
+	}
+}
+
+.c-term {
+	border-block: 1px solid _palette(theme-2);
+	margin-block: 1rem;
+	padding: 0.5rem;
+	text-align: center;
+	color: _palette(theme);
+}
+
+.c-fbar {
+	// display: block;
+	width: $filterbar_width_mob;
+}
+
+@include up-to("lg") {
+	.p-result {
+		&-container {
+			display: grid;
+			grid-template-areas: "resultmain resultnav";
+			grid-template-columns: 1fr $filterbar_width_desk;
+			column-gap: 1rem;
+		}
+
+		&-main {
+			grid-area: resultmain;
+			width: 100%;
+			margin: 2rem 1rem;
+		}
+
+		&-nav {
+			grid: resultnav;
+		}
+	}
+}

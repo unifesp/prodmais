@@ -1,0 +1,81 @@
+// == MENUS == //
+
+.sitemenu {
+	align-items: center;
+	background-color: _palette(theme);
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	list-style: none;
+	z-index: 999;
+	@include transition;
+
+	&-link {
+		align-items: center;
+		background-color: transparent;
+		border: none;
+		display: flex;
+		flex-direction: column;
+		margin: 0.5rem;
+		position: relative;
+
+		&:hover {
+			transition: all 0.4s 0s ease;
+
+			.sitemenu-ico {
+				fill: _palette(theme-light-2);
+			}
+		}
+	}
+
+	&-icons {
+		background-color: _palette(theme-light-3);
+		height: 30px;
+		margin: 0.25rem;
+		transition: all 0.2s ease 0s;
+		vertical-align: middle;
+		width: 30px;
+	}
+}
+
+@media (max-width: $sm) {
+	.sitemenu {
+		border-top: 4px solid _palette(theme-light-2);
+		bottom: 0;
+		height: 60px;
+		justify-content: space-between;
+		left: 0;
+		padding: 0.5rem;
+		padding: 1rem 1rem 2rem 1rem;
+		position: fixed;
+		right: 0;
+	}
+}
+
+@include up-to("sm") {
+	.sitemenu {
+		width: 600px;
+
+		&-link {
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+
+			&:hover {
+				.sitemenu-bubble {
+					display: block;
+					left: 50%;
+					position: absolute;
+					top: calc(100% + 0.25rem);
+					transform: translateX(-55%);
+				}
+			}
+		}
+	}
+}
+
+@include up-to("md") {
+	.sitemenu {
+		justify-content: flex-end;
+	}
+}

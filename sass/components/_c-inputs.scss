@@ -1,0 +1,36 @@
+.c-inputs {
+	align-items: center;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 1rem;
+	padding: 1.4rem 1rem 1rem 1rem;
+	transition: all 0.4s ease;
+}
+
+@include up-to("lg") {
+	.c-inputs {
+		display: flex;
+		margin: 2rem;
+		// flex-direction: row;
+	}
+}
+
+@include up-to("md") {
+	.d-md-up {
+		&-row {
+			display: flex;
+			flex-direction: row;
+		}
+	}
+}
+
+@include up-to("lg") {
+	.u-lg-up {
+		&-row {
+			flex-direction: row;
+		}
+	}
+}

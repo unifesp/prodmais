@@ -1,0 +1,40 @@
+// == HEADER == //
+
+.siteheader {
+	align-content: center;
+	background-color: _palette(theme);
+	border-bottom: 6px solid _palette(theme-dark);
+	box-shadow: _effects(shadow);
+	-webkit-box-shadow: _effects(shadow);
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	left: 0;
+	padding: 0 2rem;
+	right: 0;
+	top: 0;
+	z-index: 1030;
+
+	&-logo {
+		background-color: _palette(bg-primary);
+		height: 50px;
+		margin: 0.3rem;
+		transition: all 0.25s ease-in-out;
+		width: 170px;
+
+		&:hover {
+			background-color: _palette(theme-light-2);
+		}
+	}
+}
+
+@include up-to("sm") {
+	.siteheader {
+		flex-direction: row;
+		justify-content: space-between;
+
+		&-header {
+			max-height: 30px;
+		}
+	}
+}

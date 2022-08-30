@@ -1,0 +1,17 @@
+.c-navigator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: _palette(theme);
+  padding-block: .5rem;
+  border-block: 1px solid _palette(theme-light-2);
+
+  &-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}

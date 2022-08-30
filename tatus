@@ -1,0 +1,1232 @@
+*   [33mf1bfda1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mupstream/master[m[33m)[m Merge pull request #61 from RicardoIreno/0823a
+[31m|[m[32m\[m  
+[31m|[m * [33m9c24bad[m[33m ([m[1;31mmyfork/0823a[m[33m, [m[1;32m0823a[m[33m)[m Update SASS
+[31m|[m * [33mefc7d8f[m Alterações em algumas classes css
+* [32m|[m [33m7fbad53[m Merge pull request #60 from RicardoIreno/0822c
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33ma00ce86[m[33m ([m[1;31mmyfork/0822c[m[33m)[m Update readme.md
+[33m|[m * [33me6f30f1[m Update readme.md
+[33m|[m * [33m0525bdf[m Update readme.md
+[33m|[m * [33md75eca7[m Update readme.md
+[33m|[m * [33mf15c019[m Update readme.md
+[33m|[m * [33me6ea0bb[m Update readme.md
+[33m|[m * [33m77a58dc[m Ajustes no PPG.php
+* [34m|[m [33m5823272[m Merge pull request #59 from RicardoIreno/0822b
+[35m|[m[34m\[m[34m|[m 
+[35m|[m * [33m99b2747[m[33m ([m[1;31mmyfork/0822b[m[33m)[m 'Jump buttons' nos gráficos e nas nuvens de tags
+[35m|[m * [33m6bca931[m Ajustes no css
+* [36m|[m [33m732e6a7[m Merge pull request #58 from RicardoIreno/0822a
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m * [33m9af584f[m[33m ([m[1;31mmyfork/0822a[m[33m)[m Ajustes no projeto.php
+[1;31m|[m * [33m349b6e5[m Ajustes nos estilos do profile.php
+[1;31m|[m * [33m1c77534[m Ajustes nas classes div
+* [1;32m|[m [33m49d7cb7[m Merge pull request #57 from RicardoIreno/0819c
+[1;33m|[m[1;32m\[m[1;32m|[m 
+[1;33m|[m * [33m3853e7c[m[33m ([m[1;31mmyfork/0819c[m[33m)[m Merge para rebase
+[1;33m|[m[1;33m/[m[1;36m|[m 
+[1;33m|[m * [33ma7d464e[m[33m ([m[1;31mmyfork/0819a[m[33m)[m Mudanças nas classes css
+[1;33m|[m * [33mff93113[m Update nas classes css
+* [1;36m|[m   [33m9724c24[m Merge pull request #56 from RicardoIreno/0818b
+[31m|[m[32m\[m [1;36m\[m  
+[31m|[m * [1;36m\[m   [33m934fec5[m Merge branch 'master' into pr/56
+[31m|[m [1;36m|[m[31m\[m [1;36m\[m  
+[31m|[m [1;36m|[m[31m/[m [1;36m/[m  
+[31m|[m[31m/[m[1;36m|[m [1;36m/[m   
+[31m|[m [1;36m|[m[1;36m/[m    
+* [1;36m|[m   [33m87fc2d7[m Merge branch 'RicardoIreno-0817b'
+[35m|[m[36m\[m [1;36m\[m  
+[35m|[m * [1;36m|[m [33me4b5aeb[m Merge
+[35m|[m[35m/[m[1;32m|[m [1;36m|[m 
+* [1;32m|[m [1;36m|[m   [33meba1fa6[m Merge branch 'RicardoIreno-0812b'
+[1;33m|[m[1;34m\[m [1;32m\[m [1;36m\[m  
+[1;33m|[m * [1;32m|[m [1;36m|[m [33m2854549[m Merge
+[1;33m|[m[1;33m/[m[1;36m|[m [1;32m|[m [1;36m|[m 
+* [1;36m|[m [1;32m|[m [1;36m|[m   [33ma80d19d[m Merge pull request #52 from RicardoIreno/0811a
+[31m|[m[32m\[m [1;36m\[m [1;32m\[m [1;36m\[m  
+* [32m|[m [1;36m|[m [1;32m|[m [1;36m|[m [33m60804b3[m Renomeado pre_dash para predash
+* [32m|[m [1;36m|[m [1;32m|[m [1;36m|[m [33m3e07ff5[m Correção
+* [32m|[m [1;36m|[m [1;32m|[m [1;36m|[m   [33m073134f[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[33m|[m[34m\[m [32m\[m [1;36m\[m [1;32m\[m [1;36m\[m  
+[33m|[m * [32m\[m [1;36m\[m [1;32m\[m [1;36m\[m   [33m51c3137[m Merge pull request #51 from RicardoIreno/0810b
+[33m|[m [35m|[m[36m\[m [32m\[m [1;36m\[m [1;32m\[m [1;36m\[m  
+* [35m|[m [36m|[m [32m|[m [1;36m|[m [1;32m|[m [1;36m|[m [33m48263b8[m Correção de duplicação do tipo de produção
+[35m|[m[35m/[m [36m/[m [32m/[m [1;36m/[m [1;32m/[m [1;36m/[m  
+[35m|[m [36m|[m [32m|[m [1;36m|[m [1;32m|[m * [33m304d932[m[33m ([m[1;31mmyfork/0818b[m[33m)[m Correção nas unidades breakpoint
+[35m|[m [36m|[m [32m|[m [1;36m|[m [1;32m|[m * [33m4260078[m[33m ([m[1;31mmyfork/0818a[m[33m)[m Melhorias nos breakpoints
+[35m|[m [36m|[m [32m|[m [1;36m|[m [1;32m|[m[1;32m/[m  
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m13d8b1e[m[33m ([m[1;31mmyfork/0817b[m[33m)[m Estilização da página inclusao.php
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33mbcae7fb[m[33m ([m[1;31mmyfork/0817a[m[33m)[m Update do CSS
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m836ab33[m Ajuste na página de listagem de projetos
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m80040c3[m Ajuste na página do projeto
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m320ae78[m Ajuste nos inputs
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m7e0ede7[m Ajustes no SList
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33me6442ad[m Página do projeto v1
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m0a8492e[m Ajuste no z-index do sitemenu
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33md320565[m[33m ([m[1;31mmyfork/0815a[m[33m)[m Usando o logo pelo CSS
+[35m|[m [36m|[m [32m|[m [1;36m|[m * [33m222da94[m Imagens dos logos no CSS
+[35m|[m [36m|[m [32m|[m [1;36m|[m[1;36m/[m  
+[35m|[m [36m|[m [32m|[m * [33m2eb896b[m[33m ([m[1;31mmyfork/0812b[m[33m)[m update dos arquivos sass
+[35m|[m [36m|[m [32m|[m * [33m5c464bb[m[33m ([m[1;31mmyfork/0812a[m[33m)[m WIP Página de projeto de pesquisa
+[35m|[m [36m|[m [32m|[m * [33m8f594b5[m Update navbar.php
+[35m|[m [36m|[m [32m|[m * [33mfc55ef1[m[33m ([m[1;31mmyfork/master[m[33m, [m[1;31mmyfork/0811b[m[33m)[m Projetos adicionado no menu
+[35m|[m [36m|[m [32m|[m[32m/[m  
+[35m|[m [36m|[m * [33m467bf4e[m[33m ([m[1;31mmyfork/0811a[m[33m)[m Ajustes nas classes CSS
+[35m|[m [36m|[m * [33mbee24de[m Update CSS
+[35m|[m [36m|[m * [33m05355f6[m Protótipo da página que lista projetos
+[35m|[m [36m|[m * [33m2f514db[m Ajuste nas classes CSS da home
+[35m|[m [36m|[m * [33m2d1cc62[m Ajuste no componente TagCloud
+[35m|[m [36m|[m * [33m8b2f62c[m Melhoria no componente SList
+[35m|[m [36m|[m * [33m0771945[m Ajuste nas classes CSS
+[35m|[m [36m|[m * [33m071be11[m Ajuste na classe SList
+[35m|[m [36m|[m[36m/[m  
+[35m|[m * [33m5b01a7b[m[33m ([m[1;31mmyfork/0810b[m[33m)[m PPGs atualizado
+[35m|[m * [33m962e9c5[m[33m ([m[1;31mupstream/0810a[m[33m, [m[1;31mmyfork/0810a[m[33m)[m Update .gitignore
+[35m|[m * [33m4e23e92[m v2.3
+[35m|[m[35m/[m  
+* [33mc026368[m profile
+*   [33m6a6ca9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #50 from RicardoIreno/0805d
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m6bfd5f2[m[33m ([m[1;31morigin/0805d[m[33m)[m Menu apontando para página de PPGs
+[1;31m|[m * [33mf0492d7[m Página de PPGs
+[1;31m|[m * [33mf655643[m Página Departamento
+[1;31m|[m * [33m7f17776[m TagCloud agora aceita links no array
+[1;31m|[m[1;31m/[m  
+* [33m4fd33ba[m Correção na aba gestão do profile
+*   [33mbdb852b[m Merge pull request #49 from RicardoIreno/0804a
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33mc686df5[m WIP página do departamento
+[1;33m|[m * [33mcc5b595[m Nova entrada de linhas para o gráfico
+[1;33m|[m * [33me4214fe[m Componente TagCloud
+* [1;34m|[m [33m3a1d409[m Merge pull request #48 from RicardoIreno/0803c
+[1;35m|[m[1;34m\[m[1;34m|[m 
+[1;35m|[m * [33mf5e7e9c[m Ajustes no cabeçalho da página do PPG
+[1;35m|[m * [33m5b2fd79[m PPG adicionado ao navbar
+[1;35m|[m[1;35m/[m  
+* [33m7d750de[m Correção Menu Manual
+*   [33m37e6153[m Merge pull request #47 from RicardoIreno/0802a
+[31m|[m[32m\[m  
+[31m|[m * [33m62db9e7[m Página PPG v1
+[31m|[m * [33mb98268f[m Ajustes no gráfico
+[31m|[m * [33mb85bf9f[m Checkpoint WIP PPG
+* [32m|[m [33m20ef2e1[m Merge pull request #46 from RicardoIreno/0729a
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33m5a5eefb[m Melhorias no gráfico
+[33m|[m[33m/[m  
+* [33m88458f8[m Correção na exibição
+*   [33mce53500[m Merge pull request #45 from RicardoIreno/0728a
+[35m|[m[36m\[m  
+[35m|[m * [33m3e6ffe5[m Gráfico da página do PPG
+[35m|[m * [33m03306a2[m Checkpoint WIP PPG
+[35m|[m[35m/[m  
+* [33mf07384c[m Exclusão do elasticfind e editor
+*   [33mc8f2342[m Merge pull request #44 from RicardoIreno/20220725a
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m114b602[m Correção nos botões de navegação da página de resultados
+[1;31m|[m * [33m025819b[m Checkpoit before rebase
+[1;31m|[m * [33m23be874[m Checkpoint WIP ppg
+[1;31m|[m * [33m4c5f1da[m Info 'fonte' na lista de produção com alinhamento para a esquerda
+[1;31m|[m[1;31m/[m  
+* [33m5ceea41[m Correção nas facetas
+* [33m0501e3a[m Exibir busca
+* [33m28a32ef[m Excluir submodules
+* [33m9d1c3b5[m Remove elastifind submodule
+*   [33m1224d5c[m Merge pull request #43 from RicardoIreno/20220721c
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33md8be3dc[m setas de navegação
+[1;33m|[m * [33m909f4dc[m Checkpoint WIP reult filter
+[1;33m|[m * [33m0b8b63e[m checkpoint WIP result filters
+* [1;34m|[m [33mef76fce[m Merge pull request #42 from RicardoIreno/20220720a
+[1;35m|[m[1;34m\[m[1;34m|[m 
+[1;35m|[m * [33m96d5622[m Correção no 'mostrar conteúdo por categoria' na home
+[1;35m|[m[1;35m/[m  
+* [33m8406520[m Novos links para o dashboard
+* [33m72b9f44[m Resultado dos autores
+* [33m50b844c[m De result_test para result
+* [33m37dcab3[m Correções no result_test
+*   [33m073015b[m Merge pull request #41 from RicardoIreno/20220708a
+[31m|[m[32m\[m  
+[31m|[m * [33m282da95[m Correção no manual
+[31m|[m[31m/[m  
+*   [33m5770708[m Merge pull request #40 from RicardoIreno/20220707a
+[33m|[m[34m\[m  
+[33m|[m * [33m1c19d61[m Ajustes na estilização da home
+[33m|[m * [33m1ce7227[m Separação da estilização das fontes do manual
+[33m|[m[33m/[m  
+*   [33m4659d02[m Merge pull request #39 from RicardoIreno/20220706a
+[35m|[m[36m\[m  
+[35m|[m * [33me35b3f0[m Correções nos itens da seção produção itelectual
+[35m|[m[35m/[m  
+* [33me139a7c[m Correção
+* [33m12fb847[m Conclusão do gráfico de trabalhos por ano
+* [33m584ee35[m Nova tag do google analytics
+*   [33mbfc3b5d[m Merge pull request #38 from RicardoIreno/20220705-5
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m600552d[m Correção do erro nos itens da Produção Intelectual
+* [1;32m|[m [33m6911db6[m Merge pull request #37 from RicardoIreno/20220705-4
+[1;33m|[m[1;32m\[m[1;32m|[m 
+[1;33m|[m * [33mf16db7a[m Ajuste no menu do profile
+* [1;34m|[m [33m6c9f14b[m Merge pull request #36 from RicardoIreno/20220705-3
+[1;35m|[m[1;34m\[m[1;34m|[m 
+[1;35m|[m * [33m68628fd[m Update da seção Formação
+* [1;36m|[m [33m0a8d1ec[m Merge pull request #35 from RicardoIreno/20220705-2
+[31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m * [33m0198619[m Upgrade do menu do profile
+[31m|[m[31m/[m  
+* [33m39e79b3[m Correção
+* [33m0ad6e50[m Inicio do gráfico
+* [33md7589ba[m Agregação para dados do gráfico
+*   [33mc816089[m Merge pull request #34 from RicardoIreno/20220704-3
+[33m|[m[34m\[m  
+[33m|[m * [33m657a788[m Tag UL na listagem dos items dinâmicos
+[33m|[m * [33m134fe48[m Componente SList - string da data
+[33m|[m * [33m54271cd[m sList component
+[33m|[m * [33mb8ad7b9[m Checkpoint para testar o componente
+[33m|[m[33m/[m  
+* [33mdbe4564[m Correção na classe do botão
+* [33m0cf7b6a[m Return nas facetas
+* [33m7b9159b[m Result_test
+*   [33m6bb53ec[m Merge pull request #33 from RicardoIreno/20220627-1
+[35m|[m[36m\[m  
+[35m|[m * [33m725d6f0[m Página result_test como substituta da result.php
+* [36m|[m [33m225c03d[m Merge pull request #32 from RicardoIreno/2022-06-22--2
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m * [33md7a2220[m estilização da tabela
+* [1;32m|[m [33meedd579[m Merge pull request #31 from RicardoIreno/2022-06-22--1
+[1;33m|[m[1;32m\[m[1;32m|[m 
+[1;33m|[m * [33mbb68068[m Tabela de coteúndo no index
+[1;33m|[m[1;33m/[m  
+* [33ma7c51dc[m Alterações na página de profile
+* [33m13227a4[m Alteração no caminho da página de profile
+* [33m70c9814[m Facetas usando POST na página inicial
+* [33md870603[m Correção navbar manual
+* [33mf0d4046[m Correções no manual
+* [33me351778[m Correção footer manual
+* [33m0044130[m Correção do footer no manual
+* [33m3aae464[m Correção no manual
+* [33me0005b9[m Correção na ortografia
+* [33m3034f11[m Correção no navbar
+* [33m7832e16[m Correção
+* [33m2841730[m Correção
+* [33m4061914[m Correção
+* [33mf91bd62[m Correção
+* [33m2aa6e93[m Correção
+* [33m8a67590[m Correção
+* [33m32f96e5[m Correção
+* [33m40d1de6[m Correção
+* [33m3c4c283[m Require para include
+* [33mce41a39[m Comentado o redirecionamento
+* [33mc65883a[m Add editor submodule
+* [33m1fef31c[m Ocultação de coisas que não funcionam
+* [33mc0e0ec6[m Correção página autores
+* [33m66c26c1[m Alteração de GET para POST
+*   [33mb090579[m Merge pull request #30 from RicardoIreno/2022-06-14--1
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33m5749b8f[m Perfil - formatação da formação e botão 'voltar ao topo'
+* [1;36m|[m [33m1788b25[m Merge pull request #29 from RicardoIreno/2022-06-09--2
+[31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m * [33m923129d[m Botão 'voltar ao topo'
+[31m|[m * [33m2023381[m Fix - menu do profile
+* [32m|[m [33mcc05756[m Merge pull request #28 from RicardoIreno/2022-06-08--2
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33m36effb1[m Upgrade do menu do profile
+* [34m|[m [33md97a821[m Merge pull request #27 from RicardoIreno/2022-06-08--1
+[35m|[m[34m\[m[34m|[m 
+[35m|[m * [33m7cb6558[m WIP - Menu do profile
+[35m|[m * [33m898fc9f[m Estilização das tabs
+[35m|[m * [33m4b6564a[m Tabs alteradas e mudanças na estrutura de pasta das imagens
+[35m|[m * [33m2b8b118[m Atualizados os comentários
+* [36m|[m [33meeb2759[m Merge pull request #26 from RicardoIreno/loops-tab-three
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m * [33m83f66a1[m WIP 06.02 - Detalhes na estilização
+[1;31m|[m * [33mc63dcf6[m Numerados os laços da seção tab-three
+[1;31m|[m[1;31m/[m  
+* [33m40cd22f[m Retirada de aba quando não tem conteúdo
+* [33mb506b30[m Profile - Direção e administração
+* [33mb77bbe7[m Início dos dados de direção e administração
+*   [33mb460575[m Merge pull request #25 from RicardoIreno/feat-05-17--2
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33m633df90[m ajuste de classes css no profile
+[1;33m|[m[1;33m/[m  
+*   [33m003ae47[m Merge pull request #24 from RicardoIreno/feat-05-17
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33m6c5d6f6[m fix - s-list.scss
+[1;35m|[m[1;35m/[m  
+* [33mabd27e8[m Correção na pesquisa no perfil
+* [33mf7448a6[m Melhorias na pesquisa do perfil do pesquisador
+* [33m9deff51[m Diversas alterações e inicio das pesquisas
+* [33m4511881[m Exclusão de arquivos não mais utilizados
+* [33m089292f[m Parsers
+*   [33m59c19aa[m Merge pull request #23 from RicardoIreno/2022-05-10--1
+[31m|[m[32m\[m  
+[31m|[m * [33ma17d2a8[m Padronização das classes no SASS
+[31m|[m *   [33mbfd943f[m Merge branch 'master' of github.com:trmurakami/coletaprod into pull-test
+[31m|[m [33m|[m[31m\[m  
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m [33mfc04eff[m Dados de projeto de pesquisa
+* [33m|[m   [33m63cff7a[m Merge pull request #22 from RicardoIreno/wip-sass
+[35m|[m[36m\[m [33m\[m  
+[35m|[m [36m|[m * [33m6271796[m Update da página home e sass
+[35m|[m [36m|[m[36m/[m  
+[35m|[m * [33m2a20f3f[m wip c-line
+[35m|[m * [33m373866d[m fix dos icones sociais
+[35m|[m[35m/[m  
+*   [33m873ca1b[m Merge pull request #21 from RicardoIreno/fix-secao-core
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33mbc6409d[m Fix no profile-core - seção do gráfico quebrada
+[1;31m|[m[1;31m/[m  
+* [33m47cb97f[m Inicio do projetos de pesquisa
+*   [33m3768bc0[m Merge pull request #20 from RicardoIreno/sass-classes
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33m60bb42a[m Alterações nas classes css
+* [1;34m|[m [33md8d4d62[m Merge pull request #19 from RicardoIreno/dev
+[1;35m|[m[1;34m\[m[1;34m|[m 
+[1;35m|[m * [33m9c5d8d7[m Pequenas mudanças na página profile e mudanças no sass
+[1;35m|[m[1;35m/[m  
+*   [33mb9bb794[m Merge pull request #18 from RicardoIreno/config-example
+[31m|[m[32m\[m  
+[31m|[m * [33m7142658[m Update config example
+* [32m|[m [33mce3e3d8[m Merge pull request #17 from RicardoIreno/fix-btn
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33md0f7cd4[m Fix no botão 'alternar modo de pesquisa' na home e alterado o logo
+[33m|[m[33m/[m  
+* [33m291df98[m Orientações concluidas
+* [33m3c9740c[m Correção na ordenação de orientações em andamento
+* [33m92d301c[m Correção na ordenação das orientações
+* [33mf19d0ba[m Substituir título do trabalho por título
+* [33mcc08a84[m Correções nos labels
+* [33m1da4ee4[m Correção
+* [33m6f0a34d[m Correção na página de resultados
+* [33m9e7b8ac[m Correções no js e header da página de resultados
+*   [33m30f70ba[m Merge pull request #16 from RicardoIreno/fix-meta-two
+[35m|[m[36m\[m  
+[35m|[m * [33m4b247f0[m Fix - incluída a chamada ao bootstrap no result_autores
+* [36m|[m [33md099b52[m Merge pull request #15 from RicardoIreno/fix-css-meta
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m * [33m70679f1[m comentário no metaheader
+[1;31m|[m * [33m0dd022b[m Fix no botão da home e mudanças no meta-header
+[1;31m|[m[1;31m/[m  
+* [33m38dad41[m Pos-Doutorado
+* [33m496ac49[m Pós-Doutorado
+* [33m8dc983c[m Correção
+* [33m0226054[m Orientações
+* [33m148db11[m Correção no funcionamento do botão
+* [33m623d0d5[m Correção no navbar
+*   [33me52cb16[m Merge pull request #14 from RicardoIreno/fix-about-footer
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33mff43cd0[m Adicionado o require do footer no sobre.php
+* [1;34m|[m [33mf0d7657[m Merge pull request #13 from RicardoIreno/fix-about
+[1;35m|[m[1;34m\[m[1;34m|[m 
+[1;35m|[m * [33m8863d3f[m Ajuste na página sobre
+* [1;36m|[m [33mdbaeeb7[m Merge pull request #12 from RicardoIreno/fix-icons-color
+[31m|[m[1;36m\[m[1;36m|[m 
+[31m|[m * [33m527e99c[m Reparos nos ícones do footer, header e index
+[31m|[m[31m/[m  
+*   [33mdbf3e99[m Merge pull request #11 from RicardoIreno/feat-secao-orientacao
+[33m|[m[34m\[m  
+[33m|[m * [33m93bd3f9[m Seção orientações
+[33m|[m[33m/[m  
+*   [33m673a6b6[m Merge pull request #10 from RicardoIreno/feat-orientacoes
+[35m|[m[36m\[m  
+[35m|[m * [33m89e9708[m WIP feat - seção orientações
+[35m|[m * [33m9197265[m feat - update da estilização da tipografia
+[35m|[m * [33mf35d39c[m Fix - Corrigido o nome da classe do input na função filter_select
+[35m|[m[35m/[m  
+* [33m1b6b804[m Retirado a indicação de link
+* [33mfbd5705[m Tags
+* [33ma3e216d[m Remove editor
+*   [33m2beee13[m Merge pull request #9 from RicardoIreno/feat-pesquisa
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33mb634856[m Aba Pesquisa e linhas divisórias
+* [1;32m|[m [33mc842c49[m Merge pull request #8 from RicardoIreno/dev
+[1;33m|[m[1;32m\[m[1;32m|[m 
+[1;33m|[m * [33m2696699[m Estilização da seção Idiomas
+[1;33m|[m * [33m2bb3988[m Ponto de organização - 2022.04.19 - 14:00
+[1;33m|[m[1;33m/[m  
+*   [33m6c73f72[m Merge pull request #7 from RicardoIreno/fix-profile-divs
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33me59b4bc[m Arrumadas as divs que não estavam fechando
+[1;35m|[m[1;35m/[m  
+* [33mc59c5cc[m Limpeza de código
+* [33m3df313e[m Remove editor
+* [33ma755124[m Profile ocultar gráfico
+* [33m67cb59f[m Profile Ifs
+* [33m3c63fba[m Profile
+* [33m79bba22[m Profile
+*   [33m7ade1e4[m Merge pull request #6 from RicardoIreno/feat-language-icons
+[31m|[m[32m\[m  
+[31m|[m * [33m80833bf[m Incluídos ícones na seção idiomas
+* [32m|[m [33mb5e8d92[m Merge pull request #5 from RicardoIreno/feat-update-sass
+[33m|[m[32m\[m[32m|[m 
+[33m|[m * [33m527499d[m Recuperada a pasta Sass
+* [34m|[m [33mba5abdc[m Merge pull request #4 from RicardoIreno/cleaning-files
+[35m|[m[34m\[m[34m|[m 
+[35m|[m * [33m914c5df[m Exclusão de arquivos não usados e pasta Assets dentro do profile
+* [36m|[m [33mdb65ad1[m Merge pull request #3 from RicardoIreno/fix-navbar-icon
+[1;31m|[m[36m\[m[36m|[m 
+[1;31m|[m * [33m7be9aee[m Corrigido o ícone do navbar
+[1;31m|[m[1;31m/[m  
+* [33m99ffdd5[m Profile
+* [33mbc60d3e[m rebase
+* [33m2b6a4ca[m Profile
+* [33m8dd9768[m Profile
+* [33me786db5[m Profile e Sobre
+* [33md0cebd3[m Profile
+* [33md79fae8[m Correção no icone home
+* [33m0e0e830[m Exclusao do index_source
+* [33m5aef906[m Readme e install
+* [33m5c265c7[m Profile
+* [33mf3b07d8[m Manual Ricardo
+* [33m61fdce3[m Melhoria no design Ricardo
+* [33m4547689[m Começo do profile
+* [33m4fd0ff0[m Correção nos links
+* [33mb937d32[m Navbar
+* [33me163375[m Exclusao de result source e teses
+* [33m2f2d7ba[m Arquivo inclusão
+* [33mf0a0cc5[m Correções no config_example
+* [33m3df2d14[m Melhorias na página result.php
+* [33mde78120[m Correções no index.php
+* [33m580110c[m Profile
+* [33m18d60f3[m Maternidade
+* [33m7a44ecb[m premios tae
+* [33md069bcc[m premios
+* [33mf0e3357[m profile
+* [33m0b4ddb9[m premios
+* [33m6dd0b80[m ORCID
+* [33m5d99ac7[m Openalex
+* [33md6fc90d[m Correcao
+* [33m138b663[m Correção na query
+* [33mae278da[m Openalex
+* [33me480874[m Openalex
+*   [33mc200638[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33m82799f7[m Pesquisa por nome dos pesquisadores
+[1;33m|[m * [33mb5a38e9[m Alterações na URL do dashboard
+* [1;34m|[m [33md904b1c[m pre_dash
+[1;34m|[m[1;34m/[m  
+* [33m8f743ed[m Mensagem de manutenção
+* [33md3c5ed8[m Admin page
+* [33md4d15a9[m Install.md
+* [33m3ec9275[m lançamento
+* [33m124674f[m Favicon
+* [33mb0fdef7[m Correção no footer
+* [33m1640ad1[m Correção nos nomes dos ppgs
+* [33m1c9fa5f[m Correção
+* [33m5be5dcb[m Index One PG Orient
+* [33m30f45a1[m Correção no link
+* [33m8ce543b[m Correções
+* [33mcf219b5[m Link
+* [33mc0a09d6[m Melhorias
+* [33maa4a07b[m Correções
+* [33mfc10cf3[m Estilo
+* [33m4da1ab7[m Manuais
+* [33mb7ae0a2[m Correções
+* [33mc309069[m Correção
+* [33m0fca4b3[m Correções em links e favicon
+* [33mf852d8c[m Correção
+* [33m55aa2d8[m Navbar
+* [33m069bc8d[m Correção no link inicio
+* [33m1e8803f[m Pre dash
+* [33ma0c03a2[m Pre dash
+* [33mca3cb7f[m Pre dash
+* [33m559e819[m Manual
+* [33m261cd98[m Correções
+* [33md94ba7f[m Link de exportar para Orcid
+* [33m01203f3[m Correção na imagem do pesquisador
+* [33m750d17a[m Melhoria nas imagens dos autores
+* [33m2d903a1[m Autores para autoria e retirada de links
+* [33mc954044[m Retirado links na pagina de resultado dos autores
+* [33mc1c8052[m Retirado o link de ver todas as produções
+* [33mcf80ccc[m Voltando a alteração do redirect
+* [33m09214cd[m Redirect http to https
+* [33mb057675[m Redirect http to https
+* [33m4a4ca84[m Melhorias no design
+* [33m3ccf24c[m Distribuição por ano
+* [33mc3ee0f0[m Margin bottom
+* [33m9b4b8b6[m Image size
+* [33mebb7d17[m Image size
+* [33m92e70dc[m Obtenção de foto usando a API do lattes
+* [33m1b8ef59[m Correção no redirect
+* [33mba3913b[m Correção no redirect
+* [33ma36f54a[m Vega
+* [33m3fab5fa[m Correção
+* [33m251dcd7[m Implementação dos dados do php no gráfico
+* [33m988baf8[m Inicio de implementação dos gráficos usando vega
+* [33m8e1fc1a[m Facetas no perfil do autor
+* [33m81e9ea7[m Inicio do classificador SDG
+* [33mead8194[m Correção de http para https
+* [33m4158762[m Backup
+* [33mefe027b[m Backup
+* [33m4cb55d2[m Backup
+* [33m4ae7d55[m Backup
+* [33mffa5fd9[m Teste
+* [33md14516a[m Backup
+* [33me20a68e[m Backup lattes
+* [33mce46fdf[m Backup reindex
+* [33mcc6cd75[m Reindex using backup
+* [33mbea6f54[m Correção
+* [33m5eea332[m Correção
+* [33m34f324c[m Correção no backup
+* [33m1d87e54[m Nofollow em links de exportação
+* [33m418f179[m Inicio de upload do vinculo
+* [33m9966112[m Correção no formato da data
+*   [33me0911fb[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33me39b998[m gitignore
+[1;35m|[m * [33m2a621e4[m Permissões
+[1;35m|[m * [33mb5536e6[m Correção
+* [1;36m|[m [33m42121fe[m Correção no script de backup
+[1;36m|[m[1;36m/[m  
+* [33m09e4423[m Teste
+* [33m5c2124c[m Alteração do formulário de erros
+* [33ma84ac41[m Backup Lattes XML
+* [33m36d0e02[m gitignore
+* [33m3bb4670[m Download backup Lattes
+* [33m60c7485[m Gitignore
+* [33m90135f0[m Login
+* [33m5f09170[m Aviso de manutenção
+* [33mdc676d6[m Frase inicial
+* [33mc334027[m Clean query
+* [33m5de7656[m Correção
+* [33m59b1664[m Total de registros no profile
+* [33mde77658[m Retirado o citation count
+* [33medf8780[m Correção
+* [33m8cf4478[m Correção
+* [33mf4d81f9[m Correção
+* [33m350a9f0[m Strip tags
+* [33mb241f76[m Correção passageira
+* [33m4cd3f77[m Correção
+* [33m105b885[m Correção
+* [33mdf311f5[m Get filter
+* [33m4e8231a[m Correção
+* [33m37ba59f[m Filter input array
+* [33ma9abef3[m Sanitized query
+* [33m392e4a9[m Favicon
+* [33mb3b6d07[m Alteração no limite dos trabalhos dos autores
+* [33mf29594f[m Alteração de limite na pag de autores
+* [33m901f04f[m Parser do JSON da UFSCar
+* [33m26b871e[m Inicio do parser do JSON da UFSCar
+* [33m8dd26ab[m Facetas da página de resultados
+* [33mfea6531[m Correção no design responsivo da pág de resultados
+* [33mcfd99da[m Estilo
+* [33m0589b77[m Atualização de estilo
+* [33m9520ab3[m Alteração de estilo
+* [33m2fa43c7[m Alterações de design
+* [33m63dcf8c[m Tirar botão
+* [33m897096c[m DOI
+* [33me4a1cd1[m Correção DOI
+* [33m43c9473[m Alt
+* [33mfb8552f[m Retirado o resumo dos autores
+* [33ma7a6cc5[m Melhoria na página de autores
+* [33mcb1daa4[m CSS autores
+* [33mc1e76cd[m Ordem dos autores
+* [33m5568030[m Nomes no inicio
+* [33md465424[m Correção no autocomplete
+* [33mea0e09b[m Retirado equipe envolvida
+* [33m85ca5e5[m reindex
+* [33m7eea302[m Design
+* [33m691dce5[m Correção no design
+* [33mfdbb72a[m Correção no design
+* [33mbe188da[m Design
+* [33m110c510[m Re-Design
+* [33m1327c21[m Design
+* [33md487dee[m Google Analytics
+* [33m16be019[m Mudanças
+* [33m3559402[m TAE
+* [33mb2369a0[m Página de perfil
+* [33m3ffc3be[m Alunos
+* [33m4610ab5[m Correção
+* [33mb7cfff6[m Correção
+* [33mb429807[m Update
+* [33mba02f9a[m Change to pg_orientadores
+* [33m3875a2a[m Move tools
+* [33m6e69930[m Atualização automática
+* [33mabbd2ea[m Retirado o limite
+* [33m1155144[m Alterado para 100 o limite
+* [33m8b0a571[m Correção no fechamento de div
+* [33m2d25a7c[m Automatic indexing using Oracle
+* [33m077c731[m Correção na URL
+* [33m114c747[m Correção na URL para prodmais
+* [33m723d252[m Consulta ID Lattes pelo CPF
+* [33m423fc8a[m Inicio da página de autores
+* [33m837ebda[m Delete LattesID
+* [33mfeee41a[m Nome
+* [33m3e3c4a4[m Logo
+* [33ma9b044c[m Acordeon index page
+* [33m79d2f4e[m Botão de exportação para ORCID
+* [33medcf641[m Update
+* [33m74a2d49[m Correção
+* [33me67082d[m Correção
+* [33m6386b13[m CSV correção
+* [33me27b42d[m CSV upload
+* [33me05554e[m Retirado os echos
+* [33ma28024e[m Correção
+* [33m2a2bccc[m Correção
+* [33m08560b1[m Ocultar registros similares no coletaprod
+* [33m0596b9e[m Correção na importação
+* [33m433f407[m Lista campos
+* [33m6c1b757[m CSV
+* [33m9324ab0[m CSV
+* [33mf301ede[m CSV
+* [33mf3228b2[m Update
+* [33mfa2e53f[m Inclusão e update
+* [33m8c421b9[m Update
+* [33m0069199[m Inicio do update automático
+* [33m8f86b88[m Correção na busca por autor
+* [33m598b36c[m Tipos
+* [33m80d130d[m Strip tags
+* [33m8181280[m Capesprint link
+* [33m20da80e[m Citeproc
+* [33m4d18637[m Citeproc
+* [33m2d8878e[m Correção
+* [33me3c3e30[m Proxy authors
+* [33mf6a70cf[m CORS
+* [33m1a3ef37[m CORS
+* [33m6f43ea8[m CORS
+* [33m7e33f81[m CORS
+* [33ma820319[m Search author
+* [33m2740a1f[m Search autor vue.js
+* [33m3cf010b[m CapesPrint
+* [33mc4a2589[m CapesPrint
+* [33mf926aa8[m CapesPrint
+* [33m9710c90[m Correcao
+* [33m54faab8[m Erro
+* [33m2a816e5[m Formulário
+* [33mf6b0580[m Link para formulário de report de erros
+* [33m8db112e[m Initial
+*   [33mea9e93a[m Merge branch 'v3.0'
+[31m|[m[32m\[m  
+[31m|[m * [33m21657dd[m Modal
+[31m|[m * [33m22968ad[m Modal
+[31m|[m * [33m6fd81b6[m Elasticfind
+[31m|[m * [33m7d1978a[m Boostrap 5
+[31m|[m * [33m2845ac2[m Mappings
+[31m|[m * [33m8f1a23b[m Página inicial
+[31m|[m * [33m431f5cb[m Navbar
+[31m|[m * [33mc0ac3e7[m OO
+[31m|[m * [33m5b3b9be[m Bootstrap 5
+* [32m|[m [33m65860cb[m Mappings
+* [32m|[m [33ma866adb[m Mappings
+[32m|[m[32m/[m  
+* [33md82b9cf[m Minor
+* [33m184a40d[m AND em maiúsculo
+* [33m719f3bd[m Dicas
+* [33mcbe838a[m Dicas
+* [33m3af32c2[m Filtro por data
+* [33mb47f8de[m Mappings e Locale
+* [33m6aba3d9[m Mappings
+* [33m4e91a97[m Nav link
+* [33mb580d5c[m Nav link
+* [33m8a8ea07[m Nome
+* [33m7010f4e[m Autores
+* [33m75c4436[m Autores
+* [33mc50128a[m URL
+* [33md824577[m URL
+* [33mb8c01a1[m URL
+* [33mc52a8ad[m url
+* [33m224f0f4[m url
+* [33m7510d72[m Retirado o teste
+* [33mc16d1bb[m Correct URL
+* [33md33adac[m test
+* [33m1f65089[m htaccess
+* [33m1e0ba0d[m htaccess
+* [33m589db06[m htaccess
+* [33md38cec1[m Filtros ativos
+* [33m642a0de[m Retirado o Work dos filtros
+* [33m3d4abbf[m Retirado o Work dos filtros
+* [33m534c770[m Alterações prof Andrea
+* [33mab8bcbc[m Dashboard ppgs
+* [33m9f10e57[m Correção
+* [33mf54ef12[m Dashboard exported
+* [33m8bd436d[m Sort
+* [33mea8ec1e[m Sort
+* [33m0311a2b[m Filter
+* [33m2064b95[m Filter field
+* [33mec39273[m Fitros ativos
+* [33m94b63f4[m Ajuda
+* [33m6e8ebbb[m Ajuda
+* [33mb35299c[m OO e busca no id do lattes
+* [33m79a4e54[m Faceta Lattes_ID
+* [33m18343bc[m Erro no ID do Lattes ocultado
+* [33m59dad5d[m Minor
+* [33m7fa566c[m Melhorias na interface
+* [33ma104345[m Melhorias na interface
+* [33m6ebc68b[m Comparador
+* [33m7f704ef[m Comparador
+* [33m527a4eb[m OO
+* [33mf383348[m OO
+* [33mfdccdb6[m Inicio OO XML to Elastic
+* [33m05c4709[m Dedup
+* [33m9fe3392[m Testador DOI e comparador de título
+* [33mf202cd5[m Facet DOI
+* [33me2d88d1[m Tematres
+* [33m0a62e08[m Tematres Funder
+* [33mc59f0cf[m Funder DOI
+* [33m66008b4[m Editor
+* [33mbe8146d[m Tematres
+* [33m14ff31e[m Retirado o botão coletar dados da crossref
+* [33m5e46e69[m Melhorias na interface
+* [33m80b1ad9[m Nome do PPG em primeiro
+* [33m5a753c7[m Retirado facetas duplicadas
+* [33m32a4a9e[m facet range
+* [33m330b55e[m Citeções na crossref
+* [33ma9dc477[m Correção do filtro de data
+* [33m7da04a1[m Correção no filtro de intervalo de datas
+* [33m890e4c6[m Network of PPGs
+* [33md0839f1[m Comparador
+* [33m34f3d3a[m Minor
+* [33m41c9565[m Funcion upsert
+* [33m36a941e[m Minor
+* [33m4254776[m DOI único no sha256
+* [33m66da0ac[m Funcion construct_vinculo
+* [33m0d69c9f[m Faceta: Nome do autor vinculado a instituição
+* [33m4d9d418[m Dedup
+* [33m06cec4b[m Correção de tipos bibtex
+* [33mb5f20ca[m Alterado os campos
+* [33m58e3102[m Navbar
+* [33mb4d1855[m Navbar
+* [33m2b69ecc[m Export bibtex
+* [33m2744d92[m Dedup
+* [33m37ba44b[m Dedup
+* [33mb14520e[m Dedup
+* [33m340d2ea[m Dedup
+* [33m761c903[m facet_range
+* [33m2b08433[m Facet ExternalData
+* [33mf49160b[m Facet ExternalData
+* [33m285fc1b[m Facet DOI
+* [33mc709033[m Facets
+* [33mbda1ec5[m Initial
+* [33mb545190[m Facets
+* [33mb220373[m Add facets
+* [33mcf890bb[m Initial
+* [33m4bc3f16[m Crossref
+* [33mf012864[m Initial
+* [33mf59c20d[m Crossref
+* [33ma2523a3[m Crossref
+* [33mdf42347[m Crossref
+* [33m217e5d6[m Crossref
+* [33mf62f485[m Mappings
+* [33mf82110a[m Initial
+* [33madca119[m Initial
+* [33m359f1a9[m Minor
+* [33m38fc0b1[m Crossref
+* [33m8b44279[m Add lattes_id
+* [33meafedae[m Correção ano ingresso
+* [33m30556c5[m Initial
+* [33m01475c4[m Index
+* [33mac35c45[m Index
+* [33mf091354[m Index
+* [33mb6af251[m Correção
+* [33m09c9832[m Initial
+* [33m765a5a6[m Teste
+* [33mca51c5d[m Initial
+* [33m80c7ce7[m PPGs
+* [33mb9dea42[m Compara ano ingresso trab evento
+* [33mf04888e[m Correção
+* [33mc280153[m Correção
+* [33mc8ed32d[m Initial
+* [33m09f4fd2[m Inicio da deduplicação na entrada
+* [33mdf36e4e[m Separado o inclusão
+* [33m7178463[m Initial
+* [33me3379bb[m Initial
+* [33mc719144[m Initial
+* [33me9d76d3[m Initial
+* [33m981481b[m Initial
+* [33mac77c2d[m Initial
+* [33m9141e4a[m Initial
+* [33m1f3e7df[m Initial
+* [33mc40a143[m Initial
+* [33mbd588eb[m Initial
+* [33m6ada2c4[m Initial
+*   [33ma54954d[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[33m|[m[34m\[m  
+[33m|[m * [33me811745[m Correção de path no envio do lattes
+* [34m|[m [33mac657fc[m Initial
+[34m|[m[34m/[m  
+* [33m88697ee[m Correções na codificação de caracteres
+* [33m5d8f3b1[m Mensagem de erro na conexão com o elasticsearch
+* [33m6876866[m Initial
+* [33m37dadf5[m Initial
+* [33ma37e246[m Initial
+* [33md124f6d[m Initial
+* [33m8b58b19[m Initial
+* [33m4bcc9bf[m Initial
+* [33ma3040d7[m Initial
+* [33m7b6cb36[m Initial
+* [33mcd10b0c[m Initial
+* [33me647a6a[m Initial
+* [33m6590b47[m Initial
+* [33mfb2fa57[m Initial
+* [33m75848b1[m Initial
+* [33m0a312d2[m Initial
+* [33mf2dd3d0[m Initial
+* [33m29bfac3[m Initial
+* [33mbb5cc47[m Initial
+* [33m34d3266[m Initial
+* [33m8ae7c1b[m Initial
+* [33m7ee0c63[m Initial
+* [33mbf28cdb[m Initial
+* [33mf57003d[m Initial
+* [33m8c9ec9d[m Initial
+* [33mf67dba5[m Initial
+* [33m6d08d0c[m Initial
+* [33m132ae9a[m Initial
+* [33m606943d[m Initial
+* [33mbd94e50[m Initial
+* [33mdaa30c4[m Initial
+* [33m11c0389[m Criação do indice citedby
+* [33m99a6266[m Initial
+* [33mde68817[m Initial
+* [33m55d8d3d[m Initial
+* [33md40121f[m Initial
+* [33ma4b6a3a[m Initial
+* [33mdfc999c[m Initial
+* [33m426d3bf[m Initial
+* [33mdfe6b44[m Initial
+* [33m49986f3[m Comparador interno
+* [33m6448c61[m Initial
+* [33m6d0dbca[m Initial
+* [33m2db21bd[m Criar indice das autoridades
+* [33me25818d[m Correção
+* [33m864d060[m Return
+* [33m2848e99[m Initial
+* [33mb3181c9[m Initial
+* [33m3cc2a34[m Correção
+* [33m7be597c[m Network without papers
+* [33m5db7de9[m Gephi export
+* [33mf8f1cc3[m Initial Gephi
+* [33m92dcbd8[m Initial Gephi export
+* [33ma5d635e[m Initial export Gephi
+* [33mf0c508c[m Initial
+* [33m71550ff[m Inicio do profile
+* [33mb1834b1[m Correção nas facetas
+* [33m4542b30[m Initial
+* [33m400bf22[m Initial
+* [33m4171ba3[m Initial
+* [33m9e43e86[m Initial
+* [33md89b209[m Initial
+* [33me4d16be[m Initial
+* [33m9f8d42a[m Initial
+* [33mc8afc80[m Initial
+* [33m33bddd2[m Initial
+* [33mc1a3923[m Initial
+* [33m392fa8b[m Initial
+* [33m064468c[m Initial
+* [33m0febb14[m Initial
+* [33ma9dc80f[m Initial
+* [33m119f18b[m Initial
+* [33m3707c4f[m Initial
+* [33m63c03e1[m Initial
+* [33me5d0500[m DSpace Rest
+* [33m88ea15e[m Initial
+* [33m183f233[m Initial
+* [33mdcb8eed[m Initial
+* [33md4cb2ff[m Initial
+* [33mafbe4a9[m Initial
+* [33mf601790[m Initial
+* [33me175e98[m Initial
+* [33me4990dd[m Initial
+* [33m9747374[m Initial
+* [33md19b7e4[m Initial
+* [33mfc91e75[m Initial
+* [33m25c487d[m Initial
+*   [33me7f5e4d[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[35m|[m[36m\[m  
+[35m|[m * [33mbf45edc[m Initial
+[35m|[m * [33m4328a58[m Initial
+* [36m|[m [33m74505ac[m Initial
+[36m|[m[36m/[m  
+* [33md05a357[m Initial
+* [33m63804aa[m Initial
+* [33m0c0e303[m Initial
+* [33m76db093[m Initial
+* [33maa79e2f[m Initial
+* [33m1201e4c[m Initial
+* [33m44e52ec[m Initial
+* [33m975dc85[m Initial
+* [33m3cb5b70[m Correção
+* [33mc9ce3e4[m Initial
+* [33m6025773[m Minor
+* [33m4c2f1a6[m Initial
+* [33m01057e1[m Initial
+* [33ma391cea[m Initial
+* [33mef6a00d[m Initial
+* [33m5b872d1[m Initial
+* [33md172cbe[m Dados pessoais
+* [33m2c027f6[m Initial
+* [33m98fc388[m Initial
+* [33m38d0965[m Initial
+* [33m084f2e2[m Initial
+* [33m356050a[m Initial
+* [33m66f8c88[m Initial
+* [33m09404e0[m Initial
+* [33m267503b[m Initial
+* [33m2e64d7d[m Initial
+* [33m7a78535[m Initial
+* [33m70996a8[m Initial
+* [33medfa7e1[m Initial
+* [33ma661e50[m Initial
+* [33mc7d0d05[m Initial
+* [33m38d8371[m Initial
+* [33mcb3e7b2[m Initial
+* [33m2314e22[m Initial
+* [33ma21d5d5[m Initial
+* [33m31abb81[m Initial
+* [33m037de3a[m Initial
+* [33m54e3f82[m Initial
+* [33m22d3f4c[m Initial
+* [33mfa3ace8[m Initial
+* [33mbf2139f[m Initial
+* [33m5c4dec9[m Initial
+* [33m5ed939c[m Initial
+* [33m20bc5c2[m Initial
+* [33m8558c0c[m Initial
+*   [33m5d69ed5[m Merge branch 'master' of https://github.com/trmurakami/coletaprod
+[1;31m|[m[1;32m\[m  
+[1;31m|[m * [33m4583f97[m Initial
+[1;31m|[m * [33mc30050a[m Initial
+[1;31m|[m * [33m622967a[m Initial
+[1;31m|[m * [33mdb70df1[m Initial
+[1;31m|[m * [33m9a0991d[m Initial
+* [1;32m|[m [33mf357b76[m Export for DSpace
+[1;32m|[m[1;32m/[m  
+* [33mb494776[m Initial
+* [33m11fabda[m Initial
+* [33m581ee34[m Initial
+* [33mdfd6910[m Initial
+* [33m4aa4bd1[m Initial
+* [33md18cafc[m Initial
+* [33mc8aa622[m Initial
+* [33m16a4ff5[m Initial
+* [33m056ea9d[m Initial
+* [33mec53d36[m Initial
+* [33me7aa579[m Initial
+* [33mebd8836[m Initial
+* [33me541560[m Initial
+* [33m013b61b[m Initial
+* [33m19d1e38[m Initial
+* [33m528ac2a[m[33m ([m[1;33mtag: v2.2[m[33m)[m Add export button
+* [33me16c9ab[m Initial
+* [33m7ac7416[m Initial
+* [33m4a02959[m Initial
+* [33m1ea4bcd[m Initial
+* [33mcca9449[m Correções no add tag e match
+* [33mb171e37[m Initial
+* [33m8ca5560[m Initial
+* [33mc97006d[m[33m ([m[1;33mtag: v2.1[m[33m)[m Initial
+* [33m0ffe2e3[m Initial
+* [33m9d61413[m Initial
+* [33m0ecb313[m Initial
+* [33m3be79fa[m Initial
+* [33m65dac38[m Initial
+* [33m1e92ad3[m Initial
+* [33m2e2da14[m Initial
+* [33m8e6128b[m Initial
+* [33m302cdbd[m Initial
+* [33m9dbd2af[m Initial
+* [33m21d30c2[m Initial
+* [33me2b9cb3[m Initial
+* [33m716b46f[m Initial
+* [33m1b9d345[m Initial
+* [33mb227b01[m[33m ([m[1;33mtag: v2.0[m[33m)[m Initial
+* [33ma5b4040[m Initial
+* [33meaab00c[m Initial
+* [33md69780f[m Initial
+* [33m2a298d0[m Initial
+* [33m8a12bf8[m Initial
+* [33m0aa5914[m Initial
+* [33m3c90f35[m Initial
+* [33m4783b92[m Initial
+* [33m0a055a9[m Initial
+* [33m14e881a[m Initial
+* [33m30064f8[m Initial
+* [33mefc920f[m Initial
+* [33md2bc5f9[m Initial
+* [33mbfb4125[m Initial
+* [33m74052b2[m Initial
+* [33mc7b3f7a[m Initial
+* [33m8ce817c[m Initial
+* [33mffa3f06[m Initial
+* [33m933c9dc[m Initial
+* [33m1b73df2[m Initial
+* [33mf5fe95f[m Initial
+* [33m3b9ecf1[m Initial
+* [33mb739668[m Initial
+* [33mb3130e2[m Initial
+* [33mbfc87b2[m Initial
+* [33m5141398[m Initial
+* [33mb62b089[m Initial
+* [33m7f0cf60[m Initial
+* [33md384c1e[m Initial
+* [33m59f5b12[m Initial
+* [33m2c98cd0[m Initial
+* [33mfa5e5dc[m Initial
+* [33m9b48c6f[m Initial
+* [33m9495b99[m Initial
+* [33mc13dfe9[m Initial
+* [33m8934eb3[m Initial
+* [33m3b6ab8a[m Initial
+* [33m1f31261[m Initial
+* [33mf8e9aff[m Initial
+* [33m5391f44[m Initial
+* [33mfb6fd40[m Initial
+* [33m729a748[m Initial
+* [33m60e99eb[m Initial
+* [33m427896e[m Initial
+* [33mfe3dbf6[m Initial
+* [33m218f94c[m Initial
+* [33mf7da319[m Initial
+* [33m2ad2e5e[m Initial
+* [33m71f174e[m Initial
+* [33m7dd1771[m Initial
+* [33mbb92931[m Initial
+* [33ma816d12[m Initial
+* [33mbd0c65e[m Initial
+* [33m440d44b[m Initial
+* [33m5b5c435[m Initial
+* [33m92f9516[m Initial
+* [33md116663[m Initial
+* [33m0fb6a26[m Add submodule
+* [33m249cef0[m Removed submodule
+* [33mc457c3b[m Initial
+* [33m2ad7960[m Grobid
+* [33m4273ee9[m Minor
+* [33md24bffe[m Correções gerais
+* [33m5dc149a[m Correção no index
+* [33m14201b4[m Criação autom[atica do indice
+* [33me01973f[m Correção
+* [33m025c5df[m Correção
+* [33m4bccb42[m Correções
+* [33m8646b96[m Retirado o sort
+* [33m44f635a[m Correção
+* [33m8147dfd[m Correção
+* [33ma32daa3[m Correção
+* [33m59d6ce2[m Ordenação e pontuação
+* [33mdf2445a[m Melhoria na organização
+* [33m6fd3b09[m Melhoria da coleta do OAI
+* [33m1c7eaea[m Alterado de nam para nab
+* [33m04d8911[m Correções
+* [33m399794d[m Update functions_core
+* [33m46a7d15[m Correção nome do publisher e inversão de nomes
+* [33me55b58c[m Adicionado data no 260
+* [33m8f98792[m correcao
+* [33mdba707b[m Se tiver DOI, incluir nota
+* [33m07550f7[m Inclusão de subcampos nos autores
+* [33mcd8f1eb[m Inclusão da paginação no final
+* [33m9f6aedf[m Melhoria nos uploads e harvester
+*   [33m9b5ea50[m Merge branch 'master' of https://github.com/SIBiUSP/coletaprod
+[1;33m|[m[1;34m\[m  
+[1;33m|[m * [33ma71d17a[m Melhoria no comparador
+[1;33m|[m * [33mb4b2dd5[m Correção no loop
+* [1;34m|[m [33mbb9a38d[m Melhoria
+[1;34m|[m[1;34m/[m  
+* [33mc0614f6[m[33m ([m[1;33mtag: v1.3[m[33m, [m[1;33mtag: v1.2[m[33m)[m Correção no match
+* [33m4febd5d[m Script para importar do coletaprod
+* [33md9512ab[m Script para importar da BDPI
+* [33md2cd02a[m Script de dedup
+* [33m4694256[m Script para corrigir os DOIs
+* [33m438c667[m Changes on scival
+* [33m082a178[m Changes on incites
+* [33m236c352[m Adicionado o Senado
+* [33m175c143[m Correção no upload e mudança de nome para match
+* [33m14d9d74[m Correção no upload do scival
+* [33md662a69[m Correção no upload do incites
+* [33md6992e9[m Update changes
+*   [33me92f035[m Merge branch 'master' of https://github.com/SIBiUSP/coletaprod
+[1;35m|[m[1;36m\[m  
+[1;35m|[m * [33m0be636b[m Add gitignore
+[1;35m|[m * [33m73b58f2[m Delete
+* [1;36m|[m [33m8913d55[m Coleta no SCIVAL e INCITES
+[1;36m|[m[1;36m/[m  
+* [33m6ffd901[m Add datePublished
+* [33m99dc768[m Correção no exportador
+* [33m0b88264[m WoS e melhorias
+* [33m744a89c[m Correção
+* [33mf7ea651[m Correção
+* [33m162259c[m Correção no parser do Scopus
+* [33m6d47256[m Correção
+* [33md86dad5[m Começo do editor de registros
+* [33md690892[m Abrir novo link em uma nova aba
+* [33mdf1ed10[m Correção na busca
+* [33m10a488e[m Trim
+* [33m00cd004[m Correção
+* [33mfce64b9[m Correção no link
+* [33me7ab44e[m Correção no DOI
+* [33mee3da25[m Correção do retorno
+* [33m1277d4f[m Correção
+* [33m9a15593[m Melhorias
+* [33m312ea00[m Criação do link
+* [33md46ca94[m Correção
+* [33me671e6e[m Correções
+* [33md260313[m Correções
+* [33m1c85ad3[m Melhorias
+* [33mebaf9f5[m Melhorias
+* [33md86dd27[m Correções
+* [33mbedf3e7[m Melhoria functions_core
+* [33m15655e1[m Tipos Lattes
+* [33m83175dd[m Dspace
+* [33m98954f1[m Exporter
+* [33m19e5ed2[m Adicionado Traducao
+* [33mf88f9ff[m Melhorias gerais
+* [33m1fc6531[m Correções Elastic 6
+* [33m9159bf1[m Melhorias
+* [33m2e433b7[m Complemento
+* [33m97dda53[m Começo do processamento do XML do lattes
+* [33m1d58e08[m grobid to jats
+* [33m9ebc83e[m Minor
+* [33med3b6ae[m Grobid
+* [33m4171337[m Exemplo do config
+* [33m833cfdf[m Mudança no algoritimo de comparação
+* [33ma86344b[m Correção na faceta Está na BDPI?
+* [33m2a7a396[m Mapeamento do Aleph Sequencial
+* [33m7f4a007[m Melhorias no Z39.50
+* [33md4edf3f[m Redirecionamento automático
+* [33m55cff84[m Correção
+* [33m847d4b6[m Exclusão do print de teste
+* [33m1447747[m Correção ainda em andamento
+* [33m8c9d97d[m Busca por Título
+* [33m1900c50[m Incluidos textos em jornais e revistas
+* [33macdb460[m Correção temporária
+* [33m1fd9b77[m Exclusão do validador errado
+* [33m1f872a1[m Correções para inclusão do DOI
+* [33mb82dfb8[m link para o DOI
+* [33m2f59959[m Trocado o store pelo update
+* [33md6c289d[m Jquery Local
+* [33m10fc572[m Correção no formato tabela
+* [33m69b5fb0[m Correção no nome da base
+* [33mddf5811[m Correção temporária
+* [33m78e6460[m Comparação entre DOI da Scopus
+* [33mf99438c[m Exibir titulos e issn do periódico
+* [33m98a2492[m Melhoria na documentação
+* [33m4a06758[m Verificação automática na BDPI
+* [33mea05df5[m Novo mapeamento para a scopus
+* [33m836f4cf[m Correção
+* [33mbca9ba1[m Comparadores no Scopus e Web of Science
+* [33m66cff38[m Exportação em lote
+* [33m9c7ee62[m Ver em tabela
+* [33m160ff0b[m Unidade USP no início
+* [33ma2cadb6[m Correção na paginação
+* [33m632520d[m Busca por Número USP
+* [33mb007c2a[m Correção do endereço final
+* [33mce6d07b[m Quantidade de tags
+* [33m75cab13[m Functions core
+*   [33m851bf4c[m Merge branch 'master' of https://github.com/SIBiUSP/coletaprod
+[31m|[m[32m\[m  
+[31m|[m * [33me6ac34b[m Melhorias
+* [32m|[m [33m4d10bb7[m Função consulta antes
+* [32m|[m [33mcbf3df3[m Inclusão de faceta
+[32m|[m[32m/[m  
+* [33mb2f3c32[m Mudança completa para UIKIT3
+* [33m825639c[m Inclusão do functions_core
+* [33m2236239[m Correção no Mapeamento dos Indices
+* [33m7e40a1c[m Correção do link
+* [33mebe046f[m Exclusão do Harvester antigo
+* [33m95a96c9[m Coleta por OAI-PMH
+* [33m983cae5[m Correções simples
+* [33me98024b[m Alteração na consulta à BDPI
+* [33mbdae19b[m Volta ao indice anterior
+* [33m6bb8b7e[m Correção na busca por TAG
+* [33mf509f81[m Melhoria na exportação no Alephsequencial
+* [33ma34af01[m Alteração do campo concluido de 0 e 1 para Sim e Não
+* [33me9e1d49[m Colocar o valor 0 para concluido como padrão
+* [33m29b89e8[m Melhoria no marcar como concluido
+* [33m1179986[m Marcar como concluido
+* [33me5e72b6[m Pequenas correções
+* [33m36d4b8b[m Melhorias no z39.50
+* [33mdab824e[m Incluido a nota
+* [33mb7e8188[m Correção de erro
+* [33mc462a78[m Melhorias
+* [33m5ee43aa[m Correção na codficação de caracteres
+* [33mda787a0[m Melhorias
+* [33m58e220c[m Padronização do functions_core
+* [33m71da358[m Uso das core functions
+* [33mcf424c7[m Uso das core functions
+* [33m2735221[m Criação da classe functions core
+* [33mcaf29d2[m Correção na consulta à bdpi
+* [33m57405af[m Correção de bugs
+* [33m1727ed1[m Incluido mais algumas tentativas de baixar o curriculo
+* [33m59417ed[m Correção de bugs
+* [33m7ac1737[m Correção de bugs
+* [33m76e2870[m Correção
+* [33m8b70608[m Correção
+* [33mfffa13e[m Retirado a ordenação por data
+* [33m6b3e3fb[m Criação da página de teses obtidas do lattes - Adendo
+* [33m52da5ba[m Criação da página de teses obtidas do lattes
+* [33m9733324[m Configuração para evitar erros
+* [33md6e2adc[m Exportador Aleph Sequencial
+* [33m44f2bc7[m Configuração
+* [33m1828dd7[m Correção na busca
+* [33m4bf39f7[m Inclusão de artes visuais
+* [33m5115e80[m z3950
+* [33md90ac51[m Documentação
+* [33m617c510[m Início do parser de z39.50
+* [33ma53b328[m Inicio do uso da ferramenta de documentação phpDocumentor
+* [33mff9a01c[m Arrumar funções em classes
+* [33m9ca27b8[m Novo link para script
+* [33m52962be[m Correção ortográfica
+* [33m36d36a2[m Correção no link do DOI
+* [33mf723423[m Inclusão dos campos unidade usp e codpes
+* [33mbac9a9d[m Correção no link
+* [33m934feae[m Correção nos links
+* [33m796321c[m Inclusão dos campos codpes e unidadeUSP
+* [33m92eca55[m Mudança do indice
+* [33m0f647c4[m Minor
+* [33m64262d1[m Correção nos parsers e melhoria na página inicial
+* [33m589baa4[m Correções nos nomes dos campos
+* [33m2dfc28c[m Correções nos nomes dos campos
+* [33m452de2b[m Refatoração do parser do JSON
+* [33m7352e8d[m Refatoramento do código para incluir a classe compararRegistros
+* [33m625a263[m Minor
+* [33m3a45ca6[m Inicio do harvester OAI-PMH
+* [33mdc26bbd[m Documentação
+* [33m5e2838d[m Exibir todos os dados do registro e excluir links não utilizados
+* [33mac79560[m[33m ([m[1;33mtag: v1.1[m[33m)[m Melhorias na documentação
+* [33mc1ea18a[m Inclusão de link do DOI
+* [33mc66370e[m Parser do Scopus
+* [33mb06e3cf[m Contar registros similares
+* [33m33cb7b9[m Inclusão do título do periódico na listagem
+* [33m0639b2a[m Busca por tags
+* [33m719b377[m Melhoria na documentação
+* [33m5afbdcc[m Melhoria na documentação
+* [33ma8cf7bd[m Melhoria na documentação
+* [33m359e69e[m Melhoria na documentação
+* [33m881435b[m Melhoria na documentação
+* [33m6b56f6b[m Melhoria na documentação
+* [33m6339218[m Melhoria na documentação
+* [33meb0a462[m Melhoria na documentação
+* [33m65c0871[m Minor
+* [33m72617ea[m Importador do Web of Science
+* [33m40862d8[m Minor
+* [33ma394fae[m Inclusão dos autores na comparação
+* [33m9924c86[m Importação de DOI
+* [33mb867aec[m Minor
+* [33mb2b0718[m Mudança para importar JSON em lote
+* [33mf9bc601[m Correções nos links e minor
+* [33m93b77b4[m Minor
+* [33maed584c[m Update README.md
+* [33m986b6b3[m Inclusão do DOI
+* [33m2069ef4[m[33m ([m[1;33mtag: v1.0[m[33m)[m Mensagem de erro
+* [33m4c2b855[m Diversas correções e início do editor
+* [33m3398b69[m Muitas melhorias
+* [33m783e891[m Alteração para coleta por JSON
+* [33m9921606[m Alterações
+* [33m06ad55a[m Melhoria
+* [33m991da42[m Pequena correção
+* [33m5e12d71[m Pequena correção
+* [33m9004b66[m Inclusão do tipo no resultado da BDPI
+* [33m7e93c40[m Correção no importador do lattes
+* [33m40d4500[m Minor
+* [33m3626478[m Inclusão da página inicial e outras melhorias
+* [33m6463852[m Melhorias
+* [33m1cb0146[m Melhorias
+* [33m5f61244[m Melhoria no importador
+* [33m95cec88[m Correções e melhorias
+* [33m8b9ce36[m Diversas alterações
+* [33m03ed524[m Diversas alterações
+* [33m82fcbed[m Instruções
+* [33mabe5abc[m Instruções
+* [33m312ed50[m Inclusão de dados pessoais no elastic
+*   [33m4e57b87[m Merge branch 'master' of https://github.com/SIBiUSP/nav_lattes
+[33m|[m[34m\[m  
+[33m|[m * [33mdccaf43[m Initial commit
+* [33mbc2d4f8[m First commit

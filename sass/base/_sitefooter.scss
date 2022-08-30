@@ -1,0 +1,47 @@
+// == FOOTER == //
+
+.sitefooter {
+	@extend .d-v, .d-vc, .d-md-h, .d-md-hc, .d-md-vc, .d-wrap;
+	background-color: _palette(footer-bg);
+	border-top: _palette(footer-border) 0.5rem solid;
+	bottom: 0;
+	color: _palette(footer-fg);
+	left: 0;
+	right: 0;
+
+	&-contacts {
+		@extend .d-v, .d-vc, .d-hc, .d-md-h, .d-md-hc, .d-md-vc;
+		width: 50%;
+	}
+
+	&-link {
+		color: _palette(footer-fg);
+		display: block;
+		font-size: 18px;
+		font-weight: 600;
+		margin: 0.5rem;
+		text-align: center;
+
+		&:hover {
+			color: _palette(footer-hover);
+		}
+	}
+
+	&-logos {
+		display: flex;
+		justify-content: space-evenly;
+		@extend .d-md-hr;
+	}
+
+	&-logo {
+		margin: 1rem;
+		width: 100px;
+	}
+
+	&-det {
+		display: none;
+		@include up-to("md") {
+			display: inline-block;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+.p-about {
+	@extend .d-v, .d-md-h, .d-md-hc;
+	padding-bottom: 3rem;
+
+	&-side1,
+	&-side2 {
+		@extend .d-v, .d-vc;
+	}
+
+	&-side1 {
+		padding-inline: 2rem;
+		text-align: center;
+	}
+
+	&-ico {
+		// fill: _palette(theme);
+		fill: _palette(theme);
+		margin: 1rem auto;
+		transition: all 0.25s ease-in-out;
+		width: 100px;
+
+		&:hover {
+			fill: _palette(theme-light-2);
+		}
+	}
+
+	&-titles {
+		margin: 1rem center;
+	}
+
+	&-text {
+		margin-block: 2rem;
+		text-align: justify;
+	}
+}
+
+.logo-about {
+	fill: #1c9ad1;
+	margin: 2rem;
+	max-width: 120px;
+}

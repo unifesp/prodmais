@@ -38,8 +38,6 @@ Na pasta do repositório, rodar:
 
     curl -s http://getcomposer.org/installer | php
     php composer.phar install --no-dev
-    git submodule init
-    git submodule update
 
 Copiar o arquivo config_example.php para o arquivo config.php
 

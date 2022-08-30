@@ -38,6 +38,12 @@
                     print("<pre>".print_r($record, true)."</pre>");
 
                     $jsonRecord = json_encode($record);
+                    echo '                    
+                        <form class="form-signin" method="post" action="editor/index.php">
+                            <input type="hidden" id="record" name="record" value="'.urlencode($jsonRecord).'">
+                            <button class="btn btn-warning" type="submit">Editar antes de exportar</button>
+                        </form>                    
+                    ';
 
                 } else {
                     echo "ISBN não foi encontrado na Base OpenLibrary";

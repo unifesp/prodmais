@@ -1,0 +1,34 @@
+.p-projetos {
+	&-lista {
+		padding: 2rem 2rem 3rem 2rem;
+	}
+
+	&-inputs,
+	&-search {
+		@extend .d-h, .d-hc;
+	}
+
+	&-inputs {
+		@extend .d-v, .d-vc, .d-md-h;
+		@include up-to("md") {
+			margin-left: 4rem;
+			max-width: 900px;
+		}
+	}
+
+	&-search {
+		@extend .d-h, .d-hc, .d-nowrap;
+		max-width: 400px;
+
+		&-btn {
+			background-color: _palette(theme);
+			height: 45px;
+			width: 45px;
+			@include transition;
+
+			&:hover {
+				background-color: _palette(theme-light-2);
+			}
+		}
+	}
+}
