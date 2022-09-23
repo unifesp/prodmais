@@ -19,16 +19,28 @@
 .c-input--date {
 	@include searchStyle;
 	margin: $input_margin;
+	margin: 0.2rem;
 	outline: 0;
-	width: 100%;
+	width: 90%;
+}
+
+.c-input,
+.c-input--sm,
+.c-input--mini {
+	margin: 0.2rem auto;
 }
 
 .c-input,
 .c-input-sm,
 .c-input--date {
-	font-size: 1.2rem;
+	font-size: $fontsize_mobi;
 	height: 2.4rem;
-	padding: 1rem 1rem 1rem 0.5rem;
+	padding: 0.5rem;
+
+	@include up-to(md) {
+		font-size: $fontsize_mobi;
+		padding: 1rem 1rem 1rem 0.5rem;
+	}
 }
 
 .c-input {
@@ -41,7 +53,7 @@
 	}
 
 	&--mini {
-		font-size: 1rem;
+		font-size: $fontsize_mobi;
 		height: $searcher_heigh_mini;
 		padding: 0.4rem 0.2rem 0.4rem 0.2rem;
 	}
@@ -67,7 +79,7 @@
 		@include transition;
 
 		&:hover {
-			letter-spacing: 1.4px;
+			letter-spacing: 1.2px;
 		}
 	}
 

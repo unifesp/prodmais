@@ -15,40 +15,28 @@ Por padrão, o elasticseach não exige senha na instalação.
 
 ### Instalação do PHP 7.4
 
-    sudo apt -y install lsb-release apt-transport-https ca-certificates
+    sudo apt -y install lsb-release apt-transport-https ca-certificates 
     sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
     sudo apt update
     sudo apt -y install php7.4
     sudo apt-get install php7.4-{cgi,curl,mbstring,zip,xml}
 
-### Instalação do Apache2
+
+### Instalação do Apache2 
 
     sudo apt update
     sudo apt install apache2
 
-#### Habilitar o mod_rewrite
-
-    sudo a2enmod rewrite
-
-    E adicionar ao apache conf: 
-
-        <Directory /var/www/html/prodmais>
-            Options Indexes FollowSymLinks
-            AllowOverride All
-            Require all granted
-        </Directory>
-
-
 ### Clonagem do repositório do Prodmais
 
-Você pode clonar em qualquer pasta, mas é recomendável clonar na pasta pública do apache (ex. /var/www/html):
+Você pode clonar em qualquer pasta, mas é recomendável clonar na pasta pública do apache (ex. /var/www/html): 
 
     git clone https://github.com/unifesp/prodmais.git
 
-Na pasta do repositório, rodar:
+Na pasta do repositório, rodar: 
 
-    curl -s https://getcomposer.org/installer | php
+    curl -s http://getcomposer.org/installer | php
     php composer.phar install --no-dev
 
 Copiar o arquivo config_example.php para o arquivo config.php
@@ -87,7 +75,3 @@ Parâmetros aceitos no import_lattes_to_elastic_dedup.php
     desc_gestora
 
 Exemplo de código para a inclusão automática: tools/automatic_index.php
-
-## Usando Docker
-
-[Baixe estes arquivos](https://github.com/RicardoIreno/prodmais-docker)

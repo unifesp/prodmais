@@ -1,4 +1,4 @@
-// == NORMALIZE == // 
+// == NORMALIZE == //
 
 html,
 body,
@@ -61,6 +61,7 @@ thead,
 tr,
 th,
 td,
+transition,
 article,
 aside,
 canvas,
@@ -81,38 +82,63 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
+// BOXSIZING
 html {
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-form {
-  width: inherit;
+	box-sizing: border-box;
+	overflow-x: hidden;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+// DETAILS
+details {
+	overflow: hidden;
+}
+
+summary::marker {
+	display: none;
+}
+
+details > summary {
+	list-style: none;
+}
+
+details summary::-webkit-details-marker {
+	display: none;
+}
+
+details summary {
+	list-style: none;
+	position: relative;
+	z-index: 10;
+}
+
+@keyframes details-show {
+	from {
+		opacity: 0;
+	}
+}
+
+details > *:not(summary) {
+	animation: details-show 500ms ease-in-out;
+	color: transparent;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+}
+
+details[open] > *:not(summary) {
+	color: inherit;
 }

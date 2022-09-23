@@ -7,13 +7,13 @@
 	box-shadow: _effects(shadow);
 	-webkit-box-shadow: _effects(shadow);
 	display: flex;
-	flex-direction: column;
-	justify-items: center;
+	justify-content: space-between;
 	left: 0;
 	padding: 0 2rem;
+	position: relative;
 	right: 0;
 	top: 0;
-	z-index: 1030;
+	z-index: 999;
 
 	&-logo {
 		background-color: _palette(bg-primary);

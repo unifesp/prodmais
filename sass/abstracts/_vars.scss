@@ -3,23 +3,15 @@ $sm: 669px;
 $md: 899px;
 $lg: 1299px;
 
-$breakpoints: (
-	"sm": (
-		min-width: $sm,
-	),
-	"md": (
-		min-width: $md,
-	),
-	"lg": (
-		min-width: $lg,
-	),
-) !default;
-
 $filterbar_width_desk: 420px;
 $filterbar_width_mob: 100%;
 
 // INPUTS
 $input_border_radius: 40px;
-$input_margin: 0.3rem 1rem;
+$input_margin: 0.3rem 0.5rem;
 $searcher_heigh_mini: 2rem;
 $switch_height: 30px;
+
+// INPUT FONTS
+$fontsize_mobi: 0.9rem;
+$fontsize_desk: 1.2rem;

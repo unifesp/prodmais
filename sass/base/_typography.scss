@@ -10,7 +10,6 @@ p {
 	font-family: "Lato", sans-serif;
 	font-size: 1rem;
 	font-weight: 400;
-	letter-spacing: 0.0375em;
 	line-height: 1.5;
 }
 
@@ -154,11 +153,12 @@ h5 a {
 	}
 
 	&-a {
-		color: _palette(theme);
+		color: _palette(title);
 		transition: border-bottom-color 0.25s ease-in-out;
 
-		&:hover {
-			color: rgb(52, 52, 52);
+		&:hover,
+		&:focus {
+			color: rgb(96, 96, 96);
 		}
 
 		&:visited {

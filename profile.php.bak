@@ -10,7 +10,7 @@ include_once '_fakedata.php';
 
 function lattesID10($lattesID16)
 {
-  $url = 'https://lattes.cnpq.br/' . $lattesID16 . '';
+  $url = 'http://lattes.cnpq.br/' . $lattesID16 . '';
 
   $headers = @get_headers($url);
 
@@ -128,22 +128,14 @@ if (!empty($_REQUEST["lattesID"])) {
 
 <html lang="pt-br">
 
-
-
 <head>
-
-  <?php
-    include 'inc/meta-header.php';
-  ?>
-
-  <title>Prodmais — Perfil do pesquisador - <?php echo $profile["nome_completo"] ?></title>
+  <title>Prodmais — Perfil do usuário - <?php echo $profile["nome_completo"] ?></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  <link rel="stylesheet" href="<?php echo $url_base; ?>/sass/main.css" />
-  <script src="../inc/js/vue.min.js"></script>
-
+  <link rel="stylesheet" href="sass/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body class="c-wrapper-body">
@@ -162,7 +154,7 @@ if (!empty($_REQUEST["lattesID"])) {
             <div class="c-who-s">
               <!-- <img class="c-who-s-badge" src="inc/images/icons/badges/bolsista-cnpq-1a.svg" /> -->
               <img class="c-who-s-pic"
-                src="https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=<?php echo $lattesID10; ?>" />
+                src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=<?php echo $lattesID10; ?>" />
             </div> <!-- end c-photo-wrapper -->
 
           </div> <!-- end core-one -->
@@ -172,7 +164,7 @@ if (!empty($_REQUEST["lattesID"])) {
               <?php echo $profile["nome_completo"] ?>
 
               <?php if ($profile["nacionalidade"] == "B") : ?>
-              <img class="country-flag" src="<?php echo $url_base; ?>/inc/images/country_flags/br.svg" alt="nacionalidade brasileira"
+              <img class="country-flag" src="inc/images/country_flags/br.svg" alt="nacionalidade brasileira"
                 title="nacionalidade brasileira" />
               <?php endif; ?>
             </h1>
@@ -444,12 +436,12 @@ if (!empty($_REQUEST["lattesID"])) {
                 <?php if (!empty($profile['lattesID'])) : ?>
 
                 <a href="https://lattes.cnpq.br/<?php echo $profile['lattesID']; ?>" target="_blank" rel="external"><img
-                    class="c-socialicon" src="<?php echo $url_base; ?>/inc/images/academic_plataforms/logo_lattes.svg" alt="Lattes"
+                    class="c-socialicon" src="inc/images/academic_plataforms/logo_lattes.svg" alt="Lattes"
                     title="Lattes" /></a>
                 <?php endif; ?>
                 <?php if (!empty($profile['orcid_id'])) : ?>
                 <a href="<?php echo $profile['orcid_id']; ?>" target="_blank" rel="external"><img class="c-socialicon"
-                    src="<?php echo $url_base; ?>/inc/images/academic_plataforms/logo_research_id.svg" alt="ORCID" title="ORCID" /></a>
+                    src="inc/images/academic_plataforms/logo_research_id.svg" alt="ORCID" title="ORCID" /></a>
                 <?php endif; ?>
 
               </div> <!-- end c-socialicons -->
@@ -620,7 +612,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
                   SList::genericItem(
                     $type = 'formation',
-                    $itemName = 'Mestrado em ' . $mestrado["nomeCurso"],
+                    $itemName = 'Doutorado em ' . $mestrado["nomeCurso"],
                     $itemNameLink = '',
                     $itemInfoA = $mestrado["tituloDaDissertacaoTese"],
                     $itemInfoB = $especialidade,
@@ -840,7 +832,7 @@ if (!empty($_REQUEST["lattesID"])) {
                         SList::genericItem(
                           $type = 'orientation',
                           $itemName = $orientacao_andamento_echo["nomeDoOrientando"],
-                          $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
+                          $itemNameLink = "http://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
                           $itemInfoA = $orientacao_andamento_echo["titulo"],
                           $itemInfoB = $orientacao_andamento_echo["nomeDoCurso"],
                           $itemInfoC = $orientacao_andamento_echo["nomeDaAgencia"],
@@ -882,7 +874,7 @@ if (!empty($_REQUEST["lattesID"])) {
                         SList::genericItem(
                           $type = 'orientation',
                           $itemName = $orientacao_concluidas_echo["nomeDoOrientando"],
-                          $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_concluidas_echo["numeroIDOrientado"],
+                          $itemNameLink = "http://lattes.cnpq.br/" . $orientacao_concluidas_echo["numeroIDOrientado"],
                           $itemInfoA = $orientacao_concluidas_echo["titulo"],
                           $itemInfoB = $orientacao_concluidas_echo["nomeDoCurso"],
                           $itemInfoC = $orientacao_concluidas_echo["nomeDaAgencia"],
@@ -916,46 +908,49 @@ if (!empty($_REQUEST["lattesID"])) {
 
                 foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
 
-                  if (isset($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO'])) {                    
+                  if (isset($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO'])) {
 
                     echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
 
-                    if (isset($atuacao_profissional['VINCULOS'])) {                      
+                    if (isset($atuacao_profissional['VINCULOS'])) {
 
-                      foreach ($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO']['DIRECAO-E-ADMINISTRACAO'] as $key => $direcao_e_administracao) {
+                      for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
 
-                        echo '<ul>';
+                        foreach ($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO']['DIRECAO-E-ADMINISTRACAO'] as $key => $direcao_e_administracao) {
 
-                        if (isset($direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'])) {
-                          SList::genericItem(
-                            $type = 'managing',
-                            $itemName = $direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'],
-                            $itemNameLink = '',
-                            $itemInfoB = $direcao_e_administracao['@attributes']['NOME-ORGAO'],
-                            $itemInfoC = $direcao_e_administracao['@attributes']['NOME-UNIDADE'],
-                            $itemInfoD = '',
-                            $itemInfoE = '',
-                            $authors = '',
-                            $tags = '',
-                            $yearStart = $direcao_e_administracao['@attributes']['ANO-INICIO'],
-                            $yearEnd = $direcao_e_administracao['@attributes']['ANO-FIM']
-                          );
-                        } else {
-                          SList::genericItem(
-                            $type = 'managing',
-                            $itemName = $direcao_e_administracao['CARGO-OU-FUNCAO'],
-                            $itemNameLink = '',
-                            $itemInfoB = $direcao_e_administracao['NOME-ORGAO'],
-                            $itemInfoC = $direcao_e_administracao['NOME-UNIDADE'],
-                            $itemInfoD = '',
-                            $itemInfoE = '',
-                            $authors = '',
-                            $tags = '',
-                            $yearStart = $direcao_e_administracao['ANO-INICIO'],
-                            $yearEnd = $direcao_e_administracao['ANO-FIM']
-                          );                            
+                          echo '<ul>';
+
+                          if (isset($direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'])) {
+                            SList::genericItem(
+                              $type = 'managing',
+                              $itemName = $direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'],
+                              $itemNameLink = "http://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
+                              $itemInfoB = $direcao_e_administracao['@attributes']['NOME-ORGAO'],
+                              $itemInfoC = $direcao_e_administracao['@attributes']['NOME-UNIDADE'],
+                              $itemInfoD = '',
+                              $itemInfoE = '',
+                              $authors = '',
+                              $tags = '',
+                              $yearStart = $direcao_e_administracao['@attributes']['ANO-INICIO'],
+                              $yearEnd = $direcao_e_administracao['@attributes']['ANO-FIM']
+                            );
+                          } else {
+                            SList::genericItem(
+                              $type = 'managing',
+                              $itemName = $direcao_e_administracao['CARGO-OU-FUNCAO'],
+                              $itemNameLink = "http://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
+                              $itemInfoB = $direcao_e_administracao['NOME-ORGAO'],
+                              $itemInfoC = $direcao_e_administracao['NOME-UNIDADE'],
+                              $itemInfoD = '',
+                              $itemInfoE = '',
+                              $authors = '',
+                              $tags = '',
+                              $yearStart = $direcao_e_administracao['ANO-INICIO'],
+                              $yearEnd = $direcao_e_administracao['ANO-FIM']
+                            );                            
+                          }
+                          echo '</ul>';
                         }
-                        echo '</ul>';
                       }
                     }
                   }
@@ -974,13 +969,15 @@ if (!empty($_REQUEST["lattesID"])) {
               <?php
               foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
 
-                foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {                  
+                foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
 
-                  if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
+                  if (isset($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
 
-                    echo '<h4 class="t t-subtitle u-my-2">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                    echo '<h4 class="t t-subtitle u-my-2">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
 
-                      foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
+                    for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
+
+                      foreach ($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
 
                         if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
 
@@ -1050,6 +1047,7 @@ if (!empty($_REQUEST["lattesID"])) {
                           }
                         }
                       } //foreach 3 - foreach ($atuacao_profissional['ATIVIDADES
+                    } // for
                   } // if 1 - if (isset($atuacao_profissional['ATIVIDADES...
                 } // foreach2 - foreach ($atuacoes_profissionais as $key
               } // foreach 1 - foreach ($profile['atuacoes_profissionais']
@@ -1075,6 +1073,8 @@ if (!empty($_REQUEST["lattesID"])) {
 
 
   <?php include('inc/footer.php'); ?>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
   <script>
   var app = new Vue({

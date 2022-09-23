@@ -72,3 +72,7 @@ $spaceAmounts: (1, 2, 3, 4);
 	position: static;
 	width: auto;
 }
+
+.u-grayscale {
+	filter: grayscale(100%);
+}

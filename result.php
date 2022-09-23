@@ -54,9 +54,9 @@
   <title><?php echo $branch; ?> - Resultado da busca</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
-  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" /> 
   <link rel="stylesheet" href="sass/main.css" />
+
 </head>
 
 <body>
@@ -70,87 +70,12 @@
   <!-- /NAV -->
 
   <div class="p-result-container">
-
-    <main class="p-result-main">
-      <?php if(!empty($_REQUEST['search'])): ?>
-      <div class="c-term">Termo pesquisado: <?php print_r($_REQUEST['search']); ?></div>
-      <?php endif ?>
-      <?php 
-            if (isset($_REQUEST['filter'])) {
-              echo '<div class="c-term">Filtro: ' . $_REQUEST['filter'][0] . '</div>';
-            }
-            ?>
-
-      <?php ui::newpagination($page, $total, $limit, $_POST, 'result'); ?>
-      <br />
-
-      <?php if ($total == 0) : ?>
-      <br />
-      <div class="alert alert-info" role="alert">
-        Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
-        <form action="result.php">
-          <div class="form-group">
-            <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp"
-              placeholder="Pesquise por termo ou autor">
-            <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
-              biblio*.</small>
-            <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
-              ""</small>
-            <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
-              booleanos:
-              AND, OR</small>
-          </div>
-          <button type="submit" class="btn btn-primary">Pesquisar</button>
-
-        </form>
-      </div>
-      <br /><br />
-      <?php endif; ?>
-
-      <?php
-
-      foreach ($cursor["hits"]["hits"] as $r) {
-        foreach ($r["_source"]["author"] as $author) {
-          $authors[] = $author["person"]["name"];
-        }
-
-        !empty($r["_source"]['url']) ? $url = $r["_source"]['url'] : $url = '';
-        !empty($r["_source"]['doi']) ? $doi = $r["_source"]['doi'] : $doi = '';
-        !empty($r['_source']['isPartOf']['issn']) ? $issn = $r['_source']['isPartOf']['issn'] : $issn = '';
-        !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
-
-        Production::IntelectualProduction(
-          $type = $r['_source']['tipo'],
-          $name = $r['_source']['name'],
-          $nAuthors = $authors,
-          $url = $url,
-          $doi = $doi,
-          $issn = $issn,
-          $refName =  $refName,
-          $refVol = '',
-          $refFascicle = '',
-          $refPage = '',
-          $event = '',
-          $evento = '',
-          $datePublished = '',
-          $id = ''
-        );
-        unset($authors);
-      }
-
-      (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
-
-      ui::newpagination($page, $total, $limit, $_POST, 'result');
-      ?>
-
-    </main>
-
     <nav class="p-result-nav">
-      <details id="fbar" class="c-fbar" onload="resizeMenu">
-        <summary class="c-fbar-header">
-          <h3 class="c-fbar-title">Refinar resultados</h3>
-          <!-- <div class="c-fbar-arrow"></div> -->
-          <svg class="c-fbar-arrow" xmlns='http://www.w3.org/2000/svg' width='100' height='15' viewBox='0 0 27 4'>
+      <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+        <summary class="c-filterlist-header">
+          <h3 class="c-filterlist-title">Refinar resultados</h3>
+          <!-- <div class="c-filterlist-arrow"></div> -->
+          <svg class="c-filterlist-arrow" xmlns='https://www.w3.org/2000/svg' width='100' height='15' viewBox='0 0 27 4'>
             <path
               d='M -0.01265394,0.14177403 13.243005,2.082092 26.44568,0.14177403 26.42274,1.4634269 13.243005,3.4026049 -0.01265394,1.4646869 Z' />
           </svg>
@@ -217,13 +142,88 @@
         </div> <!-- end c-fbloc -->
       </details>
     </nav>
+
+    <main class="p-result-main">
+      <?php if(!empty($_REQUEST['search'])): ?>
+      <div class="c-term">Termo pesquisado: <?php print_r($_REQUEST['search']); ?></div>
+      <?php endif ?>
+      <?php 
+            if (isset($_REQUEST['filter'])) {
+              echo '<div class="c-term">Filtro: ' . $_REQUEST['filter'][0] . '</div>';
+            }
+            ?>
+
+      <?php ui::newpagination($page, $total, $limit, $_POST, 'result'); ?>
+      <br />
+
+      <?php if ($total == 0) : ?>
+      <br />
+      <div class="alert alert-info" role="alert">
+        Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
+        <form action="result.php">
+          <div class="form-group">
+            <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp"
+              placeholder="Pesquise por termo ou autor">
+            <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
+              biblio*.</small>
+            <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
+              ""</small>
+            <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
+              booleanos:
+              AND, OR</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Pesquisar</button>
+
+        </form>
+      </div>
+      <br /><br />
+      <?php endif; ?>
+
+      <?php
+
+      foreach ($cursor["hits"]["hits"] as $r) {
+        foreach ($r["_source"]["author"] as $author) {
+          $authors[] = $author["person"]["name"];
+        }
+
+        !empty($r["_source"]['url']) ? $url = $r["_source"]['url'] : $url = '';
+        !empty($r["_source"]['doi']) ? $doi = $r["_source"]['doi'] : $doi = '';
+        !empty($r['_source']['isPartOf']['issn']) ? $issn = $r['_source']['isPartOf']['issn'] : $issn = '';
+        !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
+        !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
+
+        Production::IntelectualProduction(
+          $type = $r['_source']['tipo'],
+          $name = $r['_source']['name'],
+          $nAuthors = $authors,
+          $url = $url,
+          $doi = $doi,
+          $issn = $issn,
+          $refName =  $refName,
+          $refVol = '',
+          $refFascicle = '',
+          $refPage = '',
+          $event = '',
+          $evento = '',
+          $datePublished = $published,
+          $id = ''
+        );
+        unset($authors);
+      }
+
+      (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
+
+      ui::newpagination($page, $total, $limit, $_POST, 'result');
+      ?>
+
+    </main>
+
   </div> <!-- end result-container -->
 
   <?php include('inc/footer.php'); ?>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
   var app = new Vue({
-    el: '#fbar',
+    el: '#filterlist',
     methods: {
       createMenuButtons() {
         let fblocs = document.getElementsByClassName('c-fbloc')
@@ -240,11 +240,10 @@
         }
       },
 
-      openCloseMenu() {
-        console.log('disparou o resize')
-        if (window.matchMedia("(min-width: 1300px)").matches) document.getElementById("fbar").open =
+      openCloseMenu() {        
+        if (window.matchMedia("(min-width: 1300px)").matches) document.getElementById("filterlist").open =
           true;
-        else document.getElementById("fbar").open = false;
+        else document.getElementById("filterlist").open = false;
       },
 
     },
@@ -255,28 +254,27 @@
   });
   </script>
   <script>
-  let ffbar = window.matchMedia('(min-width: 1203.03px)')
+  let ffilterlist = window.matchMedia('(min-width: 1203.03px)')
 
   function screenTest(e) {
     if (e.matches) {
-      document.getElementById("fbar").open = true
+      document.getElementById("filterlist").open = true
       fArrow.style.display = "none"
     } else {
-      document.getElementById("fbar").open = false
+      document.getElementById("filterlist").open = false
       fArrow.style.display = "block"
     }
   }
 
-  function showHideFbarBtn() {
-    let fArrow = document.getElementByClassName("c-fbar-arrow")
-    boo = document.getElementById("fbar")
+  function showHideFilterlistBtn() {
+    let fArrow = document.getElementByClassName("c-filterlist-arrow")
+    boo = document.getElementById("filterlist")
     boo.open === true ? fArrow.style.display = "none" : fArrow.style.display = "block";
-    fArrow.style.display === "none" ?
 
   }
 
-  ffbar.addEventListener('change', screenTest)
-  ffbar.addEventListener('change', showHideFbarBtn)
+  ffilterlist.addEventListener('change', screenTest)
+  ffilterlist.addEventListener('change', showHideFilterlistBtn)
   </script>
 </body>
 

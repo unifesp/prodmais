@@ -136,10 +136,10 @@ if (isset($_GET["oai"])) {
                 $query["doc"]["trabalhoEmEventos"]["volume"] = (string)$rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'volume'};
                 $query["doc"]["trabalhoEmEventos"]["fasciculo"] = (string)$rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'issue-id'};
                 $query["doc"]["trabalhoEmEventos"]["nomeDoEvento"] = (string)$rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'issue-title'};
-                $query["doc"]["url_principal"] = (string)$rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'self-uri'}->attributes('https://www.w3.org/1999/xlink');
+                $query["doc"]["url_principal"] = (string)$rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'self-uri'}->attributes('http://www.w3.org/1999/xlink');
                 $query["doc_as_upsert"] = true;
                 foreach ($rec->{'metadata'}->{'article'}->{'front'}->{'article-meta'}->{'self-uri'} as $self_uri) {
-                    $query["doc"]["relation"][]=(string)$self_uri->attributes('https://www.w3.org/1999/xlink');
+                    $query["doc"]["relation"][]=(string)$self_uri->attributes('http://www.w3.org/1999/xlink');
                 }
                 //print_r($query);
                 $resultado = Elasticsearch::update($sha256, $query, $index_source);

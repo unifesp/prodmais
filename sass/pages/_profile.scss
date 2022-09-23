@@ -67,6 +67,12 @@
 	}
 }
 
+.p-profile-content {
+	@include up-to("md") {
+		margin: 2rem;
+	}
+}
+
 // PROFILE THINGS
 
 .c-socialicon {

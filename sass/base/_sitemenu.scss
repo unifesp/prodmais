@@ -1,81 +1,93 @@
 // == MENUS == //
 
-.sitemenu {
+.sitemenu-container {
 	align-items: center;
-	background-color: _palette(theme);
 	display: flex;
-	flex-direction: row;
-	height: 100%;
+	font-size: 2rem;
+}
+
+.sitemenu-btn-ico {
+	color: _palette(theme-light-4);
+	cursor: pointer;
+	@include transition;
+	&:hover {
+		color: _palette(theme-light-2);
+	}
+}
+
+.sitemenu-btn-check {
+	display: none;
+}
+
+.sitemenu-btn-check:checked ~ .sitemenu {
+	// @include slideToBotton;
+	@include sitemenuOpening;
+	display: block;
+	opacity: 1;
+}
+
+.sitemenu {
+	background-image: linear-gradient(_palette(theme), _palette(theme-dark));
+	// -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.77);
+	box-shadow: 0px 20px 10px 7px rgba(0, 0, 0, 0.4);
+	display: none;
+	height: 100vh;
+	left: 0;
+	padding: 2rem;
+	position: absolute;
+	top: 4rem;
+	transition: all 0.3s ease;
+	width: 100%;
+	z-index: -1;
+
+	@include up-to("lg") {
+		height: auto;
+		left: auto;
+		right: 0;
+		width: 300px;
+	}
+}
+
+// @media (max-width: $md) {
+// 	.sitemenu {
+// 		height: 90vh;
+// 	}
+// }
+
+.sitemenu-list {
 	list-style: none;
-	z-index: 999;
+	margin: 0 auto;
+	max-width: 300px;
+}
+
+.sitemenu-link {
+	align-items: center;
+	color: _palette(theme-light-2);
+	display: flex;
+	font-size: 1.1rem;
+	justify-content: space-between;
+	margin-block: 0.8rem;
+	position: relative;
+	width: 100%;
 	@include transition;
 
-	&-link {
-		align-items: center;
-		background-color: transparent;
-		border: none;
-		display: flex;
-		flex-direction: column;
-		margin: 0.5rem;
-		position: relative;
-
-		&:hover {
-			transition: all 0.4s 0s ease;
-
-			.sitemenu-ico {
-				fill: _palette(theme-light-2);
-			}
-		}
+	&:visited {
+		color: _palette(theme-light-2);
 	}
 
-	&-icons {
-		background-color: _palette(theme-light-3);
-		height: 30px;
-		margin: 0.25rem;
-		transition: all 0.2s ease 0s;
-		vertical-align: middle;
-		width: 30px;
-	}
-}
+	&:hover {
+		color: _palette(theme-light-4);
 
-@media (max-width: $sm) {
-	.sitemenu {
-		border-top: 4px solid _palette(theme-light-2);
-		bottom: 0;
-		height: 60px;
-		justify-content: space-between;
-		left: 0;
-		padding: 0.5rem;
-		padding: 1rem 1rem 2rem 1rem;
-		position: fixed;
-		right: 0;
-	}
-}
-
-@include up-to("sm") {
-	.sitemenu {
-		width: 600px;
-
-		&-link {
-			align-items: center;
-			display: flex;
-			flex-direction: row;
-
-			&:hover {
-				.sitemenu-bubble {
-					display: block;
-					left: 50%;
-					position: absolute;
-					top: calc(100% + 0.25rem);
-					transform: translateX(-55%);
-				}
-			}
+		.sitemenu-ico {
+			background-color: _palette(theme-light-4);
 		}
 	}
 }
 
-@include up-to("md") {
-	.sitemenu {
-		justify-content: flex-end;
-	}
+.sitemenu-ico {
+	background-color: _palette(theme-light-2);
+	height: 40px;
+	margin-left: 0.5rem;
+	width: 40px;
+	@include transition;
 }

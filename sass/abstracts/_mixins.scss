@@ -1,6 +1,18 @@
+$breakpointsUp: (
+	"sm": (
+		min-width: $sm,
+	),
+	"md": (
+		min-width: $md,
+	),
+	"lg": (
+		min-width: $lg,
+	),
+) !default;
+
 @mixin up-to($breakpoint) {
-	@if map-has-key($breakpoints, $breakpoint) {
-		@media #{inspect(map-get($breakpoints, $breakpoint))} {
+	@if map-has-key($breakpointsUp, $breakpoint) {
+		@media #{inspect(map-get($breakpointsUp, $breakpoint))} {
 			@content;
 		}
 	}

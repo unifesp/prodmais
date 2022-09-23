@@ -51,7 +51,7 @@ class Production
   {
     return "
         <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link' title='Conteúdo completo' alt='Conteúdo completo'></i>
+          <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
           Conteúdo completo
         </a>";
   }
@@ -60,7 +60,7 @@ class Production
   {
     return "
         <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link' title='ISSN' alt='ISSN'></i>
+          <i class='i i-link i-link u-ml-05' title='ISSN' alt='ISSN'></i>
           ISSN: $url
         </a>";
   }
@@ -109,6 +109,7 @@ class Production
             $urlRendered	
             $issnRendered					
 					</div>
+          $datePublished
 					
 					<p class='t t-light'>
 						Fonte: $refName $refVol $refFascicle $refPage

@@ -12,7 +12,7 @@ class Who
     echo ("
       
     <a href='$link' class='c-who' target='blank'/>
-      <img class='c-who-photo' src=$picture />
+      <img class='c-who-photo u-grayscale' src=$picture />
       <div class='c-who-text'>
         <b class='c-who-name'>$name</b>
         <p>$titleRender</p>
