@@ -1,0 +1,103 @@
+// == MENUS == //
+
+$sitemenuBk: "lg";
+$sitemenuFg: var(--c-pr-5);
+$sitemenuFgHover: var(--c-pr-7);
+
+.sitemenu-container {
+	align-items: center;
+	display: flex;
+	font-size: 2rem;
+}
+
+.sitemenu-btn-ico {
+	color: $sitemenuFgHover;
+	cursor: pointer;
+	@include transition;
+	&:hover {
+		color: $sitemenuFg;
+	}
+
+	@include up-to($sitemenuBk) {
+		display: none;
+	}
+}
+
+.sitemenu-btn-check {
+	display: none;
+}
+
+.sitemenu-btn-check:checked ~ .sitemenu {
+	@include sitemenuOpening;
+	display: block;
+	opacity: 1;
+}
+
+@media (max-width: $lg) {
+	.sitemenu {
+		background-image: linear-gradient(var(--c-pr-2), var(--c-pr-1));
+		box-shadow: 0px 20px 10px 7px rgba(0, 0, 0, 0.4);
+		display: none;
+		height: 100vh;
+		left: 0;
+		padding: 2rem;
+		position: absolute;
+		top: 4rem;
+		transition: all 0.3s ease;
+		width: 100%;
+		z-index: -1;
+	}
+}
+
+.sitemenu-list {
+	list-style: none;
+	margin: 0 auto;
+	max-width: 300px;
+
+	@include up-to($sitemenuBk) {
+		display: flex;
+		max-width: 800px;
+	}
+}
+
+.sitemenu-link {
+	align-items: center;
+	color: $sitemenuFg;
+	display: flex;
+	font-size: 1.1rem;
+	justify-content: space-between;
+	margin-block: 0.8rem;
+	position: relative;
+	width: 100%;
+	@include transition;
+
+	&:visited {
+		color: $sitemenuFg;
+	}
+
+	&:hover {
+		color: $sitemenuFgHover;
+
+		.sitemenu-ico {
+			background-color: $sitemenuFgHover;
+		}
+	}
+
+	@include up-to($sitemenuBk) {
+		justify-content: center;
+		margin-inline: 1rem;
+	}
+}
+
+.sitemenu-ico {
+	background-color: $sitemenuFg;
+	height: 40px;
+	margin-left: 0.5rem;
+	width: 40px;
+	@include transition;
+
+	@include up-to($sitemenuBk) {
+		height: 24px;
+		width: 24px;
+	}
+}

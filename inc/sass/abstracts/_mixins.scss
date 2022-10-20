@@ -1,0 +1,62 @@
+// MIXINS
+
+@mixin up-to($breakpoint) {
+	@if map-has-key($breakpointsUp, $breakpoint) {
+		@media #{inspect(map-get($breakpointsUp, $breakpoint))} {
+			@content;
+		}
+	}
+}
+
+@mixin adjustAxis($a, $value) {
+	@if $a == "h" {
+		justify-content: $value;
+	}
+	@if $a == "v" {
+		align-items: $value;
+	}
+}
+
+@mixin transition($t: 0.4s) {
+	transition: all $t ease;
+}
+
+// === COLORS === //
+
+@mixin makePalette($k, $v, $lights) {
+	$i: 0;
+	@each $l in $lights {
+		--c-#{$k}-#{$i}: hsl(#{nth($v, 1)}, #{nth($v, 2)}, #{$l});
+		$i: $i + 1;
+	}
+}
+
+@mixin ico($ico) {
+	mask-image: $ico;
+	-webkit-mask-image: $ico;
+}
+
+@mixin progressMonoPallete($lights) {
+	$values: (0, 0%);
+	@include makePalette("mn", $values, map-get($lights, "mn"));
+}
+
+@mixin processTheme($map, $lights) {
+	@each $k, $v in $map {
+		@if ($k == "pr") {
+			@include makePalette($k, $v, map-get($lights, "pr"));
+		}
+
+		@if ($k == "se") {
+			@include makePalette($k, $v, map-get($lights, "se"));
+		}
+
+		@if ($k == "ic") {
+			@include makePalette($k, $v, map-get($lights, "ic"));
+		}
+
+		@if ($k == "bg") {
+			@include makePalette($k, $v, map-get($lights, "bg"));
+		}
+	}
+}

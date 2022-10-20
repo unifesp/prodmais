@@ -1,0 +1,97 @@
+// == SEARCH == //
+
+@mixin searchStyle() {
+	background-color: var(--c-bg-1);
+	border: var(--c-pr-2) 2px solid;
+	border-radius: $input_border_radius;
+	vertical-align: middle;
+	@include transition;
+
+	&:hover {
+		letter-spacing: 1.2px;
+		transition: all 0.3s ease 0s;
+	}
+}
+
+.c-input,
+.c-input--sm,
+.c-input--mini,
+.c-input--date {
+	@include searchStyle;
+	margin: $input_margin;
+	margin: 0.2rem;
+	outline: 0;
+	width: 90%;
+}
+
+.c-input,
+.c-input--sm,
+.c-input--mini {
+	margin: 0.2rem auto;
+}
+
+.c-input,
+.c-input-sm,
+.c-input--date {
+	font-size: $fontsize_mobi;
+	height: 2.4rem;
+	padding: 0.5rem;
+
+	@include up-to(md) {
+		font-size: $fontsize_mobi;
+		padding: 1rem 1rem 1rem 0.5rem;
+	}
+}
+
+.c-input {
+	&--date {
+		max-width: 120px;
+	}
+
+	&--sm {
+		max-width: 240px;
+	}
+
+	&--mini {
+		font-size: $fontsize_mobi;
+		height: $searcher_heigh_mini;
+		padding: 0.4rem 0.2rem 0.4rem 0.2rem;
+	}
+}
+
+.c-searcher {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: $searcher_heigh_mini;
+	margin: $input_margin;
+	padding-right: 0.4rem;
+	width: 100%;
+	@include searchStyle;
+
+	input {
+		background-color: transparent;
+		border: 0;
+		border-radius: $input_border_radius;
+		outline: 0;
+		padding: 0.2rem 1rem;
+		width: 100%;
+		@include transition;
+
+		&:hover {
+			letter-spacing: 1.2px;
+		}
+	}
+
+	&-btn {
+		background-color: var(--c-pr-2);
+		cursor: pointer;
+		height: $searcher_heigh_mini;
+		width: $searcher_heigh_mini;
+		@include transition;
+
+		&:hover {
+			background-color: var(--c-pr-3);
+		}
+	}
+}

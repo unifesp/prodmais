@@ -47,87 +47,45 @@ $get_data = $_GET;
 <html lang="en">
 
 <head>
-    <?php
+  <?php
     include('inc/meta-header.php');
     ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-    </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+  </script>
 
-    <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
+  <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
 
-    <link rel="stylesheet" href="sass/main.css" />
-    <link rel="stylesheet" href="inc/css/style.css" />
+
+  <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
-<body>
+<body data-theme="<?php echo $theme; ?>">
 
-    <?php
+  <?php
     if (file_exists('inc/google_analytics.php')) {
         include 'inc/google_analytics.php';
     }
     ?>
 
-    <!-- NAV -->
-    <?php require 'inc/navbar.php'; ?>
-    <!-- /NAV -->
+  <!-- NAV -->
+  <?php require 'inc/navbar.php'; ?>
+  <!-- /NAV -->
 
+  <div class="p-result-container">
 
-    <div class="p-result-container">
-        <main class="p-result-main">
-            <form action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data"
-                id="searchresearchers">
-                <div class="input-group mb-3">
-                    <input name="query" type="text" class="form-control"
-                        placeholder="Digite parte do nome do pesquisador"
-                        aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="submit" form="searchresearchers"
-                        value="Submit">Pesquisar</button>
-                </div>
-            </form>
+    <nav class="p-result-nav">
+      <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+        <summary class="c-filterlist__header">
+          <h3 class="c-filterlist__title">Refinar resultados</h3>
+        </summary>
 
-            <!-- Navegador de resultados - Início -->
-            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-            <!-- Navegador de resultados - Fim -->
+        <div class="c-filterlist__content">
 
-            <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                <?php 
-                    if (empty($r["_source"]['datePublished'])) {
-                        $r["_source"]['datePublished'] = "";
-                    }
-                ?>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex bd-highlight">
-                            <div class="p-2 flex-grow-1 bd-highlight">
-                                <h5 class="card-title">
-                                    <a class="text-dark" href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                                        <?php echo $r["_source"]['nome_completo']; ?>
-                                    </a>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-
-            <!-- Navegador de resultados - Início -->
-            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-            <!-- Navegador de resultados - Fim -->
-
-        </main>
-
-        <nav class="c-filterlist">
-            <div class="c-filterlist-header">
-                <b class="t">Refinar Resultados</b>
-            </div>
-            <div class="c-fbloc-wrapper">
-
-                <?php
+          <?php
                     $facets = new FacetsNew();
                     $facets->query = $result_post['query'];
 
@@ -175,16 +133,60 @@ $get_data = $_GET;
                     echo($facets->facet(basename(__FILE__), "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, $index_cv));
 
                 ?>
+        </div>
+      </details>
+    </nav>
 
+    <main class="p-result-main">
+      <form class="u-mt-1" action="result_autores.php" method="POST" accept-charset="utf-8"
+        enctype="multipart/form-data" id="searchresearchers">
+        <div class="input-group mb-3">
+          <input name="query" type="text" class="form-control" placeholder="Digite parte do nome do pesquisador"
+            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="submit" form="searchresearchers" value="Submit">Pesquisar
+          </button>
+        </div>
+      </form>
 
+      <!-- Navegador de resultados - Início -->
+      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+      <!-- Navegador de resultados - Fim -->
 
+      <div class="p-result-authors">
+
+        <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
+        <?php 
+                    if (empty($r["_source"]['datePublished'])) {
+                        $r["_source"]['datePublished'] = "";
+                    }
+                ?>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">
+                <h5 class="card-title">
+                  <a class="text-dark" href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                    <?php echo $r["_source"]['nome_completo']; ?>
+                  </a>
+                </h5>
+              </div>
             </div>
-        </nav>
+          </div>
+        </div>
+        <?php endforeach; ?>
+      </div>
 
-    </div>
+      <!-- Navegador de resultados - Início -->
+      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+      <!-- Navegador de resultados - Fim -->
 
-    <?php include('inc/footer.php'); ?>
+    </main>
 
+  </div>
+
+  <?php include('inc/footer.php'); ?>
+  <script src="inc/js/pages/result.js"></script>
 </body>
 
 </html>

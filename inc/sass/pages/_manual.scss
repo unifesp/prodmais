@@ -1,0 +1,51 @@
+.manual-body {
+	background-color: var(--c-bg-1);
+}
+
+.manual {
+	&-container {
+		margin: 0;
+		width: 100%;
+	}
+
+	&-img {
+		box-shadow: 3px 3px 13px 3px rgba(0, 0, 0, 0.1);
+		margin: 2rem auto;
+		max-width: 90%;
+	}
+
+	&-img-nb {
+		margin: 2rem auto;
+		max-width: 90%;
+	}
+
+	&-wrapper {
+		background-color: var(--c-bg-0);
+		border-radius: 50px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 1rem;
+		padding: 1rem;
+		position: relative;
+	}
+}
+
+@include up-to("md") {
+	.manual {
+		&-img,
+		&-img-nb {
+			max-width: 50%;
+		}
+
+		&-wrapper {
+			margin: 4rem;
+			padding: 4rem 3rem 3rem 2rem;
+		}
+
+		&-page {
+			margin: 0 2.5rem;
+			padding: 6rem;
+		}
+	}
+}

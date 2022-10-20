@@ -1,0 +1,20 @@
+.manualHome {
+	background-image: url("inc/images/manual/chart_mobo.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+
+	p {
+		text-align: center;
+	}
+}
+@include up-to("md") {
+	.manualHome {
+		background-image: url("inc/images/manual/chart_desk.jpg");
+	}
+}
+
+.logo-manual {
+	fill: var(--c-pr-2);
+	width: 100px;
+}

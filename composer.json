@@ -5,7 +5,8 @@
         "guzzlehttp/guzzle": "~6.0",
         "gettext/gettext": "~5.1",
         "renanbr/crossref-client": "^1.0",
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "erusev/parsedown": "^1.7"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*"

@@ -1,0 +1,70 @@
+$filterdropRadii: 8px;
+
+.c-filterdrop {
+	&__header {
+		background-color: var(--c-mn-6);
+		border: 1px solid var(--c-pr-6);
+		border-radius: $filterdropRadii;
+		cursor: pointer;
+		height: 2.3rem;
+		margin: 0.5rem;
+		overflow: hidden;
+		padding: 0.5rem;
+		position: relative;
+		vertical-align: middle;
+		word-wrap: break-word;
+
+		&::after {
+			color: var(--c-pr-6);
+			content: "\276F";
+			display: inline-block;
+			position: absolute;
+			right: 10px;
+			transform: rotate(90deg);
+		}
+	}
+	&__content {
+		padding: 0.5rem;
+	}
+
+	&__item {
+		align-items: center;
+		border-bottom: 1px solid var(--c-pr-6);
+		display: grid;
+		grid-template-areas: "nome number";
+		grid-template-columns: 9fr 1fr;
+		margin: 0.5rem;
+		transition: 0.2s all ease;
+	}
+
+	&__item-name {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		grid-area: nome;
+		margin-inline: 0.7 rem;
+		overflow: hidden;
+		word-wrap: break-word;
+
+		&:hover {
+			background-color: var(--c-pr-7);
+			border-radius: $filterdropRadii;
+		}
+	}
+
+	&__count {
+		background-color: var(--c-pr-4);
+		border-radius: $filterdropRadii;
+		color: var(--c-mn-6);
+		font-weight: 500;
+		grid-area: number;
+		height: fit-content;
+		margin: 0.2rem;
+		padding: 0.2rem 0.5rem;
+		width: fit-content;
+	}
+}
+
+.c-filterdrop[open] .c-filterdrop__header::after {
+	transform: rotate(270deg);
+}

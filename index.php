@@ -56,13 +56,13 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
   <meta property="og:type" content="website">
   <!-- Facebook Tags - END -->
 
-  <link rel="stylesheet" href="sass/main.css" />
+
 
 
 
 </head>
 
-<body>
+<body data-theme="<?php echo $theme; ?>">
 
   <?php
   if (file_exists('inc/google_analytics.php')) {
@@ -76,7 +76,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
   <main class="p-home-wrapper" id="home">
 
-    <i class="i i-logo p-home-logo"></i>
+    <!-- <img class="p-home-logo" src="inc/images/logos/logo_main.svg" loading="lazy" /> -->
+    <i class="i i-prodmais"></i>
     <h2 class="p-home-slogan"><?php echo ($slogan); ?></h2>
 
     <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
@@ -136,6 +137,9 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
               <input type="text" class="c-input--date" id="finalYear" name="finalYear" pattern="\d{4}"
                 placeholder="Data final" />
             </div>
+
+
+
           </div> <!-- end advanced -->
         </transition>
 
@@ -162,12 +166,12 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     </div>
 
     <transition name="homeeffect">
-      <div class="tips" v-if="showTips">
-        <p class="p-home-info"><b>Dicas</b></p>
-        <p class="p-home-info">1: Use * para busca por radical. Ex: biblio*.</p>
-        <p class="p-home-info">2: Para buscas exatas, coloque entre "". Ex: "Direito civil"</p>
-        <p class="p-home-info">3: Por padrão, o sistema utiliza o operador booleano OR. Caso necessite deixar a busca
-          mais específica, utilize o operador AND (em maiúscula)</p>
+      <div class="c-tips" v-if="showTips">
+        <?php
+        $parsedown = new Parsedown();
+        $txtm = file_get_contents('inc/md/tips_home.md');
+        echo $parsedown->text($txtm);
+        ?>
       </div>
     </transition>
 

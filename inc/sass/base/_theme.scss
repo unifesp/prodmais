@@ -1,0 +1,13 @@
+// == THEME == //
+
+:root {
+	@include progressMonoPallete($lights);
+}
+
+@each $k, $v in $themes {
+	:root,
+	[data-theme="#{$k}"] {
+		@include processTheme($v, $lights);
+		// @include progressMonoPallete($lights);
+	}
+}

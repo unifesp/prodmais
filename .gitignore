@@ -19,3 +19,4 @@ docker-compose.yml
 services-start.sh
 start.sh
 .vscode/settings.json
+inc/google_analytics.php

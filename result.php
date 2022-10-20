@@ -6,8 +6,8 @@
   require 'inc/config.php';
   require 'inc/meta-header.php';
   require 'inc/functions.php';
-  require 'components/Production.php';
-
+  require 'inc/components/Production.php';
+  
   if (isset($fields)) {
     $_POST["fields"] = $fields;
   }
@@ -54,12 +54,12 @@
   <title><?php echo $branch; ?> - Resultado da busca</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
-  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" /> 
-  <link rel="stylesheet" href="sass/main.css" />
+  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+
 
 </head>
 
-<body>
+<body data-theme="<?php echo $theme; ?>">
   <?php
   if (file_exists('inc/google_analytics.php')) {
     include 'inc/google_analytics.php';
@@ -70,18 +70,14 @@
   <!-- /NAV -->
 
   <div class="p-result-container">
+
     <nav class="p-result-nav">
       <details id="filterlist" class="c-filterlist" onload="resizeMenu">
-        <summary class="c-filterlist-header">
-          <h3 class="c-filterlist-title">Refinar resultados</h3>
-          <!-- <div class="c-filterlist-arrow"></div> -->
-          <svg class="c-filterlist-arrow" xmlns='https://www.w3.org/2000/svg' width='100' height='15' viewBox='0 0 27 4'>
-            <path
-              d='M -0.01265394,0.14177403 13.243005,2.082092 26.44568,0.14177403 26.42274,1.4634269 13.243005,3.4026049 -0.01265394,1.4646869 Z' />
-          </svg>
+        <summary class="c-filterlist__header">
+          <h3 class="c-filterlist__title">Refinar resultados</h3>
         </summary>
 
-        <div class="c-fbloc-wrapper">
+        <div class="c-filterlist__content">
 
           <?php
                 $facets = new FacetsNew();
@@ -139,7 +135,7 @@
                 
                ?>
 
-        </div> <!-- end c-fbloc -->
+        </div>
       </details>
     </nav>
 
@@ -221,61 +217,7 @@
   </div> <!-- end result-container -->
 
   <?php include('inc/footer.php'); ?>
-  <script>
-  var app = new Vue({
-    el: '#filterlist',
-    methods: {
-      createMenuButtons() {
-        let fblocs = document.getElementsByClassName('c-fbloc')
-
-        for (let i = 0; i < fblocs.length; i++) {
-          const newBtn = document.createElement('button')
-          newBtn.classList.add('c-fbloc-btn')
-          newBtn.innerHTML =
-            "<svg class='c-fbloc-btn-ico' x='0px' y='0px' viewBox='0 0 80 48'> <path d='M72.3,35.5c-0.7,0-1.5-0.2-2.2-0.5L40.3,20.5l-30.6,14c-2.5,1.1-5.5,0-6.6-2.5c-1.1-2.5,0-5.5,2.5-6.6l32.7-15 c1.4-0.6,2.9-0.6,4.3,0.1l32,15.6c2.5,1.2,3.5,4.2,2.3,6.7C76,34.5,74.2,35.5,72.3,35.5z' /> </svg>"
-          newBtn.addEventListener("click", function() {
-            this.parentNode.removeAttribute("open")
-          })
-          fblocs[i].appendChild(newBtn)
-        }
-      },
-
-      openCloseMenu() {        
-        if (window.matchMedia("(min-width: 1300px)").matches) document.getElementById("filterlist").open =
-          true;
-        else document.getElementById("filterlist").open = false;
-      },
-
-    },
-    mounted: function() {
-      this.createMenuButtons(),
-        this.openCloseMenu()
-    },
-  });
-  </script>
-  <script>
-  let ffilterlist = window.matchMedia('(min-width: 1203.03px)')
-
-  function screenTest(e) {
-    if (e.matches) {
-      document.getElementById("filterlist").open = true
-      fArrow.style.display = "none"
-    } else {
-      document.getElementById("filterlist").open = false
-      fArrow.style.display = "block"
-    }
-  }
-
-  function showHideFilterlistBtn() {
-    let fArrow = document.getElementByClassName("c-filterlist-arrow")
-    boo = document.getElementById("filterlist")
-    boo.open === true ? fArrow.style.display = "none" : fArrow.style.display = "block";
-
-  }
-
-  ffilterlist.addEventListener('change', screenTest)
-  ffilterlist.addEventListener('change', showHideFilterlistBtn)
-  </script>
+  <script src="inc/js/pages/result.js"></script>
 </body>
 
 </html>

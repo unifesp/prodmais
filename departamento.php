@@ -36,11 +36,11 @@ class Departamento {
   require 'inc/config.php';
   require 'inc/meta-header.php';
   require 'inc/functions.php';
-  require 'components/GraphBar.php';
-  require 'components/Production.php';
-  require 'components/Who.php';
-  require 'components/PPGBadges.php';
-  require 'components/TagCloud.php';
+  require 'inc/components/GraphBar.php';
+  require 'inc/components/Production.php';
+  require 'inc/components/Who.php';
+  require 'inc/components/PPGBadges.php';
+  require 'inc/components/TagCloud.php';
   require '_fakedata.php';
   ?>
   <meta charset="utf-8" />
@@ -49,10 +49,10 @@ class Departamento {
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
-  <link rel="stylesheet" href="sass/main.css" />
+
 </head>
 
-<body class="c-wrapper-body">
+<body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
   <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
 
   <?php require 'inc/navbar.php'; ?>
@@ -73,7 +73,7 @@ class Departamento {
               <span>Escola de Filosofia, Letras e ciências Humanas</span>
             </p>
             <div class="d-icon-text t-gray u-mb-1">
-              <i class="i i-mapmarker p-departamento-i"></i>
+              <i class="i i-sm i-mapmarker p-departamento-i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
 
@@ -98,17 +98,17 @@ class Departamento {
             <div class="p-departamento-header-three-inner">
               <a href="" target="blank">
                 <div class="d-icon-text t-gray">
-                  <i class="i i-mail p-departamento-i"></i> email@email.com
+                  <i class="i i-sm i-mail p-departamento-i"></i> email@email.com
                 </div>
               </a>
 
               <div class="d-icon-text t-gray">
-                <i class="i i-phone p-departamento-i"></i> (11) 5555-5555
+                <i class="i i-sm i-phone p-departamento-i"></i> (11) 5555-5555
               </div>
 
               <a href="" target="blank">
                 <div class="d-icon-text t-gray">
-                  <i class="i i-web p-departamento-i"></i> site
+                  <i class="i i-sm i-web p-departamento-i"></i> site
                 </div>
               </a>
             </div>

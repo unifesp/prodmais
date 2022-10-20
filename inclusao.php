@@ -2,15 +2,24 @@
 <html lang="pt-br" dir="ltr">
 
 <head>
-  <?php
-    require 'inc/config.php';
+  <?php    
     require 'inc/meta-header.php';
     require 'inc/functions.php';
-    ?>
+  ?>
   <title><?php echo $branch ?> - Inclusão</title>
-  <link rel="stylesheet" href="sass/main.css" />
+  
 
 </head>
+
+<?php
+require 'inc/config.php';
+
+$username = $login_user;
+$password = $login_password;
+ 
+if(isset($_POST['submit'])){
+    if($_POST['username'] == $username && $_POST['password'] == $password){
+        ?>
 
 <body class="c-wrapper-body">
   <main class="c-wrapper-container">
@@ -58,7 +67,7 @@
           </div>
         </form>
 
-        <h2 class="t t-h3 ">Inserir um DOI de artigo que queira incluir (sem http://doi.org/)</h2>
+        <h2 class="t t-h3 ">Inserir um DOI de artigo que queira incluir (sem https://doi.org/)</h2>
 
         <form class="p-inclusao-form" action="doi_to_elastic.php" method="get">
           <div class="custom-file">
@@ -144,3 +153,26 @@
 </body>
 
 </html>
+
+
+
+
+        <?php
+        } else {
+        echo "Usuário não encontrado";
+        }
+} else {
+    ?>
+    <body>
+      
+      <form class="p-inclusao-form" method="post">
+        <h1><?php echo $branch ?> - Login</h1>
+        Usuário: <input class="c-input--sm" type="text" name="username" /><br />
+        Senha: <input class="c-input--sm" type="password" name="password" /><br />
+        <input class="c-btn" type='submit' name='submit' value="Login" />
+      </form>
+    </body>
+    <?php
+}
+ 
+?>

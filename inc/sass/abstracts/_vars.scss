@@ -1,0 +1,170 @@
+// BREAKPOINTS
+$sm: 669px;
+$md: 899px;
+$lg: 1299px;
+
+$breakpointsUp: (
+	"sm": (
+		min-width: $sm,
+	),
+	"md": (
+		min-width: $md,
+	),
+	"lg": (
+		min-width: $lg,
+	),
+) !default;
+
+$filterbar_width_desk: 420px;
+$filterbar_width_mob: 100%;
+
+// INPUTS
+$input_border_radius: 40px;
+$input_margin: 0.3rem 0.5rem;
+$searcher_heigh_mini: 2rem;
+$switch_height: 30px;
+
+// INPUT FONTS
+$fontsize_mobi: 0.9rem;
+$fontsize_desk: 1.2rem;
+
+// ICONS SIZE
+$iSm: 24px;
+$iMd: 32px;
+$iLg: 48px;
+$iLgg: 72px;
+
+// COLORS VALUES
+
+$paletteGraph: (
+	0: --c-pr-7,
+	1: --c-pr-6,
+	2: --c-pr-3,
+	3: --c-pr-2,
+	4: --c-pr-1,
+);
+
+// THEMES
+$Prodmais: (
+	pr: (
+		198,
+		76%,
+	),
+	se: (
+		142,
+		29%,
+	),
+	ic: (
+		198,
+		56%,
+	),
+	bg: (
+		0,
+		0%,
+	),
+);
+
+$Waterbeach: (
+	pr: (
+		169,
+		76%,
+	),
+	se: (
+		0,
+		0%,
+	),
+	ic: (
+		169,
+		50%,
+	),
+	bg: (
+		0,
+		0%,
+	),
+);
+
+$Tomaton: (
+	pr: (
+		342,
+		76%,
+	),
+	se: (
+		0,
+		0%,
+	),
+	ic: (
+		342,
+		20%,
+	),
+	bg: (
+		0,
+		0%,
+	),
+);
+
+$Blueberry: (
+	pr: (
+		280,
+		76%,
+	),
+	se: (
+		280,
+		20%,
+	),
+	ic: (
+		280,
+		76%,
+	),
+	bg: (
+		0,
+		0%,
+	),
+);
+
+$themes: (
+	Prodmais: $Prodmais,
+	Waterbeach: $Waterbeach,
+	Tomaton: $Tomaton,
+	Blueberry: $Blueberry,
+);
+
+$lights: (
+	pr: (
+		20%,
+		30%,
+		40%,
+		50%,
+		60%,
+		70%,
+		80%,
+		90%,
+	),
+	se: (
+		30%,
+		50%,
+		70%,
+		80%,
+		90%,
+	),
+	ic: (
+		50%,
+		65%,
+		75%,
+		90%,
+	),
+	bg: (
+		100%,
+		95%,
+	),
+	mn: (
+		0%,
+		20%,
+		40%,
+		50%,
+		80%,
+		90%,
+		100%,
+	),
+);
+
+// --#{$k}: hsl(#{nth($v, 1)}, #{nth($v, 2)}, 50%);

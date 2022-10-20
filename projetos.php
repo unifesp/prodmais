@@ -136,8 +136,8 @@ class ListProjetos {
         require 'inc/config.php';
         require 'inc/meta-header.php';
         require 'inc/functions.php';
-        require 'components/SList.php';
-        require 'components/TagCloud.php';
+        require 'inc/components/SList.php';
+        require 'inc/components/TagCloud.php';
         require '_fakedata.php';
         ?>
   <meta charset="utf-8" />
@@ -145,10 +145,10 @@ class ListProjetos {
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  <link rel="stylesheet" href="sass/main.css" />
+  
 </head>
 
-<body class="c-wrapper-body">
+<body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
   <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
 
   <?php require 'inc/navbar.php'; ?>
@@ -166,7 +166,7 @@ class ListProjetos {
 
             <div class="c-searcher">
               <input class="" type="text" />
-              <i class="i i-magnifying c-searcher-btn"></i>
+              <i class="i i-sm i-magnifying c-searcher-btn"></i>
             </div>
             <div class="c-switch-container">
               <input id="switch-projetos-concluidos" class="c-switch c-switch-shadow" type="checkbox" />

@@ -1,0 +1,98 @@
+// == BUTTONS == //
+@mixin hover-btn {
+	background-color: var(--c-pr-4);
+	border-color: var(--c-pr-4);
+	-webkit-box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.57);
+	-moz-box-shadow: 0px 5px 410px -10px rgba(0, 0, 0, 0.57);
+	box-shadow: 5px 10px -10px rgba(0, 0, 0, 0.57);
+	color: var(--c-bg-0);
+	transition: all 0.2s ease 0s;
+}
+
+@mixin btn {
+	align-items: center;
+	background: none;
+	border: 2px solid var(--c-pr-2);
+	border-radius: $input_border_radius;
+	color: var(--c-pr-2);
+	cursor: pointer;
+	justify-content: center;
+	min-width: 6rem;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	width: fit-content;
+
+	&:hover {
+		@include hover-btn;
+	}
+}
+
+.c-btn {
+	&--c1 {
+		color: var(--c-pr-2);
+	}
+
+	&--disabled {
+		color: var(--c-mn-3);
+	}
+}
+
+.c-btn {
+	@include btn();
+	font-weight: 500;
+	margin: $input_margin;
+	padding: 8px;
+
+	&-ico {
+		fill: var(--c-pr-2);
+		margin: 0.25rem;
+		transition: all 0.2s ease 0s;
+		vertical-align: middle;
+		width: 30px;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover,
+	&:focus {
+		@include hover-btn;
+		color: var(--c-mn-6);
+
+		.btn-ico {
+			fill: var(--c-mn-6);
+		}
+	}
+}
+
+.c-btn {
+	&-search {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		fill: var(--c-pr-2);
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+
+		&-ico {
+			margin: 1rem;
+			width: 35px;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover,
+		&:focus {
+			border: none;
+
+			.btn-search-ico {
+				fill: var(--c-pr-4);
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+// TAG
+
+.tag-cloud {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+
+	.tag:focus {
+		color: var(--c-pr-2);
+		outline: 1px dashed;
+	}
+}
+
+@for $i from 1 through 9 {
+	.tag[data-weight="#{$i}"] {
+		--size: #{$i};
+	}
+}
+
+.tag {
+	--size: 3;
+	color: var(--c-pr-2);
+	font-size: calc(var(--size) * 0.25rem + 0.5rem);
+	margin: 0.1rem;
+	opacity: calc((15 - (9 - var(--size))) / 15);
+
+	&:focus,
+	&:hover {
+		color: var(--c-pr-4);
+		transition: all 0.2s ease 0s;
+	}
+}
+
+// @media (prefers-reduced-motion) {
+//   .tag * {
+//     transition: none !important;
+//   }
+// }

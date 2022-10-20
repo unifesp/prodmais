@@ -65,6 +65,14 @@ Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usan
 
 Ao rodar pela primeira vez, o sistema irá criar os índices no elasticsearch.
 
+### Google Analytics
+
+Criar o arquivo inc/google_analytics.php
+
+    touch inc/google_analytics.php
+
+Copie o código do Google Analytics no arquivo inc/google_analytics.php
+
 ### Inclusão automática
 
 Parâmetros aceitos no import_lattes_to_elastic_dedup.php

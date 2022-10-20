@@ -197,8 +197,8 @@ class ListPPGs {
   require 'inc/config.php';
   require 'inc/meta-header.php';
   require 'inc/functions.php';
-  require 'components/SList.php';
-  require 'components/TagCloud.php';
+  require 'inc/components/SList.php';
+  require 'inc/components/TagCloud.php';
   require '_fakedata.php';
   ?>
   <meta charset="utf-8" />
@@ -206,10 +206,10 @@ class ListPPGs {
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  <link rel="stylesheet" href="sass/main.css" />
+
 </head>
 
-<body class="c-wrapper-body">
+<body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
   <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
 
   <?php require 'inc/navbar.php'; ?>

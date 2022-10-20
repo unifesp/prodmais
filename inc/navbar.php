@@ -12,8 +12,9 @@
 
 <header class="siteheader">
 
-  <a href="index.php">
-    <i class="i i-logo-header siteheader-logo"></i>
+  <a href="<?php echo $url_base; ?>">
+    <!-- <img class="siteheader-logo" src="<?php echo $url_base; ?>/inc/images/logos/logo_header.svg" loading="lazy" /> -->
+    <i class="i i-prodmaisheader siteheader-logo"></i>
   </a>
 
   <div class="sitemenu-container">
@@ -27,7 +28,7 @@
       <ul class="sitemenu-list">
 
         <li class="sitemenu-item" title="Home">
-          <a class="sitemenu-link" href="index.php" title="Home">
+          <a class="sitemenu-link" href="<?php echo $url_base; ?>" title="Home">
             Home
             <i class="i i-home sitemenu-ico"></i>
           </a>
@@ -42,7 +43,7 @@
 
         <!--
           <li class=" sitemenu-item">
-            <a class="sitemenu-link" href="ppgs.php" title="Programas de pós graduação">
+            <a class="sitemenu-link" href="ppgs.php" title="Programas de pÃ³s graduaÃ§Ã£o">
               PPGs
               <i class="i i-ppg-logo sitemenu-ico"></i>
             </a>
@@ -62,12 +63,12 @@
           </a>
         </li>
 
-        <li class="sitemenu-item">
+        <!-- <li class="sitemenu-item">
           <a class="sitemenu-link" href="manual/" title="Manual">
             Manual
             <i class="i i-manual sitemenu-ico"></i>
           </a>
-        </li>
+        </li> -->
 
         <li class="sitemenu-item">
           <a class="sitemenu-link" href="sobre.php" title="Sobre o Prodmais">

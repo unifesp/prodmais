@@ -1,0 +1,38 @@
+.back-to-top {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--c-pr-2);
+	background-color: var(--c-bg-0);
+	width: 40px;
+	height: 40px;
+	position: fixed;
+	bottom: 50px;
+	right: 30px;
+	border-radius: 50%;
+	border: 3px solid var(--c-pr-2);
+	-webkit-box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.3);
+	@include transition();
+
+	&:after {
+		font-size: 1.8rem;
+		font-weight: 700;
+		content: "\2191";
+	}
+
+	&:hover {
+		background-color: var(--c-pr-3);
+
+		&:after {
+			color: var(--c-bg-0);
+		}
+	}
+}
+
+@include up-to("md") {
+	.back-to-top {
+		bottom: 70px;
+		right: 50px;
+	}
+}

@@ -1,0 +1,40 @@
+// == HEADER == //
+
+.siteheader {
+	align-content: center;
+	background-color: var(--c-pr-2);
+	border-bottom: 6px solid var(--c-pr-1);
+	box-shadow: _effects(shadow);
+	-webkit-box-shadow: _effects(shadow);
+	display: flex;
+	justify-content: space-between;
+	left: 0;
+	padding: 0 2rem;
+	position: relative;
+	right: 0;
+	top: 0;
+	z-index: 999;
+
+	&-logo {
+		background-color: var(--c-pr-7);
+		height: 50px;
+		margin: 0.3rem;
+		transition: all 0.25s ease-in-out;
+		width: 170px;
+
+		&:hover {
+			background-color: var(--c-mn-6);
+		}
+	}
+}
+
+@include up-to("sm") {
+	.siteheader {
+		flex-direction: row;
+		justify-content: space-between;
+
+		&-header {
+			max-height: 30px;
+		}
+	}
+}
