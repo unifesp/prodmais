@@ -1969,10 +1969,10 @@ class Elasticsearch
         global $client;
         $params = [];
 
-        if (strlen($alternative_index) > 0 ) {
-            $params["index"] = $alternative_index;
+        if ($alternative_index == "" ) {
+          $params["index"] = $index;
         } else {
-            $params["index"] = $index;
+          $params["index"] = $alternative_index;
         }
 
         $params["_source"] = $fields;
