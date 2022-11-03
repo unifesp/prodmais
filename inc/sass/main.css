@@ -1608,6 +1608,7 @@ h5 a {
   justify-content: space-between;
   margin-block: 0.8rem;
   position: relative;
+  text-decoration: none !important;
   width: 100%;
   transition: all 0.4s ease;
 }
