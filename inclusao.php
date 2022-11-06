@@ -67,6 +67,42 @@ if(isset($_POST['submit'])){
           </div>
         </form>
 
+        <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
+
+        <form class="p-inclusao-form" action="include_ppg.php" method="post" accept-charset="utf-8"
+          enctype="multipart/form-data" title="Formulário de Inserção de um Programa de Pós Graduação">
+
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="ID do Curso" name="ID_CURSO">
+            <input class="c-input--sm" type="text" placeholder="Código CAPES" name="COD_CAPES">
+            <input class="c-input--sm" type="text" placeholder="Conceito CAPES" name="CONCEITO_CAPES">
+            <input class="c-input--sm" type="text" placeholder="Campus" name="NOME_CAMPUS">
+          </div>
+
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Sigla da Câmara" name="SIGLA_CAMARA">
+            <input class="c-input--sm" type="text" placeholder="Nome da Câmara" name="NOME_CAMARA">
+            <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="NOME_PPG">
+            <input class="c-input--sm" type="text" placeholder="Data de início do PPG" name="INI_PPG">
+          </div>
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Site do PPG" name="PPG_SITE">
+            <input class="c-input--sm" type="text" placeholder="E-mail do PPG" name="PPG_EMAIL">
+            <input class="c-input--sm" type="text" placeholder="URL no DSpace do PPG" name="PRODMAIS_DSPACE">
+            <input class="c-input--sm" type="text" placeholder="URL no Dataverse do PPG" name="PRODMAIS_DATAVERSE">
+            <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
+          </div>
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Nome do Coodenador" name="NOME_COORDENADOR">
+            <input class="c-input--sm" type="text" placeholder="Data de Início do Coodenador" name="DT_INI_COORD">
+            <input class="c-input--sm" type="text" placeholder="URL no Dataverse do PPG" name="PRODMAIS_DATAVERSE">
+            <input class="c-input--sm" type="text" placeholder="Nível" name="NIVEL">
+          </div>
+          <div class="input-group-append">
+            <button class="c-btn" type="submit">Incluir</button>
+          </div>
+        </form>
+
         <h2 class="t t-h3 ">Inserir um DOI de artigo que queira incluir (sem https://doi.org/)</h2>
 
         <form class="p-inclusao-form" action="doi_to_elastic.php" method="get">
