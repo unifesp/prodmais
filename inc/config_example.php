@@ -34,23 +34,14 @@ $login_password = "admin";
 // ============== CUSTOMIZAÇÃO ============== //
 
 // Definir Instituição
-$instituicao = "UNIFESP";
+$instituicao = "Universidade Federal de São Paulo";
 
 $branch = "Prodmais";
 $branch_description = "Descrição";
 $facebook_image = "";
-$slogan = 'Uma ferramenta de busca da produção científica de pesquisadores da UNIFESP';
-
-
 
 // Tema
 $theme = 'Prodmais';
 // $theme = 'Waterbeach';
 // $theme = 'Tomaton';
 // $theme = 'Blueberry';
-
-/* Logo
- * replace the files in 'inc/images/logos/':
- * - logo_main.svg
- * - logo_header.svg
- */

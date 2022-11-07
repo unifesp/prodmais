@@ -3020,17 +3020,27 @@ th {
   align-content: center;
   display: flex;
   flex-direction: column;
-  font-size: 1.2rem !important;
+  font-size: 1.3rem !important;
   max-width: 500px;
   padding: 0.7rem 0.5rem;
   text-align: center;
 }
 
+.p-home-slogan {
+  color: var(--c-pr-2);
+  padding: 0.7rem auto 0.5rem auto;
+}
+
+.p-home-instituicao {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
 .p-home-logo {
   display: block;
   margin-bottom: 0.7rem;
-  width: 100%;
   max-width: 240px;
+  width: 100%;
 }
 
 .p-home-slogan {
