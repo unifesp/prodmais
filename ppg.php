@@ -2,6 +2,25 @@
 <html lang="pt-br" dir="ltr">
 
 <?php
+
+require 'inc/config.php';
+
+if (!empty($_REQUEST["ID"])) {
+
+  $params = [];
+  $params["index"] = $index_ppg;
+  $params["id"] = $_REQUEST["ID"];
+  $cursor = $client->get($params);
+  $ppg = $cursor["_source"];
+
+  var_dump($ppg);
+ 
+} else {
+  echo '<script>window.location.href = "index.php";</script>';
+  die();
+}
+
+
 class PPG {
   static function externos($type, $link) {
     $ico = '';
@@ -12,9 +31,9 @@ class PPG {
         $ico = 'sucupira.png';
         $text = '';
         break;
-      case 'Repositório de dados de esquisa':
+      case 'Repositório de dados de pesquisa':
         $ico = 'dataverse.png';
-        $text = 'Repositório de dados de esquisa';
+        $text = 'Repositório de dados de pesquisa';
         break;
       case 'Repositório institucional':
         $ico = 'DSpace.svg';
@@ -44,7 +63,7 @@ class PPG {
   require '_fakedata.php';
   ?>
   <meta charset="utf-8" />
-  <title><?php echo $branch; ?> - PPG Letras</title>
+  <title><?php echo $branch; ?> - PPG <?php echo $ppg["NOME_PPG"]; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
@@ -66,42 +85,49 @@ class PPG {
           </div>
 
           <div class="p-ppg-header-two">
-            <h1 class="t t-h1">PPG Letras</h1>
-            <h2 class="t t-h2">Programa de Pós Graduação em Letras</h2>
+            <h1 class="t t-h1">PPG <?php echo $ppg["NOME_PPG"]; ?></h1>
+            <h2 class="t t-h2">Programa de Pós Graduação em <?php echo $ppg["NOME_PPG"]; ?></h2>
             <p class="t t-b ty-light-a">
-              <span>Campus Guarulhos</span>
-              <span>Escola de Filosofia, Letras e ciências Humanas</span>
+              <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br/>
+              <span><?php echo $ppg ["NOME_CAMARA"]; ?></span>
             </p>
+            <!--
             <div class="d-icon-text t-gray u-mb-1">
               <i class="i i-sm i-mapmarker p-ppg-i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
+            -->
 
             <div class="d-icon-text">
               <i class='i i-people-manager'></i>
-              <span class="t t-gray t-b">Coordenação: Nome do coordenador/coordenadora</span>
+              <span class="t t-gray t-b">Coordenação: <?php echo $ppg["NOME_COORDENADOR"]; ?></span>
             </div>
 
           </diV>
           <div class="p-ppg-header-three">
 
+            <!--
             <p class="t t-gray t-b">Secretaria:</p>
             <p class="t t-gray">Maria Oliveira</p>
             <p class="t t-gray">Olívia Maria</p>
+            -->
+
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-mail p-ppg-i"></i> email@email.com
+                <i class="i i-sm i-mail p-ppg-i"></i> <?php echo $ppg["PPG_EMAIL"]; ?>
               </div>
             </a>
 
+            <!--
             <div class="d-icon-text t-gray">
               <i class="i i-sm i-phone p-ppg-i"></i> (11) 5555-5555
             </div>
+            -->
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-web p-ppg-i"></i> site
+                <i class="i i-sm i-web p-ppg-i"></i> <?php echo $ppg ["PPG_SITE"]; ?>
               </div>
             </a>
 
@@ -250,23 +276,23 @@ class PPG {
         <section>
           <div class="d-v d-vc">
             <p class="t t-gray u-mt-1"><b>Código CAPES</b></p>
-            <p class="t t-gray u-mb-1">33009015088p9</p>
+            <p class="t t-gray u-mb-1"><?php echo $ppg["COD_CAPES"]; ?></p>
           </div>
         </section>
 
         <section class="d-v d-vc d-md-h d-md-hc">
           <?php echo PPG::externos(
             $type = 'Sucupira',
-            $link = 'https://repositorio.unifesp.br/handle/11600/6108'
+            $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml?popup=false&cd_programa='.$ppg["COD_CAPES"]
             ); ?>
           <?php echo PPG::externos(
-            $type = 'Repositório de dados de esquisa',
-            $link = 'https://repositoriodedados.unifesp.br/dataverse/eflch'
+            $type = 'Repositório de dados de pesquisa',
+            $link = $ppg["PRODMAIS_DATAVERSE"]
             ); ?>
 
           <?php echo PPG::externos(
             $type = 'Repositório institucional',
-            $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml;jsessionid=OLRUfmVYapfO6QJKy+Wf0KS1.sucupira-218?popup=true&cd_programa=33009015089P5'
+            $link = $ppg["PRODMAIS_DSPACE"]
             ); ?>
         </section>
 

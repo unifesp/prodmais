@@ -36,19 +36,18 @@ if (isset($testIndexCV) && $testIndexCV == false) {
   Elasticsearch::createIndex($index_cv, $client);
 }
 
-/* Connect to Elasticsearch | Index Authorities */
+/* Connect to Elasticsearch | Index PPGs */
 try {
   $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
-  //print("<pre>".print_r($client,true)."</pre>");
-  $indexParams['index']  = $index_authority;
-  $testIndexAut = $client->indices()->exists($indexParams);
+  $indexParams['index']  = $index_ppg;
+  $testIndexPPG = $client->indices()->exists($indexParams);
 } catch (Exception $e) {
-  $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de autoridades no Elasticsearch não foi encontrado.</div>';
+  $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de PPG no Elasticsearch não foi encontrado.</div>';
 }
 
 /* Create index if not exists */
-if (isset($testIndexAut) && $testIndexAut == false) {
-  Elasticsearch::createIndex($index_authority, $client);
+if (isset($testIndexPPG) && $testIndexPPG == false) {
+  Elasticsearch::createIndex($index_ppg, $client);
 }
 
 
@@ -103,7 +102,7 @@ function pregReplaceVariableName($string)
 /**
  * Compara registros que estão entrando com os já existentes na base
  */
-class compararRegistros
+class bak_compararRegistros
 {
 
   /**

@@ -19,7 +19,7 @@ $stid = oci_parse($conexao, $consulta_pg_orient) or die("erro");
 oci_execute($stid);
 while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
 
-    var_dump($row);
+    //var_dump($row);
 
     $queryParams[] = '&ID_CURSO=' . $row["ID_CURSO"] . '';
     $queryParams[] = '&COD_CAPES=' . $row["COD_CAPES"] . '';

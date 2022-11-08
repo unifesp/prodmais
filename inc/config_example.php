@@ -18,7 +18,7 @@ $url_base = "http://localhost:8080/prodmais";
 /* Configurações do Elasticsearch */
 $index = "prodmais";
 $index_cv = "prodmaiscv";
-$index_authority = "prodmaisaut";
+$index_ppg = "prodmaisppg";
 
 /* Load libraries for PHP composer */
 require(__DIR__ . '/../vendor/autoload.php');

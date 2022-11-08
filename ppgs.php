@@ -2,185 +2,82 @@
 <html lang="pt-br" dir="ltr">
 
 <?php
-$ppgs = '
-{
-  "campus": [
-    {
-      "nome": "BAIXADA SANTISTA",
-      "unidades": [
-        {
-          "nome": "Instituto de Saúde e Sociedade",
-          "programas": [
-            "Alimentos, Nutrição e Saúde",
-            "Bioprodutos e Bioprocessos",
-            "Ciências do Movimento Humano e Reabilitação",
-            "Interdisciplinar em Ciências da Saúde",
-            "Saúde da Família",
-            "Serviço Social e Políticas Sociais"
-          ]
-        },
-        {
-          "nome": "Instituto do Mar",
-          "programas": [
-            "Biodiversidade e Ecologia Marinha e Costeira",
-            "Interdisciplinar em Ciência e Tecnologia do Mar"
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "DIADEMA",
-      "unidades": [
-        {
-          "nome": "Instituto de Ciências Ambientais, Químicas e Farmacêuticas",
-          "programas": [
-            "Análise Ambiental Integrada",
-            "Biologia Química",
-            "Ciências Farmacêuticas",
-            "Ecologia e Evolução",
-            "Engenharia Química",
-            "Ensino de Ciências e Matemática",
-            "Matemática em Rede Nacional (Profmat-DM)",
-            "Química - Ciência e Tecnologia da Sustentabilidade"
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "GUARULHOS",
-      "unidades": [
-        {
-          "nome": "Escola de Filosofia, Letras e Ciências Humanas",
-          "programas": [
-            "Ciências Sociais",
-            "Educação",
-            "Educação e Saúde na Infância e Adolescência",
-            "Ensino de História",
-            "Filosofia",
-            "História",
-            "História da Arte",
-            "Letras"
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "OSASCO",
-      "unidades": [
-        {
-          "nome": "Escola Paulista de Política, Economia e Negócios",
-          "programas": [
-            "Economia e Desenvolvimento"
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "SÃO JOSÉ DOS CAMPOS",
-      "unidades": [
-        {
-          "nome": "Instituto de Ciência e Tecnologia",
-          "programas": [
-            "Biotecnologia",
-            "Ciência da Computação",
-            "Engenharia Biomédica",
-            "Engenharia e Ciência de Materiais",
-            "Inovação Tecnológica",
-            "Matemática Pura e Aplicada",
-            "Matemática em Rede Nacional (Profmat-SJC)",
-            "Pesquisa Operacional"
-          ]
-        }
-      ]
-    },
-    {
-      "nome": "SÃO PAULO",
-      "unidades": [
-        {
-          "nome": "Escola Paulista de Enfermagem",
-          "programas": [
-            "Enfermagem",
-            "Ensino em Ciências da Saúde"
-          ]
-        },
-        {
-          "nome": "Escola Paulista de Medicina",
-          "programas": [
-            "Biologia Estrutural e Funcional",
-            "Cirurgia Translacional",
-            "Ciência Cirúrgica Interdisciplinar",
-            "Ciência, Tecnologia e Gestão Aplicadas à Regeneração Tecidual",
-            "Ciências Biológicas (Biologia Molecular)",
-            "Ciências da Saúde Aplicada ao Esporte e à Atividade Física",
-            "Ciências da Saúde Aplicadas à Reumatologia",
-            "Distúrbios da Comunicação Humana (Fonoaudiologia)",
-            "Farmacologia",
-            "Gastroenterologia",
-            "Gestão e Informática em Saúde",
-            "Infectologia",
-            "Medicina (Cardiologia)",
-            "Medicina (Endocrinologia e Metabologia)",
-            "Medicina (Ginecologia)",
-            "Medicina (Hematologia e Oncologia)",
-            "Medicina (Nefrologia)",
-            "Medicina (Obstetrícia)",
-            "Medicina (Otorrinolaringologia)",
-            "Medicina (Pneumologia)",
-            "Medicina (Radiologia Clínica)",
-            "Medicina (Urologia)",
-            "Medicina Translacional",
-            "Microbiologia e Imunologia",
-            "Neurologia - Neurociências",
-            "Nutrição",
-            "Oftalmologia e Ciências Visuais",
-            "Patologia",
-            "Pediatria e Ciências Aplicadas à Pediatria",
-            "Psicobiologia",
-            "Psiquiatria e Psicologia Médica",
-            "Saúde Baseada em Evidências",
-            "Saúde Coletiva",
-            "Tecnologia, Gestão e Saúde Ocular"
-          ]
-        }
-      ]
-    }
-  ]
-}';
+
+
+require 'inc/config.php';
+
+$limit = 300;
+//$page = $result_post['page'];
+$params = [];
+$params["index"] = $index_ppg;
+//$params["body"] = $result_post['query'];
+$cursorTotal = $client->count($params);
+$total = $cursorTotal["count"];
+//$result_post['query']["sort"]["nome_completo.keyword"]["unmapped_type"] = "long";
+//$result_post['query']["sort"]["nome_completo.keyword"]["missing"] = "_last";
+//$result_post['query']["sort"]["nome_completo.keyword"]["order"] = "asc";
+//$params["body"] = $result_post['query'];
+$params["size"] = $limit;
+//$params["from"] = $result_post['skip'];
+$cursor = $client->search($params);
+
+//echo "<pre>".print_r($cursor['hits']['hits'], true)."</pre>";
+
+foreach ($cursor['hits']['hits'] as $campus) {
+  //echo "<pre>".print_r($campus, true)."</pre>";
+  
+  $ppgs_array['campus'][$campus['_source']['NOME_CAMPUS']]['nome'] = $campus['_source']['NOME_CAMPUS'];
+  $ppgs_array['campus'][$campus['_source']['NOME_CAMPUS']]['unidades'][$campus['_source']['NOME_CAMARA']][] = $campus['_source'];
+  
+
+}
+//echo "<pre>".print_r($ppgs_array, true)."</pre>";
 
 class ListPPGs {
   static function listAll($data) {
-    $arr = json_decode($data);
-    $campus = $arr -> campus;
+    $campus = $data['campus'];
    
-    foreach( $campus as $c ) {
-      echo '<h2 class="t t-h2 u-my-2">' . $c -> nome .'<h2>';
+    foreach($campus as $key => $value ) {
+      //echo "<pre>".print_r($key, true)."</pre>";
+      //echo "<pre>".print_r($value, true)."</pre>";
+      echo '<h2 class="t t-h2 u-my-2">' . $key .'<h2>';
 
-      foreach( $c -> unidades as $unidade)
-      {
-        $programas = str_replace(array('{', '}'), array('[',']'), $unidade -> programas);
+      foreach($value['unidades'] as $key_unidades => $value_unidades) {
+
+        //echo "<pre>".print_r($value_unidades, true)."</pre>";
 
         echo '
         <details class="p-ppgs-item">
           <summary class="p-ppgs-item-header">'
-             . $unidade -> nome .
+             . $key_unidades .
           '</summary>
         ';
+
+        
+
+        //$programas = str_replace(array('{', '}'), array('[',']'), $unidade -> programas);
+
+
           
-        foreach($programas as $p) 
+        foreach($value_unidades as $p) {
+
+          //echo "<pre>".print_r($p, true)."</pre>";
+
           SList::genericItem(
             $type = 'ppg',
-            $itemName = $p,
+            $itemName = '<a href="ppg.php?ID='.$p['ID_CURSO'].'">'.$p['NOME_PPG'].'</a>',
             $itemNameLink = '',
-            $itemInfoA = '',
-            $itemInfoB = 'CAPES 1234566890',
-            $itemInfoC = '',
-            $itemInfoD = '',
-            $itemInfoE = '',
+            $itemInfoA = 'Código CAPES: ' . $p['COD_CAPES'],
+            $itemInfoB = 'E-mail: ' . $p['PPG_EMAIL'],
+            $itemInfoC = 'Site: <a href="'.$p['PPG_SITE'].'">'.$p['PPG_SITE'].'</a>',
+            $itemInfoD = 'Nível: ' . $p['NIVEL'],
+            $itemInfoE = 'Conceito CAPES: ' . $p['CONCEITO_CAPES'],
             $authors = '',
             $tags = '',
-            $yearStart = '',
+            $yearStart = $p['INI_PPG'],
             $yearEnd = ''
-        );
+          );
+        }
         
         echo  '</details>';
         
@@ -226,7 +123,7 @@ class ListPPGs {
 
           <div class="p-ppg-main">
             <?php 
-              ListPPGs::listAll($ppgs);
+              ListPPGs::listAll($ppgs_array);
             ?>
           </div>
         </div>
