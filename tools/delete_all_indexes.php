@@ -23,7 +23,7 @@ $result = json_decode($result);
 var_dump($result);
 curl_close($ch);
 
-$url = "localhost:9200/prodmaisaut";
+$url = "localhost:9200/prodmaisppg";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
