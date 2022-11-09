@@ -68,11 +68,11 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
 
         unset($queryParams);
         
-    } elseif ($row["COD_LATTES_16"] != null) {
-        $DataAtualizacaoLattes = file_get_contents('http://200.133.208.25/api/proxy_data_atualizacao/' . $row["COD_LATTES_16"] . '');
+    } elseif ($row["ORIENT_LATTES16"] != null) {
+        $DataAtualizacaoLattes = file_get_contents('http://200.133.208.25/api/proxy_data_atualizacao/' . $row["ORIENT_LATTES16"] . '');
         $DataAtualizacaoLattes_formatted = '' . substr($DataAtualizacaoLattes, 6, 4) . '-' . substr($DataAtualizacaoLattes, 3, 2) . '';
 
-        echo "Processando " . $row['COD_LATTES_16'];
+        echo "Processando " . $row['ORIENT_LATTES16'];
         echo "<br/><br/>";
 
         $queryParams[] = '&tag=';
@@ -89,7 +89,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattesID=' . $row['COD_LATTES_16'] . '');
+        curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattesID=' . $row['ORIENT_LATTES16'] . '');
         curl_setopt($ch, CURLOPT_POSTFIELDS, implode('', $queryParams));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
