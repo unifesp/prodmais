@@ -466,6 +466,9 @@ if (isset($_REQUEST['google_citation'])) {
 if (isset($_REQUEST['researcherid'])) {
     $doc_curriculo_array['doc']['researcherid'] = $_REQUEST['researcherid'];
 }
+if (isset($_REQUEST['lattes10'])) {
+    $doc_curriculo_array['doc']['lattes10'] = $_REQUEST['lattes10'];
+}
 print_r($curriculo->attributes()->{'DATA-ATUALIZACAO'});
 $doc_curriculo_array["doc"]["data_atualizacao"] = substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 4, 4)."-".substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 2, 2);
 echo "<br/>";

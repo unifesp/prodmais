@@ -49,6 +49,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&email=' . $row["EMAIL"] . '';
         $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
         $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+        $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         //$queryParams[] = '&departamento=' . $row["DESC_DEPTO"] . '';
         //$queryParams[] = '&divisao=' . $row["DESC_DIV"] . '';
@@ -85,6 +86,7 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&email=' . $row["EMAIL"] . '';
         $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
         $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+        $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattesID=' . $row['COD_LATTES_16'] . '');
