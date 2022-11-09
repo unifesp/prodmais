@@ -19,6 +19,7 @@ $url_base = "http://localhost:8080/prodmais";
 $index = "prodmais";
 $index_cv = "prodmaiscv";
 $index_ppg = "prodmaisppg";
+$index_ppg = "prodmaisppg";
 
 /* Load libraries for PHP composer */
 require(__DIR__ . '/../vendor/autoload.php');
