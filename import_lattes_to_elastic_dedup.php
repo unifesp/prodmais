@@ -401,6 +401,16 @@ if (isset($_REQUEST['campus'])) {
 if (isset($_REQUEST['desc_gestora'])) {
     $doc_curriculo_array['doc']['desc_gestora'] = explode("|", $_REQUEST['desc_gestora']);
 }
+if (isset($_REQUEST['email'])) {
+    $doc_curriculo_array['doc']['email'] = $_REQUEST['email'];
+}
+if (isset($_REQUEST['google_citation'])) {
+    $doc_curriculo_array['doc']['google_citation'] = $_REQUEST['google_citation'];
+}
+if (isset($_REQUEST['researcherid'])) {
+    $doc_curriculo_array['doc']['researcherid'] = $_REQUEST['researcherid'];
+}
+
 
 $doc_curriculo_array["doc"]["data_atualizacao"] = substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 4, 4)."-".substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 2, 2);
 

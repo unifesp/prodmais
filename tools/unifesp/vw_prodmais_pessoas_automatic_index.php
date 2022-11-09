@@ -46,6 +46,9 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&tipvin=' . $row["VINCULO"] . '';
         $queryParams[] = '&genero=' . $row["SEXO"] . '';
 
+        $queryParams[] = '&email=' . $row["EMAIL"] . '';
+        $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
+        $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
 
         //$queryParams[] = '&departamento=' . $row["DESC_DEPTO"] . '';
         //$queryParams[] = '&divisao=' . $row["DESC_DIV"] . '';
@@ -78,6 +81,10 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&tipvin=' . $row["VINCULO"] . '';
         $queryParams[] = '&genero=' . $row["SEXO"] . '';
         $queryParams[] = '&dt_atual_lattes=' . $DataAtualizacaoLattes_formatted . '';
+
+        $queryParams[] = '&email=' . $row["EMAIL"] . '';
+        $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
+        $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattesID=' . $row['COD_LATTES_16'] . '');

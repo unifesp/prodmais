@@ -46,6 +46,7 @@ if(isset($_POST['submit'])){
             <input class="c-input--sm" type="text" placeholder="TAG" name="tag">
             <input class="c-input--sm" type="text" placeholder="Núm. funcional" name="numfuncional">
             <input class="c-input--sm" type="text" placeholder="Unidade" name="unidade">
+            <input class="c-input--sm" type="text" placeholder="E-mail" name="email">
           </div>
 
           <div class="input-group">
@@ -61,9 +62,13 @@ if(isset($_POST['submit'])){
             <input class="c-input--sm" type="text" placeholder="Curso" name="desc_curso">
             <input class="c-input--sm" type="text" placeholder="Campus" name="campus">
             <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
-            <div class="input-group-append">
-              <button class="c-btn" type="submit">Incluir</button>
-            </div>
+          </div>
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Google Scholar ID" name="google_citation">
+            <input class="c-input--sm" type="text" placeholder="Researcher ID" name="researcherid">
+          </div>
+          <div class="input-group-append">
+            <button class="c-btn" type="submit">Incluir</button>
           </div>
         </form>
 
