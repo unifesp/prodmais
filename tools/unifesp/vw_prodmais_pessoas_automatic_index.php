@@ -45,10 +45,15 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&ppg_nome=' . $row["PPG_NOME"] . '';
         $queryParams[] = '&tipvin=' . $row["VINCULO"] . '';
         $queryParams[] = '&genero=' . $row["SEXO"] . '';
-
         $queryParams[] = '&email=' . $row["EMAIL"] . '';
-        $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
-        $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+
+        if (isset($row["ORIENT_GOOGLE_CITATION"])) {
+            $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
+        }
+        if (isset($row["ORIENT_RESEARCHER"])) {
+            $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+        }        
+        
         $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         //$queryParams[] = '&departamento=' . $row["DESC_DEPTO"] . '';
@@ -84,8 +89,12 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
         $queryParams[] = '&dt_atual_lattes=' . $DataAtualizacaoLattes_formatted . '';
 
         $queryParams[] = '&email=' . $row["EMAIL"] . '';
-        $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
-        $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+        if (isset($row["ORIENT_GOOGLE_CITATION"])) {
+            $queryParams[] = '&google_citation=' . $row["ORIENT_GOOGLE_CITATION"] . '';
+        }
+        if (isset($row["ORIENT_RESEARCHER"])) {
+            $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
+        }      
         $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         $ch = curl_init();
