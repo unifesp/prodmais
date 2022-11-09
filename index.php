@@ -78,7 +78,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
     <!-- <img class="p-home-logo" src="inc/images/logos/logo_main.svg" loading="lazy" /> -->
     <i class="i i-prodmais"></i>
-    <h2 class="p-home-slogan"><?php echo ($slogan); ?></h2>
+    <h2 class="p-home-slogan">Uma ferramenta de busca da produção científica de pesquisadores</h2>
+    <h3 class="p-home-instituicao"><?php echo ($instituicao); ?></h3>
 
     <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
     <div class="alert alert-warning" role="alert">
