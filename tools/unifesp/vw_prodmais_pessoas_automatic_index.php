@@ -26,7 +26,7 @@ $stid = oci_parse($conexao, $sql) or die("erro");
 oci_execute($stid);
 while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
 
-    var_dump($row);
+    //var_dump($row);
 
     $IDLattes = file_get_contents('http://200.133.208.25/api/proxy_cpf/' . $row["CPF"] . '');
 
