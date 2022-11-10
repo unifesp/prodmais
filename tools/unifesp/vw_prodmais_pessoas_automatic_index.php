@@ -24,7 +24,7 @@ $stidalter = oci_parse($conexao, $alter) or die("erro");
 oci_execute($stidalter);
 $stid = oci_parse($conexao, $sql) or die("erro");
 oci_execute($stid);
-while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
+while (($row = oci_fetch_array($stid)) != false) {
 
     //var_dump($row);
 
