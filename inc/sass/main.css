@@ -1642,6 +1642,10 @@ h5 a {
   }
 }
 
+.md-container h3 {
+  color: aquamarine;
+}
+
 .c-accordion {
   transition: 0.4s;
 }
