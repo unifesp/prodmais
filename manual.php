@@ -21,17 +21,22 @@
   <main class="c-wrapper-container">
     <div class="c-wrapper-paper">
       <div class="c-wrapper-inner">
-        <h2>Manual</h2>
+        <h2>Manual do Prodmais</h2>
         <div class="md-container">
 
-          <?php
+        </div>
+        <p>O Prodmais é uma ferramenta que agrega informação de diversas fontes, mas não realiza processamento posterior
+          nelas. Neste manual prático você podrá tirar suas dúvidas sobre como utilizar o Prodmais. É fácil efetuar as
+          suas buscas no Prodmais, e você pode fazer utilizando um dos seguintes caminhos:</p>
+
+        <?php
             $parsedown = new Parsedown();
             $txtm = file_get_contents('inc/md/tips_home.md');
             echo $parsedown->text($txtm);
             ?>
-        </div>
-
       </div>
+
+    </div>
     </div>
   </main>
 

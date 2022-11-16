@@ -2401,6 +2401,11 @@ details[open] .c-filterlist-name--header:before {
     flex-direction: row;
   }
 }
+.c-manual-img__in-text {
+  border-radius: 10px;
+  transform: translateY(8px);
+}
+
 .c-navigator {
   display: flex;
   flex-direction: row;
