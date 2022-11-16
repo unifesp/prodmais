@@ -1,14 +1,3 @@
-// svg icons
-// url("data:image/svg+xml,<svg></svg> ");
-// background-image: escape-svg($icon-closed);
-
-// some icons
-$icon-closed: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{var(--c-pr-2)}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$icon-opened: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{var(--c-pr-2)}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
-$circle: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 200 200'><circle cx='100' cy='100' r='100'/></svg>");
-
-// example: url("data:image/svg+xml;utf8, "),
-
 @each $i, $ico in $myIconsPack {
 	.i-#{$i} {
 		@include ico($ico);
@@ -58,17 +47,6 @@ $circle: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' x
 	height: 20px;
 	width: 30px;
 }
-
-.i-lupa {
-	// @include transition-btn;
-}
-
-// .i-btn-arrow {
-// 	fill: var(--c-pr-2);
-// 	margin: 0 0.25rem;
-// 	vertical-align: middle;
-// 	width: 30px;
-// }
 
 .i-lang {
 	height: 50px;
