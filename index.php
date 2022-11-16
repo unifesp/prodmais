@@ -97,18 +97,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
         <button type="button" v-on:click="changeSearchMode()" class="c-btn p-home-form-btn"
           title="Alternar modo de pesquisa">
-          <span v-if="searchPage == 'simple'">
-            <svg class="c-btn-ico" x="0px" y="0px" viewBox="0 0 80 48">
-              <path d="M7.7,10c0.7,0,1.5,0.2,2.2,0.5L39.7,25l30.6-14c2.5-1.1,5.5,0,6.6,2.5c1.1,2.5,0,5.5-2.5,6.6l-32.7,15
-                  c-1.4,0.6-2.9,0.6-4.3-0.1l-32-15.6C3,18.2,2,15.2,3.2,12.8C4,11,5.8,10,7.7,10z" />
-            </svg>
-          </span>
-          <span v-if="searchPage == 'advanced'">
-            <svg class="c-btn-ico" x="0px" y="0px" viewBox="0 0 80 48">
-              <path d="M72.3,35.5c-0.7,0-1.5-0.2-2.2-0.5L40.3,20.5l-30.6,14c-2.5,1.1-5.5,0-6.6-2.5c-1.1-2.5,0-5.5,2.5-6.6l32.7-15
-                  c1.4-0.6,2.9-0.6,4.3,0.1l32,15.6c2.5,1.2,3.5,4.2,2.3,6.7C76,34.5,74.2,35.5,72.3,35.5z" />
-            </svg>
-          </span>
+          <i class="i i-btn i-arrow-down" v-if="searchPage == 'simple'"></i>
+          <i class="i i-btn i-arrow-up" v-if="searchPage == 'advanced'"></i>
         </button>
 
         <transition name="homeeffect">
@@ -144,13 +134,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
           </div> <!-- end advanced -->
         </transition>
 
-        <button type="submit" class="c-btn-search" title="Buscar">
-          <svg class="c-btn-search-ico" xmlns="https://www.w3.org/2000/svg" viewbox="0 0 100 100">
-            <path
-              d="M98.6,86.5L79.2,67c-0.9-0.9-2.1-1.4-3.3-1.4h-3.2c5.4-6.9,8.6-15.6,8.6-25C81.3,18.2,63.1,0,40.6,0
-                  S0,18.2,0,40.6s18.2,40.6,40.6,40.6c9.4,0,18.1-3.2,25-8.6v3.2c0,1.3,0.5,2.4,1.4,3.3l19.5,19.5c1.8,1.8,4.8,1.8,6.6,0l5.5-5.5
-                  C100.5,91.3,100.5,88.3,98.6,86.5z M40.6,65.6c-13.8,0-25-11.2-25-25s11.2-25,25-25s25,11.2,25,25S54.5,65.6,40.6,65.6z" />
-          </svg>
+        <button type="submit" class="c-btn__search" title="Buscar">
+          <i class="i i-btn i-lupa i-lg"></i>
         </button>
 
       </form>
@@ -158,6 +143,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
     <div class="options">
       <button class="c-btn" v-on:click="showTips = !showTips" title="Mostrar dicas de pesquisa">
+        <i class="i i-btn i-sm i-help"></i>
         Mostrar dicas de pesquisa
       </button>
 

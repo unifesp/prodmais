@@ -1,30 +1,57 @@
 // == BUTTONS == //
-@mixin hover-btn {
-	background-color: var(--c-pr-4);
-	border-color: var(--c-pr-4);
-	-webkit-box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.57);
-	-moz-box-shadow: 0px 5px 410px -10px rgba(0, 0, 0, 0.57);
-	box-shadow: 5px 10px -10px rgba(0, 0, 0, 0.57);
-	color: var(--c-bg-0);
-	transition: all 0.2s ease 0s;
-}
 
-@mixin btn {
+.c-btn {
 	align-items: center;
 	background: none;
 	border: 2px solid var(--c-pr-2);
 	border-radius: $input_border_radius;
 	color: var(--c-pr-2);
 	cursor: pointer;
+	display: flex;
+	font-weight: 500;
 	justify-content: center;
+	margin: $input_margin;
 	min-width: 6rem;
+	padding: 8px;
 	text-align: center;
 	text-decoration: none;
+	transition: all 0.2s ease;
 	vertical-align: middle;
 	width: fit-content;
 
+	&:focus {
+		border-color: var(--c-pr-4);
+		-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		outline: none;
+	}
+
 	&:hover {
-		@include hover-btn;
+		background-color: var(--c-pr-4);
+		border-color: var(--c-pr-4);
+		color: var(--c-mn-6);
+
+		.i-btn {
+			background-color: var(--c-mn-6);
+		}
+	}
+}
+
+.c-btn__search {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 0 auto;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+
+	&:hover,
+	&:focus {
+		.i-btn {
+			background-color: var(--c-ic-2);
+		}
 	}
 }
 
@@ -35,64 +62,5 @@
 
 	&--disabled {
 		color: var(--c-mn-3);
-	}
-}
-
-.c-btn {
-	@include btn();
-	font-weight: 500;
-	margin: $input_margin;
-	padding: 8px;
-
-	&-ico {
-		fill: var(--c-pr-2);
-		margin: 0.25rem;
-		transition: all 0.2s ease 0s;
-		vertical-align: middle;
-		width: 30px;
-	}
-
-	&:focus {
-		outline: none;
-	}
-
-	&:hover,
-	&:focus {
-		@include hover-btn;
-		color: var(--c-mn-6);
-
-		.btn-ico {
-			fill: var(--c-mn-6);
-		}
-	}
-}
-
-.c-btn {
-	&-search {
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-		fill: var(--c-pr-2);
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		user-select: none;
-
-		&-ico {
-			margin: 1rem;
-			width: 35px;
-		}
-
-		&:focus {
-			outline: none;
-		}
-
-		&:hover,
-		&:focus {
-			border: none;
-
-			.btn-search-ico {
-				fill: var(--c-pr-4);
-			}
-		}
 	}
 }
