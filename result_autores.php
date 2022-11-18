@@ -138,12 +138,15 @@ $get_data = $_GET;
     </nav>
 
     <main class="p-result-main">
-      <form class="u-mt-1" action="result_autores.php" method="POST" accept-charset="utf-8"
+      
+      <form class="u-my-10" action="result_autores.php" method="POST" accept-charset="utf-8"
         enctype="multipart/form-data" id="searchresearchers">
-        <div class="input-group mb-3">
-          <input name="query" type="text" class="form-control" placeholder="Digite parte do nome do pesquisador"
-            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="submit" form="searchresearchers" value="Submit">Pesquisar
+
+        <div class="c-searcher">
+          <input class="" type="text" name="query" placeholder="Digite parte do nome do pesquisador"
+            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+          <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
+            <i class="i i-magnifying c-searcher__btn-ico"></i>
           </button>
         </div>
       </form>

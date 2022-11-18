@@ -43,7 +43,7 @@
    M75.6,75.1V58.2h16.9v16.4c-0.2,0.1-0.4,0.3-0.5,0.5H75.6z" />
       </svg>
 
-      <h1 class="t t-h2 u-my-1">
+      <h1 class="t t-h2 u-my-10">
         O Prodmais é um software desenvolvido para universidades e centros de
         pesquisa.
       </h1>
@@ -59,7 +59,7 @@
       </p>
 
 
-      <!-- <h4 class="t t-h3 u-my-1">
+      <!-- <h4 class="t t-h3 u-my-10">
         Base de dados atual
       </h4>
       <p>
@@ -69,7 +69,7 @@
         <?php echo paginaInicial::contar_registros_indice($index_cv); ?> currículos
       </p> -->
 
-      <h3 class="t t-h3 u-mt-1">
+      <h3 class="t t-h3 u-my-10">
         É livre! É código aberto!
       </h3>
 
@@ -86,12 +86,12 @@
 
     <section class="p-about-section2">
 
-      <h3 id="créditos" class="t t-h3 u-my-1">Realização</h3>
+      <h3 id="créditos" class="t t-h3 u-my-10">Realização</h3>
 
       <p class="t t-title">Universidade Federal de São Paulo</p>
       <p class="t t-title t-gray">Superintendência de Tecnologia da Informação</p>
 
-      <div class="d-h">
+      <div class="dh">
         <?php if (file_exists("inc/images/logos/sti-branco.svg")) : ?>
         <a href="https://sti.unifesp.br/" target="_blank" title="Visite o site do STI">
           <img class="p-about-logos" src="<?php echo $url_base; ?>/inc/images/logos/sti.svg" alt="Logo do STI"></a>
@@ -104,7 +104,7 @@
         <?php endif ?>
       </div>
 
-      <h3 id="créditos" class="t t-h3 u-my-1">Equipe</h3>
+      <h3 id="créditos" class="t t-h3 u-my-10">Equipe</h3>
 
 
       <div class="p-about-team">

@@ -16,12 +16,12 @@
 }
 
 .p-profile-header-numbers {
-	@extend .d-h, .d-hc, .d-md-he;
+	@extend .dh, .d-hc, .d-md-he;
 }
 
 .p-profile-header-one,
 .p-profile-header-two {
-	// @extend .d-v, .d-vc;
+	// @extend .dv, .d-vc;
 	display: flex;
 	flex-direction: column;
 	justify-content: baseline;
@@ -84,11 +84,11 @@
 
 .c {
 	&-numbers {
-		@extend .d-v;
+		@extend .dv;
 		padding-block: 10px;
 
 		&-number {
-			@extend .d-v, .d-hc;
+			@extend .dv, .d-hc;
 			font-size: 1.1rem;
 			font-weight: 600;
 			margin-right: 1rem;

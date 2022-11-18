@@ -145,7 +145,7 @@ class ListProjetos {
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  
+
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
@@ -156,9 +156,9 @@ class ListProjetos {
   <main class="c-wrapper-container">
     <div class="c-wrapper-paper">
       <div class="c-wrapper-inner">
-        <h1 class=" t t-h1 u-mb-2">Projetos de pesquisa</h1>
+        <h1 class=" t t-h1 u-mb-20">Projetos de pesquisa</h1>
 
-        <hr class="c-line u-mb-4" />
+        <hr class="c-line u-mb-30" />
 
         <section class="p-projetos-container">
 

@@ -52,7 +52,7 @@
       detalhados sobre a base de produção acadêmica. Você pode consultar duas categorias de dashboard:
       produção acadêmica e perfil dos pesquisadores.</p>
 
-    <div class="d-h d-hc u-my-2">
+    <div class="dh d-hc u-my-20">
       <p>
         <a class="c-btn"
           href="https://unifesp.br/kibana/app/kibana#/dashboard/26076fa0-618c-11ec-9863-4f7d48084ff8?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))">

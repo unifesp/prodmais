@@ -92,7 +92,7 @@ class PPG {
               <span><?php echo $ppg ["NOME_CAMARA"]; ?></span>
             </p>
             <!--
-            <div class="d-icon-text t-gray u-mb-1">
+            <div class="d-icon-text t-gray u-mb-10">
               <i class="i i-sm i-mapmarker p-ppg-i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
@@ -135,7 +135,7 @@ class PPG {
           </div>
 
           <div class="p-ppg-header-four">
-            <div class="d-h d-hc">
+            <div class="dh d-hc">
               <?php echo PPGBadges::students(
                 $rate = 20,
                 $title = 'Em Curso',
@@ -168,7 +168,7 @@ class PPG {
         </section>
 
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="l-ppg">
@@ -182,7 +182,7 @@ class PPG {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <?php
@@ -220,7 +220,7 @@ class PPG {
           ?>
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <h3 class='t t-title'>Orientadores e orientadoras</h3>
@@ -271,16 +271,16 @@ class PPG {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section>
-          <div class="d-v d-vc">
-            <p class="t t-gray u-mt-1"><b>Código CAPES</b></p>
-            <p class="t t-gray u-mb-1"><?php echo $ppg["COD_CAPES"]; ?></p>
+          <div class="dv d-vc">
+            <p class="t t-gray u-my-10"><b>Código CAPES</b></p>
+            <p class="t t-gray u-mb-10"><?php echo $ppg["COD_CAPES"]; ?></p>
           </div>
         </section>
 
-        <section class="d-v d-vc d-md-h d-md-hc">
+        <section class="dv d-vc d-md-h d-md-hc">
           <?php echo PPG::externos(
             $type = 'Sucupira',
             $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml?popup=false&cd_programa='.$ppg["COD_CAPES"]

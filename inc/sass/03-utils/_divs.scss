@@ -1,3 +1,37 @@
+.d-container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $container_width;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+
+	@include grid-system("all");
+}
+
+@each $k, $v in $breakpointsUp {
+	@include up-to("#{$k}") {
+		.row {
+			@include grid-system("#{$k}");
+		}
+	}
+}
+
+// === CONTAINERS === //
+
+.dh,
+.dv {
+	align-items: center;
+	display: flex;
+	@include transition;
+}
+
+.dv {
+	flex-direction: column;
+}
+
 $axies: (
 	h: row,
 	v: column,
@@ -12,24 +46,6 @@ $alignaments: (
 	b: flex-end,
 );
 
-// === CONTAINERS === //
-
-.d-h,
-.d-v {
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	// width: 100%;
-	@include transition;
-}
-
-.d-v {
-	flex-direction: column;
-}
-.d-wrap {
-	flex-wrap: wrap;
-}
-
 /* CONTAINER'S ALIGNAMENTS
  * d-ht - horizontal top
  * d-hb - horizontal bottom
@@ -40,7 +56,7 @@ $alignaments: (
 @each $align, $al_value in $alignaments {
 	@each $axis, $ax_value in $axies {
 		.d-#{$axis}#{$align} {
-			@include adjustAxis($axis, $al_value);
+			@include adjust-axis($axis, $al_value);
 		}
 	}
 }
@@ -77,7 +93,7 @@ $alignaments: (
 		@each $bk in $bks {
 			.d-#{$bk}-#{$axis}#{$align} {
 				@include up-to("#{$bk}") {
-					@include adjustAxis($axis, $al_value);
+					@include adjust-axis($axis, $al_value);
 				}
 			}
 		}
@@ -106,41 +122,4 @@ $alignaments: (
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 100%;
-}
-
-// === GRID === //
-
-// Utility grid system
-// container: u-grid
-// columns: u-col-X-of-Y
-$cols: 5;
-
-.u-grid {
-	margin: 0 auto;
-	width: 100%;
-
-	&::after {
-		clear: both;
-		content: "";
-		display: table;
-	}
-
-	[class^="u-col-"] {
-		float: left;
-		padding: 1rem;
-	}
-}
-
-$jc: 1;
-
-@for $i from 1 through $cols {
-	@for $j from $jc through $cols {
-		@if $i !=$j {
-			.d-col-#{$i}-of-#{$j} {
-				width: calc(#{$i} * (100% / #{$j}));
-			}
-		}
-	}
-
-	$jc: $jc + 1;
 }

@@ -40,7 +40,7 @@ class ListPPGs {
     foreach($campus as $key => $value ) {
       //echo "<pre>".print_r($key, true)."</pre>";
       //echo "<pre>".print_r($value, true)."</pre>";
-      echo '<h2 class="t t-h2 u-my-2">' . $key .'<h2>';
+      echo '<h2 class="t t-h2 u-my-20">' . $key .'<h2>';
 
       foreach($value['unidades'] as $key_unidades => $value_unidades) {
 
@@ -114,7 +114,7 @@ class ListPPGs {
   <main class="c-wrapper-container">
     <div class="c-wrapper-paper">
       <div class="c-wrapper-inner">
-        <h1 class=" t t-h1 u-mb-2">Programas de Pós-Graduação</h1>
+        <h1 class=" t t-h1 u-mb-20">Programas de Pós-Graduação</h1>
 
         <div class="p-ppg-container">
           <!-- <div class="p-ppg-tags">

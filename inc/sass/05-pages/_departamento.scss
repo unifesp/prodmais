@@ -1,5 +1,5 @@
 .p-departamento-header {
-	@extend .d-v, .d-vc;
+	@extend .dv, .d-vc;
 
 	&-one,
 	&-two,
@@ -9,7 +9,7 @@
 
 	&-one,
 	&-two {
-		@extend .d-v, .d-vc;
+		@extend .dv, .d-vc;
 	}
 
 	&-three {
@@ -36,7 +36,7 @@
 	}
 
 	&-orientadores {
-		@extend .d-h, .d-hc, .d-wrap;
+		@extend .dh, .d-hc, .d-wrap;
 		list-style: none;
 	}
 
@@ -45,11 +45,11 @@
 	}
 
 	&-externos {
-		@extend .d-v, .d-vc;
+		@extend .dv, .d-vc;
 		margin: 1rem;
 	}
 
 	&-repos {
-		@extend .d-v, .d-md-h, .d-vc, .d-md-hc;
+		@extend .dv, .d-md-h, .d-vc, .d-md-hc;
 	}
 }
