@@ -7,6 +7,7 @@
 .row {
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
 
 	@include grid-system("all");
 }
@@ -30,6 +31,10 @@
 
 .dv {
 	flex-direction: column;
+}
+
+.d-flex {
+	display: flex;
 }
 
 $axies: (
@@ -114,7 +119,6 @@ $alignaments: (
 	display: inline-flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	min-width: fit-content;
 }
 
 .d-linewrap {

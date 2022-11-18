@@ -1,14 +1,14 @@
 .c-tips {
-	max-width: 900px;
+	background-color: var(--c-pr-7);
+	border: 1px solid var(--c-pr-3);
+	border-radius: 12px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	text-align: center;
-	border: 1px solid var(--c-pr-3);
-	border-radius: 12px;
+	margin-bottom: 2rem auto 2rem auto;
+	max-width: 1000px;
 	padding: 0 1rem 1rem 1rem;
-	margin-bottom: 2rem;
-	background-color: var(--c-pr-7);
+	text-align: center;
 
 	h3,
 	h4 {

@@ -50,11 +50,11 @@ $get_data = $_GET;
   <?php
     include('inc/meta-header.php');
     ?>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-  </script>
+  </script> -->
 
   <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
 
@@ -75,9 +75,10 @@ $get_data = $_GET;
   <?php require 'inc/navbar.php'; ?>
   <!-- /NAV -->
 
-  <div class="p-result-container">
+  <div id="app-result" class="p-result-container">
 
     <nav class="p-result-nav">
+
       <details id="filterlist" class="c-filterlist" onload="resizeMenu">
         <summary class="c-filterlist__header">
           <h3 class="c-filterlist__title">Refinar resultados</h3>
@@ -138,18 +139,43 @@ $get_data = $_GET;
     </nav>
 
     <main class="p-result-main">
-      
-      <form class="u-my-10" action="result_autores.php" method="POST" accept-charset="utf-8"
-        enctype="multipart/form-data" id="searchresearchers">
 
-        <div class="c-searcher">
-          <input class="" type="text" name="query" placeholder="Digite parte do nome do pesquisador"
-            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
-          <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
-            <i class="i i-magnifying c-searcher__btn-ico"></i>
+      <div class="d-flex u-mx-10">
+        <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
+          <i class="i i-btn i-sm i-help"></i>
+        </button>
+
+        <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+          enctype="multipart/form-data" id="searchresearchers">
+
+          <div class="c-searcher">
+            <input class="" type="text" name="query" placeholder="Digite parte do nome do pesquisador"
+              aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+            <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
+              <i class="i i-magnifying c-searcher__btn-ico"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <transition name="homeeffect">
+        <div class="c-tips" v-if="showTips">
+
+          <h4>Refinar resultados</h4>
+          <p>Use os filtros à direita para refinar os resultados da sua busca. São diversas opções, como Campus,
+            Unidade, Departamento, Nome do PPG, e etc. </p>
+
+          <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de cada item
+            listado é exibida a quantidade de resultados disponíceis.</p>
+
+          <p></p>
+          <h4></h4>
+
+          <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
+            Fechar
           </button>
         </div>
-      </form>
+      </transition>
 
       <!-- Navegador de resultados - Início -->
       <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>

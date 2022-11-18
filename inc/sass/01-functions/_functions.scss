@@ -11,3 +11,10 @@
 	}
 	@return "-" + $bk + "-" + $size;
 }
+
+@function margin-property($v) {
+	@if ($v == "") {
+		@return "";
+	}
+	@return "-" + $v;
+}

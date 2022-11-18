@@ -2,7 +2,7 @@ $filterdropRadii: 8px;
 
 .c-filterdrop {
 	&__header {
-		background-color: var(--c-mn-6);
+		background-color: var(--c-bg-1);
 		border: 1px solid var(--c-pr-6);
 		border-radius: $filterdropRadii;
 		cursor: pointer;
@@ -40,15 +40,17 @@ $filterdropRadii: 8px;
 	&__item-name {
 		background-color: transparent;
 		border: none;
+		color: var(--c-fg) !important;
 		cursor: pointer;
 		grid-area: nome;
 		margin-inline: 0.7 rem;
 		overflow: hidden;
 		word-wrap: break-word;
+		@include transition;
 
 		&:hover {
-			background-color: var(--c-pr-7);
-			border-radius: $filterdropRadii;
+			color: var(--c-pr-7);
+			font-weight: 600;
 		}
 	}
 
@@ -58,10 +60,10 @@ $filterdropRadii: 8px;
 		color: var(--c-mn-6);
 		font-weight: 500;
 		grid-area: number;
-		height: fit-content;
+		// height: fit-content;
 		margin: 0.2rem;
 		padding: 0.2rem 0.5rem;
-		width: fit-content;
+		// width: fit-content;
 	}
 }
 

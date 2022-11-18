@@ -1,25 +1,8 @@
 // === MARGIN === //
 
-@each $k, $v in $spacing_graduation {
-	.u-m-#{$k} {
-		margin: #{$v};
-	}
+@include make-margin($margins, $spacing_graduation);
 
-	.u-mx-#{$k} {
-		margin-left: #{$v};
-		margin-right: #{$v};
-	}
-
-	.u-my-#{$k} {
-		margin-bottom: #{$v};
-		margin-top: #{$v};
-	}
-
-	.u-mb-#{$k} {
-		margin-bottom: #{$v};
-	}
-
-	.u-mt-#{$k} {
-		margin-top: #{$v};
-	}
+.u-center {
+	margin-left: auto;
+	margin-right: auto;
 }
