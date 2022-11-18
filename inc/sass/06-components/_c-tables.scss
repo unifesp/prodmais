@@ -1,13 +1,13 @@
 table {
 	border-collapse: collapse;
-	border-spacing: 0;
-	border-radius: 25px;
 	-webkit-border-radius: 25px;
 	-moz-border-radius: 25px;
+	border-radius: 25px;
+	border-spacing: 0;
 	margin: 0.5rem auto;
 	overflow: hidden;
-	@include transition();
 	width: 90%;
+	@include transition();
 }
 
 tbody {
@@ -22,8 +22,8 @@ th {
 }
 
 .thead {
-	color: #fff;
 	background-color: var(--c-pr-4);
+	color: #fff;
 	text-align: center;
 }
 
@@ -36,10 +36,10 @@ tbody tr:nth-child(odd) {
 }
 
 th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
 	font-weight: 600;
+	padding-bottom: 12px;
+	padding-top: 12px;
+	text-align: left;
 }
 
 @include up-to("md") {

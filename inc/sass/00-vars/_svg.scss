@@ -141,8 +141,3 @@ $myIconsPack: (
 );
 
 // example: url("data:image/svg+xml;utf8, "),
-
-@mixin ico($ico) {
-	mask-image: $ico;
-	-webkit-mask-image: $ico;
-}

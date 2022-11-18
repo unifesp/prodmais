@@ -59,7 +59,7 @@
 
 </head>
 
-<body data-theme="<?php echo $theme; ?>">
+<body id="app-result" data-theme="<?php echo $theme; ?>">
   <?php
   if (file_exists('inc/google_analytics.php')) {
     include 'inc/google_analytics.php';

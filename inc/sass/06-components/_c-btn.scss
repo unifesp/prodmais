@@ -1,6 +1,7 @@
 // == BUTTONS == //
 
-.c-btn {
+.c-btn,
+.c-btn--tip {
 	align-items: center;
 	background: none;
 	border: 2px solid var(--c-pr-2);
@@ -9,15 +10,14 @@
 	cursor: pointer;
 	display: flex;
 	font-weight: 500;
+	height: $input_height;
 	justify-content: center;
-	margin: $input_margin;
-	min-width: 6rem;
+	// margin: $input_margin;
 	padding: 8px;
 	text-align: center;
 	text-decoration: none;
 	transition: all 0.2s ease;
 	vertical-align: middle;
-	width: fit-content;
 
 	&:focus {
 		border-color: var(--c-pr-4);
@@ -38,7 +38,11 @@
 	}
 }
 
-.c-btn__search {
+.c-btn {
+	min-width: 6rem;
+}
+
+.c-btn--search {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;

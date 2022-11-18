@@ -134,7 +134,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
           </div> <!-- end advanced -->
         </transition>
 
-        <button type="submit" class="c-btn__search" title="Buscar">
+        <button type="submit" class="c-btn--search" title="Buscar">
           <i class="i i-btn i-lupa i-lg"></i>
         </button>
 

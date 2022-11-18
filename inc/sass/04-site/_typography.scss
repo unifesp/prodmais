@@ -36,6 +36,7 @@ h5 {
 
 a {
 	border: none;
+	color: inherit;
 	text-decoration: none;
 	@include transition;
 
@@ -46,6 +47,10 @@ a {
 	&:visited {
 		color: inherit;
 	}
+}
+
+.t-a {
+	color: var(--c-link);
 }
 
 h1 a,
