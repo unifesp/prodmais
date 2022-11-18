@@ -72,7 +72,7 @@ class Departamento {
               <span>Campus Guarulhos</span>
               <span>Escola de Filosofia, Letras e ciências Humanas</span>
             </p>
-            <div class="d-icon-text t-gray u-mb-1">
+            <div class="d-icon-text t-gray u-mb-10">
               <i class="i i-sm i-mapmarker p-departamento-i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
@@ -119,7 +119,7 @@ class Departamento {
         </section>
 
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="l-ppg">
@@ -129,7 +129,7 @@ class Departamento {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <?php
@@ -149,7 +149,7 @@ class Departamento {
           ?>
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <h3 class='t t-title'>Orientadores e orientadoras</h3>
@@ -200,7 +200,7 @@ class Departamento {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="p-departamento-repos">

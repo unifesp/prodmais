@@ -1,10 +1,11 @@
 // svg icons
-// url("data:image/svg+xml,<svg></svg> ");
-// background-image: escape-svg($icon-closed);
 
 $icon-closed: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{var(--c-pr-2)}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
 $icon-opened: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{var(--c-pr-2)}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !default;
 $circle: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 200 200'><circle cx='100' cy='100' r='100'/></svg>");
+
+$tabshape-desk: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 155 45'><path d='M126,0H78.4h-1.2l0,0H76H29.5C9.5,0,16.2,33.8,1,45h75.2h1.1l0,0h1.1h76.1C139.3,33.8,146,0,126,0z'/></svg>");
+$tabshape-mini: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 85 45'><path d='M56.4,0H43.7h-1.2v0h-1.2H28.6C8.5,0,15.3,33.8,0,45h41.4h1.1v0h1.1H85C69.7,33.8,76.5,0,56.4,0z' /> </svg>");
 
 $myIconsPack: (
 	prodmais:
@@ -140,3 +141,8 @@ $myIconsPack: (
 );
 
 // example: url("data:image/svg+xml;utf8, "),
+
+@mixin ico($ico) {
+	mask-image: $ico;
+	-webkit-mask-image: $ico;
+}

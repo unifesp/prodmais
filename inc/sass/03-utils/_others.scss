@@ -1,0 +1,16 @@
+// OTHERS //
+
+.u-grayscale {
+	filter: grayscale(100%);
+}
+
+.u-nobtn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	@include transition();
+
+	&:hover {
+		color: var(--c-pr-4);
+	}
+}

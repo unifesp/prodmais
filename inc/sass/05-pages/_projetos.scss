@@ -9,11 +9,11 @@
 
 	&-inputs,
 	&-search {
-		@extend .d-h, .d-hc;
+		@extend .dh, .d-hc;
 	}
 
 	&-inputs {
-		@extend .d-v, .d-vc, .d-md-h;
+		@extend .dv, .d-vc, .d-md-h;
 		@include up-to("md") {
 			margin-left: 4rem;
 			max-width: 900px;
@@ -21,7 +21,7 @@
 	}
 
 	&-search {
-		@extend .d-h, .d-hc, .d-nowrap;
+		@extend .dh, .d-hc, .d-nowrap;
 		max-width: 400px;
 
 		&-btn {

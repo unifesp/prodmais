@@ -1,0 +1,12 @@
+// == THEME == //
+
+:root {
+	@include make-mono-palette($lights);
+}
+
+@each $k, $v in $themes {
+	:root,
+	[data-theme="#{$k}"] {
+		@include make-theme($v, $lights);
+	}
+}

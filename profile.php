@@ -182,7 +182,7 @@ if (!empty($_REQUEST["lattesID"])) {
               <?php endif; ?>
             </h1>
 
-            <!-- <div class="u-mb-2  "></div> -->
+            <!-- <div class="u-mb-20  "></div> -->
             <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
             <?php if (!empty($profile["unidade"][0])) : ?>
             <p class="t t-prof"><?php echo $profile["unidade"][0] ?></p>
@@ -200,7 +200,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
             <div class="p-profile-header-numbers">
 
-              <div class="d-icon-text u-mx-1">
+              <div class="d-icon-text u-mx-10">
                 <i class="i i-sm i-articlePublished" title="Trabalhos publicados" alt="Trabalhos publicados"></i>
                 <span class="t"><?php echo $totalWorks; ?></span>
               </div>
@@ -363,11 +363,11 @@ if (!empty($_REQUEST["lattesID"])) {
               </p>
 
               <div class="c-graph-label"><b>Graduação</b></div>
-              <div class="d-h c-graph-label">
+              <div class="dh c-graph-label">
                 <span class="c-graph-label">maior produção</span>
                 <div class="c-graph-unit" data-weight="4"></div>
               </div>
-              <div class="d-h c-graph-label">
+              <div class="dh c-graph-label">
                 <span class="c-graph-label">menor produção</span>
                 <div class="c-graph-unit" data-weight="0"></div>
               </div>
@@ -440,10 +440,10 @@ if (!empty($_REQUEST["lattesID"])) {
 
                 <p class="t-prof"><?php echo $profile["nome_em_citacoes_bibliograficas"] ?></p>
 
-                <hr class="c-line u-my-2" />
+                <hr class="c-line u-my-20" />
 
                 <p class="t t-b">Perfis na web</p>
-                <div class="d-h">
+                <div class="dh">
 
                   <?php if (!empty($profile['lattesID'])) : ?>
 
@@ -460,7 +460,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
                 </div> <!-- end c-socialicons -->
 
-                <hr class="c-line u-my-2" />
+                <hr class="c-line u-my-20" />
                 <h3 class="t t-title">Tags mais usadas</h3>
                 <?php
                 $authorfacets = new AuthorFacets();
@@ -479,7 +479,7 @@ if (!empty($_REQUEST["lattesID"])) {
                 <div>
                 </div> <!-- end -->
 
-                <hr class="c-line u-my-2" />
+                <hr class="c-line u-my-20" />
 
 
                 <?php if (isset($profile["idiomas"])) : ?>
@@ -548,7 +548,7 @@ if (!empty($_REQUEST["lattesID"])) {
                 </div> <!-- end u-left -->
                 <?php endif; ?>
 
-                <hr class="c-line u-my-2" />
+                <hr class="c-line u-my-20" />
 
                 <h3 class="t t-title">Formação</h3>
 
@@ -681,7 +681,7 @@ if (!empty($_REQUEST["lattesID"])) {
               <div id="tab-two" class="c-tab-content" v-if="tabOpened == '2'">
                 <div class="profile-pi">
 
-                  <h3 class="t t-title u-mb-2">Produção</h3>
+                  <h3 class="t t-title u-mb-20">Produção</h3>
 
                   <?php
                 foreach ($cursor_works['hits']['hits'] as $key => $work) {
@@ -693,7 +693,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
                     echo '<hr class="c-line"></hr>
                             <h3 class="t-b c-pi-year">' . $i . '</h3>
-                          <hr class="c-line u-mb-2"></hr> ';
+                          <hr class="c-line u-mb-20"></hr> ';
 
                     foreach ($works[$i] as $key => $work) {
 
@@ -757,7 +757,7 @@ if (!empty($_REQUEST["lattesID"])) {
             <transition name="tabeffect">
               <div id="tab-three" class="c-tab-content" v-if="tabOpened == '3'">
 
-                <h3 class="t t-title u-mb-2">Atuações</h3>
+                <h3 class="t t-title u-mb-20">Atuações</h3>
 
                 <?php
 
@@ -819,9 +819,9 @@ if (!empty($_REQUEST["lattesID"])) {
 
             <transition name="tabeffect">
               <div id="tab-four" class="c-tab-content" v-if="tabOpened == '4'">
-                <h3 class="t t-title u-mb-2">Ensino</h3>
+                <h3 class="t t-title u-mb-20">Ensino</h3>
 
-                <h3 class="t t-title u-mb-2">Orientações e supervisões</h3>
+                <h3 class="t t-title u-mb-20">Orientações e supervisões</h3>
 
                 <?php
 
@@ -838,7 +838,7 @@ if (!empty($_REQUEST["lattesID"])) {
                   }
                   if (isset($orientacao_andamento_array[$orientacao_andamento_label])) {
                     if (count($orientacao_andamento_array[$orientacao_andamento_label]) > 0) {
-                      echo '<h4 class="t t-subtitle u-mb-2">' . $orientacao_andamento_label . ' em andamento</h4>';
+                      echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_andamento_label . ' em andamento</h4>';
                       foreach ($orientacao_andamento_array[$orientacao_andamento_label] as $orientacao_andamento_echo) {
                         //var_dump($orientacao_andamento_echo);
 
@@ -880,7 +880,7 @@ if (!empty($_REQUEST["lattesID"])) {
                   }
                   if (isset($orientacao_concluidas_array)) {
                     if (count($orientacao_concluidas_array[$orientacao_concluidas_label]) > 0) {
-                      echo '<h4 class="t t-subtitle u-mb-2">' . $orientacao_concluidas_label . ' concluídas</h4>';
+                      echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_concluidas_label . ' concluídas</h4>';
                       foreach ($orientacao_concluidas_array[$orientacao_concluidas_label] as $orientacao_concluidas_echo) {
                         //var_dump($orientacao_concluidas_echo);
 
@@ -915,7 +915,7 @@ if (!empty($_REQUEST["lattesID"])) {
             <transition name="tabeffect">
               <div id="tab-five" class="c-tab-content" v-if="tabOpened == '5'">
 
-                <h3 class="t t-title u-mb-2">Gestão</h3>
+                <h3 class="t t-title u-mb-20">Gestão</h3>
 
                 <?php
               foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
@@ -975,7 +975,7 @@ if (!empty($_REQUEST["lattesID"])) {
             <transition name="tabeffect">
               <div id="tab-six" class="c-tab-content" v-if="tabOpened == '6'">
 
-                <h3 class="t t-title u-mb-2">Pesquisa</h3>
+                <h3 class="t t-title u-mb-20">Pesquisa</h3>
 
                 <?php
               foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
@@ -984,7 +984,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
                   if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
 
-                    echo '<h4 class="t t-subtitle u-my-2">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                    echo '<h4 class="t t-subtitle u-my-20">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
 
                       foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
 
@@ -1061,7 +1061,7 @@ if (!empty($_REQUEST["lattesID"])) {
               } // foreach 1 - foreach ($profile['atuacoes_profissionais']
               ?>
 
-                <h3 class="t t-title u-mb-2">Outras atividades técnico científicas</h3>
+                <h3 class="t t-title u-mb-20">Outras atividades técnico científicas</h3>
 
               </div> <!-- end tab-six -->
             </transition>

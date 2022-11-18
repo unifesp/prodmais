@@ -64,7 +64,8 @@
 	flex-direction: row;
 	flex-wrap: nowrap;
 	height: $searcher_heigh_mini;
-	margin: $input_margin;
+	// margin: $input_margin;
+	overflow: hidden;
 	padding-right: 0.4rem;
 	width: 100%;
 	@include searchStyle;
@@ -83,15 +84,21 @@
 		}
 	}
 
-	&-btn {
-		background-color: var(--c-pr-2);
-		cursor: pointer;
-		height: $searcher_heigh_mini;
-		width: $searcher_heigh_mini;
-		@include transition;
+	&__btn {
+		background-color: transparent;
+		border: none;
 
-		&:hover {
-			background-color: var(--c-pr-3);
+		&-ico {
+			background-color: var(--c-pr-2);
+			cursor: pointer;
+			height: $searcher_heigh_mini;
+			margin: 0;
+			width: $searcher_heigh_mini;
+			@include transition;
+
+			&:hover {
+				background-color: var(--c-pr-3);
+			}
 		}
 	}
 }

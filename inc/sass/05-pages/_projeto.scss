@@ -2,7 +2,7 @@
 .p-projeto-header,
 .p-projeto-header-d2,
 .p-projeto-header-d3 {
-	@extend .d-v, .d-vc;
+	@extend .dv, .d-vc;
 	text-align: center;
 
 	@include up-to("lg") {

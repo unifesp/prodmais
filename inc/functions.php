@@ -485,7 +485,7 @@ class paginaInicial
       echo '<form action="result.php" method="post">';
       echo '<input type="hidden" name="search" value="">';
       echo '<input type="hidden" name="filter[]" value="source:' . $facets['key'] . '">';
-      echo '<input class="testnobtn" type="submit" value="' . $facets['key'] . ':" />';
+      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . ':" />';
       echo '<span class="">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
       echo '</form>';
       echo '</li>';
@@ -528,7 +528,7 @@ class paginaInicial
       echo '<form action="result.php" method="post">';
       echo '<input type="hidden" name="search" value="">';
       echo '<input type="hidden" name="filter[]" value="tipo:' . $facets['key'] . '">';
-      echo '<input class="testnobtn" type="submit" value="' . $facets['key'] . ':" />';
+      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . ':" />';
       echo '<span class="">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
       echo '</form>';
       echo '</li>';
@@ -572,7 +572,7 @@ class paginaInicial
       echo '<form action="result.php" method="post">';
       echo '<input type="hidden" name="search" value="">';
       echo '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . ':">';
-      echo '<input class="testnobtn" type="submit" value="' . $facets['key'] . '" />';
+      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . '" />';
       echo '<span class="badge bg-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
       echo '</form>';
       echo '</li>';
@@ -653,8 +653,8 @@ class DadosInternos
         if ($sha256 != $match["_id"]) {
 
           echo '
-          <details class="c-collapsetwo" >
-            <summary class=".c-collapsetwo-summary">
+          <details class="c-collapse" >
+            <summary class=".c-collapse-summary">
             <b>Registros similares no Prod+</b></p>
             </summary>
 

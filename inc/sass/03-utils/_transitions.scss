@@ -46,8 +46,3 @@
 		transform: translateY(-30px);
 	}
 }
-
-@mixin sitemenuClosing() {
-	-webkit-animation: sitemenu-closing 0.3s;
-	animation: sitemenu-closing 0.3s;
-}

@@ -96,7 +96,7 @@ $data = '{
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="p-projeto-main">
 
@@ -105,20 +105,20 @@ $data = '{
             <?php Tag::cloud($categorysFake) ?></p>
           </section>
 
-          <hr class="c-line u-my-2" />
+          <hr class="c-line u-my-20" />
 
           <section class="p-projeto-description">
-            <p class="t t-title u-mb-2">Sobre o projeto de pesquisa</p>
+            <p class="t t-title u-mb-20">Sobre o projeto de pesquisa</p>
             <p class="t t-justify"><?php echo $projeto -> descricao; ?></p>
 
           </section>
 
-          <hr class="c-line u-my-2" />
+          <hr class="c-line u-my-20" />
 
-          <p class="t t-title u-mb-2">Integrantes</p>
+          <p class="t t-title u-mb-20">Integrantes</p>
 
-          <section class="d-v d-md-h">
-            <div class="d-v">
+          <section class="dv d-md-h">
+            <div class="dv">
               <ul class='p-projeto-integrantes'>
                 <div class='d-icon-text'>
                   <i class='i i-people-manager'></i>
@@ -135,7 +135,7 @@ $data = '{
               </ul>
             </div>
 
-            <div class="d-v">
+            <div class="dv">
               <div class='d-icon-text'>
                 <i class='i i-project-participant'></i>
                 <p class="t">Alunos de graduação: <?php echo $projeto -> alunos_graducacao ?></p>
@@ -154,7 +154,7 @@ $data = '{
 
         </section>
 
-        <p class="t t-lastUpdate t-right u-mt-2">Atualização Lattes em </p>
+        <p class="t t-lastUpdate t-right u-mt-20">Atualização Lattes em </p>
         <p class="t t-lastUpdate t-right">Processado em </p>
       </div>
     </div>

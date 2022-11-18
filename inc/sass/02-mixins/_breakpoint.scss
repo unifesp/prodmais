@@ -1,0 +1,7 @@
+@mixin up-to($breakpoint) {
+	@if map-has-key($breakpointsUp, $breakpoint) {
+		@media #{inspect(map-get($breakpointsUp, $breakpoint))} {
+			@content;
+		}
+	}
+}

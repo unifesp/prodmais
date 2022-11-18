@@ -102,9 +102,9 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         </button>
 
         <transition name="homeeffect">
-          <div class="d-v" v-if="searchPage == 'advanced'">
+          <div class="dv" v-if="searchPage == 'advanced'">
 
-            <label class="p-home-info u-mt-1">Mais opções de pesquisa:</label>
+            <label class="p-home-info u-my-10">Mais opções de pesquisa:</label>
 
             <?php paginaInicial::filter_select("vinculo.ppg_nome"); ?>
 
@@ -120,8 +120,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
               </option>
             </datalist>
 
-            <label class="p-home-info u-mt-1">Filtrar por data:</label>
-            <div class="d-h d-hc">
+            <label class="p-home-info u-my-10">Filtrar por data:</label>
+            <div class="dh d-hc">
               <input type="text" class="c-input--date" id="initialYear" name="initialYear" pattern="\d{4}"
                 placeholder="Data inicial" />
 
@@ -187,7 +187,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     </transition>
 
     <transition name="homeeffect">
-      <div class="d-h d-ht u-mb-1" v-if="showCategories">
+      <div class="dh d-ht u-mb-10" v-if="showCategories">
 
         <table>
           <thead>

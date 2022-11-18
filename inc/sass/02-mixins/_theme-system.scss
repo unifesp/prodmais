@@ -1,0 +1,32 @@
+@mixin make-palette($k, $v, $lights) {
+	$i: 0;
+	@each $l in $lights {
+		--c-#{$k}-#{$i}: hsl(#{nth($v, 1)}, #{nth($v, 2)}, #{$l});
+		$i: $i + 1;
+	}
+}
+
+@mixin make-mono-palette($lights) {
+	$values: (0, 0%);
+	@include make-palette("mn", $values, map-get($lights, "mn"));
+}
+
+@mixin make-theme($map, $lights) {
+	@each $k, $v in $map {
+		@if ($k == "pr") {
+			@include make-palette($k, $v, map-get($lights, "pr"));
+		}
+
+		@if ($k == "se") {
+			@include make-palette($k, $v, map-get($lights, "se"));
+		}
+
+		@if ($k == "ic") {
+			@include make-palette($k, $v, map-get($lights, "ic"));
+		}
+
+		@if ($k == "bg") {
+			@include make-palette($k, $v, map-get($lights, "bg"));
+		}
+	}
+}
