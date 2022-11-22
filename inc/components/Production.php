@@ -39,7 +39,7 @@ class Production
   }
 
 
-  static function doiRendered($url) 
+  static function doiRendered($url)
   {
     return "
         <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'>
@@ -56,13 +56,9 @@ class Production
         </a>";
   }
 
-  static function issnRendered($url)
+  static function issnRendered($issn)
   {
-    return "
-        <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link u-ml-05' title='ISSN' alt='ISSN'></i>
-          ISSN: $url
-        </a>";
+    return "ISSN: $issn";
   }
 
   static function IntelectualProduction(
@@ -79,7 +75,8 @@ class Production
     $evento,
     $datePublished,
     $id
-  ) {
+  )
+  {
 
     $bullet = Production::bullet($type);
     $authorsRendered = implode('; ', $authors);
@@ -107,13 +104,16 @@ class Production
 					<div class='d-linewrap t-gray'>
             $doiRendered
             $urlRendered	
-            $issnRendered					
+            				
 					</div>
           $datePublished
 					
 					<p class='t t-light'>
 						Fonte: $refName $refVol $refFascicle $refPage
 					</p>
+          <p class='t t-light'>
+            $issnRendered
+          </p>
 					
 				</div>
 			</div>
