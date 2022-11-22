@@ -41,19 +41,27 @@ class Production
 
   static function doiRendered($url)
   {
-    return "
-        <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'>
-        <img class='i-doi' src='inc/images/logos/doi.svg' title='doi' alt='doi' />
-        </a>";
+    return '
+      <a class="t t-a d-icon-text" href="https://doi.org/' . $url . '" target="blank">
+        <img class="i-doi" src="inc/images/logos/doi.svg" title="doi" alt="doi" />
+        </a>';
   }
 
   static function urlRendered($url)
   {
-    return "
-        <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+    if (str_contains($url, '[')) {
+      $url = str_replace('[', '', $url);
+    }
+
+    if (str_contains($url, ']')) {
+      $url = str_replace(']', '', $url);
+    }
+
+    return '
+        <a class="t t-a d-icon-text" href="' . $url . '" target="blank"> 
+          <i class="i i-link i-link u-ml-05" title="Conteúdo completo" alt="Conteúdo completo"></i>
           Conteúdo completo
-        </a>";
+        </a>';
   }
 
   static function issnRendered($issn)
