@@ -2716,7 +2716,7 @@ class Facets
 
 class FacetsNew
 {
-  public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null, $collapsed = true)
+  public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
   {
     global $url_base;
 
