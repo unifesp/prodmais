@@ -1,14 +1,15 @@
 .d-container {
+	display: flex;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: $container_width;
+	width: 100%;
 }
 
 .row {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-
 	@include grid-system("all");
 }
 
@@ -26,6 +27,7 @@
 .dv {
 	align-items: center;
 	display: flex;
+	width: 100%;
 	@include transition;
 }
 

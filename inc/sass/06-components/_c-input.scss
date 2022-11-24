@@ -24,42 +24,27 @@
 
 .c-input,
 .c-input--sm,
-.c-input--mini,
 .c-input--date {
 	@include search-style;
-	margin: $input_margin;
-	margin: 0.2rem;
+	font-size: $input_font_size;
+	height: $input_height;
 	outline: 0;
+	padding: $input_padding;
 	width: 90%;
 }
 
 .c-input,
-.c-input--sm,
-.c-input--mini {
-	margin: 0.2rem auto;
+.c-input--sm {
+	margin: $input_margin;
 }
 
-.c-input,
-.c-input-sm,
 .c-input--date {
-	font-size: $fontsize_mobi;
-	height: 2.4rem;
-	padding: 0.5rem;
-
-	@include up-to(md) {
-		font-size: $fontsize_mobi;
-		padding: 1rem 1rem 1rem 0.5rem;
-	}
+	margin: 0.5rem;
+	max-width: 120px;
 }
 
-.c-input {
-	&--date {
-		max-width: 120px;
-	}
-
-	&--sm {
-		max-width: 240px;
-	}
+.c-input--sm {
+	max-width: 240px;
 }
 
 .c-searcher {
@@ -78,6 +63,8 @@
 		border: 0;
 		border-radius: $input_border_radius;
 		color: var(--c-fg);
+		font-size: $input_font_size;
+		height: $input_height;
 		outline: 0;
 		padding: 0.2rem 1rem;
 		width: 100%;

@@ -42,8 +42,10 @@ $margins: (
 
 // INPUTS
 $input_border_radius: 40px !default;
-$input_margin: 0.3rem 0.5rem !default;
-$input_height: 2.2rem !default;
+$input_margin: 0.3rem auto !default;
+$input_height: 3rem !default;
+$input_padding: 0 1rem;
+$input_font_size: 1.2rem !default;
 $switch_height: 30px !default;
 
 // container of inputs

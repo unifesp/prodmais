@@ -1,16 +1,6 @@
 /* === LAYOUT === */
 
 .p-result {
-	&-container,
-	&-main,
-	&-nav {
-		width: 100%;
-	}
-
-	&-container {
-		display: block;
-	}
-
 	&-main,
 	&-nav {
 		margin: 2rem 0.5rem;
@@ -22,7 +12,7 @@
 }
 
 .p-result-container {
-	padding-inline: 1rem;
+	background-color: var(--c-bg-2);
 }
 
 .c-term {
@@ -34,7 +24,6 @@
 }
 
 .c-filterlist {
-	// display: block;
 	width: $filterbar_width_mob;
 }
 
@@ -43,9 +32,9 @@
 		&-container {
 			column-gap: 1rem;
 			display: grid;
-			grid-template-areas: "resultmain resultnav";
-			grid-template-columns: 1fr $filterbar_width_desk;
-			padding-inline: 2rem;
+			grid-template-areas: "resultnav resultmain";
+			grid-template-columns: $filterbar_width_desk 1fr;
+			padding-right: 2rem;
 		}
 
 		&-main {
