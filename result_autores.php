@@ -152,7 +152,7 @@ $get_data = $_GET;
             <input class="" type="text" name="query" placeholder="Digite parte do nome do pesquisador"
               aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
             <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
-              <i class="i i-magnifying c-searcher__btn-ico"></i>
+              <i class="i i-lupa c-searcher__btn-ico"></i>
             </button>
           </div>
         </form>
