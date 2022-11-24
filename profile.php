@@ -3,7 +3,6 @@
 // Include essencial files
 require 'inc/config.php';
 require 'inc/functions.php';
-require 'inc/components/Production.php';
 require 'inc/components/SList.php';
 require 'inc/components/TagCloud.php';
 include_once '_fakedata.php';
@@ -687,14 +686,15 @@ if (!empty($_REQUEST["lattesID"])) {
                 foreach ($cursor_works['hits']['hits'] as $key => $work) {
                   $works[$work['_source']['datePublished']][] = $work;
                 }
-
+                
                 for ($i = 2040; $i >= 1900; $i -= 1) {
                   if (!empty($works[$i])) {
-
+                    
                     echo '<hr class="c-line"></hr>
-                            <h3 class="t-b c-pi-year">' . $i . '</h3>
-                          <hr class="c-line u-mb-20"></hr> ';
-
+                    <h3 class="t-b c-pi-year">' . $i . '</h3>
+                    <hr class="c-line u-mb-20"></hr> ';
+                    
+                    echo '<ul name="Lista de produções no ano de ' . $i . '">';
                     foreach ($works[$i] as $key => $work) {
 
                       $authors = [];
@@ -723,9 +723,8 @@ if (!empty($_REQUEST["lattesID"])) {
 
                       !empty($work['_source']['pageStart']) ?
                         $pageStart = $work['_source']['pageStart'] : $pageStart = '';
-
-                      echo '<ul>';
-                      Production::IntelectualProduction(
+      
+                      SList::IntelectualProduction(
                         $type = $work['_source']['tipo'],
                         $name = $work['_source']['name'],
                         $authors = $authors,
@@ -741,13 +740,13 @@ if (!empty($_REQUEST["lattesID"])) {
                         $datePublished = '',
                         $id = ''
                       );
-                      echo '</ul>';
                     }
                     unset($authors);
+                    echo '</ul>';
                   }
                 }
                 ?>
-
+                  </ul>
                 </div> <!-- end profile-pi -->
 
 
