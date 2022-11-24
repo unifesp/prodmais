@@ -78,6 +78,12 @@
 	}
 }
 
+.p-home-categories {
+	margin-block: 1rem;
+	max-width: 1200px;
+	width: 100%;
+}
+
 @include up-to("md") {
 	.p-home-search {
 		margin: 1rem auto;
