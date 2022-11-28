@@ -88,7 +88,6 @@ function comparaprod_title($doc)
     } else {
         return 'Não encontrado';
     }
-
 }
 
 function processaAutoresLattes($autores_array)
@@ -173,7 +172,6 @@ function processaAreaDoConhecimentoLattes($areas_do_conhecimento)
         return $array_empty;
     }
     unset($array_result);
-
 }
 
 function processaAreaDoConhecimentoFormacaoLattes($areas_do_conhecimento)
@@ -332,7 +330,6 @@ if (!isset($_GET['tag'])) {
 if ($_FILES['file']['size'] != 0) {
 
     $curriculo = simplexml_load_file($_FILES['file']['tmp_name']);
-
 } else {
     echo "Não foi enviado um arquivo XML";
     if (isset($_REQUEST['unidade'])) {
@@ -394,8 +391,6 @@ if ($_FILES['file']['size'] != 0) {
     unset($query);
 
     exit();
-
-
 }
 
 // Inicio Currículo
@@ -416,8 +411,7 @@ if ($result_get_curriculo["found"] == true) {
     if (isset($_REQUEST['ppg_nome'])) {
         $doc_curriculo_array['doc']['ppg_nome'] = explode("|", rtrim($_REQUEST['ppg_nome']));
     }
-}
-;
+};
 
 
 
@@ -1103,7 +1097,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         unset($sha_array);
         unset($sha256);
         flush();
-
     }
 }
 
@@ -1207,7 +1200,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         unset($sha_array);
         unset($sha256);
         flush();
-
     }
 }
 
@@ -1315,7 +1307,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
 
@@ -1416,10 +1407,8 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
-
 }
 
 //Parser de Textos em Jornais e Revistas
@@ -1522,7 +1511,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         unset($sha_array);
         unset($sha256);
         flush();
-
     }
 }
 
@@ -1623,7 +1611,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
 
@@ -1723,10 +1710,8 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
-
 }
 
 //Parser de Produção Técnica
@@ -1827,7 +1812,6 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
 
@@ -1917,10 +1901,8 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             unset($sha_array);
             unset($sha256);
             flush();
-
         }
     }
-
 }
 
 //Parser de Outra Produção
@@ -2028,11 +2010,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
                 unset($sha_array);
                 unset($sha256);
                 flush();
-
             }
         }
     }
 }
-echo '<script>window.location = index.php</script>';
-
-?>
