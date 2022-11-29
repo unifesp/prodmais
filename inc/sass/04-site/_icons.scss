@@ -84,8 +84,9 @@
 // logos
 
 .i-prodmais {
+	@include gradient-1;
 	height: 169px;
-	width: 300px;
+	width: 270px;
 }
 
 .i-doi {
