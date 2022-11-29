@@ -115,8 +115,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
 
     <!-- <img class="p-home-logo" src="inc/images/logos/logo_main.svg" loading="lazy" /> -->
-    <i class="i i-prodmais"></i>
-    <h2 class="p-home-slogan">Uma ferramenta de busca da produção científica de pesquisadores</h2>
+    <i class="i i-prodmais .p-home-gradient"></i>
+    <h2 class="p-home-slogan .p-home-gradient"><?php echo ($slogan); ?></h2>
     <h3 class="p-home-instituicao"><?php echo ($instituicao); ?></h3>
 
     <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
@@ -182,69 +182,11 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
       </form>
     </div><!-- end p-home-search -->
 
-    <div class="options">
-      <button class="c-btn--tip u-my-05" @mouseover="showTips = true" @mouseleave="showTips = false"
-        title="Mostrar dicas de pesquisa">
-        <i class="i i-btn i-sm i-help"></i>
-      </button>
 
-      <button class="c-btn" v-on:click="showCategories = !showCategories">
-        Mostrar pesquisa por categorias
-      </button>
-    </div>
-
-    <transition name="homeeffect">
-      <div class="p-home-categories" v-if="showCategories">
-        <h3>Busca por categorias</h3>
-
-        <table>
-          <thead>
-            <tr class="thead">
-              <th>Tipo</th>
-              <th>Categorias</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Programa de Pós-Graduação</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Tipo de produção</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::tipo_inicio(); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Tipo de vínculo</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Base de dados </th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::fonte_inicio(); ?>
-                </ul>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-    </transition>
-
-
-
+    <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false"
+      title="Mostrar dicas de pesquisa">
+      <i class="i i-btn i-sm i-help"></i>
+    </button>
     <a class="u-skip" href="#mainseach">Voltar à barra de pesquisa principal</a>
   </main>
   <?php include('inc/footer.php'); ?>
