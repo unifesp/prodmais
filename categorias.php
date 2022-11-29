@@ -28,7 +28,9 @@
   <?php require 'inc/navbar.php'; ?>
   <!-- /NAV -->
 
-  <main class="p-home-wrapper" id="home">
+  <main class="p-categorias d-container" id="home">
+    <h3 class="t t-h3 u-mb-20">Busca por categorias</h3>
+
     <transition name="homeeffect">
       <div class="c-tips" v-if="showTips">
         <a class="u-skip" href="#aftertips">Pular dicas de pesquisa</a>
@@ -39,40 +41,32 @@
       </div>
     </transition>
 
-    <h3>Busca por categorias</h3>
 
-    <div class="d-container">
+    <div class="d-grid">
       <div class="row">
-        <div class="col-12 col-md-6 x-box">
+        <div class="col-12 col-md-6">
           <h4 class="t t-h4">Programa de Pós-Graduação</h4>
-          <ul class="list-group">
+          <ul class="p-categorias-list">
             <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
           </ul>
 
         </div>
-        <div class="col-12 col-md-6 x-box">
+        <div class="col-12 col-md-6">
           <h4 class="t t-h4">Tipo de produção</h4>
-          <ul class="list-group">
-
-            <?php paginaInicial::tipo_inicio(); ?>
-          </ul>
+          <?php paginaInicial::tipo_inicio(); ?>
         </div>
       </div>
     </div>
     <div class="d-container">
       <div class="row">
-        <div class="col-12 col-md-6 x-box">
+        <div class="col-12 col-md-6">
           <h4 class="t t-h4">Tipo de vínculo</h4>
-          <ul class="list-group">
-            <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
-          </ul>
+          <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
         </div>
 
-        <div class="col-12 col-md-6 x-box">
+        <div class="col-12 col-md-6">
           <h4 class="t t-h4">Base de dados</h4>
-          <ul class="list-group">
-            <?php paginaInicial::fonte_inicio(); ?>
-          </ul>
+          <?php paginaInicial::fonte_inicio(); ?>
         </div>
       </div>
     </div>

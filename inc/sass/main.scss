@@ -10,15 +10,13 @@
 @import "02-mixins/breakpoint";
 @import "02-mixins/grid-system";
 @import "02-mixins/theme-system";
-@import "02-mixins/utils";
+@import "02-mixins/mixins";
 
-/// === UTILS === ///
-@import "03-utils/normalize";
-@import "03-utils/acessibility";
-@import "03-utils/transitions";
-@import "03-utils/divs";
-@import "03-utils/margin";
-@import "03-utils/others";
+/// === BASE === ///
+@import "03-base/normalize";
+@import "03-base/divs";
+@import "03-base/transitions";
+@import "03-base/acessibility";
 
 /// === SITE === ///
 @import "04-site/theme";
@@ -48,11 +46,11 @@
 @import "06-components/c-back-to-top";
 @import "06-components/c-badge";
 @import "06-components/c-btn";
+@import "06-components/c-categories";
 @import "06-components/c-collapse";
 @import "06-components/c-filterlist";
 @import "06-components/c-filterdrop";
 @import "06-components/c-input";
-@import "06-components/c-inputs";
 @import "06-components/c-infotag";
 @import "06-components/c-line";
 @import "06-components/c-graph";
@@ -67,3 +65,7 @@
 @import "06-components/c-who";
 @import "06-components/tag";
 @import "06-components/s-list";
+
+/// === UTILS === ///
+@import "03-base/margin";
+@import "03-base/others";

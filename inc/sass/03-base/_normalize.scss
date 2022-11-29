@@ -1,4 +1,4 @@
-// == NORMALIZE == //
+/// === NORMALIZE === ///
 
 html,
 body,
@@ -89,7 +89,6 @@ video {
 	padding: 0;
 }
 
-// BOXSIZING
 html {
 	box-sizing: border-box;
 	overflow-x: hidden;
@@ -101,7 +100,6 @@ html {
 	box-sizing: inherit;
 }
 
-// DETAILS
 details {
 	overflow: hidden;
 }

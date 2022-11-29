@@ -13,13 +13,7 @@
 		transition: all 0.3s ease 0s;
 	}
 
-	&:focus {
-		border-color: var(--c-pr-4);
-		-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
-		-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
-		box-shadow: 0px 0px 14px 0px var(--c-ic-2);
-		outline: none;
-	}
+	@include focus;
 }
 
 .c-input,
@@ -72,6 +66,16 @@
 
 		&:hover {
 			letter-spacing: 1.2px;
+		}
+
+		&:focus {
+			.c-searcher {
+				border-color: var(--c-pr-4);
+				-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				outline: none;
+			}
 		}
 	}
 

@@ -4,6 +4,7 @@
  * Arquivo de classes e funções do ColetaProd
  */
 include('config.php');
+include('components/Categories.php');
 
 /* Connect to Elasticsearch - Index */
 try {
@@ -480,16 +481,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    foreach ($response["aggregations"]["group_by_state"]["buckets"] as $facets) {
-      echo '<li class="c-accordion-itemlist">';
-      echo '<form action="result.php" method="post">';
-      echo '<input type="hidden" name="search" value="">';
-      echo '<input type="hidden" name="filter[]" value="source:' . $facets['key'] . '">';
-      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . ':" />';
-      echo '<span class="">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-      echo '</form>';
-      echo '</li>';
-    }
+    Categories::list($response);
   }
 
   static function tipo_inicio()
@@ -523,16 +515,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    foreach ($response["aggregations"]["group_by_state"]["buckets"] as $facets) {
-      echo '<li class="c-accordion-itemlist">';
-      echo '<form action="result.php" method="post">';
-      echo '<input type="hidden" name="search" value="">';
-      echo '<input type="hidden" name="filter[]" value="tipo:' . $facets['key'] . '">';
-      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . ':" />';
-      echo '<span class="">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-      echo '</form>';
-      echo '</li>';
-    }
+    Categories::list($response);
   }
 
   static function unidade_inicio($field)
@@ -566,17 +549,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    foreach ($response["aggregations"]["group_by_state"]["buckets"] as $facets) {
-
-      echo '<li class="c-accordion-itemlist">';
-      echo '<form action="result.php" method="post">';
-      echo '<input type="hidden" name="search" value="">';
-      echo '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . ':">';
-      echo '<input class="u-nobtn" type="submit" value="' . $facets['key'] . '" />';
-      echo '<span class="badge bg-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-      echo '</form>';
-      echo '</li>';
-    }
+    Categories::list($response);
   }
 
   static function possui_lattes()

@@ -37,7 +37,7 @@ class Departamento {
   require 'inc/meta-header.php';
   require 'inc/functions.php';
   require 'inc/components/GraphBar.php';
-  require 'inc/components/Production.php';
+  require 'inc/components/SList.php';
   require 'inc/components/Who.php';
   require 'inc/components/PPGBadges.php';
   require 'inc/components/TagCloud.php';
