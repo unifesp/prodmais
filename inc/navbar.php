@@ -41,6 +41,13 @@
           </a>
         </li>
 
+        <li class=" sitemenu-item">
+          <a class="sitemenu-link" href="categorias.php" title="Categorias">
+            Categorias
+            <i class="i i-category sitemenu-ico"></i>
+          </a>
+        </li>
+
         <!--
           <li class=" sitemenu-item">
             <a class="sitemenu-link" href="ppgs.php" title="Programas de pós graduação">
