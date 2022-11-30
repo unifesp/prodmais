@@ -3071,7 +3071,7 @@ class UI
           }
         }
       }
-      echo '<button class="c-navigator-btn c-btn--c1">ᐊ</button>';
+      echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-left i-lg"></i></button>';
       echo '</form>';
 
     }
@@ -3089,7 +3089,7 @@ class UI
           }
         }
       }
-      echo '<button class="c-navigator-btn c-btn--c1">ᐅ</button>';
+      echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-right i-lg"></i></button>';
       echo '</form>';
 
     } else {
