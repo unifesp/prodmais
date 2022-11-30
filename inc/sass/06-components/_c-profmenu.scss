@@ -52,7 +52,7 @@
 
 	@media (prefers-color-scheme: light) {
 		background-color: var(--c-pr-3);
-		color: var(--c-mn-8);
+		color: var(--c-pr-2);
 
 		&:hover,
 		&:focus {
@@ -86,7 +86,7 @@
 		@include ico($tabshape-desk);
 
 		@media (prefers-color-scheme: light) {
-			color: var(--c-mn-8);
+			color: var(--c-pr-7);
 		}
 	}
 }

@@ -4,7 +4,7 @@
 	background-color: var(--c-bg-2);
 	border: var(--c-pr-2) 2px solid;
 	border-radius: $input_border_radius;
-	color: var(--c-fg);
+	color: var(--c-fg-1);
 	vertical-align: middle;
 	@include transition;
 
@@ -56,7 +56,7 @@
 		background-color: transparent;
 		border: 0;
 		border-radius: $input_border_radius;
-		color: var(--c-fg);
+		color: var(--c-fg-1);
 		font-size: $input_font_size;
 		height: $input_height;
 		outline: 0;

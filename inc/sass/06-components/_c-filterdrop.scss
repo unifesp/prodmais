@@ -29,23 +29,25 @@ $filterdropRadii: 8px;
 
 	&__item {
 		align-items: center;
-		border-bottom: 1px solid var(--c-pr-6);
+		border-bottom: 1px dashed var(--c-pr-6);
 		display: grid;
 		grid-template-areas: "nome number";
 		grid-template-columns: 9fr 1fr;
-		margin: 0.5rem;
+		margin: 0.7rem 0.5rem;
+		padding: 0.5rem;
 		transition: 0.2s all ease;
 	}
 
 	&__item-name {
 		background-color: transparent;
 		border: none;
-		color: var(--c-fg) !important;
+		color: var(--c-fg-1) !important;
 		cursor: pointer;
 		grid-area: nome;
-		margin-inline: 0.7 rem;
+		max-width: 300px;
 		overflow: hidden;
-		word-wrap: break-word;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		@include transition;
 
 		&:hover {
@@ -55,15 +57,10 @@ $filterdropRadii: 8px;
 	}
 
 	&__count {
-		background-color: var(--c-pr-4);
-		border-radius: $filterdropRadii;
-		color: var(--c-mn-6);
-		font-weight: 500;
+		color: var(--c-pr-2);
+		font-weight: 700;
 		grid-area: number;
-		// height: fit-content;
-		margin: 0.2rem;
-		padding: 0.2rem 0.5rem;
-		// width: fit-content;
+		text-align: right;
 	}
 }
 

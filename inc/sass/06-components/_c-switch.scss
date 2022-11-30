@@ -10,6 +10,7 @@
 		display: block;
 		outline: none;
 		position: relative;
+		-webkit-user-select: none;
 		user-select: none;
 	}
 
@@ -40,7 +41,7 @@
 		}
 
 		& + label:after {
-			background-color: var(--c-mn-6);
+			background-color: var(--c-mn-8);
 			border-radius: 100%;
 			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 			transition: all 0.4s;

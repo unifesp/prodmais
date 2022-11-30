@@ -30,10 +30,10 @@
 	&:hover {
 		background-color: var(--c-pr-4);
 		border-color: var(--c-pr-4);
-		color: var(--c-mn-6);
+		color: var(--c-mn-8);
 
 		.i-btn {
-			background-color: var(--c-mn-6);
+			background-color: var(--c-mn-8);
 		}
 	}
 }
@@ -65,6 +65,6 @@
 	}
 
 	&--disabled {
-		color: var(--c-mn-3);
+		color: var(--c-mn-40);
 	}
 }

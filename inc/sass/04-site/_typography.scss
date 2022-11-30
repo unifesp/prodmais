@@ -42,6 +42,22 @@ em {
 	text-align: justify;
 }
 
+.t-md {
+	font-size: 1.2rem;
+}
+
+.t-lg {
+	font-size: 1.5rem;
+}
+
+.t-gray {
+	color: var(--c-mn-40);
+}
+
+.t-light {
+	color: var(--c-mn-50);
+}
+
 // == links == //
 
 a {
@@ -60,7 +76,11 @@ a {
 }
 
 .t-a {
-	color: var(--c-link);
+	color: var(--c-fg-2);
+}
+
+.t-b {
+	font-weight: 600;
 }
 
 h1 a,
@@ -84,10 +104,10 @@ h5 a {
 }
 
 $sizeH: (
-	1: 2.7rem,
-	2: 2.5rem,
-	3: 2.3rem,
-	4: 2.2rem,
+	1: 2.4rem,
+	2: 2.2rem,
+	3: 2rem,
+	4: 1.7rem,
 	5: 1.5rem,
 );
 

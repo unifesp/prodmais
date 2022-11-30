@@ -1,9 +1,5 @@
 // == MENUS == //
 
-$sitemenuBk: "lg";
-$sitemenuFg: var(--c-pr-5);
-$sitemenuFgHover: var(--c-pr-7);
-
 .sitemenu-container {
 	align-items: center;
 	display: flex;
@@ -11,14 +7,14 @@ $sitemenuFgHover: var(--c-pr-7);
 }
 
 .sitemenu-btn-ico {
-	color: $sitemenuFgHover;
+	color: var(--c-sitemenu-fg);
 	cursor: pointer;
 	@include transition;
 	&:hover {
-		color: $sitemenuFg;
+		color: var(--c-sitemenu-fg);
 	}
 
-	@include up-to($sitemenuBk) {
+	@include up-to($sitemenu_bk) {
 		display: none;
 	}
 }
@@ -45,7 +41,7 @@ $sitemenuFgHover: var(--c-pr-7);
 		top: 4rem;
 		transition: all 0.3s ease;
 		width: 100%;
-		z-index: -1;
+		z-index: 100;
 	}
 }
 
@@ -54,7 +50,7 @@ $sitemenuFgHover: var(--c-pr-7);
 	margin: 0 auto;
 	max-width: 300px;
 
-	@include up-to($sitemenuBk) {
+	@include up-to($sitemenu_bk) {
 		display: flex;
 		max-width: 800px;
 	}
@@ -62,7 +58,7 @@ $sitemenuFgHover: var(--c-pr-7);
 
 .sitemenu-link {
 	align-items: center;
-	color: $sitemenuFg;
+	color: var(--c-sitemenu-fg);
 	display: flex;
 	font-size: 1.1rem;
 	justify-content: space-between;
@@ -73,31 +69,31 @@ $sitemenuFgHover: var(--c-pr-7);
 	@include transition;
 
 	&:visited {
-		color: $sitemenuFg;
+		color: var(--c-sitemenu-fg);
 	}
 
 	&:hover {
-		color: $sitemenuFgHover;
+		color: var(--c-sitemenu-fg-hover);
 
 		.sitemenu-ico {
-			background-color: $sitemenuFgHover;
+			background-color: var(--c-sitemenu-fg-hover);
 		}
 	}
 
-	@include up-to($sitemenuBk) {
+	@include up-to($sitemenu_bk) {
 		justify-content: center;
 		margin-inline: 1rem;
 	}
 }
 
 .sitemenu-ico {
-	background-color: $sitemenuFg;
+	background-color: var(--c-sitemenu-fg);
 	height: 40px;
 	margin-left: 0.5rem;
 	width: 40px;
 	@include transition;
 
-	@include up-to($sitemenuBk) {
+	@include up-to($sitemenu_bk) {
 		height: 24px;
 		width: 24px;
 	}
