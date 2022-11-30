@@ -28,7 +28,7 @@
   <?php require 'inc/navbar.php'; ?>
   <!-- /NAV -->
 
-  <main class="p-categorias d-container" id="home">
+  <main class="p-categorias" id="home">
     <h3 class="t t-h3 u-mb-20">Busca por categorias</h3>
 
     <transition name="homeeffect">
