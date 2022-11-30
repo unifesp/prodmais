@@ -534,17 +534,10 @@ if (!empty($_REQUEST["lattesID"])) {
 
                 <div class="s-list-content">
                   <p class="t t-b"><?php echo $idioma["descricaoDoIdioma"] ?></p>
-                  <p class="t" style="margin-bottom:10px;">
-
-                    Compreende <?php echo strtolower($idioma["proficienciaDeCompreensao"]) ?>
-                    <b class="t-subItem-light">,</b>
-
-                    Fala <?php echo strtolower($idioma["proficienciaDeFala"]) ?>
-                    <b class="t-subItem-light">,</b>
-
-                    Lê <?php echo strtolower($idioma["proficienciaDeLeitura"]) ?>
-                    <b class="t-subItem-light">,</b>
-
+                  <p class="t u-mb-05">
+                    Compreende <?php echo strtolower($idioma["proficienciaDeCompreensao"]) ?>,
+                    Fala <?php echo strtolower($idioma["proficienciaDeFala"]) ?>,
+                    Lê <?php echo strtolower($idioma["proficienciaDeLeitura"]) ?>,
                     Escreve <?php echo strtolower($idioma["proficienciaDeEscrita"]) ?>
                   </p>
 

@@ -182,28 +182,21 @@ $get_data = $_GET;
       <!-- Navegador de resultados - Fim -->
 
       <div class="p-result-authors">
+        <ul class="c-authors-list">
+          <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
+          <?php 
+            if (empty($r["_source"]['datePublished'])) {
+              $r["_source"]['datePublished'] = "";
+            }
+          ?>
 
-        <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-        <?php 
-                    if (empty($r["_source"]['datePublished'])) {
-                        $r["_source"]['datePublished'] = "";
-                    }
-                ?>
-
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex bd-highlight">
-              <div class="p-2 flex-grow-1 bd-highlight">
-                <h5 class="card-title">
-                  <a class="text-dark" href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                    <?php echo $r["_source"]['nome_completo']; ?>
-                  </a>
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <?php endforeach; ?>
+          <li class="c-card-author t t-b t-md">
+            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+              <?php echo $r["_source"]['nome_completo']; ?>
+            </a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
       </div>
 
       <!-- Navegador de resultados - Início -->

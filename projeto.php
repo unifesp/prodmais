@@ -57,7 +57,7 @@ $data = '{
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
-  
+
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
@@ -74,7 +74,7 @@ $data = '{
           </div>
           <div class="p-projeto-header-d2">
             <h2 class="t t-h5">Projeto de pesquisa</h2>
-            <h1 class="t t-title p-projeto-title"> <?php echo $projeto -> nome ?></h1>
+            <h1 class="t t-h1 p-projeto-title"> <?php echo $projeto -> nome ?></h1>
 
             <div class="d-icon-text">
               <i class="i i-sm i-money"></i>
@@ -87,9 +87,9 @@ $data = '{
 
             <div class="p-projeto-header-d4">
               <i class="i i-sm i-date"></i>
-              <p class="t t-b t-with-icon u-mr-05"> <?php echo $period ?></p>
+              <p class="t t-b u-mr-05"> <?php echo $period ?></p>
               <i class="i i-sm i-production"></i>
-              <p class="t t-b t-with-icon"> <?php echo $projeto -> numero_producoes ?></p>
+              <p class="t t-b"> <?php echo $projeto -> numero_producoes ?></p>
               <p class="t t-b t-gray u-ml-05">(Número de produções)</p>
             </div>
           </div>
@@ -108,14 +108,14 @@ $data = '{
           <hr class="c-line u-my-20" />
 
           <section class="p-projeto-description">
-            <p class="t t-title u-mb-20">Sobre o projeto de pesquisa</p>
+            <p class="t t-b u-mb-20">Sobre o projeto de pesquisa</p>
             <p class="t t-justify"><?php echo $projeto -> descricao; ?></p>
 
           </section>
 
           <hr class="c-line u-my-20" />
 
-          <p class="t t-title u-mb-20">Integrantes</p>
+          <h4 class="t t-h4 u-mb-20">Integrantes</h4>
 
           <section class="dv d-md-h">
             <div class="dv">

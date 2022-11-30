@@ -123,7 +123,7 @@ class Departamento {
 
 
         <section class="l-ppg">
-          <h3 class="t t-title">Palavras chave recorrentes</h3>
+          <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
           <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
 
@@ -152,7 +152,7 @@ class Departamento {
         <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
-          <h3 class='t t-title'>Orientadores e orientadoras</h3>
+          <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
           <ul class="p-departamento-orientadores">
 
