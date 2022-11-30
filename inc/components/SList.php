@@ -201,14 +201,14 @@ class SList
     // (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
 
     echo ("
-    <li class='s-nobullet'>
-			<div class='s-list'>
+			<li class='s-list-2'>
 				<div class='s-list-bullet'>
 					$bullet
 				</div>
 
 				<div class='s-list-content'>
-					<p class='t-b'>$name<i> — $type </i ></p>
+					<p class='t t-b t-md'>$name</p>
+					<p class='t t-b t-md'><i>$type</i></p>
 					<p class='t-gray'><b class='t-subItem'>Autores: </b> $authorsRendered </p>
 					
 					<div class='d-linewrap t-gray'>
@@ -223,7 +223,6 @@ class SList
 					</p>
 					
 				</div>
-			</div>
       </li>
     ");
   }
