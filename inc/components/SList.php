@@ -3,8 +3,7 @@
 
 class SList
 {
-
-  static function bullet($tipo)
+  static function bulletGeneric($tipo)
   {
     $img = '';
     switch ($tipo) {
@@ -31,6 +30,69 @@ class SList
     }
     return "<i class='i i-$img s-list-ico' title='$tipo'></i>";
   }
+
+  static function bulletIntelectualProduction($tipo)
+  {
+    $img = '';
+    switch ($tipo) {
+      case "Artigo publicado":
+        $img = 'articlePublished';
+        break;
+      case "Capítulo de livro publicado":
+        $img = 'chapter';
+        break;
+      case "Livro publicado ou organizado":
+        $img = 'book';
+        break;
+      case "Patente":
+        $img = 'patent';
+        break;
+      case "Software":
+        $img = 'softwares';
+        break;
+      case "Textos em jornais de notícias/revistas":
+        $img = 'papers';
+        break;
+      case "Trabalhos em eventos":
+        $img = 'event';
+        break;
+      case "Tradução":
+        $img = 'book';
+        break;
+      default:
+        $img = 'defaultProduction';
+    }
+    return "<i class='i i-$img s-list-ico' title='$tipo'></i>";
+  }
+
+
+  // === Only for Slist::IntelectualProduction === //
+  static function doiRendered($url) 
+  {
+    return "
+        <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'>
+        <img class='i-doi' src='inc/images/logos/doi.svg' title='doi' alt='doi' />
+        </a>";
+  }
+  // === Only for Slist::IntelectualProduction === //
+  static function urlRendered($url)
+  {
+    return "
+        <a class='t t-a d-icon-text' href='$url' target='blank'> 
+          <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+          Conteúdo completo
+        </a>";
+  }
+  // === Only for Slist::IntelectualProduction === //
+  static function issnRendered($url)
+  {
+    return "
+        <a class='t t-a d-icon-text' href='$url' target='blank'> 
+          <i class='i i-link i-link u-ml-05' title='ISSN' alt='ISSN'></i>
+          ISSN: $url
+        </a>";
+  }
+
 
 
   static function date($start, $end)
@@ -72,7 +134,7 @@ class SList
     $yearEnd = ''
   ) {
 
-    $bullet = SList::bullet($type);
+    $bullet = SList::bulletGeneric($type);
     $date = SList::date($yearStart, $yearEnd);
 
     if (!empty($itemNameLink)) {
@@ -106,6 +168,62 @@ class SList
 				</div>
 			</div>
     </li>
+    ");
+  }
+
+  static function IntelectualProduction(
+    $type,
+    $name,
+    $authors,
+    $doi,
+    $url,
+    $issn,
+    $refName,
+    $refVol,
+    $refFascicle,
+    $refPage,
+    $evento,
+    $datePublished,
+    $id
+  ) {
+
+    $bullet = SList::bulletIntelectualProduction($type);
+    $authorsRendered = implode('; ', $authors);
+
+    !empty($doi) ? $doiRendered = SList::doiRendered($doi) : $doiRendered = '';
+    !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
+    !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
+    !empty($refName) ? $refName = $refName : '';
+    !empty($refVol) ? $refVol = ", v. $refVol" : '';
+    !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
+    !empty($refPage) ? $refPage = ", p. $refPage" : '';
+
+    // (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
+
+    echo ("
+			<li class='s-list-2'>
+				<div class='s-list-bullet'>
+					$bullet
+				</div>
+
+				<div class='s-list-content'>
+					<p class='t t-b t-md'>$name</p>
+					<p class='t t-b t-md'><i>$type</i></p>
+					<p class='t-gray'><b class='t-subItem'>Autores: </b> $authorsRendered </p>
+					
+					<div class='d-linewrap t-gray'>
+            $doiRendered
+            $urlRendered	
+            $issnRendered					
+					</div>
+          $datePublished
+					
+					<p class='t t-light'>
+						Fonte: $refName $refVol $refFascicle $refPage
+					</p>
+					
+				</div>
+      </li>
     ");
   }
 }

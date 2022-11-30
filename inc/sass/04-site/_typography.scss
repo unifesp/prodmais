@@ -1,4 +1,4 @@
-// == TYPOGRAPHY == //
+/// === TYPOGRAPHY === ///
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400&display=swap");
 
 body,
@@ -8,10 +8,6 @@ textarea,
 li,
 p {
 	font-family: "Lato", sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	letter-spacing: 0.0375em;
-	line-height: 1.5;
 }
 
 strong,
@@ -24,15 +20,45 @@ em {
 	font-style: italic;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+// == general == //
+
+.t {
 	font-family: "Lato", sans-serif;
-	font-weight: 700;
-	margin-bottom: 0.6rem;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: 0.0375em;
+	line-height: 1.5;
 }
+
+.t-right {
+	text-align: right;
+}
+
+.t-center {
+	text-align: center;
+}
+
+.t-justify {
+	text-align: justify;
+}
+
+.t-md {
+	font-size: 1.2rem;
+}
+
+.t-lg {
+	font-size: 1.5rem;
+}
+
+.t-gray {
+	color: var(--c-mn-40);
+}
+
+.t-light {
+	color: var(--c-mn-50);
+}
+
+// == links == //
 
 a {
 	border: none;
@@ -50,7 +76,11 @@ a {
 }
 
 .t-a {
-	color: var(--c-link);
+	color: var(--c-fg-2);
+}
+
+.t-b {
+	font-weight: 600;
 }
 
 h1 a,
@@ -62,30 +92,23 @@ h5 a {
 	text-decoration: none;
 }
 
-// GENERAL
+// == headings == //
 
-.t {
-	font-family: "Lato", sans-serif;
-}
-
-.t-right {
-	text-align: right;
-}
-
-.t-center {
-	text-align: center;
-}
-
-.t-justify {
-	text-align: justify;
+.t-h1,
+.t-h2,
+.t-h3,
+.t-h4,
+.t-h5 {
+	font-weight: 700;
+	margin-bottom: 0.6rem;
 }
 
 $sizeH: (
-	1: 1.7rem,
-	2: 1.5rem,
-	3: 1.3rem,
-	4: 1.2rem,
-	5: 1.1rem,
+	1: 2.4rem,
+	2: 2.2rem,
+	3: 2rem,
+	4: 1.7rem,
+	5: 1.5rem,
 );
 
 @each $n, $size in $sizeH {

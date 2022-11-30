@@ -75,10 +75,48 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
   <!-- /NAV -->
 
   <main class="p-home-wrapper" id="home">
+    <transition name="homeeffect">
+      <div class="c-tips" v-if="showTips">
+        <a class="u-skip" href="#aftertips">Pular dicas de pesquisa</a>
+
+
+
+        <h4>Dicas de como pesquisar</h4>
+        <p>Use _ para busca por radical. Exemplo: biblio_.</p>
+        <p>Para buscas exatas, coloque entre "". Exemplo: "Direito civil"</p>
+        <p>Por padrão, o sistema utiliza o operador booleano OR. Caso necessite deixar a busca mais específica,
+          utilize
+          o operador AND (em maiúscula).</p>
+
+        <h4>Busca avançada</h4>
+        <p>O botão <img class="c-manual-img__in-text"
+            src="<?php echo $url_base ?>/inc/images/manual/btn_busca_avancada.png"
+            alt="botão alternar para busca avançada" height="28px" />, que se
+          parece com uma seta apontando para baixo, permite fazer pesquisas com mais critérios, sendo eles, programa
+          de
+          pós-graduação, ID lattes do pesquisador, e período.</p>
+
+        <h4>Consultando as categorias disponíveis</h4>
+        <p>O botão <img class="c-manual-img__in-text"
+            src="<?php echo $url_base ?>/inc/images/manual/btn_mostrar_pesquisa_categoria.png"
+            alt="botão mostrar persquisa por categoria" height="28px" /> lista as produções classificados por Programa
+          de Pós-graduação,
+          tipo de produção, tipo de vínculo e base de dados, entre outras.</p>
+
+        <h4>Buscando o perfil de um pesquisador</h4>
+        <p>É possível também obter perfis detalhados dos pesquisadores. Esta opção está na opção "Pesquisadores" <img
+            class="c-manual-img__in-text" src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png"
+            alt="botão pesquisadores" height="28px" />, no menu principal, no cabeçalho do Prodmais.</p>
+
+
+        <span id="aftertips"></span>
+      </div>
+    </transition>
+
 
     <!-- <img class="p-home-logo" src="inc/images/logos/logo_main.svg" loading="lazy" /> -->
-    <i class="i i-prodmais"></i>
-    <h2 class="p-home-slogan">Uma ferramenta de busca da produção científica de pesquisadores</h2>
+    <i class="i i-prodmais .p-home-gradient"></i>
+    <h2 class="p-home-slogan .p-home-gradient"><?php echo ($slogan); ?></h2>
     <h3 class="p-home-instituicao"><?php echo ($instituicao); ?></h3>
 
     <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
@@ -87,13 +125,19 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     </div>
     <?php endif; ?>
 
-
     <div class="p-home-search">
 
       <form class="p-home-form" class="" action="result.php" title="Pesquisa simples" method="post">
 
-        <input class="c-input" type="search" placeholder="Pesquise por palavra chave" aria-label="Pesquisar"
-          name="search">
+        <div class="c-searcher">
+          <input id="mainseach" name="search" type="search" placeholder="Pesquise por palavra chave"
+            aria-label="Pesquisar">
+
+          <button class="c-searcher__btn" type="submit" title="Buscar">
+            <i class="i i-lupa c-searcher__btn-ico"></i>
+          </button>
+        </div>
+
 
         <button type="button" v-on:click="changeSearchMode()" class="c-btn p-home-form-btn"
           title="Alternar modo de pesquisa">
@@ -129,125 +173,20 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                 placeholder="Data final" />
             </div>
 
-
+            <button type="submit" class="c-btn--search" title="Buscar">
+              <i class="i i-btn i-lupa i-lg"></i>
+            </button>
 
           </div> <!-- end advanced -->
         </transition>
-
-        <button type="submit" class="c-btn--search" title="Buscar">
-          <i class="i i-btn i-lupa i-lg"></i>
-        </button>
-
       </form>
-    </div><!-- end search -->
-
-    <div class="options">
-      <button class="c-btn" v-on:click="showTips = !showTips" title="Mostrar dicas de pesquisa">
-        <i class="i i-btn i-sm i-help"></i>
-        Mostrar dicas de pesquisa
-      </button>
-
-      <button class="c-btn" v-on:click="showCategories = !showCategories">
-        Mostrar pesquisa por categorias
-      </button>
-    </div>
-
-    <transition name="homeeffect">
-      <div class="c-tips" v-if="showTips">
-
-        <h4>Dicas de como pesquisar</h4>
-        <p>Use _ para busca por radical. Exemplo: biblio_.</p>
-        <p>Para buscas exatas, coloque entre "". Exemplo: "Direito civil"</p>
-        <p>Por padrão, o sistema utiliza o operador booleano OR. Caso necessite deixar a busca mais específica, utilize
-          o operador AND (em maiúscula).</p>
-
-        <h4>Busca avançada</h4>
-        <p>O botão <img class="c-manual-img__in-text"
-            src="<?php echo $url_base ?>/inc/images/manual/btn_busca_avancada.png"
-            alt="botão alternar para busca avançada" height="28px" />, que se
-          parece com uma seta apontando para baixo, permite fazer pesquisas com mais critérios, sendo eles, programa de
-          pós-graduação, ID lattes do pesquisador, e período.</p>
-
-        <h4>Consultando as categorias disponíveis</h4>
-        <p>O botão <img class="c-manual-img__in-text"
-            src="<?php echo $url_base ?>/inc/images/manual/btn_mostrar_pesquisa_categoria.png"
-            alt="botão mostrar persquisa por categoria" height="28px" /> lista as produções classificados por Programa
-          de Pós-graduação,
-          tipo de produção, tipo de vínculo e base de dados, entre outras.</p>
-
-        <h4>Buscando o perfil de um pesquisador</h4>
-        <p>É possível também obter perfis detalhados dos pesquisadores. Esta opção está na opção "Pesquisadores" <img
-            class="c-manual-img__in-text" src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png"
-            alt="botão pesquisadores" height="28px" />, no menu principal, no cabeçalho do Prodmais.</p>
-
-        <p></p>
-        <h4></h4>
-
-      </div>
-    </transition>
-
-    <transition name="homeeffect">
-      <div class="dh d-ht u-mb-10" v-if="showCategories">
-
-        <table>
-          <thead>
-            <tr class="thead">
-              <th>Tipo</th>
-              <th>Categorias</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Programa de Pós-Graduação</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Tipo de produção</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::tipo_inicio(); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Tipo de vínculo</th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
-                </ul>
-              </th>
-            </tr>
-            <tr>
-              <th>Base de dados </th>
-              <th>
-                <ul class="list-group">
-                  <?php paginaInicial::fonte_inicio(); ?>
-                </ul>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- <div>
-          <button class="c-btn c-accordion" v-on:click="openAccordion('5')">Base de dados </button>
-          <transition name="homeeffect">
-            <div class="c-accordion-body" v-if="accOpened == '5'">
-              <ul class="list-group">
-              </ul>
-            </div>
-          </transition>
-        </div> -->
-
-      </div>
-    </transition>
+    </div><!-- end p-home-search -->
 
 
-
-
+    <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false"
+      title="Mostrar dicas de pesquisa">
+      <i class="i i-btn i-sm i-help"></i>
+    </button>
     <a class="u-skip" href="#mainseach">Voltar à barra de pesquisa principal</a>
   </main>
   <?php include('inc/footer.php'); ?>

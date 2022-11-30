@@ -16,12 +16,16 @@
 
 .p-home-slogan {
 	align-content: center;
+	-webkit-background-clip: text;
+	background-clip: "text";
 	display: flex;
 	flex-direction: column;
-	font-size: 1.3rem !important;
+	font-size: 2.3rem !important;
 	max-width: 500px;
 	padding: 0.7rem 0.5rem;
 	text-align: center;
+	-webkit-text-fill-color: transparent;
+	@include gradient-1;
 }
 
 .p-home-slogan {
@@ -74,12 +78,24 @@
 	width: 100%;
 
 	&-btn {
-		margin: 0.5rem auto;
+		margin: 2rem auto 1rem auto;
 	}
+}
+
+.p-home-categories {
+	margin-block: 1rem;
+	max-width: 1200px;
+	width: 100%;
 }
 
 @include up-to("md") {
 	.p-home-search {
 		margin: 1rem auto;
 	}
+}
+
+.p-home__tips-btn {
+	position: absolute;
+	right: 2rem;
+	top: 7rem;
 }

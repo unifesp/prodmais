@@ -1,28 +1,37 @@
 /* === LAYOUT === */
 
-.p-result {
-	&-container,
-	&-main,
-	&-nav {
-		width: 100%;
-	}
+.p-result-container {
+	background-color: var(--c-bg-1);
+	margin-top: calc($siteheader_height + 5px);
 
-	&-container {
-		display: block;
-	}
-
-	&-main,
-	&-nav {
-		margin: 2rem 0.5rem;
-	}
-
-	&-authors {
-		min-height: 55vh;
+	@include up-to("lg") {
+		column-gap: 1rem;
+		display: grid;
+		grid-template-areas: "resultnav resultmain";
+		grid-template-columns: $filterbar_width_desk 1fr;
 	}
 }
 
-.p-result-container {
-	padding-inline: 1rem;
+.p-result-main {
+	background-color: var(--c-bg-2);
+	padding: 1rem 0.5rem;
+
+	@include up-to("lg") {
+		grid-area: resultmain;
+		width: 100%;
+	}
+}
+
+.p-result-nav {
+	@include up-to("lg") {
+		grid: resultnav;
+	}
+}
+
+.p-result-authors {
+	border-radius: 10px;
+	min-height: 55vh;
+	padding: 0.5rem;
 }
 
 .c-term {
@@ -34,28 +43,22 @@
 }
 
 .c-filterlist {
-	// display: block;
 	width: $filterbar_width_mob;
 }
 
-@include up-to("lg") {
-	.p-result {
-		&-container {
-			column-gap: 1rem;
-			display: grid;
-			grid-template-areas: "resultmain resultnav";
-			grid-template-columns: 1fr $filterbar_width_desk;
-			padding-inline: 2rem;
-		}
+.c-authors-list {
+	list-style: none;
+}
 
-		&-main {
-			grid-area: resultmain;
-			margin: 2rem 1rem;
-			width: 100%;
-		}
+.c-card-author {
+	background-color: var(--c-bg-1);
+	border-bottom: 1px dashed var(--c-pr-2);
+	border-radius: 10px;
+	margin-block: 0.5rem;
+	padding: 0.5rem 1rem;
+	@include transition;
 
-		&-nav {
-			grid: resultnav;
-		}
+	&:hover {
+		color: var(--c-pr-3);
 	}
 }

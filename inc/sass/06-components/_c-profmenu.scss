@@ -1,5 +1,4 @@
 .c-profmenu {
-	background: linear-gradient(90deg, var(--c-pr-5) 0%, var(--c-pr-6) 100%);
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -9,6 +8,14 @@
 	padding: 0 0.5rem 0 0.5rem;
 	width: 100%;
 
+	@media (prefers-color-scheme: light) {
+		background: linear-gradient(90deg, var(--c-pr-5) 0%, var(--c-pr-6) 100%);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		background: linear-gradient(90deg, var(--c-pr-0) 0%, var(--c-pr-1) 100%);
+	}
+
 	@include up-to("md") {
 		padding: 0 2rem 0 2rem;
 	}
@@ -16,12 +23,11 @@
 
 .c-profmenu-btn {
 	align-items: center;
-	background-color: var(--c-pr-3);
 	border: none;
-	color: var(--c-pr-7);
 	display: flex;
 	display: flex;
 	flex-direction: row;
+	font-size: 1.2rem;
 	font-weight: 600;
 	height: 45px;
 	justify-content: center;
@@ -36,32 +42,57 @@
 	width: 100px;
 	@include ico($tabshape-mini);
 
-	&:hover,
 	&:focus {
-		background-color: var(--c-pr-4);
-		color: var(--c-pr-2);
+		outline: none;
+	}
+	&:active {
+		background-color: var(--c-bg-1);
+		color: var(--c-pr-3);
 	}
 
-	&:hover {
-		.c-profmenu-ico {
-			background-color: var(--c-bg-0);
+	@media (prefers-color-scheme: light) {
+		background-color: var(--c-pr-3);
+		color: var(--c-pr-2);
+
+		&:hover,
+		&:focus {
+			background-color: var(--c-pr-7);
+			color: var(--c-pr-2);
+
+			.c-profmenu-ico {
+				background-color: var(--c-pr-2);
+			}
 		}
 	}
 
-	&:active {
-		background-color: var(--c-pr-3);
-		color: var(--c-pr-3);
+	@media (prefers-color-scheme: dark) {
+		background-color: var(--c-pr-2);
+		color: var(--c-pr-7);
+
+		&:hover,
+		&:focus {
+			background-color: var(--c-pr-2);
+			color: var(--c-pr-4);
+
+			.c-profmenu-ico {
+				background-color: var(--c-pr-4);
+			}
+		}
 	}
 
 	@include up-to("md") {
 		margin: 1rem -1rem 0 -1rem;
-		width: 160px;
+		width: 180px;
 		@include ico($tabshape-desk);
+
+		@media (prefers-color-scheme: light) {
+			color: var(--c-pr-7);
+		}
 	}
 }
 
 .c-profmenu-ico {
-	background-color: var(--c-mn-6);
+	background-color: var(--c-pr-7);
 	height: 40px;
 	transition: all 0.3s ease 0s;
 	width: 40px;
@@ -86,7 +117,8 @@
 }
 
 .c-profmenu-active {
-	background-color: var(--c-bg-0) !important;
+	background-color: var(--c-bg-1) !important;
+	color: var(--c-pr-4) !important;
 	z-index: 3;
 
 	.c-profmenu-ico {

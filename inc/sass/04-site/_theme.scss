@@ -1,21 +1,7 @@
 // == THEME == //
 
 :root {
-	@include make-mono-palette($lights);
-
-	@media (prefers-color-scheme: light) {
-		--c-bg-1: var(--c-mn-7);
-		--c-bg-2: var(--c-mn-6);
-		--c-fg: var(--c-mn-0);
-		--c-link: var(--c-pr-3);
-	}
-	@media (prefers-color-scheme: dark) {
-		--c-bg-1: var(--c-mn-1);
-		--c-bg-2: var(--c-mn-2);
-		--c-fg: var(--c-mn-5);
-		--c-link: var(--c-mn-3);
-		--c-test: hsl(var(--c-pr-h), var(--c-pr-h), 20%);
-	}
+	@include make-mono-palette();
 }
 
 @each $k, $v in $themes {
@@ -25,22 +11,9 @@
 	}
 }
 
-:root {
-	@media (prefers-color-scheme: light) {
-		--c-bg-1: var(--c-mn-6);
-		--c-fg: var(--c-mn-0);
-		--c-link: var(--c-pr-3);
-	}
-	@media (prefers-color-scheme: dark) {
-		--c-bg-1: var(--c-mn-1);
-		--c-fg: var(--c-mn-5);
-		--c-link: var(--c-mn-3);
-	}
-}
-
 body {
 	background-color: var(--c-bg-1);
-	color: var(--c-fg);
+	color: var(--c-fg-1);
 }
 
 a {

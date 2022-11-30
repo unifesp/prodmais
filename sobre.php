@@ -88,8 +88,8 @@
 
       <h3 id="créditos" class="t t-h3 u-my-10">Realização</h3>
 
-      <p class="t t-title">Universidade Federal de São Paulo</p>
-      <p class="t t-title t-gray">Superintendência de Tecnologia da Informação</p>
+      <p class="t t-md">Universidade Federal de São Paulo</p>
+      <p class="t t-md t-gray">Superintendência de Tecnologia da Informação</p>
 
       <div class="dh">
         <?php if (file_exists("inc/images/logos/sti-branco.svg")) : ?>

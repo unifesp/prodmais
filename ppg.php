@@ -56,7 +56,7 @@ class PPG {
   require 'inc/meta-header.php';
   require 'inc/functions.php';
   require 'inc/components/GraphBar.php';
-  require 'inc/components/Production.php';
+  require 'inc/components/SList.php';
   require 'inc/components/Who.php';
   require 'inc/components/PPGBadges.php';
   require 'inc/components/TagCloud.php';
@@ -88,7 +88,7 @@ class PPG {
             <h1 class="t t-h1">PPG <?php echo $ppg["NOME_PPG"]; ?></h1>
             <h2 class="t t-h2">Programa de Pós Graduação em <?php echo $ppg["NOME_PPG"]; ?></h2>
             <p class="t t-b ty-light-a">
-              <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br/>
+              <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
               <span><?php echo $ppg ["NOME_CAMARA"]; ?></span>
             </p>
             <!--
@@ -172,7 +172,7 @@ class PPG {
 
 
         <section class="l-ppg">
-          <h3 class="t t-title">Palavras chave recorrentes</h3>
+          <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
           <div>
             <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
@@ -223,7 +223,7 @@ class PPG {
         <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
-          <h3 class='t t-title'>Orientadores e orientadoras</h3>
+          <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
           <ul class="p-ppg-orientadores">
 

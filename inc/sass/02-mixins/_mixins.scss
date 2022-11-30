@@ -1,0 +1,48 @@
+@mixin adjust-axis($a, $value) {
+	@if $a == "h" {
+		justify-content: $value;
+	}
+	@if $a == "v" {
+		align-items: $value;
+	}
+}
+
+@mixin transition($t: 0.4s) {
+	transition: all $t ease;
+}
+
+@mixin make-margin($margins, $spacing) {
+	@each $k_margin, $v_margin in $margins {
+		@each $k_spacing, $v_spacing in $spacing {
+			.u-#{$k_margin}-#{$k_spacing} {
+				margin#{margin-property($v_margin)}: $v_spacing;
+			}
+		}
+	}
+}
+
+@mixin ico($ico) {
+	-webkit-mask-image: $ico;
+	mask-image: $ico;
+}
+
+@mixin shadow-1 {
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+@mixin gradient-1 {
+	background-image: -webkit-linear-gradient($logo-gradient);
+	background-image: linear-gradient($logo-gradient);
+}
+
+@mixin focus {
+	&:focus {
+		border-color: var(--c-pr-4);
+		-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		outline: none;
+	}
+}
