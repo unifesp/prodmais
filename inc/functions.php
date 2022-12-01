@@ -481,7 +481,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    Categories::list($response);
+    Categories::list($response, 'source');
   }
 
   static function tipo_inicio()
@@ -515,7 +515,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    Categories::list($response);
+    Categories::list($response, 'tipo');
   }
 
   static function unidade_inicio($field)
@@ -549,7 +549,7 @@ class paginaInicial
     ];
 
     $response = $client->search($params);
-    Categories::list($response);
+    Categories::list($response, $field);
   }
 
   static function possui_lattes()
@@ -2043,7 +2043,6 @@ class Elasticsearch
   {
     $response = Elasticsearch::update($_id, $body);
     echo '<br/>Resultado: ' . ($response["_id"]) . ', ' . ($response["result"]) . ', ' . ($response["_shards"]['successful']) . '<br/>';
-
   }
 
   /**
@@ -2239,7 +2238,6 @@ class Elasticsearch
     // Update the index mapping
     $client->indices()->putMapping($mappingsParams);
   }
-
 }
 
 class Requests
@@ -2273,7 +2271,6 @@ class Requests
           $i_filter++;
         }
       }
-
     }
 
     if (!empty($get['notFilter'])) {
@@ -2345,7 +2342,6 @@ class Requests
           $i_filter++;
         }
       }
-
     }
 
     if (!empty($post['notFilter'])) {
@@ -2386,9 +2382,7 @@ class Requests
     }
 
     return compact('page', 'query', 'limit', 'skip');
-
   }
-
 }
 
 class Facets
@@ -2416,11 +2410,9 @@ class Facets
     $result_count = count($response["aggregations"]["counts"]["buckets"]);
 
     if ($result_count == 0) {
-
     } elseif (($result_count != 0) && ($result_count < 5)) {
 
       if (($result_count == 1) && ($response["aggregations"]["counts"]["buckets"][0]["key"] == "")) {
-
       } else {
         echo '<div class="accordion-item">';
         echo '<h2 class="accordion-header" id="heading' . hash('crc32', $field_name) . '">
@@ -2466,9 +2458,7 @@ class Facets
 
             echo '</li>';
           }
-
-        }
-        ;
+        };
         echo '</ul>';
         echo '</div></div>';
       }
@@ -2566,8 +2556,6 @@ class Facets
       echo '</div></div>';
     }
     echo '</li>';
-
-
   }
 
   public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $open = false)
@@ -2623,11 +2611,9 @@ class Facets
       echo '<a href="admin/autoridades.php?term=&quot;' . $termCleaned . '&quot;" style="color:#0040ff;font-size: 90%">' . $termCleaned . ' (' . number_format($facets['doc_count'], 0, ',', '.') . ')</a>';
       echo '</div>';
       echo '</li>';
-    }
-    ;
+    };
     echo '</ul>
           </li>';
-
   }
 
   public function facet_range($fileName, $field, $size, $field_name, $type_of_number = "")
@@ -2678,12 +2664,9 @@ class Facets
         echo '<a href="' . $fileName . '?&search=' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']" style="color:#0040ff;font-size: 90%">Intervalo ' . $facets['key'] . '</a>
                 <span class="badge badge-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
         echo '</li>';
-      }
-      ;
+      };
       echo '</ul>';
     }
-
-
   }
 }
 
@@ -2749,7 +2732,6 @@ class FacetsNew
 
       $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
       $facet_array[] = '</li>';
-
     }
 
     $facet_array[] = '</ul>';
@@ -2757,7 +2739,6 @@ class FacetsNew
     $facet_string = implode("", $facet_array);
 
     return $facet_string;
-
   }
 
   public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $open = false)
@@ -2813,11 +2794,9 @@ class FacetsNew
       echo '<a href="admin/autoridades.php?term=&quot;' . $termCleaned . '&quot;" style="color:#0040ff;font-size: 90%">' . $termCleaned . ' (' . number_format($facets['doc_count'], 0, ',', '.') . ')</a>';
       echo '</div>';
       echo '</li>';
-    }
-    ;
+    };
     echo '</ul>
           </li>';
-
   }
 
   public function facet_range($fileName, $field, $size, $field_name, $type_of_number = "")
@@ -2868,12 +2847,9 @@ class FacetsNew
         echo '<a href="' . $fileName . '?&search=' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']" style="color:#0040ff;font-size: 90%">Intervalo ' . $facets['key'] . '</a>
                 <span class="badge badge-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
         echo '</li>';
-      }
-      ;
+      };
       echo '</ul>';
     }
-
-
   }
 }
 
@@ -2980,7 +2956,6 @@ class Citation
         } elseif (strpos($periodicos_array_new, 'p.') !== false) {
           $array_citation["page"] = str_replace("p.", "", $periodicos_array_new);
         }
-
       }
     }
 
@@ -2995,7 +2970,6 @@ class Citation
     //var_dump($data);
     return array($data);
   }
-
 }
 
 
@@ -3073,7 +3047,6 @@ class UI
       }
       echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-left i-lg"></i></button>';
       echo '</form>';
-
     }
     echo '<span>Página ' . number_format($page, 0, ',', '.') . '  - ' . number_format($total, 0, ',', '.') . '&nbsp;registros</span>';
     if ($total / $limit > $page) {
@@ -3091,14 +3064,11 @@ class UI
       }
       echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-right i-lg"></i></button>';
       echo '</form>';
-
     } else {
       echo '';
     }
     echo '</div>';
   }
-
-
 }
 
 
@@ -3230,7 +3200,6 @@ class DSpaceREST
     return $result;
 
     curl_close($ch);
-
   }
 
   static function logoutREST($DSpaceCookies)
@@ -3418,7 +3387,6 @@ class DSpaceREST
     $output = curl_exec($ch);
     return $output;
     curl_close($ch);
-
   }
 
   static function deleteItemDSpace($uuid, $DSpaceCookies)
@@ -3595,7 +3563,6 @@ class DSpaceREST
 
     $jsonDC = json_encode($arrayDC);
     return $jsonDC;
-
   }
 
   static function testREST($DSpaceCookies)
@@ -3609,7 +3576,6 @@ class DSpaceREST
     $server_output = curl_exec($ch);
     print_r($server_output);
     curl_close($ch);
-
   }
 }
 
