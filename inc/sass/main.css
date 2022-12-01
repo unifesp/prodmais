@@ -806,8 +806,10 @@ details[open] > *:not(summary) {
   --c-pr-7: hsl(198, 76%, 90%);
   --c-pr-h: 198;
   --c-pr-s: 76%;
-  --c-bg-header-light: hsla(198, 76%, 50%, 0.5);
-  --c-bg-header-dark: hsla(198, 76%, 30%, 0.5);
+  --c-siteheader-bg-light: hsla(198, 76%, 50%, 0.5);
+  --c-siteheader-bg-dark: hsla(198, 76%, 30%, 0.5);
+  --c-sitemenu-bg-light: hsla(198, 76%, 50%, 0.7);
+  --c-sitemenu-bg-dark: hsla(198, 76%, 30%, 0.7);
   --c-se-0: hsl(142, 29%, 30%);
   --c-se-1: hsl(142, 29%, 50%);
   --c-se-2: hsl(142, 29%, 70%);
@@ -823,9 +825,10 @@ details[open] > *:not(summary) {
 [data-theme=Prodmais] {
     --c-siteheader-logo: var(--c-mn-99);
     --c-siteheader-logo-hover: var(--c-pr-7);
+    --c-siteheader-bg: var(--c-siteheader-bg-light);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-light);
     --c-sitemenu-fg: var(--c-mn-99);
     --c-sitemenu-fg-hover: var(--c-pr-7);
-    --c-bg-header: var(--c-bg-header-light);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -839,9 +842,10 @@ details[open] > *:not(summary) {
     --c-paper: var(--c-mn-0);
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
+    --c-siteheader-bg: var(--c-siteheader-bg-dark);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-dark);
     --c-sitemenu-fg: var(--c-pr-6);
     --c-sitemenu-fg-hover: var(--c-mn-99);
-    --c-bg-header: var(--c-bg-header-dark);
   }
 }
 
@@ -857,8 +861,10 @@ details[open] > *:not(summary) {
   --c-pr-7: hsl(169, 76%, 90%);
   --c-pr-h: 169;
   --c-pr-s: 76%;
-  --c-bg-header-light: hsla(169, 76%, 50%, 0.5);
-  --c-bg-header-dark: hsla(169, 76%, 30%, 0.5);
+  --c-siteheader-bg-light: hsla(169, 76%, 50%, 0.5);
+  --c-siteheader-bg-dark: hsla(169, 76%, 30%, 0.5);
+  --c-sitemenu-bg-light: hsla(169, 76%, 50%, 0.7);
+  --c-sitemenu-bg-dark: hsla(169, 76%, 30%, 0.7);
   --c-se-0: hsl(0, 0%, 30%);
   --c-se-1: hsl(0, 0%, 50%);
   --c-se-2: hsl(0, 0%, 70%);
@@ -874,9 +880,10 @@ details[open] > *:not(summary) {
 [data-theme=Waterbeach] {
     --c-siteheader-logo: var(--c-mn-99);
     --c-siteheader-logo-hover: var(--c-pr-7);
+    --c-siteheader-bg: var(--c-siteheader-bg-light);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-light);
     --c-sitemenu-fg: var(--c-mn-99);
     --c-sitemenu-fg-hover: var(--c-pr-7);
-    --c-bg-header: var(--c-bg-header-light);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -890,9 +897,10 @@ details[open] > *:not(summary) {
     --c-paper: var(--c-mn-0);
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
+    --c-siteheader-bg: var(--c-siteheader-bg-dark);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-dark);
     --c-sitemenu-fg: var(--c-pr-6);
     --c-sitemenu-fg-hover: var(--c-mn-99);
-    --c-bg-header: var(--c-bg-header-dark);
   }
 }
 
@@ -908,8 +916,10 @@ details[open] > *:not(summary) {
   --c-pr-7: hsl(342, 76%, 90%);
   --c-pr-h: 342;
   --c-pr-s: 76%;
-  --c-bg-header-light: hsla(342, 76%, 50%, 0.5);
-  --c-bg-header-dark: hsla(342, 76%, 30%, 0.5);
+  --c-siteheader-bg-light: hsla(342, 76%, 50%, 0.5);
+  --c-siteheader-bg-dark: hsla(342, 76%, 30%, 0.5);
+  --c-sitemenu-bg-light: hsla(342, 76%, 50%, 0.7);
+  --c-sitemenu-bg-dark: hsla(342, 76%, 30%, 0.7);
   --c-se-0: hsl(0, 0%, 30%);
   --c-se-1: hsl(0, 0%, 50%);
   --c-se-2: hsl(0, 0%, 70%);
@@ -925,9 +935,10 @@ details[open] > *:not(summary) {
 [data-theme=Tomaton] {
     --c-siteheader-logo: var(--c-mn-99);
     --c-siteheader-logo-hover: var(--c-pr-7);
+    --c-siteheader-bg: var(--c-siteheader-bg-light);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-light);
     --c-sitemenu-fg: var(--c-mn-99);
     --c-sitemenu-fg-hover: var(--c-pr-7);
-    --c-bg-header: var(--c-bg-header-light);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -941,9 +952,10 @@ details[open] > *:not(summary) {
     --c-paper: var(--c-mn-0);
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
+    --c-siteheader-bg: var(--c-siteheader-bg-dark);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-dark);
     --c-sitemenu-fg: var(--c-pr-6);
     --c-sitemenu-fg-hover: var(--c-mn-99);
-    --c-bg-header: var(--c-bg-header-dark);
   }
 }
 
@@ -959,8 +971,10 @@ details[open] > *:not(summary) {
   --c-pr-7: hsl(280, 76%, 90%);
   --c-pr-h: 280;
   --c-pr-s: 76%;
-  --c-bg-header-light: hsla(280, 76%, 50%, 0.5);
-  --c-bg-header-dark: hsla(280, 76%, 30%, 0.5);
+  --c-siteheader-bg-light: hsla(280, 76%, 50%, 0.5);
+  --c-siteheader-bg-dark: hsla(280, 76%, 30%, 0.5);
+  --c-sitemenu-bg-light: hsla(280, 76%, 50%, 0.7);
+  --c-sitemenu-bg-dark: hsla(280, 76%, 30%, 0.7);
   --c-se-0: hsl(280, 20%, 30%);
   --c-se-1: hsl(280, 20%, 50%);
   --c-se-2: hsl(280, 20%, 70%);
@@ -976,9 +990,10 @@ details[open] > *:not(summary) {
 [data-theme=Blueberry] {
     --c-siteheader-logo: var(--c-mn-99);
     --c-siteheader-logo-hover: var(--c-pr-7);
+    --c-siteheader-bg: var(--c-siteheader-bg-light);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-light);
     --c-sitemenu-fg: var(--c-mn-99);
     --c-sitemenu-fg-hover: var(--c-pr-7);
-    --c-bg-header: var(--c-bg-header-light);
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -992,9 +1007,10 @@ details[open] > *:not(summary) {
     --c-paper: var(--c-mn-0);
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
+    --c-siteheader-bg: var(--c-siteheader-bg-dark);
+    --c-sitemenu-bg: var(--c-sitemenu-bg-dark);
     --c-sitemenu-fg: var(--c-pr-6);
     --c-sitemenu-fg-hover: var(--c-mn-99);
-    --c-bg-header: var(--c-bg-header-dark);
   }
 }
 
@@ -1561,7 +1577,7 @@ h5 a {
   align-content: center;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  background-color: var(--c-bg-header);
+  background-color: var(--c-siteheader-bg);
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
@@ -1616,14 +1632,16 @@ h5 a {
 
 @media (max-width: 1299px) {
   .sitemenu {
-    background-image: linear-gradient(var(--c-pr-2), var(--c-pr-1));
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-image: linear-gradient(var(--c-sitemenu-bg), var(--c-pr-1));
     box-shadow: 0px 20px 10px 7px rgba(0, 0, 0, 0.4);
     display: none;
     height: 100vh;
     left: 0;
     padding: 2rem;
     position: absolute;
-    top: 4rem;
+    top: 60px;
     transition: all 0.3s ease;
     width: 100%;
     z-index: 100;

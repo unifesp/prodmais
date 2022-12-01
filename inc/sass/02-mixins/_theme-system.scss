@@ -38,8 +38,10 @@
 			@include make-palette($k, $v, map-get($lights, "pr"));
 			--c-pr-h: #{nth($v, 1)};
 			--c-pr-s: #{nth($v, 2)};
-			--c-bg-header-light: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 50%, 0.5);
-			--c-bg-header-dark: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 30%, 0.5);
+			--c-siteheader-bg-light: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 50%, 0.5);
+			--c-siteheader-bg-dark: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 30%, 0.5);
+			--c-sitemenu-bg-light: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 50%, 0.7);
+			--c-sitemenu-bg-dark: hsla(#{nth($v, 1)}, #{nth($v, 2)}, 30%, 0.7);
 		}
 
 		@if ($k == "se") {
@@ -58,9 +60,10 @@
 	@media (prefers-color-scheme: light) {
 		--c-siteheader-logo: var(--c-mn-99);
 		--c-siteheader-logo-hover: var(--c-pr-7);
+		--c-siteheader-bg: var(--c-siteheader-bg-light);
+		--c-sitemenu-bg: var(--c-sitemenu-bg-light);
 		--c-sitemenu-fg: var(--c-mn-99);
 		--c-sitemenu-fg-hover: var(--c-pr-7);
-		--c-bg-header: var(--c-bg-header-light);
 	}
 	@media (prefers-color-scheme: dark) {
 		--c-bg-1: var(--c-mn-0);
@@ -71,8 +74,9 @@
 		--c-paper: var(--c-mn-0);
 		--c-siteheader-logo: var(--c-pr-6);
 		--c-siteheader-logo-hover: var(--c-mn-99);
+		--c-siteheader-bg: var(--c-siteheader-bg-dark);
+		--c-sitemenu-bg: var(--c-sitemenu-bg-dark);
 		--c-sitemenu-fg: var(--c-pr-6);
 		--c-sitemenu-fg-hover: var(--c-mn-99);
-		--c-bg-header: var(--c-bg-header-dark);
 	}
 }
