@@ -11,7 +11,7 @@ class Categories
       echo '<input type="hidden" name="search" value="">';
       echo '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
       echo '<div class="d-between">';
-      echo '<input class="c-categories__text" type="submit" value="' . $facets['key'] . ':" />';
+      echo '<input class="c-categories__text" type="submit" value="' . $facets['key'] . '" />';
       echo '<span class="c-categories__number">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
       echo '</div>';
       echo '</form>';
