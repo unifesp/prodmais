@@ -73,35 +73,6 @@ $iLgg: 72px;
 // logo and slogn gradients
 $logo-gradient: 45deg, var(--c-pr-2), var(--c-pr-4);
 
-// @mixin theme_vars() {
-// 	@media (prefers-color-scheme: light) {
-// 		--c-bg-1: var(--c-mn-99);
-// 		--c-bg-2: var(--c-mn-95);
-// 		--c-fg-1: var(--c-mn-10);
-// 		--c-fg-2: var(--c-mn-20);
-// 		--c-fg-3: var(--c-mn-30);
-// 		--c-paper: var(--c-mn-99);
-// 		--c-siteheader-logo: var(--c-mn-99);
-// 		--c-siteheader-logo-hover: var(--c-pr-7);
-// 		--c-sitemenu-fg: var(--c-mn-99);
-// 		--c-sitemenu-fg-hover: var(--c-pr-7);
-// 		--c-bg-header: var(--c-bg-header-light);
-// 	}
-// 	@media (prefers-color-scheme: dark) {
-// 		--c-bg-1: var(--c-mn-0);
-// 		--c-bg-2: var(--c-mn-20);
-// 		--c-fg-1: var(--c-mn-70);
-// 		--c-fg-2: var(--c-mn-80);
-// 		--c-fg-3: var(--c-mn-90);
-// 		--c-paper: var(--c-mn-0);
-// 		--c-siteheader-logo: var(--c-pr-6);
-// 		--c-siteheader-logo-hover: var(--c-mn-99);
-// 		--c-sitemenu-fg: var(--c-pr-6);
-// 		--c-sitemenu-fg-hover: var(--c-mn-99);
-// 		--c-bg-header: var(--c-bg-header-dark);
-// 	}
-// }
-
 $paletteGraph: (
 	0: --c-pr-7,
 	1: --c-pr-6,
