@@ -5,7 +5,7 @@
 	margin-top: calc($siteheader_height + 5px);
 
 	@include up-to("lg") {
-		column-gap: 1rem;
+		gap: 1rem;
 		display: grid;
 		grid-template-areas: "resultnav resultmain";
 		grid-template-columns: $filterbar_width_desk 1fr;
@@ -24,7 +24,7 @@
 
 .p-result-nav {
 	@include up-to("lg") {
-		grid: resultnav;
+		grid-area: resultnav;
 	}
 }
 
@@ -32,6 +32,15 @@
 	border-radius: 10px;
 	min-height: 55vh;
 	padding: 0.5rem;
+}
+
+.p-result-search-ctn {
+	background-color: var(--c-bg-1);
+	border-radius: 35px;
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 1rem 0.5rem;
+	padding: 1rem 1rem;
 }
 
 .c-term {

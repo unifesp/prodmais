@@ -8,7 +8,6 @@ $gap: 2px;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	width: fit-content;
 
 	&-division {
 		margin-top: 1rem;
@@ -18,8 +17,8 @@ $gap: 2px;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
-		margin: 0.5rem;
 		justify-content: center;
+		margin: 0.5rem;
 
 		@include up-to("md") {
 			flex-direction: column;

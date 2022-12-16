@@ -104,11 +104,11 @@ h5 a {
 }
 
 $sizeH: (
-	1: 2.4rem,
-	2: 2.2rem,
-	3: 2rem,
-	4: 1.7rem,
-	5: 1.5rem,
+	1: clamp(1.4rem, 2vw + 1rem, 1.8rem),
+	2: clamp(1.3rem, 2vw + 1rem, 1.6rem),
+	3: clamp(1.2rem, 2vw + 1rem, 1.4rem),
+	4: clamp(1.1rem, 2vw + 1rem, 1.2rem),
+	5: clamp(1rem, 2vw + 1rem, 1.1rem),
 );
 
 @each $n, $size in $sizeH {

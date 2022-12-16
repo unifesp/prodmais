@@ -140,10 +140,7 @@ $get_data = $_GET;
 
     <main class="p-result-main">
 
-      <div class="d-flex u-mx-10">
-        <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
-          <i class="i i-btn i-sm i-help"></i>
-        </button>
+      <div class="p-result-search-ctn">
 
         <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
           enctype="multipart/form-data" id="searchresearchers">
@@ -156,6 +153,10 @@ $get_data = $_GET;
             </button>
           </div>
         </form>
+
+        <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
+          <i class="i i-btn i-sm i-help"></i>
+        </button>
       </div>
 
       <transition name="homeeffect">
