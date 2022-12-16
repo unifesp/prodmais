@@ -52,7 +52,7 @@
 }
 
 .c-whomini {
-	flex-direction: grid;
+	display: grid;
 	grid-template-areas: "a b";
 	margin-block: 0.5rem;
 
@@ -93,7 +93,7 @@
 		height: 200px;
 		-webkit-mask-image: $circle;
 		mask-image: $circle;
-		-webkit-mask-position: start;
+		-webkit-mask-position: center;
 		mask-position: start;
 		-webkit-mask-repeat: no-repeat;
 		mask-repeat: no-repeat;

@@ -25,6 +25,6 @@
 
 	p {
 		@extend .t;
-		color: --var(--c-pr-1);
+		color: var(--c-pr-1);
 	}
 }

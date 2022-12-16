@@ -4,7 +4,7 @@
 	padding: 0 2rem;
 
 	@include up-to("md") {
-		column-gap: 1rem;
+		gap: 1rem;
 		grid-template-areas:
 			"one two two"
 			"three three three";
@@ -24,7 +24,7 @@
 	// @extend .dv, .d-vc;
 	display: flex;
 	flex-direction: column;
-	justify-content: baseline;
+	justify-content: center;
 	text-align: center;
 }
 

@@ -5,7 +5,7 @@
 	margin-top: calc($siteheader_height + 5px);
 
 	@include up-to("lg") {
-		column-gap: 1rem;
+		gap: 1rem;
 		display: grid;
 		grid-template-areas: "resultnav resultmain";
 		grid-template-columns: $filterbar_width_desk 1fr;
@@ -24,7 +24,7 @@
 
 .p-result-nav {
 	@include up-to("lg") {
-		grid: resultnav;
+		grid-area: resultnav;
 	}
 }
 

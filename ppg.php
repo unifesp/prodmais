@@ -42,8 +42,8 @@ class PPG {
     }
 
     echo 
-    "<a class='p-ppg-externos' href='$link' target='blank'>
-      <img class='p-ppg-plataforms' src='inc/images/logos/$ico' title='$text'/>
+    "<a class='p-ppg__externos' href='$link' target='blank'>
+      <img class='p-ppg__plataforms' src='inc/images/logos/$ico' title='$text'/>
       <p class='t t-light'><b>$text</b></p>
     </a>";
   }
@@ -79,12 +79,12 @@ class PPG {
 
       <div class="c-wrapper-inner">
 
-        <section class="p-ppg-header">
-          <div class="p-ppg-header-one">
-            <i class="i i-ppg-logo p-ppg-logo"></i>
+        <section class="p-ppg__header">
+          <div class="p-ppg__header-1">
+            <i class="i i-ppg-logo p-ppg__logo"></i>
           </div>
 
-          <div class="p-ppg-header-two">
+          <div class="p-ppg__header-2">
             <h1 class="t t-h1">PPG <?php echo $ppg["NOME_PPG"]; ?></h1>
             <h2 class="t t-h2">Programa de Pós Graduação em <?php echo $ppg["NOME_PPG"]; ?></h2>
             <p class="t t-b ty-light-a">
@@ -93,7 +93,7 @@ class PPG {
             </p>
             <!--
             <div class="d-icon-text t-gray u-mb-10">
-              <i class="i i-sm i-mapmarker p-ppg-i"></i>
+              <i class="i i-sm i-mapmarker p-ppg__i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
             -->
@@ -102,9 +102,6 @@ class PPG {
               <i class='i i-people-manager'></i>
               <span class="t t-gray t-b">Coordenação: <?php echo $ppg["NOME_COORDENADOR"]; ?></span>
             </div>
-
-          </diV>
-          <div class="p-ppg-header-three">
 
             <!--
             <p class="t t-gray t-b">Secretaria:</p>
@@ -115,26 +112,24 @@ class PPG {
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-mail p-ppg-i"></i> <?php echo $ppg["PPG_EMAIL"]; ?>
+                <i class="i i-sm i-mail p-ppg__i"></i> <?php echo $ppg["PPG_EMAIL"]; ?>
               </div>
             </a>
 
             <!--
             <div class="d-icon-text t-gray">
-              <i class="i i-sm i-phone p-ppg-i"></i> (11) 5555-5555
+              <i class="i i-sm i-phone p-ppg__i"></i> (11) 5555-5555
             </div>
             -->
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-web p-ppg-i"></i> <?php echo $ppg ["PPG_SITE"]; ?>
+                <i class="i i-sm i-web p-ppg__i"></i> <?php echo $ppg ["PPG_SITE"]; ?>
               </div>
             </a>
-
-
           </div>
 
-          <div class="p-ppg-header-four">
+          <div class="p-ppg__badges">
             <div class="dh d-hc">
               <?php echo PPGBadges::students(
                 $rate = 20,
@@ -148,7 +143,7 @@ class PPG {
                 $ico = 'formado'
               ); ?>
             </div>
-            <div class="p-ppg-badges">
+            <div class="p-ppg__badges-capes">
               <?php echo PPGBadges::capes(
                 $rate = 4,
                 $title = 'Mestrado acadêmico'
@@ -225,7 +220,7 @@ class PPG {
         <section class="l-ppg">
           <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
-          <ul class="p-ppg-orientadores">
+          <ul class="p-ppg__orientadores">
 
             <li>
               <?php
