@@ -34,6 +34,15 @@
 	padding: 0.5rem;
 }
 
+.p-result-search-ctn {
+	background-color: var(--c-bg-1);
+	border-radius: 35px;
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 1rem 0.5rem;
+	padding: 1rem 1rem;
+}
+
 .c-term {
 	border-block: 1px solid var(--c-pr-4);
 	color: var(--c-pr-2);

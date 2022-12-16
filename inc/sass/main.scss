@@ -16,10 +16,10 @@
 @import "03-base/divs";
 @import "03-base/transitions";
 @import "03-base/acessibility";
+@import "03-base/typography";
 
 /// === SITE === ///
 @import "04-site/theme";
-@import "04-site/typography";
 @import "04-site/icons";
 @import "04-site/header";
 @import "04-site/menu";
@@ -67,4 +67,4 @@
 
 /// === UTILS === ///
 @import "03-base/margin";
-@import "03-base/others";
+@import "03-base/utils";

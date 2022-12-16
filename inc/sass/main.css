@@ -773,6 +773,120 @@ details[open] > *:not(summary) {
   width: auto;
 }
 
+body,
+input,
+select,
+textarea,
+li,
+p {
+  font-family: "Lato", sans-serif;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+.t, .c-tips p {
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.0375em;
+  line-height: 1.5;
+}
+
+.t-right {
+  text-align: right;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.t-justify {
+  text-align: justify;
+}
+
+.t-md {
+  font-size: 1.2rem;
+}
+
+.t-lg {
+  font-size: 1.5rem;
+}
+
+.t-gray {
+  color: var(--c-mn-40);
+}
+
+.t-light {
+  color: var(--c-mn-50);
+}
+
+a {
+  border: none;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+a:hover {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+
+.t-a {
+  color: var(--c-fg-2);
+}
+
+.t-b {
+  font-weight: 600;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.t-h1,
+.t-h2,
+.t-h3,
+.t-h4,
+.t-h5 {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.t-h1 {
+  font-size: 2rem;
+}
+
+.t-h2 {
+  font-size: 1.8rem;
+}
+
+.t-h3 {
+  font-size: 1.5rem;
+}
+
+.t-h4 {
+  font-size: 1.3rem;
+}
+
+.t-h5 {
+  font-size: 1.2rem;
+}
+
 :root {
   --c-mn-0: hsl(0, 0%, 0%);
   --c-mn-10: hsl(0, 0%, 10%);
@@ -1021,120 +1135,6 @@ body {
 
 a {
   color: --var(--c-link);
-}
-
-body,
-input,
-select,
-textarea,
-li,
-p {
-  font-family: "Lato", sans-serif;
-}
-
-strong,
-b {
-  font-weight: 600;
-}
-
-i,
-em {
-  font-style: italic;
-}
-
-.t, .c-tips p {
-  font-family: "Lato", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.0375em;
-  line-height: 1.5;
-}
-
-.t-right {
-  text-align: right;
-}
-
-.t-center {
-  text-align: center;
-}
-
-.t-justify {
-  text-align: justify;
-}
-
-.t-md {
-  font-size: 1.2rem;
-}
-
-.t-lg {
-  font-size: 1.5rem;
-}
-
-.t-gray {
-  color: var(--c-mn-40);
-}
-
-.t-light {
-  color: var(--c-mn-50);
-}
-
-a {
-  border: none;
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.4s ease;
-}
-a:hover {
-  text-decoration: none;
-}
-a:visited {
-  color: inherit;
-}
-
-.t-a {
-  color: var(--c-fg-2);
-}
-
-.t-b {
-  font-weight: 600;
-}
-
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.t-h1,
-.t-h2,
-.t-h3,
-.t-h4,
-.t-h5 {
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-}
-
-.t-h1 {
-  font-size: 2.4rem;
-}
-
-.t-h2 {
-  font-size: 2.2rem;
-}
-
-.t-h3 {
-  font-size: 2rem;
-}
-
-.t-h4 {
-  font-size: 1.7rem;
-}
-
-.t-h5 {
-  font-size: 1.5rem;
 }
 
 .i-prodmais {
@@ -2371,6 +2371,15 @@ h5 a {
   padding: 0.5rem;
 }
 
+.p-result-search-ctn {
+  background-color: var(--c-bg-1);
+  border-radius: 35px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 1rem 0.5rem;
+  padding: 1rem 1rem;
+}
+
 .c-term {
   border-block: 1px solid var(--c-pr-4);
   color: var(--c-pr-2);
@@ -2860,9 +2869,6 @@ details[open] .c-filterlist-name--header:before {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 .c-graph-division {
   margin-top: 1rem;
@@ -2871,8 +2877,8 @@ details[open] .c-filterlist-name--header:before {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 0.5rem;
   justify-content: center;
+  margin: 0.5rem;
 }
 @media (min-width: 899px) {
   .c-graph-info {
