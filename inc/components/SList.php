@@ -77,19 +77,42 @@ class SList
   // === Only for Slist::IntelectualProduction === //
   static function urlRendered($url)
   {
-    return "
-        <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
-          Conteúdo completo
-        </a>";
+    if (substr($url, 0, 3 ) === "10.") {
+      return "
+      <a class='t t-a d-icon-text' href='https://doi.org/'.$url.' target='blank'> 
+        <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+        Conteúdo completo
+      </a>";
+    } elseif (substr($url, 0, 5 ) === "[doi:") {      
+      $cleandoi = str_replace(['[doi:', ']'], '', $url);
+      $doi = 'https://doi.org/'.$cleandoi.'';
+      return "
+      <a class='t t-a d-icon-text' href='$doi' target='blank'> 
+        <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+        Conteúdo completo
+      </a>";
+    } elseif (substr($url, 0, 5 ) === "[http") {     
+      $cleanurl = str_replace(['[', ']'], '', $url);
+      return "
+      <a class='t t-a d-icon-text' href='$cleanurl' target='blank'> 
+        <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+        Conteúdo completo
+      </a>";    
+    } else {
+      return "
+      <a class='t t-a d-icon-text' href='$url' target='blank'> 
+        <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
+        Conteúdo completo
+      </a>";
+    }
+
   }
   // === Only for Slist::IntelectualProduction === //
   static function issnRendered($url)
   {
     return "
-        <a class='t t-a d-icon-text' href='$url' target='blank'> 
-          <i class='i i-link i-link u-ml-05' title='ISSN' alt='ISSN'></i>
-          ISSN: $url
+        <a class='t t-a d-icon-text'>
+        &nbsp;&nbsp;&nbsp;&nbsp;ISSN: $url
         </a>";
   }
 
