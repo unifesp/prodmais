@@ -3,6 +3,13 @@
 
 <head>
     <?php
+
+    header('Access-Control-Allow-Origin: *'); 
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+
     require 'inc/config.php';
     require 'inc/meta-header.php';
     require 'inc/functions.php';
@@ -209,6 +216,7 @@
               );
               unset($authors);
             }
+            echo ("<a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>");
 
             (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
 
@@ -221,6 +229,11 @@
 
     <?php include('inc/footer.php'); ?>
     <script src="inc/js/pages/result.js"></script>
+
+    <!-- PlumX Script -->
+    <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+
+
 </body>
 
 </html>
