@@ -2676,6 +2676,8 @@ class FacetsNew
   {
     global $url_base;
 
+    var_dump($get_search);
+
     if (isset($get_search["page"])) {
       unset($get_search["page"]);
     }
@@ -2717,16 +2719,16 @@ class FacetsNew
         $facet_array[] = '<form action="result_autores.php" method="post">';
       }
       $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+
       $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
 
-      // este trecho está imprimindo ' ""=""> ' em cada cada opção do fltro
-      // if(isset($get_search['filter'])){              
-      //     if (count($get_search['filter']) > 0) {
-      //         foreach ($get_search['filter'] as $filter) {
-      //             $facet_array[] = '<input type="hidden" name="filter[]" value="'.$filter.'">';
-      //         }
-      //     }
-      // }
+      if(isset($get_search['filter'])){              
+        if (count($get_search['filter']) > 0) {
+          foreach ($get_search['filter'] as $filter) {
+            $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
+          }
+        }
+      }
       $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
       $facet_array[] = '</form>';
 
