@@ -244,9 +244,9 @@ class SList
 					<p class='t t-light'>
 						Fonte: $refName $refVol $refFascicle $refPage
 					</p>
-
-          <a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>
-					
+          <p>
+            <a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>
+					</p>
 				</div>
       </li>
     ");
