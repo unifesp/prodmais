@@ -215,8 +215,9 @@
                 $id = ''
               );
               unset($authors);
+              echo ("<a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>");
             }
-            echo ("<a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>");
+            
 
             (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
 
