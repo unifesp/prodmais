@@ -12,12 +12,13 @@ if (isset($_POST["filter"])) {
     $_POST["filter"][] = "type:\"Curriculum\"";
 }
 
-if (isset($_POST["query"])) {
-    $_POST["search"] = 'nome_completo:' .$_POST['query']. '';
+if (isset($_POST["search"]) & !empty($_POST["search"])) {
+    if (!str_contains($_POST['search'], 'nome_completo')) {
+      $_POST["search"] = 'nome_completo:' .$_POST['search']. '';
+    }    
 } else {
     $_POST["search"] = '';
 }
-
 
 if (isset($fields)) {
     $_POST["fields"] = $fields;
@@ -47,46 +48,46 @@ $get_data = $_GET;
 <html lang="en">
 
 <head>
-  <?php
+    <?php
     include('inc/meta-header.php');
     ?>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
   </script> -->
 
-  <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
+    <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
 
 
-  <link rel="stylesheet" href="inc/css/style.css" />
+    <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
 <body data-theme="<?php echo $theme; ?>">
 
-  <?php
+    <?php
     if (file_exists('inc/google_analytics.php')) {
         include 'inc/google_analytics.php';
     }
     ?>
 
-  <!-- NAV -->
-  <?php require 'inc/navbar.php'; ?>
-  <!-- /NAV -->
+    <!-- NAV -->
+    <?php require 'inc/navbar.php'; ?>
+    <!-- /NAV -->
 
-  <div id="app-result" class="p-result-container">
+    <div id="app-result" class="p-result-container">
 
-    <nav class="p-result-nav">
+        <nav class="p-result-nav">
 
-      <details id="filterlist" class="c-filterlist" onload="resizeMenu">
-        <summary class="c-filterlist__header">
-          <h3 class="c-filterlist__title">Refinar resultados</h3>
-        </summary>
+            <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+                <summary class="c-filterlist__header">
+                    <h3 class="c-filterlist__title">Refinar resultados</h3>
+                </summary>
 
-        <div class="c-filterlist__content">
+                <div class="c-filterlist__content">
 
-          <?php
+                    <?php
                     $facets = new FacetsNew();
                     $facets->query = $result_post['query'];
 
@@ -134,82 +135,84 @@ $get_data = $_GET;
                     echo($facets->facet(basename(__FILE__), "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, $index_cv));
 
                 ?>
-        </div>
-      </details>
-    </nav>
+                </div>
+            </details>
+        </nav>
 
-    <main class="p-result-main">
+        <main class="p-result-main">
 
-      <div class="p-result-search-ctn">
+            <div class="p-result-search-ctn">
 
-        <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
-          enctype="multipart/form-data" id="searchresearchers">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="searchresearchers">
 
-          <div class="c-searcher">
-            <input class="" type="text" name="query" placeholder="Digite parte do nome do pesquisador"
-              aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
-            <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
-              <i class="i i-lupa c-searcher__btn-ico"></i>
-            </button>
-          </div>
-        </form>
+                    <div class="c-searcher">
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
+                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
+                            <i class="i i-lupa c-searcher__btn-ico"></i>
+                        </button>
+                    </div>
+                </form>
 
-        <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
-          <i class="i i-btn i-sm i-help"></i>
-        </button>
-      </div>
+                <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
+                    <i class="i i-btn i-sm i-help"></i>
+                </button>
+            </div>
 
-      <transition name="homeeffect">
-        <div class="c-tips" v-if="showTips">
+            <transition name="homeeffect">
+                <div class="c-tips" v-if="showTips">
 
-          <h4>Refinar resultados</h4>
-          <p>Use os filtros à direita para refinar os resultados da sua busca. São diversas opções, como Campus,
-            Unidade, Departamento, Nome do PPG, e etc. </p>
+                    <h4>Refinar resultados</h4>
+                    <p>Use os filtros à direita para refinar os resultados da sua busca. São diversas opções, como
+                        Campus,
+                        Unidade, Departamento, Nome do PPG, e etc. </p>
 
-          <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de cada item
-            listado é exibida a quantidade de resultados disponíceis.</p>
+                    <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de
+                        cada item
+                        listado é exibida a quantidade de resultados disponíceis.</p>
 
-          <p></p>
-          <h4></h4>
+                    <p></p>
+                    <h4></h4>
 
-          <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
-            Fechar
-          </button>
-        </div>
-      </transition>
+                    <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
+                        Fechar
+                    </button>
+                </div>
+            </transition>
 
-      <!-- Navegador de resultados - Início -->
-      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-      <!-- Navegador de resultados - Fim -->
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
 
-      <div class="p-result-authors">
-        <ul class="c-authors-list">
-          <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-          <?php 
+            <div class="p-result-authors">
+                <ul class="c-authors-list">
+                    <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
+                    <?php 
             if (empty($r["_source"]['datePublished'])) {
               $r["_source"]['datePublished'] = "";
             }
           ?>
 
-          <li class="c-card-author t t-b t-md">
-            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-              <?php echo $r["_source"]['nome_completo']; ?>
-            </a>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+                    <li class="c-card-author t t-b t-md">
+                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                            <?php echo $r["_source"]['nome_completo']; ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
 
-      <!-- Navegador de resultados - Início -->
-      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-      <!-- Navegador de resultados - Fim -->
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
 
-    </main>
+        </main>
 
-  </div>
+    </div>
 
-  <?php include('inc/footer.php'); ?>
-  <script src="inc/js/pages/result.js"></script>
+    <?php include('inc/footer.php'); ?>
+    <script src="inc/js/pages/result.js"></script>
 </body>
 
 </html>

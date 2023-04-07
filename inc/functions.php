@@ -3032,7 +3032,7 @@ class UI
    
     echo '<div class="c-navigator">';
     if ($page == 1) {
-      echo '';
+      echo '<i class="i i-arrow-left i-lg" style="color:rgb(128, 128, 128)"></i>';
     } else {
       //var_dump($post['filter']);
       $last_page = $page - 1;
@@ -3042,13 +3042,13 @@ class UI
       echo '<input type="hidden" name="page" value="' . $last_page . '">';
       if (isset($post['filter']) && is_array($post['filter'])) {
         foreach ($post['filter'] as $filter) {
-          echo '<input type="hidden" name="filter[]" value="' . $filter . '">';
+          echo '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
         }
       }
       echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-left i-lg"></i></button>';
       echo '</form>';
     }
-    echo '<span>Página ' . number_format($page, 0, ',', '.') . '  - ' . number_format($total, 0, ',', '.') . '&nbsp;registros</span>';
+    echo '<span>Página ' . number_format($page, 0, ',', '.') . '  | ' . number_format($total, 0, ',', '.') . '&nbsp;registros</span>';
     if ($total / $limit > $page) {
       //var_dump($post['filter']);
       $next_page = $page + 1;
@@ -3056,15 +3056,16 @@ class UI
       echo '<form action="' . $type_of_page . '.php" method="post">';
       echo '<input type="hidden" name="search" value="' . $post["search"] . '">';
       echo '<input type="hidden" name="page" value="' . $next_page . '">';
-      if (isset($post['filter']) && is_array($post['filter'])) {
-        foreach ($post['filter'] as $filter) {
-          echo '<input type="hidden" name="filter[]" value="' . $filter . '">';
+      
+      if (isset($post['filter']) && is_array($post['filter'])) {        
+        foreach ($post['filter'] as $filter) {         
+          echo '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
         }
       }
       echo '<button class="c-navigator-btn c-btn--c1"><i class="i i-arrow-right i-lg"></i></button>';
       echo '</form>';
     } else {
-      echo '';
+      echo '<i class="i i-arrow-right i-lg" style="color:rgb(128, 128, 128)"></i>';
     }
     echo '</div>';
   }
