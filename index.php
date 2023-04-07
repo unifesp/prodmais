@@ -134,12 +134,10 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                 <div class="c-searcher">
                     <input id="mainseach" name="search" type="search" placeholder="Pesquise por palavra chave"
                         aria-label="Pesquisar">
-
                     <button class="c-searcher__btn" type="submit" title="Buscar">
                         <i class="i i-lupa c-searcher__btn-ico"></i>
                     </button>
                 </div>
-
 
                 <button type="button" v-on:click="changeSearchMode()" class="c-btn p-home-form-btn"
                     title="Alternar modo de pesquisa">
@@ -153,10 +151,6 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                         <label class="p-home-info u-my-10">Mais opções de pesquisa:</label>
 
                         <?php paginaInicial::filter_select("vinculo.ppg_nome"); ?>
-
-                        <input class="c-input" type="search"
-                            placeholder="Filtrar por Nome do Programa de Pós-Graduação (Opcional)" aria-label="Mudar"
-                            name="search">
 
                         <input class="c-input" list="datalistOptions" id="authorsDataList"
                             placeholder="Filtrar por nome ou ID Lattes do autor" name="filter[]" v-model="query"
