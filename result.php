@@ -214,8 +214,7 @@
                 $datePublished = $published,
                 $id = ''
               );
-              unset($authors);
-              echo ("<a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>");
+              unset($authors);              
             }
             
 
