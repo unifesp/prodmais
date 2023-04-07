@@ -2676,8 +2676,6 @@ class FacetsNew
   {
     global $url_base;
 
-    var_dump($get_search);
-
     if (isset($get_search["page"])) {
       unset($get_search["page"]);
     }
