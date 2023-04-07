@@ -77,7 +77,6 @@ class SList
   // === Only for Slist::IntelectualProduction === //
   static function urlRendered($url)
   {
-    var_dump($url);
     if (substr($url, 0, 3 ) === "10.") {
       return "
       <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'> 
