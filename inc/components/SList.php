@@ -131,7 +131,7 @@ class SList
   // === Only for Slist::IntelectualProduction === //
   static function fonteRendered($refName, $refVol, $refFascicle, $refPage)
   {
-    if (isset($refName, $refVol, $refFascicle, $refPage)) {
+    if (!empty($refName, $refVol, $refFascicle, $refPage)) {
       !empty($refName) ? $refName = $refName : '';
       !empty($refVol) ? $refVol = ", v. $refVol" : '';
       !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
