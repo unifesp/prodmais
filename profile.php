@@ -1080,6 +1080,9 @@ if (!empty($_REQUEST["lattesID"])) {
 
   <?php include('inc/footer.php'); ?>
 
+  <!-- PlumX Script -->
+  <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+
   <script>
   var app = new Vue({
     el: '#profile',
