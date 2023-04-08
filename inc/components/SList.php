@@ -123,10 +123,29 @@ class SList
   static function issnRendered($url)
   {
     return "
-        <a class='t t-a d-icon-text'>
+      <a class='t t-a d-icon-text'>
         &nbsp;&nbsp;&nbsp;&nbsp;ISSN: $url
-        </a>";
+      </a>";
   }
+
+  // === Only for Slist::IntelectualProduction === //
+  static function fonteRendered($refName, $refVol, $refFascicle, $refPage)
+  {
+    if (isset($refName, $refVol, $refFascicle, $refPage)) {
+      !empty($refName) ? $refName = $refName : '';
+      !empty($refVol) ? $refVol = ", v. $refVol" : '';
+      !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
+      !empty($refPage) ? $refPage = ", p. $refPage" : '';
+      return "
+        <p class='t t-light'>
+          Fonte: $refName $refVol $refFascicle $refPage
+        </p>"
+        ;
+    } else {
+      return "";
+    }
+  }
+
 
 
 
@@ -229,10 +248,8 @@ class SList
     !empty($doi) ? $doiCleaned = SList::doiCleaned($doi) : $doiCleaned = '';
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
-    !empty($refName) ? $refName = $refName : '';
-    !empty($refVol) ? $refVol = ", v. $refVol" : '';
-    !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
-    !empty($refPage) ? $refPage = ", p. $refPage" : '';
+    $fonteRendered = SList::fonteRendered($refName, $refVol, $refFascicle, $refPage);
+
 
     // (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
 
@@ -253,11 +270,10 @@ class SList
             $issnRendered					
 					</div>
           $datePublished
-					
-					<p class='t t-light'>
-						Fonte: $refName $refVol $refFascicle $refPage
-					</p>
-          <p>
+
+          $fonteRendered					
+
+          <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
 					</p>
 				</div>
