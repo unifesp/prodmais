@@ -144,6 +144,10 @@ if (!empty($_REQUEST["lattesID"])) {
   <link rel="stylesheet" href="<?php echo $url_base; ?>/inc/sass/main.css" />
   <script src="<?php echo $url_base; ?>/inc/js/vue.min.js"></script>
 
+  <!-- PlumX Script -->
+  <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+
+
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
@@ -1079,9 +1083,6 @@ if (!empty($_REQUEST["lattesID"])) {
 
 
   <?php include('inc/footer.php'); ?>
-
-  <!-- PlumX Script -->
-  <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
 
   <script>
   var app = new Vue({
