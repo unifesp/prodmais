@@ -74,6 +74,18 @@ class SList
         <img class='i-doi' src='inc/images/logos/doi.svg' title='doi' alt='doi' />
         </a>";
   }
+
+  // === Only for Slist::IntelectualProduction === //
+  static function doiCleaned($doi) 
+  {
+    if (substr($doi, 0, 3 ) === "10.") {
+      return $doi;
+    } elseif (substr($url, 0, 5 ) === "[doi:") {
+      $cleandoi = str_replace(['[doi:', ']'], '', $url);
+      return $cleandoi;
+    } 
+  }
+
   // === Only for Slist::IntelectualProduction === //
   static function urlRendered($url)
   {
@@ -214,6 +226,7 @@ class SList
     $authorsRendered = implode('; ', $authors);
 
     !empty($doi) ? $doiRendered = SList::doiRendered($doi) : $doiRendered = '';
+    !empty($doi) ? $doiCleaned = SList::doiCleaned($doi) : $doiCleaned = '';
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
     !empty($refName) ? $refName = $refName : '';
@@ -245,7 +258,7 @@ class SList
 						Fonte: $refName $refVol $refFascicle $refPage
 					</p>
           <p>
-            <a href='https://plu.mx/plum/a/?doi=$doi' class='plumx-details'></a>
+            <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
 					</p>
 				</div>
       </li>
