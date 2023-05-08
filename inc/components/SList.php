@@ -78,6 +78,9 @@ class SList
   // === Only for Slist::IntelectualProduction === //
   static function doiCleaned($doi) 
   {
+    if(!isset($url)) {
+      $url = "";
+    }
     if (substr($doi, 0, 3 ) === "10.") {
       return $doi;
     } elseif (substr($url, 0, 5 ) === "[doi:") {
