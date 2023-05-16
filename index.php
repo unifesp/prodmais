@@ -163,13 +163,13 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                             </option>
                         </datalist>
 
-                        <label class="p-home-info u-my-10">Filtrar por data:</label>
+                        <label class="p-home-info u-my-10">Filtrar por ano:</label>
                         <div class="dh d-hc">
                             <input type="text" class="c-input--date" id="initialYear" name="initialYear" pattern="\d{4}"
-                                placeholder="Data inicial" />
+                                placeholder="Ano inicial" />
 
                             <input type="text" class="c-input--date" id="finalYear" name="finalYear" pattern="\d{4}"
-                                placeholder="Data final" />
+                                placeholder="Ano final" />
                         </div>
 
                         <button type="submit" class="c-btn--search" title="Buscar">
