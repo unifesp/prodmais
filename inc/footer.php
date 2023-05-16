@@ -5,10 +5,10 @@
   <?php if($instituicao == "UNIFESP"): ?>
 
   <div class="sitefooter-contacts">
-    <a class="sitefooter-link" href="https://atendimento.unifesp.br/">
+    <a class="sitefooter-link" target="_blank" href="https://atendimento.unifesp.br/">
       Fale conosco</a>
-    <a class="sitefooter-link" href="https://atendimento.unifesp.br/">
-      Política de privacidade</a>
+    <!--<a class="sitefooter-link" target="_blank" href="https://atendimento.unifesp.br/">
+      Política de privacidade</a> -->
     <a class="sitefooter-link" target="_blank" href="https://forms.gle/2QRcqg2YfxMvEqVX9">
       Relate erros</a>
   </div>
