@@ -164,15 +164,13 @@ $get_data = $_GET;
                 <div class="c-tips" v-if="showTips">
 
                     <h4>Refinar resultados</h4>
-                    <p>Use os filtros à direita para refinar os resultados da sua busca. São diversas opções, como
-                        Campus,
-                        Unidade, Departamento, Nome do PPG, e etc. </p>
+                    <p>Use os filtros à esquerda para refinar os resultados da sua busca. São diversas opções, como
+                        Campus, Unidade, Departamento, Nome do PPG, e etc.
+                    </p>
 
                     <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de
-                        cada item
-                        listado é exibida a quantidade de resultados disponíceis.</p>
-
-                    <p></p>
+                        cada item listado é exibida a quantidade de resultados disponíceis.
+                    </p> 
                     <h4></h4>
 
                     <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
