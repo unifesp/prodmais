@@ -134,7 +134,7 @@
             $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K1702294J9",
             $name = 'Ricardo Ireno dos Santos',
             $title = 'Bolsista FAP UNIFESP',
-            $link = 'https://unifesp.br/prodmais/index.php'
+            $link = 'http://lattes.cnpq.br/8604973833723919'
           );
         ?>
       </div>
