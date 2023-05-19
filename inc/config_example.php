@@ -35,10 +35,10 @@ $login_password = "admin";
 
 // Definir Instituição
 $instituicao = "Universidade Federal de São Paulo";
-
 $branch = "Prodmais";
 $branch_description = "Descrição";
 $facebook_image = "";
+$slogan = 'Slogan';
 
 // Tema
 $theme = 'Prodmais';
