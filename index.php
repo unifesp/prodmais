@@ -91,17 +91,13 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                         src="<?php echo $url_base ?>/inc/images/manual/btn_busca_avancada.png"
                         alt="botão alternar para busca avançada" height="28px" />, que se
                     parece com uma seta apontando para baixo, permite fazer pesquisas com mais critérios, sendo eles,
-                    programa
-                    de
-                    pós-graduação, ID lattes do pesquisador, e período.</p>
+                    programa de pós-graduação, ID lattes do pesquisador, e período.</p>
 
                 <h4>Consultando as categorias disponíveis</h4>
                 <p>O botão <img class="c-manual-img__in-text"
                         src="<?php echo $url_base ?>/inc/images/manual/btn_mostrar_pesquisa_categoria.png"
                         alt="botão mostrar persquisa por categoria" height="28px" /> lista as produções classificados
-                    por Programa
-                    de Pós-graduação,
-                    tipo de produção, tipo de vínculo e base de dados, entre outras.</p>
+                    por Programa de Pós-graduação, tipo de produção, tipo de vínculo e base de dados, entre outras.</p>
 
                 <h4>Buscando o perfil de um pesquisador</h4>
                 <p>É possível também obter perfis detalhados dos pesquisadores. Esta opção está na opção "Pesquisadores"

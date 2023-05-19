@@ -94,7 +94,9 @@ $get_data = $_GET;
                     if (!isset($_POST)) {
                         $_POST = null;
                     }
-
+                    if ($mostrar_instituicao) {
+                        echo($facets->facet(basename(__FILE__), "instituicao", 100, "Instituição", null, "_term", $_POST, $index_cv));
+                    }    
                     echo($facets->facet(basename(__FILE__), "campus", 100, "Campus", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "desc_gestora", 100, "Gestora", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "unidade", 100, "Unidade", null, "_term", $_POST, $index_cv));
@@ -102,6 +104,9 @@ $get_data = $_GET;
                     echo($facets->facet(basename(__FILE__), "divisao", 100, "Divisão", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "secao", 100, "Seção", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", null, "_term", $_POST, $index_cv));
+                    if ($mostrar_area_concentracao) {
+                        echo($facets->facet(basename(__FILE__), "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, $index_cv));
+                    }  
                     echo($facets->facet(basename(__FILE__), "tipvin", 100, "Tipo de vínculo", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "genero", 100, "Genero", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "desc_nivel", 100, "Nível", null, "_term", $_POST, $index_cv));

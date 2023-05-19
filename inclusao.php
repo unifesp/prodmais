@@ -43,6 +43,7 @@ if(isset($_POST['submit'])){
               <input class="c-input--sm" type="file" id="fileXML" aria-describedby="Arquivo XML" name="file">
               <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
             </div>
+            <input class="c-input--sm" type="text" placeholder="Instituição" name="instituicao">
             <input class="c-input--sm" type="text" placeholder="TAG" name="tag">
             <input class="c-input--sm" type="text" placeholder="Núm. funcional" name="numfuncional">
             <input class="c-input--sm" type="text" placeholder="Unidade" name="unidade">
@@ -54,16 +55,18 @@ if(isset($_POST['submit'])){
             <input class="c-input--sm" type="text" placeholder="Divisão" name="divisao">
             <input class="c-input--sm" type="text" placeholder="Seção" name="secao">
             <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="ppg_nome">
-            <input class="c-input--sm" type="text" placeholder="Tipo de vínculo" name="tipvin">
+            <input class="c-input--sm" type="text" placeholder="Área de concentração" name="area_concentracao">
+            
           </div>
           <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Tipo de vínculo" name="tipvin">
             <input class="c-input--sm" type="text" placeholder="Genero" name="genero">
             <input class="c-input--sm" type="text" placeholder="Nível" name="desc_nivel">
             <input class="c-input--sm" type="text" placeholder="Curso" name="desc_curso">
-            <input class="c-input--sm" type="text" placeholder="Campus" name="campus">
-            <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
+            <input class="c-input--sm" type="text" placeholder="Campus" name="campus">            
           </div>
           <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
             <input class="c-input--sm" type="text" placeholder="Google Scholar ID" name="google_citation">
             <input class="c-input--sm" type="text" placeholder="Researcher ID" name="researcherid">
           </div>

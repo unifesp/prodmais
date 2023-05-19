@@ -204,6 +204,9 @@ function construct_vinculo($request, $curriculo)
     }
     $doc["doc"]["vinculo"][$i_vinculo]["nome"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
     $doc["doc"]["vinculo"][$i_vinculo]["lattes_id"] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+    if (isset($request['instituicao'])) {
+        $doc["doc"]["vinculo"][$i_vinculo]["instituicao"] = explode("|", rtrim($request['instituicao']));
+    }
     if (isset($request['unidade'])) {
         $doc["doc"]["vinculo"][$i_vinculo]["unidade"] = explode("|", $request['unidade']);
     }
@@ -224,6 +227,9 @@ function construct_vinculo($request, $curriculo)
     }
     if (isset($request['ppg_nome'])) {
         $doc['doc']["vinculo"][$i_vinculo]['ppg_nome'] = explode("|", $request['ppg_nome']);
+    }
+    if (isset($request['area_concentracao'])) {
+        $doc['doc']["vinculo"][$i_vinculo]['area_concentracao'] = explode("|", rtrim($request['area_concentracao']));
     }
     if (isset($request['ppg_capes'])) {
         $doc['doc']["vinculo"][$i_vinculo]['ppg_capes'] = explode("|", $request['ppg_capes']);
@@ -362,6 +368,12 @@ if (isset($_REQUEST['tag'])) {
     $doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
 } else {
     $doc_curriculo_array["doc"]["tag"] = "";
+}
+if (isset($_REQUEST['instituicao'])) {
+    $doc_curriculo_array["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
+}
+if (isset($_REQUEST['area_concentracao'])) {
+    $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
 }
 $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
 $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);

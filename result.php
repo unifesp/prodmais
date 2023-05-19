@@ -95,8 +95,14 @@
                     if (!isset($_POST)) {
                       $_POST = null;
                     }
-
+                    
+                    if ($mostrar_instituicao) {
+                      echo ($facets->facet(basename(__FILE__), "vinculo.instituicao", 100, "Instituição", null, "_term", $_POST));
+                    }                    
                     echo ($facets->facet(basename(__FILE__), "vinculo.ppg_nome", 100, "Nome do PPG", null, "_term", $_POST));
+                    if ($mostrar_area_concentracao) {
+                      echo ($facets->facet(basename(__FILE__), "vinculo.area_concentracao", 100, "Área de concentração", null, "_term", $_POST));
+                    }
                     echo ($facets->facet(basename(__FILE__), "tipo", 100, "Tipo de material", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.nome", 100, "Nome do autor vinculado à instituição", null, "_term", $_POST));

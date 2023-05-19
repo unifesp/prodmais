@@ -40,6 +40,9 @@ $branch_description = "Descrição";
 $facebook_image = "";
 $slogan = 'Slogan';
 
+$mostrar_instituicao = true;
+$mostrar_area_concentracao = true;
+
 // Tema
 $theme = 'Prodmais';
 // $theme = 'Waterbeach';
