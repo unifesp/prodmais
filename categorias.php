@@ -49,6 +49,12 @@
           <ul class="p-categorias-list">
             <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
           </ul>
+          <?php if($mostrar_instituicao = true;): ?>
+          <h4 class="t t-h4">Instituição</h4>
+          <ul class="p-categorias-list">
+            <?php paginaInicial::unidade_inicio("vinculo.instituicao"); ?>
+          </ul>
+          <?php endif; ?>
 
         </div>
         <div class="col-12 col-md-6">
