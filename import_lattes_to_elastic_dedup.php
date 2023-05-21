@@ -834,9 +834,9 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'})) {
     $i_licenca = 0;
     foreach ($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'}->{'LICENCA'} as $licenca) {
         $licenca = get_object_vars($licenca);
-        $licenca_array[$i_premio]["tipoLicenca"]=$licenca['@attributes']["TIPO-LICENCA"];
-        $licenca_array[$i_premio]["dataInicioLicenca"]=$licenca['@attributes']["DATA-INICIO-LICENCA"];
-        $licenca_array[$i_premio]["dataFimLicenca"]=$licenca['@attributes']["DATA-FIM-LICENCA"];
+        $licenca_array[$i_licenca]["tipoLicenca"]=$licenca['@attributes']["TIPO-LICENCA"];
+        $licenca_array[$i_licenca]["dataInicioLicenca"]=$licenca['@attributes']["DATA-INICIO-LICENCA"];
+        $licenca_array[$i_licenca]["dataFimLicenca"]=$licenca['@attributes']["DATA-FIM-LICENCA"];
         $doc_curriculo_array["doc"]["licencas"][] = $licenca_array;
         $i_licenca++;
         unset($licenca_array);
