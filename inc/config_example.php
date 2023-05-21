@@ -42,6 +42,7 @@ $slogan = 'Slogan';
 
 $mostrar_instituicao = true;
 $mostrar_area_concentracao = true;
+$mostrar_link_dashboard = true;
 
 // Tema
 $theme = 'Prodmais';

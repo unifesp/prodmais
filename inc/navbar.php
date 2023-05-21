@@ -64,12 +64,14 @@
           </li>
         -->
 
+          <?php if($mostrar_link_dashboard): ?>
           <li class="sitemenu-item">
             <a class="sitemenu-link" href="predash.php" title="Dashboard">
               Dashboard
               <i class="i i-dashboard sitemenu-ico"></i>
             </a>
           </li>
+          <?php endif; ?>
 
           <!-- <li class="sitemenu-item">
           <a class="sitemenu-link" href="manual/" title="Manual">
