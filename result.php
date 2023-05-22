@@ -122,12 +122,12 @@
                     
                     echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.classificacaoDoEvento", 100, "Classificação do evento", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "EducationEvent.name", 100, "Nome do evento", null, "_term", $_POST));
-                    echo ($facets->facet(basename(__FILE__), "publisher.organization.location", 100, "Cidade", null, "_term", $_POST));
+                    //echo ($facets->facet(basename(__FILE__), "publisher.organization.location", 100, "Cidade", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.anoDeRealizacao", 100, "Ano de realização do evento", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.tituloDosAnaisOuProceedings", 100, "Título dos anais", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.isbn", 100, "ISBN dos anais", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.nomeDaEditora", 100, "Editora dos anais", null, "_term", $_POST));
-                    echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.cidadeDaEditora", 100, "Cidade da editora", null, "_term", $_POST));
+                    //echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.cidadeDaEditora", 100, "Cidade da editora", null, "_term", $_POST));
 
                     echo ($facets->facet(basename(__FILE__), "isPartOf.name", 100, "Título do periódico", null, "_term", $_POST));
 
