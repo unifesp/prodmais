@@ -235,14 +235,14 @@ if (!empty($_REQUEST["lattesID"])) {
             <a class="u-skip" href=”#skipc-graph”>Pular gráfico</a>
 
             <div class="c-graph">
-              <!-- <div class="c-graph-line">
+              <div class="c-graph-line">
                 <div class="c-graph-icon"></div>
                 <div class="c-graph-label">De <?php echo date("Y", strtotime("-4 year")); ?> a <?php echo date("Y"); ?>
                 </div>
-              </div> -->
+              </div>
 
               <div class="c-graph-line">
-                <!-- <?php
+                <?php
                                 foreach ($trabalhos_publicados as $i => $j) {
 
                                   if ($j['total'] / $years_array_max <= 1 && $j['total'] / $years_array_max > 0.8) {
@@ -269,7 +269,7 @@ if (!empty($_REQUEST["lattesID"])) {
                                 unset($weight);
                                 ?>
                 <span class="c-graph-label">Trabalhos publicados</span>
-              </div> -->
+              </div>
 
                 <!--
               <div class="c-graph-line">

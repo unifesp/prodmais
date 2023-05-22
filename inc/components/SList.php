@@ -247,8 +247,8 @@ class SList
     $bullet = SList::bulletIntelectualProduction($type);
     $authorsRendered = implode('; ', $authors);
 
-    !empty($doi) ? $doiRendered = SList::doiRendered($doi) : $doiRendered = '';
     !empty($doi) ? $doiCleaned = SList::doiCleaned($doi) : $doiCleaned = '';
+    !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';    
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
     $fonteRendered = SList::fonteRendered($refName, $refVol, $refFascicle, $refPage);
