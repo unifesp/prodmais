@@ -19,7 +19,7 @@
 
   <?php endif ?>
 
-  <p class="developed-by">Desenvolvido pela Universidade Federal de São Paulo</p>
+  <p class="developed-by">Software livre desenvolvido originalmente pela Universidade Federal de São Paulo</p>
   <a href="https://unifesp.br/" target="_blank" class="sitefooter-link" title="Visite o site da Unifesp">
     <i class="i i-unifesp" alt="Logo da Unifesp"></i>
   </a>
