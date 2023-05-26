@@ -1,0 +1,20 @@
+@function grid-generic-class-name($bk) {
+	@if $bk == "all" {
+		@return "";
+	}
+	@return "-" + $bk;
+}
+
+@function grid-class-name($bk, $size) {
+	@if $bk == "all" {
+		@return "-" + $size;
+	}
+	@return "-" + $bk + "-" + $size;
+}
+
+@function margin-property($v) {
+	@if ($v == "") {
+		@return "";
+	}
+	@return "-" + $v;
+}

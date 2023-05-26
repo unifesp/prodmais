@@ -1,0 +1,158 @@
+.d-grid,
+.d-container {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $container_width;
+	padding: 0.5rem;
+}
+
+.d-grid {
+	display: flex;
+	width: 100%;
+}
+
+.d-container {
+	min-height: 50vh;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	@include grid-system("all");
+}
+
+@each $k,
+$v in $breakpointsUp {
+	@include up-to("#{$k}") {
+		.row {
+			@include grid-system("#{$k}");
+		}
+	}
+}
+
+// === CONTAINERS === //
+
+.dh,
+.dv,
+.d-between {
+	align-items: center;
+	display: flex;
+	@include transition;
+}
+
+.dv {
+	flex-direction: column;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.d-between {
+	justify-content: space-between;
+}
+
+$axies: (
+	h: row,
+	v: column,
+);
+$bks: (
+	"sm",
+	"md",
+	"lg"
+);
+
+$alignaments: (
+	e: flex-start,
+	c: center,
+	r: flex-end,
+	t: flex-start,
+	b: flex-end,
+);
+
+/* CONTAINER'S ALIGNAMENTS
+ * d-ht - horizontal top
+ * d-hb - horizontal bottom
+ * d-hc - horizontal center
+ * d-hr - horizontal right
+ * ...
+ */
+@each $align,
+$al_value in $alignaments {
+
+	@each $axis,
+	$ax_value in $axies {
+		.d-#{$axis}#{$align} {
+			@include adjust-axis($axis, $al_value);
+		}
+	}
+}
+
+.d-h-evenly {
+	justify-content: space-evenly;
+}
+
+/* BREAKPOINS DIRECTIONS
+ * d-sm-h - small horizontal
+ * d-sm-v - small vertical
+ * d-md-h - mediun horizontal
+ * ...
+ */
+@each $axis,
+$ax_value in $axies {
+	@each $bk in $bks {
+		.d-#{$bk}-#{$axis} {
+			@include up-to("#{$bk}") {
+				flex-direction: $ax_value;
+			}
+		}
+	}
+}
+
+/* BREAKPOINS ALIGNAMENTS
+ * d-md-ht - mediun horizontal top
+ * d-md-hb - mediun horizontal bottom
+ * d-md-hc - mediun horizontal center
+ * d-md-hr - mediun horizontal right
+ * ...
+ */
+@each $align,
+$al_value in $alignaments {
+
+	@each $axis,
+	$ax_value in $axies {
+		@each $bk in $bks {
+			.d-#{$bk}-#{$axis}#{$align} {
+				@include up-to("#{$bk}") {
+					@include adjust-axis($axis, $al_value);
+				}
+			}
+		}
+	}
+}
+
+// MORE
+
+.d-wrap {
+	flex-wrap: wrap;
+}
+
+.d-nowrap {
+	flex-wrap: nowrap;
+}
+
+.d-icon-text {
+	align-items: center;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.d-linewrap {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+}

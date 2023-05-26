@@ -18,7 +18,7 @@ $url_base = "http://localhost:8080/prodmais";
 /* Configurações do Elasticsearch */
 $index = "prodmais";
 $index_cv = "prodmaiscv";
-$index_authority = "prodmaisaut";
+$index_ppg = "prodmaisppg";
 
 /* Load libraries for PHP composer */
 require(__DIR__ . '/../vendor/autoload.php');
@@ -34,23 +34,18 @@ $login_password = "admin";
 // ============== CUSTOMIZAÇÃO ============== //
 
 // Definir Instituição
-$instituicao = "UNIFESP";
-
+$instituicao = "Universidade Federal de São Paulo";
 $branch = "Prodmais";
 $branch_description = "Descrição";
 $facebook_image = "";
-$slogan = 'Uma ferramenta de busca da produção científica de pesquisadores da UNIFESP';
+$slogan = 'Slogan';
 
-
+$mostrar_instituicao = true;
+$mostrar_area_concentracao = true;
+$mostrar_link_dashboard = true;
 
 // Tema
 $theme = 'Prodmais';
 // $theme = 'Waterbeach';
 // $theme = 'Tomaton';
 // $theme = 'Blueberry';
-
-/* Logo
- * replace the files in 'inc/images/logos/':
- * - logo_main.svg
- * - logo_header.svg
- */

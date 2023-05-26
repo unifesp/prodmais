@@ -43,9 +43,11 @@ if(isset($_POST['submit'])){
               <input class="c-input--sm" type="file" id="fileXML" aria-describedby="Arquivo XML" name="file">
               <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
             </div>
+            <input class="c-input--sm" type="text" placeholder="Instituição" name="instituicao">
             <input class="c-input--sm" type="text" placeholder="TAG" name="tag">
             <input class="c-input--sm" type="text" placeholder="Núm. funcional" name="numfuncional">
             <input class="c-input--sm" type="text" placeholder="Unidade" name="unidade">
+            <input class="c-input--sm" type="text" placeholder="E-mail" name="email">
           </div>
 
           <div class="input-group">
@@ -53,17 +55,59 @@ if(isset($_POST['submit'])){
             <input class="c-input--sm" type="text" placeholder="Divisão" name="divisao">
             <input class="c-input--sm" type="text" placeholder="Seção" name="secao">
             <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="ppg_nome">
-            <input class="c-input--sm" type="text" placeholder="Tipo de vínculo" name="tipvin">
+            <input class="c-input--sm" type="text" placeholder="Área de concentração" name="area_concentracao">
+            
           </div>
           <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Tipo de vínculo" name="tipvin">
             <input class="c-input--sm" type="text" placeholder="Genero" name="genero">
             <input class="c-input--sm" type="text" placeholder="Nível" name="desc_nivel">
             <input class="c-input--sm" type="text" placeholder="Curso" name="desc_curso">
-            <input class="c-input--sm" type="text" placeholder="Campus" name="campus">
+            <input class="c-input--sm" type="text" placeholder="Campus" name="campus">            
+          </div>
+          <div class="input-group">
             <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
-            <div class="input-group-append">
-              <button class="c-btn" type="submit">Incluir</button>
-            </div>
+            <input class="c-input--sm" type="text" placeholder="Google Scholar ID" name="google_citation">
+            <input class="c-input--sm" type="text" placeholder="Researcher ID" name="researcherid">
+          </div>
+          <div class="input-group-append">
+            <button class="c-btn" type="submit">Incluir</button>
+          </div>
+        </form>
+
+        <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
+
+        <form class="p-inclusao-form" action="include_ppg.php" method="post" accept-charset="utf-8"
+          enctype="multipart/form-data" title="Formulário de Inserção de um Programa de Pós Graduação">
+
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="ID do Curso" name="ID_CURSO">
+            <input class="c-input--sm" type="text" placeholder="Código CAPES" name="COD_CAPES">
+            <input class="c-input--sm" type="text" placeholder="Conceito CAPES" name="CONCEITO_CAPES">
+            <input class="c-input--sm" type="text" placeholder="Campus" name="NOME_CAMPUS">
+          </div>
+
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Sigla da Câmara" name="SIGLA_CAMARA">
+            <input class="c-input--sm" type="text" placeholder="Nome da Câmara" name="NOME_CAMARA">
+            <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="NOME_PPG">
+            <input class="c-input--sm" type="text" placeholder="Data de início do PPG" name="INI_PPG">
+          </div>
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Site do PPG" name="PPG_SITE">
+            <input class="c-input--sm" type="text" placeholder="E-mail do PPG" name="PPG_EMAIL">
+            <input class="c-input--sm" type="text" placeholder="URL no DSpace do PPG" name="PRODMAIS_DSPACE">
+            <input class="c-input--sm" type="text" placeholder="URL no Dataverse do PPG" name="PRODMAIS_DATAVERSE">
+            <input class="c-input--sm" type="text" placeholder="Gestora" name="desc_gestora">
+          </div>
+          <div class="input-group">
+            <input class="c-input--sm" type="text" placeholder="Nome do Coodenador" name="NOME_COORDENADOR">
+            <input class="c-input--sm" type="text" placeholder="Data de Início do Coodenador" name="DT_INI_COORD">
+            <input class="c-input--sm" type="text" placeholder="URL no Dataverse do PPG" name="PRODMAIS_DATAVERSE">
+            <input class="c-input--sm" type="text" placeholder="Nível" name="NIVEL">
+          </div>
+          <div class="input-group-append">
+            <button class="c-btn" type="submit">Incluir</button>
           </div>
         </form>
 

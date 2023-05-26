@@ -1,0 +1,55 @@
+.p-departamento-header {
+	@extend .dv, .d-vc;
+
+	&-one,
+	&-two,
+	&-three {
+		display: flex;
+	}
+
+	&-one,
+	&-two {
+		@extend .dv, .d-vc;
+	}
+
+	&-three {
+		@extend .d-vc;
+		&-inner {
+			padding: 1.5rem;
+			width: 100%;
+		}
+	}
+}
+
+// Components
+.p-departamento {
+	&-logo {
+		background-color: var(--c-pr-4);
+		height: 70px;
+		margin: 1rem 1rem 0 0;
+		width: 70px;
+	}
+
+	&-i {
+		margin-bottom: 0.3rem;
+		margin-right: 0.7rem;
+	}
+
+	&-orientadores {
+		@extend .dh, .d-hc, .d-wrap;
+		list-style: none;
+	}
+
+	&-plataforms {
+		height: 50px;
+	}
+
+	&-externos {
+		@extend .dv, .d-vc;
+		margin: 1rem;
+	}
+
+	&-repos {
+		@extend .dv, .d-md-h, .d-vc, .d-md-hc;
+	}
+}

@@ -1,0 +1,35 @@
+// == HEADER == //
+.siteheader {
+	height: $siteheader_height;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+.siteheader__content {
+	align-content: center;
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+	background-color: var(--c-siteheader-bg);
+	display: flex;
+	justify-content: space-between;
+	padding: 0 2rem;
+
+	@include up-to("md") {
+		flex-direction: row;
+	}
+}
+
+.siteheader__logo {
+	background-color: var(--c-siteheader-logo);
+	height: 50px;
+	margin: 0.3rem;
+	transition: all 0.25s ease-in-out;
+	width: 170px;
+
+	&:hover {
+		background-color: var(--c-siteheader-logo-hover);
+	}
+}

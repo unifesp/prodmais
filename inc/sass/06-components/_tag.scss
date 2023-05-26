@@ -1,0 +1,51 @@
+// TAG
+
+.tag-cloud {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+
+	.tag:focus {
+		color: var(--c-pr-2);
+		outline: 1px dashed;
+	}
+}
+
+@for $i from 1 through 9 {
+	.tag[data-weight="#{$i}"] {
+		--size: #{$i};
+	}
+}
+
+.tag {
+	--size: 3;
+	font-size: calc(var(--size) * 0.5rem + 0.5rem);
+	margin: 0.1rem;
+	opacity: calc((15 - (3 - var(--size))) / 15);
+
+	@media (prefers-color-scheme: light) {
+		color: var(--c-pr-2);
+	}
+	@media (prefers-color-scheme: dark) {
+		color: var(--c-pr-5);
+	}
+
+	&:focus,
+	&:hover {
+		@media (prefers-color-scheme: light) {
+			color: var(--c-pr-4);
+		}
+		@media (prefers-color-scheme: dark) {
+			color: var(--c-pr-7);
+		}
+		transition: all 0.2s ease 0s;
+	}
+}
+
+// @media (prefers-reduced-motion) {
+//   .tag * {
+//     transition: none !important;
+//   }
+// }

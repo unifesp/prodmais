@@ -1,0 +1,99 @@
+// == SEARCH == //
+
+@mixin search-style() {
+	background-color: var(--c-bg-2);
+	border: var(--c-pr-2) 2px solid;
+	border-radius: $input_border_radius;
+	color: var(--c-fg-1);
+	vertical-align: middle;
+	@include transition;
+
+	&:hover {
+		letter-spacing: 1.2px;
+		transition: all 0.3s ease 0s;
+	}
+
+	@include focus;
+}
+
+.c-input,
+.c-input--sm,
+.c-input--date {
+	@include search-style;
+	font-size: $input_font_size;
+	height: $input_height;
+	outline: 0;
+	padding: $input_padding;
+	width: 90%;
+}
+
+.c-input,
+.c-input--sm {
+	margin: $input_margin;
+}
+
+.c-input--date {
+	margin: 0.5rem;
+	max-width: 120px;
+}
+
+.c-input--sm {
+	max-width: 240px;
+}
+
+.c-searcher {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: $input_height;
+	// margin: $input_margin;
+	overflow: hidden;
+	padding-right: 0.4rem;
+	width: 100%;
+	@include search-style;
+
+	input {
+		background-color: transparent;
+		border: 0;
+		border-radius: $input_border_radius;
+		color: var(--c-fg-1);
+		font-size: $input_font_size;
+		height: $input_height;
+		outline: 0;
+		padding: 0.2rem 1rem;
+		width: 100%;
+		@include transition;
+
+		&:hover {
+			letter-spacing: 1.2px;
+		}
+
+		&:focus {
+			.c-searcher {
+				border-color: var(--c-pr-4);
+				-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+				outline: none;
+			}
+		}
+	}
+
+	&__btn {
+		background-color: transparent;
+		border: none;
+
+		&-ico {
+			background-color: var(--c-pr-2);
+			cursor: pointer;
+			height: $input_height;
+			margin: 0;
+			width: $input_height;
+			@include transition;
+
+			&:hover {
+				background-color: var(--c-pr-3);
+			}
+		}
+	}
+}

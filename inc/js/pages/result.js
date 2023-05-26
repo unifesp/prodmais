@@ -1,5 +1,8 @@
 var app = new Vue({
-	el: "#filterlist",
+	el: "#app-result",
+	data: {
+		showTips: false,
+	},
 	methods: {
 		openCloseMenu() {
 			if (window.matchMedia("(min-width: 1300px)").matches)

@@ -1,0 +1,38 @@
+.p-projetos {
+	&-lista {
+		padding: 2rem 0.2rem;
+
+		@include up-to("md") {
+			padding: 2rem 2rem 3rem 2rem;
+		}
+	}
+
+	&-inputs,
+	&-search {
+		@extend .dh, .d-hc;
+	}
+
+	&-inputs {
+		@extend .dv, .d-vc, .d-md-h;
+		@include up-to("md") {
+			margin-left: 4rem;
+			max-width: 900px;
+		}
+	}
+
+	&-search {
+		@extend .dh, .d-hc, .d-nowrap;
+		max-width: 400px;
+
+		&-btn {
+			background-color: var(--c-pr-2);
+			height: 45px;
+			width: 45px;
+			@include transition;
+
+			&:hover {
+				background-color: var(--c-pr-4);
+			}
+		}
+	}
+}

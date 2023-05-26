@@ -1,0 +1,176 @@
+// BREAKPOINTS
+$sm: 669px;
+$md: 899px;
+$lg: 1299px;
+
+$breakpointsUp: (
+	"sm": (
+		min-width: $sm,
+	),
+	"md": (
+		min-width: $md,
+	),
+	"lg": (
+		min-width: $lg,
+	),
+) !default;
+
+// GRID SYSTEM TOTAL COLUMNS
+$container_width: 1400px !default;
+$total_columns: 12;
+
+// SPACING
+$spacing_graduation: (
+	"02": 0.2rem,
+	"05": 0.5rem,
+	"10": 1rem,
+	"15": 1.5rem,
+	"20": 2rem,
+	"30": 3rem,
+);
+
+// MARGINS
+$margins: (
+	"m": "",
+	"mx": "inline",
+	"my": "block",
+	"mb": "bottom",
+	"mt": "top",
+	"ml": "left",
+	"mr": "right",
+);
+
+// HEADER
+$siteheader_height: 60px;
+
+// SITE MENU
+$sitemenu_bk: "lg";
+
+// INPUTS
+$input_border_radius: 40px !default;
+$input_margin: 0.3rem auto !default;
+$input_height: 3rem !default;
+$input_padding: 0 1rem;
+$input_font_size: 1.2rem !default;
+$switch_height: 30px !default;
+
+// container of inputs
+$filterbar_width_desk: 420px !default;
+$filterbar_width_mob: 100% !default;
+
+// inputs fonts
+$fontsize_mobi: 0.9rem !default;
+$fontsize_desk: 1.2rem !default;
+
+// ICONS SIZE
+$iSm: 24px;
+$iMd: 32px;
+$iLg: 48px;
+$iLgg: 72px;
+
+/// === COLORS === ///
+
+// logo and slogn gradients
+$logo-gradient: 45deg, var(--c-pr-2), var(--c-pr-4);
+
+$paletteGraph: (
+	0: --c-pr-7,
+	1: --c-pr-6,
+	2: --c-pr-3,
+	3: --c-pr-2,
+	4: --c-pr-1,
+);
+
+// THEMES
+$Prodmais: (
+	pr: (
+		198,
+		76%,
+	),
+	se: (
+		142,
+		29%,
+	),
+	ic: (
+		198,
+		56%,
+	),
+);
+
+$Waterbeach: (
+	pr: (
+		169,
+		76%,
+	),
+	se: (
+		0,
+		0%,
+	),
+	ic: (
+		169,
+		50%,
+	),
+);
+
+$Tomaton: (
+	pr: (
+		342,
+		76%,
+	),
+	se: (
+		0,
+		0%,
+	),
+	ic: (
+		342,
+		20%,
+	),
+);
+
+$Blueberry: (
+	pr: (
+		280,
+		76%,
+	),
+	se: (
+		280,
+		20%,
+	),
+	ic: (
+		280,
+		76%,
+	),
+);
+
+$themes: (
+	Prodmais: $Prodmais,
+	Waterbeach: $Waterbeach,
+	Tomaton: $Tomaton,
+	Blueberry: $Blueberry,
+);
+
+$lights: (
+	pr: (
+		20%,
+		30%,
+		40%,
+		50%,
+		60%,
+		70%,
+		80%,
+		90%,
+	),
+	se: (
+		30%,
+		50%,
+		70%,
+		80%,
+		90%,
+	),
+	ic: (
+		50%,
+		65%,
+		75%,
+		90%,
+	),
+);

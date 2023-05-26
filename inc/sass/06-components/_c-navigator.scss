@@ -1,0 +1,19 @@
+.c-navigator {
+	align-items: center;
+	background-color: var(--c-bg-1);
+	border-radius: 10px;
+	color: var(--c-pr-2);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 0.5rem;
+	padding: 0.5rem;
+
+	&-btn {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		font-size: 2rem;
+		font-weight: 700;
+	}
+}

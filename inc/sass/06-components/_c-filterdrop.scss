@@ -1,0 +1,69 @@
+$filterdropRadii: 8px;
+
+.c-filterdrop {
+	&__header {
+		background-color: var(--c-bg-1);
+		border: 1px solid var(--c-pr-6);
+		border-radius: $filterdropRadii;
+		cursor: pointer;
+		height: 2.3rem;
+		margin: 0.5rem;
+		overflow: hidden;
+		padding: 0.5rem;
+		position: relative;
+		vertical-align: middle;
+		word-wrap: break-word;
+
+		&::after {
+			color: var(--c-pr-6);
+			content: "\276F";
+			display: inline-block;
+			position: absolute;
+			right: 10px;
+			transform: rotate(90deg);
+		}
+	}
+	&__content {
+		padding: 0.5rem;
+	}
+
+	&__item {
+		align-items: center;
+		border-bottom: 1px dashed var(--c-pr-6);
+		display: grid;
+		grid-template-areas: "nome number";
+		grid-template-columns: 9fr 1fr;
+		margin: 0.7rem 0.5rem;
+		padding: 0.5rem;
+		transition: 0.2s all ease;
+	}
+
+	&__item-name {
+		background-color: transparent;
+		border: none;
+		color: var(--c-fg-1) !important;
+		cursor: pointer;
+		grid-area: nome;
+		max-width: 300px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		@include transition;
+
+		&:hover {
+			color: var(--c-pr-7);
+			font-weight: 600;
+		}
+	}
+
+	&__count {
+		color: var(--c-pr-2);
+		font-weight: 700;
+		grid-area: number;
+		text-align: right;
+	}
+}
+
+.c-filterdrop[open] .c-filterdrop__header::after {
+	transform: rotate(270deg);
+}

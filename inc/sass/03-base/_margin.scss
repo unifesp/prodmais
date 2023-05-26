@@ -1,0 +1,8 @@
+// === MARGIN === //
+
+@include make-margin($margins, $spacing_graduation);
+
+.u-center {
+	margin-left: auto;
+	margin-right: auto;
+}

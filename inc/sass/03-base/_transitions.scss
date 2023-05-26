@@ -1,0 +1,83 @@
+@-webkit-keyframes sitemenu-opening {
+	0% {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+@keyframes sitemenu-opening {
+	0% {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+@mixin sitemenuOpening() {
+	-webkit-animation: sitemenu-opening 0.3s;
+	animation: sitemenu-opening 0.3s;
+}
+
+@-webkit-keyframes sitemenu-closing {
+	0% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+}
+
+@keyframes sitemenu-closing {
+	0% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+}
+
+// vue transitions
+
+.homeeffect-enter {
+	max-height: 1px !important;
+	opacity: 0 !important;
+}
+
+.homeeffect-enter-active,
+.homeeffect-leave-active {
+	@include transition();
+}
+
+.homeeffect-enter-from,
+.homeeffect-leave-to {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+
+// Profile tabs
+
+.tabeffect-enter {
+	max-height: 1px !important;
+	opacity: 0 !important;
+}
+
+.tabeffect-enter-active,
+.tabeffect-leave-active {
+	transition: all 0.2s ease;
+}
+
+.tabeffect-enter-from,
+.tabeffect-leave-to {
+	opacity: 0;
+}

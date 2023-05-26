@@ -1,0 +1,64 @@
+.p-about {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 3rem;
+
+	// @include up-to("md") {
+	// 	flex-direction: row;
+	// 	justify-content: space-around;
+	// }
+
+	&-section1,
+	&-section2 {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		max-width: 1000px;
+		width: 100%;
+	}
+
+	&-section1 {
+		padding-inline: 2rem;
+		text-align: center;
+	}
+
+	&-ico {
+		margin: 1rem auto;
+		transition: all 0.25s ease-in-out;
+		width: 200px;
+
+		&:hover {
+			fill: var(--c-ic-4);
+		}
+	}
+
+	&-titles {
+		margin: 1rem auto;
+	}
+
+	&-text {
+		margin-block: 2rem;
+		text-align: justify;
+	}
+
+	&-team {
+		@extend .u-grayscale;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-block: 2rem;
+		width: 100%;
+	}
+}
+
+.p-about-logos {
+	margin: 1rem;
+	width: 200px;
+}
+
+.logo-about {
+	fill: var(--c-pr-3);
+	margin: 6rem;
+	max-width: 120px;
+}

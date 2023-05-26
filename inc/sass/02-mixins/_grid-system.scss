@@ -1,0 +1,11 @@
+@mixin grid-system($bk) {
+	.col#{grid-generic-class-name($bk)} {
+		flex: 1;
+	}
+
+	@for $size from 1 through $total_columns {
+		.col#{grid-class-name($bk, $size)} {
+			width: calc($size / $total_columns * 100%);
+		}
+	}
+}

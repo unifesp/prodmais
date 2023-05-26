@@ -1,0 +1,73 @@
+/* === LAYOUT === */
+
+.p-result-container {
+	background-color: var(--c-bg-1);
+	margin-top: calc($siteheader_height + 5px);
+
+	@include up-to("lg") {
+		gap: 1rem;
+		display: grid;
+		grid-template-areas: "resultnav resultmain";
+		grid-template-columns: $filterbar_width_desk 1fr;
+	}
+}
+
+.p-result-main {
+	background-color: var(--c-bg-2);
+	padding: 1rem 0.5rem;
+
+	@include up-to("lg") {
+		grid-area: resultmain;
+		width: 100%;
+	}
+}
+
+.p-result-nav {
+	@include up-to("lg") {
+		grid-area: resultnav;
+	}
+}
+
+.p-result-authors {
+	border-radius: 10px;
+	min-height: 55vh;
+	padding: 0.5rem;
+}
+
+.p-result-search-ctn {
+	background-color: var(--c-bg-1);
+	border-radius: 35px;
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 1rem 0.5rem;
+	padding: 1rem 1rem;
+}
+
+.c-term {
+	border-block: 1px solid var(--c-pr-4);
+	color: var(--c-pr-2);
+	margin-block: 1rem;
+	padding: 0.5rem;
+	text-align: center;
+}
+
+.c-filterlist {
+	width: $filterbar_width_mob;
+}
+
+.c-authors-list {
+	list-style: none;
+}
+
+.c-card-author {
+	background-color: var(--c-bg-1);
+	border-bottom: 1px dashed var(--c-pr-2);
+	border-radius: 10px;
+	margin-block: 0.5rem;
+	padding: 0.5rem 1rem;
+	@include transition;
+
+	&:hover {
+		color: var(--c-pr-3);
+	}
+}

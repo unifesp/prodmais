@@ -1,0 +1,96 @@
+@each $i, $ico in $myIconsPack {
+	.i-#{$i} {
+		@include ico($ico);
+	}
+}
+
+.i {
+	background-color: var(--c-ic-0);
+	display: inline-block;
+	margin: 0.25rem;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	@include transition;
+}
+
+.i-sm {
+	height: $iSm;
+	width: $iSm;
+}
+.i-md {
+	height: $iMd;
+	width: $iMd;
+}
+.i-lg {
+	height: $iLg;
+	width: $iLg;
+}
+.i-lgg {
+	height: $iLgg;
+	width: $iLgg;
+}
+
+// ======
+// particular configs
+
+.i-btn {
+	margin: 0 0.25rem;
+	vertical-align: middle;
+}
+
+.i-arrow-up,
+.i-arrow-down {
+	height: 20px;
+	width: 30px;
+}
+
+.i-lang {
+	height: 50px;
+	width: 50px;
+}
+
+.i-link {
+	cursor: pointer;
+	height: 24px;
+	margin-right: 0.25rem;
+	width: 24px;
+	@include transition();
+
+	&:hover {
+		background-color: var(--c-ic-4);
+	}
+}
+
+.i-arrowOpenMenu {
+	height: 15px;
+	width: 100px;
+}
+
+.country-flag {
+	border-radius: 50%;
+	width: 24px;
+}
+
+.i-arrows-home {
+	margin: 1rem;
+	width: 35px;
+}
+
+// ======
+// logos
+
+.i-prodmais {
+	@include gradient-1;
+	height: 169px;
+	width: 270px;
+}
+
+.i-doi {
+	height: 24px;
+	margin-right: 0.25rem;
+	width: 24px;
+}

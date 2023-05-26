@@ -204,6 +204,9 @@ function construct_vinculo($request, $curriculo)
     }
     $doc["doc"]["vinculo"][$i_vinculo]["nome"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
     $doc["doc"]["vinculo"][$i_vinculo]["lattes_id"] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+    if (isset($request['instituicao'])) {
+        $doc["doc"]["vinculo"][$i_vinculo]["instituicao"] = explode("|", rtrim($request['instituicao']));
+    }
     if (isset($request['unidade'])) {
         $doc["doc"]["vinculo"][$i_vinculo]["unidade"] = explode("|", $request['unidade']);
     }
@@ -224,6 +227,9 @@ function construct_vinculo($request, $curriculo)
     }
     if (isset($request['ppg_nome'])) {
         $doc['doc']["vinculo"][$i_vinculo]['ppg_nome'] = explode("|", $request['ppg_nome']);
+    }
+    if (isset($request['area_concentracao'])) {
+        $doc['doc']["vinculo"][$i_vinculo]['area_concentracao'] = explode("|", rtrim($request['area_concentracao']));
     }
     if (isset($request['ppg_capes'])) {
         $doc['doc']["vinculo"][$i_vinculo]['ppg_capes'] = explode("|", $request['ppg_capes']);
@@ -363,6 +369,12 @@ if (isset($_REQUEST['tag'])) {
 } else {
     $doc_curriculo_array["doc"]["tag"] = "";
 }
+if (isset($_REQUEST['instituicao'])) {
+    $doc_curriculo_array["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
+}
+if (isset($_REQUEST['area_concentracao'])) {
+    $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
+}
 $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
 $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);
 if (isset($_REQUEST['numfuncional'])) {
@@ -400,6 +412,18 @@ if (isset($_REQUEST['campus'])) {
 }
 if (isset($_REQUEST['desc_gestora'])) {
     $doc_curriculo_array['doc']['desc_gestora'] = explode("|", $_REQUEST['desc_gestora']);
+}
+if (isset($_REQUEST['email'])) {
+    $doc_curriculo_array['doc']['email'] = $_REQUEST['email'];
+}
+if (isset($_REQUEST['google_citation'])) {
+    $doc_curriculo_array['doc']['google_citation'] = $_REQUEST['google_citation'];
+}
+if (isset($_REQUEST['researcherid'])) {
+    $doc_curriculo_array['doc']['researcherid'] = $_REQUEST['researcherid'];
+}
+if (isset($_REQUEST['lattes10'])) {
+    $doc_curriculo_array['doc']['lattes10'] = $_REQUEST['lattes10'];
 }
 
 $doc_curriculo_array["doc"]["data_atualizacao"] = substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 4, 4)."-".substr((string)$curriculo->attributes()->{'DATA-ATUALIZACAO'}, 2, 2);
@@ -810,9 +834,9 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'})) {
     $i_licenca = 0;
     foreach ($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'}->{'LICENCA'} as $licenca) {
         $licenca = get_object_vars($licenca);
-        $licenca_array[$i_premio]["tipoLicenca"]=$licenca['@attributes']["TIPO-LICENCA"];
-        $licenca_array[$i_premio]["dataInicioLicenca"]=$licenca['@attributes']["DATA-INICIO-LICENCA"];
-        $licenca_array[$i_premio]["dataFimLicenca"]=$licenca['@attributes']["DATA-FIM-LICENCA"];
+        $licenca_array[$i_licenca]["tipoLicenca"]=$licenca['@attributes']["TIPO-LICENCA"];
+        $licenca_array[$i_licenca]["dataInicioLicenca"]=$licenca['@attributes']["DATA-INICIO-LICENCA"];
+        $licenca_array[$i_licenca]["dataFimLicenca"]=$licenca['@attributes']["DATA-FIM-LICENCA"];
         $doc_curriculo_array["doc"]["licencas"][] = $licenca_array;
         $i_licenca++;
         unset($licenca_array);

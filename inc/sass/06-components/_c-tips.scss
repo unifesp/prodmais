@@ -1,0 +1,30 @@
+.c-tips {
+	background-color: var(--c-bg-1);
+	border: 1px solid var(--c-pr-3);
+	border-radius: 12px;
+	-webkit-box-shadow: 10px 10px 33px 1px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 10px 10px 33px 1px rgba(0, 0, 0, 0.5);
+	box-shadow: 10px 10px 33px 1px rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 2rem auto;
+	max-width: 700px;
+	padding: 0 1rem 1rem 1rem;
+	position: absolute;
+	right: 5rem;
+	text-align: center;
+	top: 2rem;
+	width: 100%;
+	z-index: 999;
+
+	h3,
+	h4 {
+		margin: 2rem auto 1rem auto;
+	}
+
+	p {
+		@extend .t;
+		color: var(--c-pr-1);
+	}
+}

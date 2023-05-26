@@ -1,0 +1,38 @@
+.c-categories {
+	list-style: none;
+
+	@include up-to("md") {
+		margin-inline: 2rem;
+	}
+}
+
+.c-categories__item {
+	border-bottom: 1px dashed var(--c-pr-2);
+	margin-bottom: 0.5rem;
+	padding-block: 1rem;
+	@include transition();
+
+	&:hover {
+		.c-categories__text,
+		.c-categories__number {
+			color: var(--c-pr-4);
+		}
+		border-bottom: 1px dashed var(--c-pr-4);
+	}
+}
+
+.c-categories__text,
+.c-categories__number {
+	color: var(--c-fg-1);
+	@include transition();
+}
+
+.c-categories__text {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+.c-categories__number {
+	font-size: 1.5rem;
+}

@@ -2,6 +2,25 @@
 <html lang="pt-br" dir="ltr">
 
 <?php
+
+require 'inc/config.php';
+
+if (!empty($_REQUEST["ID"])) {
+
+  $params = [];
+  $params["index"] = $index_ppg;
+  $params["id"] = $_REQUEST["ID"];
+  $cursor = $client->get($params);
+  $ppg = $cursor["_source"];
+
+  var_dump($ppg);
+ 
+} else {
+  echo '<script>window.location.href = "index.php";</script>';
+  die();
+}
+
+
 class PPG {
   static function externos($type, $link) {
     $ico = '';
@@ -12,9 +31,9 @@ class PPG {
         $ico = 'sucupira.png';
         $text = '';
         break;
-      case 'Repositório de dados de esquisa':
+      case 'Repositório de dados de pesquisa':
         $ico = 'dataverse.png';
-        $text = 'Repositório de dados de esquisa';
+        $text = 'Repositório de dados de pesquisa';
         break;
       case 'Repositório institucional':
         $ico = 'DSpace.svg';
@@ -23,8 +42,8 @@ class PPG {
     }
 
     echo 
-    "<a class='p-ppg-externos' href='$link' target='blank'>
-      <img class='p-ppg-plataforms' src='inc/images/logos/$ico' title='$text'/>
+    "<a class='p-ppg__externos' href='$link' target='blank'>
+      <img class='p-ppg__plataforms' src='inc/images/logos/$ico' title='$text'/>
       <p class='t t-light'><b>$text</b></p>
     </a>";
   }
@@ -37,14 +56,14 @@ class PPG {
   require 'inc/meta-header.php';
   require 'inc/functions.php';
   require 'inc/components/GraphBar.php';
-  require 'inc/components/Production.php';
+  require 'inc/components/SList.php';
   require 'inc/components/Who.php';
   require 'inc/components/PPGBadges.php';
   require 'inc/components/TagCloud.php';
   require '_fakedata.php';
   ?>
   <meta charset="utf-8" />
-  <title><?php echo $branch; ?> - PPG Letras</title>
+  <title><?php echo $branch; ?> - PPG <?php echo $ppg["NOME_PPG"]; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Prodmais Unifesp." />
   <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
@@ -60,56 +79,58 @@ class PPG {
 
       <div class="c-wrapper-inner">
 
-        <section class="p-ppg-header">
-          <div class="p-ppg-header-one">
-            <i class="i i-ppg-logo p-ppg-logo"></i>
+        <section class="p-ppg__header">
+          <div class="p-ppg__header-1">
+            <i class="i i-ppg-logo p-ppg__logo"></i>
           </div>
 
-          <div class="p-ppg-header-two">
-            <h1 class="t t-h1">PPG Letras</h1>
-            <h2 class="t t-h2">Programa de Pós Graduação em Letras</h2>
+          <div class="p-ppg__header-2">
+            <h1 class="t t-h1">PPG <?php echo $ppg["NOME_PPG"]; ?></h1>
+            <h2 class="t t-h2">Programa de Pós Graduação em <?php echo $ppg["NOME_PPG"]; ?></h2>
             <p class="t t-b ty-light-a">
-              <span>Campus Guarulhos</span>
-              <span>Escola de Filosofia, Letras e ciências Humanas</span>
+              <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
+              <span><?php echo $ppg ["NOME_CAMARA"]; ?></span>
             </p>
-            <div class="d-icon-text t-gray u-mb-1">
-              <i class="i i-sm i-mapmarker p-ppg-i"></i>
+            <!--
+            <div class="d-icon-text t-gray u-mb-10">
+              <i class="i i-sm i-mapmarker p-ppg__i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
+            -->
 
             <div class="d-icon-text">
               <i class='i i-people-manager'></i>
-              <span class="t t-gray t-b">Coordenação: Nome do coordenador/coordenadora</span>
+              <span class="t t-gray t-b">Coordenação: <?php echo $ppg["NOME_COORDENADOR"]; ?></span>
             </div>
 
-          </diV>
-          <div class="p-ppg-header-three">
-
+            <!--
             <p class="t t-gray t-b">Secretaria:</p>
             <p class="t t-gray">Maria Oliveira</p>
             <p class="t t-gray">Olívia Maria</p>
+            -->
+
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-mail p-ppg-i"></i> email@email.com
+                <i class="i i-sm i-mail p-ppg__i"></i> <?php echo $ppg["PPG_EMAIL"]; ?>
               </div>
             </a>
 
+            <!--
             <div class="d-icon-text t-gray">
-              <i class="i i-sm i-phone p-ppg-i"></i> (11) 5555-5555
+              <i class="i i-sm i-phone p-ppg__i"></i> (11) 5555-5555
             </div>
+            -->
 
             <a href="" target="blank">
               <div class="d-icon-text t-gray">
-                <i class="i i-sm i-web p-ppg-i"></i> site
+                <i class="i i-sm i-web p-ppg__i"></i> <?php echo $ppg ["PPG_SITE"]; ?>
               </div>
             </a>
-
-
           </div>
 
-          <div class="p-ppg-header-four">
-            <div class="d-h d-hc">
+          <div class="p-ppg__badges">
+            <div class="dh d-hc">
               <?php echo PPGBadges::students(
                 $rate = 20,
                 $title = 'Em Curso',
@@ -122,7 +143,7 @@ class PPG {
                 $ico = 'formado'
               ); ?>
             </div>
-            <div class="p-ppg-badges">
+            <div class="p-ppg__badges-capes">
               <?php echo PPGBadges::capes(
                 $rate = 4,
                 $title = 'Mestrado acadêmico'
@@ -142,11 +163,11 @@ class PPG {
         </section>
 
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="l-ppg">
-          <h3 class="t t-title">Palavras chave recorrentes</h3>
+          <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
           <div>
             <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
@@ -156,7 +177,7 @@ class PPG {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <?php
@@ -194,12 +215,12 @@ class PPG {
           ?>
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
-          <h3 class='t t-title'>Orientadores e orientadoras</h3>
+          <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
-          <ul class="p-ppg-orientadores">
+          <ul class="p-ppg__orientadores">
 
             <li>
               <?php
@@ -245,28 +266,28 @@ class PPG {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section>
-          <div class="d-v d-vc">
-            <p class="t t-gray u-mt-1"><b>Código CAPES</b></p>
-            <p class="t t-gray u-mb-1">33009015088p9</p>
+          <div class="dv d-vc">
+            <p class="t t-gray u-my-10"><b>Código CAPES</b></p>
+            <p class="t t-gray u-mb-10"><?php echo $ppg["COD_CAPES"]; ?></p>
           </div>
         </section>
 
-        <section class="d-v d-vc d-md-h d-md-hc">
+        <section class="dv d-vc d-md-h d-md-hc">
           <?php echo PPG::externos(
             $type = 'Sucupira',
-            $link = 'https://repositorio.unifesp.br/handle/11600/6108'
+            $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml?popup=false&cd_programa='.$ppg["COD_CAPES"]
             ); ?>
           <?php echo PPG::externos(
-            $type = 'Repositório de dados de esquisa',
-            $link = 'https://repositoriodedados.unifesp.br/dataverse/eflch'
+            $type = 'Repositório de dados de pesquisa',
+            $link = $ppg["PRODMAIS_DATAVERSE"]
             ); ?>
 
           <?php echo PPG::externos(
             $type = 'Repositório institucional',
-            $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml;jsessionid=OLRUfmVYapfO6QJKy+Wf0KS1.sucupira-218?popup=true&cd_programa=33009015089P5'
+            $link = $ppg["PRODMAIS_DSPACE"]
             ); ?>
         </section>
 

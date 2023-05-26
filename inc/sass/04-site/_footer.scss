@@ -1,0 +1,63 @@
+// == FOOTER == //
+
+.sitefooter {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--c-se-1);
+	border-top: var(--c-se-4) 0.5rem solid;
+	bottom: 0;
+	color: var(--c-se-4);
+	left: 0;
+	right: 0;
+	padding-bottom: 2rem;
+}
+
+.sitefooter-contacts {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-block: 2rem;
+
+	@include up-to("md") {
+		flex-direction: row;
+		justify-content: center;
+	}
+}
+
+.sitefooter-link {
+	color: var(--c-se-4);
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0.5rem 1rem;
+	text-align: center;
+	@include transition;
+
+	&:hover {
+		color: var(--c-se-5);
+	}
+}
+
+.sitefooter-logos {
+	display: flex;
+	justify-content: space-evenly;
+	@extend .d-md-hr;
+}
+
+.sitefooter-logo {
+	margin: 1rem;
+	width: 100px;
+}
+
+.developed-by {
+	color: var(--c-se-4);
+}
+
+.i-unifesp {
+	background-color: var(--c-se-4);
+	width: 100px;
+	height: 20px;
+}

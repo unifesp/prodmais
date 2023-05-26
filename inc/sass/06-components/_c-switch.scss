@@ -1,0 +1,72 @@
+// Based on Willian Justen switch button code
+
+.c-switch {
+	margin-left: -9999px;
+	position: absolute;
+	visibility: hidden;
+
+	& + label {
+		cursor: pointer;
+		display: block;
+		outline: none;
+		position: relative;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	&-shadow {
+		& + label {
+			background-color: #dddddd;
+			border-radius: $switch_height;
+			height: $switch_height;
+			padding: 2px;
+			width: calc($switch_height * 2);
+		}
+
+		& + label:before,
+		& + label:after {
+			bottom: 1px;
+			content: "";
+			display: block;
+			left: 1px;
+			position: absolute;
+			top: 1px;
+		}
+
+		& + label:before {
+			background-color: #f1f1f1;
+			border-radius: $switch_height;
+			right: 1px;
+			transition: all 0.4s;
+		}
+
+		& + label:after {
+			background-color: var(--c-mn-8);
+			border-radius: 100%;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			transition: all 0.4s;
+			width: calc($switch_height + 2px);
+		}
+
+		&:checked + label:before {
+			background-color: var(--c-pr-4);
+		}
+
+		&:checked + label:after {
+			transform: translateX($switch_height);
+		}
+	}
+
+	&-container {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		margin: $input_margin;
+		margin-inline: 1rem;
+	}
+
+	&-text {
+		margin-left: 1rem;
+		width: max-content;
+	}
+}

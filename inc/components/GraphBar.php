@@ -27,8 +27,8 @@ class GraphBar {
   }
 
   static function RenderYear($i) {
-    if ($i == strftime("%Y") ) { return $i; } 
-    elseif ($i % 4 == 0 && $i < (strftime("%Y") -3) ) { return $i; }
+    if ($i == date('Y', time()) ) { return $i; } 
+    elseif ($i % 4 == 0 && $i < (date('Y', time()) -3) ) { return $i; }
     else { return '';}
 
   }

@@ -1,0 +1,70 @@
+// == BUTTONS == //
+
+.c-btn,
+.c-btn--tip {
+	align-items: center;
+	background: none;
+	border: 2px solid var(--c-pr-2);
+	border-radius: $input_border_radius;
+	color: var(--c-pr-2);
+	cursor: pointer;
+	display: flex;
+	font-weight: 500;
+	height: $input_height;
+	justify-content: center;
+	// margin: $input_margin;
+	padding: 8px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	vertical-align: middle;
+
+	&:focus {
+		border-color: var(--c-pr-4);
+		-webkit-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		-moz-box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		box-shadow: 0px 0px 14px 0px var(--c-ic-2);
+		outline: none;
+	}
+
+	&:hover {
+		background-color: var(--c-pr-4);
+		border-color: var(--c-pr-4);
+		color: var(--c-mn-8);
+
+		.i-btn {
+			background-color: var(--c-mn-8);
+		}
+	}
+}
+
+.c-btn {
+	min-width: 6rem;
+}
+
+.c-btn--search {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 0 auto;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+
+	&:hover,
+	&:focus {
+		.i-btn {
+			background-color: var(--c-ic-2);
+		}
+	}
+}
+
+.c-btn {
+	&--c1 {
+		color: var(--c-pr-2);
+	}
+
+	&--disabled {
+		color: var(--c-mn-40);
+	}
+}

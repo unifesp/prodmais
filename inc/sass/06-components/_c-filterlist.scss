@@ -1,0 +1,96 @@
+// componente
+$gpaddings: 0.5rem;
+$filterlistRadii: 0.5rem;
+
+details[open] .c-filterlist-name--header:before {
+	transform: rotate(180deg);
+	transition: 0.3s transform ease;
+}
+
+@mixin filterhover() {
+	background-color: var(--c-pr-4);
+	color: var(--c-bg-0);
+	transition: all 0.2s ease;
+}
+
+.c-filterlist {
+	// background-color: var(--c-pr-7);
+	border-radius: $filterlistRadii;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	-ms-overflow-style: none;
+	position: relative;
+	right: 0;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&__header {
+		align-items: center;
+		border: 1px solid var(--c-pr-6);
+		border-radius: $filterlistRadii;
+		cursor: pointer;
+		font-size: 1.2rem;
+		justify-content: center;
+		margin: 0.2rem;
+		padding: 0.2rem;
+		text-align: center;
+	}
+
+	&__content {
+		padding: 0.5rem;
+	}
+
+	&__title {
+		font-size: 1.2rem;
+		margin: 0.6rem;
+
+		&::after {
+			color: var(--c-pr-6);
+			content: "\276F";
+			display: inline-block;
+			position: absolute;
+			right: 18px;
+			transform: rotate(90deg);
+		}
+	}
+}
+
+.c-filterlist[open] .c-filterlist__title::after {
+	transform: rotate(270deg);
+}
+
+@include up-to("lg") {
+	.c-filterlist {
+		width: $filterbar_width_desk;
+	}
+}
+
+.c-filterlist[open] .c-filterlist__content {
+	-webkit-animation: openFilterlist 0.5s ease;
+	-moz-animation: openFilterlist 0.5s ease;
+	-ms-animation: openFilterlist 0.5s ease;
+	-o-animation: openFilterlist 0.5s ease;
+	animation: openFilterlist 0.5s ease;
+}
+
+@keyframes openFilterlist {
+	from {
+		opacity: 0;
+		transform: scaleY(0);
+	}
+	to {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+}
+@keyframes closing {
+	from {
+		transform: scaleY(1);
+	}
+	to {
+		transform: scaleY(0);
+	}
+}

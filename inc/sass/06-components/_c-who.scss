@@ -1,0 +1,104 @@
+.c-who,
+.c-whomini {
+	display: flex;
+	padding: 0;
+	position: relative;
+
+	&-photo {
+		margin: 0 auto;
+		-webkit-mask-image: $circle;
+		mask-image: $circle;
+		-webkit-mask-position: center;
+		mask-position: center;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-size: 100% 100%;
+		mask-size: 100% 100%;
+	}
+}
+
+.c-who {
+	align-items: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 200px;
+
+	&-text {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&-text,
+	&-name,
+	&-title {
+		text-align: center;
+	}
+
+	&-photo {
+		height: 100px;
+		width: 100px;
+	}
+
+	&-name {
+		color: #000;
+		font-size: 1.2rem;
+	}
+
+	&-title {
+		color: var(--c-mn-20);
+	}
+}
+
+.c-whomini {
+	display: grid;
+	grid-template-areas: "a b";
+	margin-block: 0.5rem;
+
+	&-photo {
+		grid-area: a;
+		height: 50px;
+		margin: 0 1rem 0 0;
+		width: 50px;
+	}
+
+	&-text {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		grid-area: b;
+		justify-content: center;
+	}
+	&-name {
+		color: #000;
+	}
+}
+
+.c-who-s {
+	height: 200px;
+	margin: 0rem auto;
+	position: relative;
+	width: 200px;
+
+	&-badge {
+		position: absolute;
+		right: 5%;
+		top: 70%;
+		width: 50px;
+		z-index: 999;
+	}
+
+	&-pic {
+		height: 200px;
+		-webkit-mask-image: $circle;
+		mask-image: $circle;
+		-webkit-mask-position: center;
+		mask-position: start;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-size: 100% 100%;
+		mask-size: 100% 100%;
+		width: 200px;
+	}
+}

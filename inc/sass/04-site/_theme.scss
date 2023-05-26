@@ -1,0 +1,21 @@
+// == THEME == //
+
+:root {
+	@include make-mono-palette();
+}
+
+@each $k, $v in $themes {
+	:root,
+	[data-theme="#{$k}"] {
+		@include make-theme($v, $lights);
+	}
+}
+
+body {
+	background-color: var(--c-bg-1);
+	color: var(--c-fg-1);
+}
+
+a {
+	color: var(--c-link);
+}

@@ -1,0 +1,71 @@
+// GRAPH
+
+$unit: 15px;
+$gap: 2px;
+
+.c-graph {
+	align-items: flex-end;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+	&-division {
+		margin-top: 1rem;
+	}
+
+	&-info {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0.5rem;
+
+		@include up-to("md") {
+			flex-direction: column;
+		}
+
+		@include up-to("lg") {
+			align-items: flex-end;
+		}
+	}
+
+	&-label {
+		color: var(--c-pr-4);
+		font-size: 0.8rem;
+		justify-content: center;
+		margin-right: 0.5rem;
+	}
+
+	&-line {
+		align-items: center;
+		display: flex;
+		flex-direction: row-reverse;
+		margin-bottom: 4px;
+	}
+
+	&-unit {
+		background-color: var(--c-g0);
+		border-radius: 2px;
+		height: $unit;
+		margin-inline: $gap;
+		width: $unit;
+	}
+}
+
+@each $k, $v in $paletteGraph {
+	.c-graph-unit[data-weight="#{$k}"] {
+		background-color: var($v);
+	}
+}
+
+@include up-to("lg") {
+	.c-graph-unit {
+		height: $unit;
+		margin-inline: $gap;
+		width: $unit;
+	}
+}
+
+// @for $i from 1 through 100 {
+//   .graph-unit[data-weight="#{$i}"] { width: calc(#{$i} * .25rem); }
+// }

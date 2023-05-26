@@ -1,0 +1,42 @@
+.c-badge {
+	display: flex;
+	margin: 0.5rem;
+
+	&-col {
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	&-line {
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	&-i {
+		align-items: center;
+		color: #fff;
+		display: flex;
+		font-size: 1.1rem;
+		font-weight: 700;
+		height: 40px;
+		justify-content: center;
+		width: 40px;
+	}
+
+	&-text1,
+	&-text2 {
+		color: var(--c-pr-3);
+		font-weight: 600;
+		text-align: center;
+	}
+
+	&-text1 {
+		font-size: 1.3rem;
+	}
+
+	&-text2 {
+		font-size: 1rem;
+	}
+}

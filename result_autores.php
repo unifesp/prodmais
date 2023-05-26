@@ -12,12 +12,13 @@ if (isset($_POST["filter"])) {
     $_POST["filter"][] = "type:\"Curriculum\"";
 }
 
-if (isset($_POST["query"])) {
-    $_POST["search"] = 'nome_completo:' .$_POST['query']. '';
+if (isset($_POST["search"]) & !empty($_POST["search"])) {
+    if (!str_contains($_POST['search'], 'nome_completo')) {
+      $_POST["search"] = 'nome_completo:' .$_POST['search']. '';
+    }    
 } else {
     $_POST["search"] = '';
 }
-
 
 if (isset($fields)) {
     $_POST["fields"] = $fields;
@@ -47,52 +48,55 @@ $get_data = $_GET;
 <html lang="en">
 
 <head>
-  <?php
+    <?php
     include('inc/meta-header.php');
     ?>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-  </script>
+  </script> -->
 
-  <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
+    <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
 
 
-  <link rel="stylesheet" href="inc/css/style.css" />
+    <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
 <body data-theme="<?php echo $theme; ?>">
 
-  <?php
+    <?php
     if (file_exists('inc/google_analytics.php')) {
         include 'inc/google_analytics.php';
     }
     ?>
 
-  <!-- NAV -->
-  <?php require 'inc/navbar.php'; ?>
-  <!-- /NAV -->
+    <!-- NAV -->
+    <?php require 'inc/navbar.php'; ?>
+    <!-- /NAV -->
 
-  <div class="p-result-container">
+    <div id="app-result" class="p-result-container">
 
-    <nav class="p-result-nav">
-      <details id="filterlist" class="c-filterlist" onload="resizeMenu">
-        <summary class="c-filterlist__header">
-          <h3 class="c-filterlist__title">Refinar resultados</h3>
-        </summary>
+        <nav class="p-result-nav">
 
-        <div class="c-filterlist__content">
+            <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+                <summary class="c-filterlist__header">
+                    <h3 class="c-filterlist__title">Refinar resultados</h3>
+                </summary>
 
-          <?php
+                <div class="c-filterlist__content">
+
+                    <?php
                     $facets = new FacetsNew();
                     $facets->query = $result_post['query'];
 
                     if (!isset($_POST)) {
                         $_POST = null;
                     }
-
+                    if ($mostrar_instituicao) {
+                        echo($facets->facet(basename(__FILE__), "instituicao", 100, "Instituição", null, "_term", $_POST, $index_cv));
+                    }    
                     echo($facets->facet(basename(__FILE__), "campus", 100, "Campus", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "desc_gestora", 100, "Gestora", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "unidade", 100, "Unidade", null, "_term", $_POST, $index_cv));
@@ -100,6 +104,9 @@ $get_data = $_GET;
                     echo($facets->facet(basename(__FILE__), "divisao", 100, "Divisão", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "secao", 100, "Seção", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", null, "_term", $_POST, $index_cv));
+                    if ($mostrar_area_concentracao) {
+                        echo($facets->facet(basename(__FILE__), "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, $index_cv));
+                    }  
                     echo($facets->facet(basename(__FILE__), "tipvin", 100, "Tipo de vínculo", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "genero", 100, "Genero", null, "_term", $_POST, $index_cv));
                     echo($facets->facet(basename(__FILE__), "desc_nivel", 100, "Nível", null, "_term", $_POST, $index_cv));
@@ -133,60 +140,82 @@ $get_data = $_GET;
                     echo($facets->facet(basename(__FILE__), "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, $index_cv));
 
                 ?>
-        </div>
-      </details>
-    </nav>
+                </div>
+            </details>
+        </nav>
 
-    <main class="p-result-main">
-      <form class="u-mt-1" action="result_autores.php" method="POST" accept-charset="utf-8"
-        enctype="multipart/form-data" id="searchresearchers">
-        <div class="input-group mb-3">
-          <input name="query" type="text" class="form-control" placeholder="Digite parte do nome do pesquisador"
-            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="submit" form="searchresearchers" value="Submit">Pesquisar
-          </button>
-        </div>
-      </form>
+        <main class="p-result-main">
 
-      <!-- Navegador de resultados - Início -->
-      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-      <!-- Navegador de resultados - Fim -->
+            <div class="p-result-search-ctn">
 
-      <div class="p-result-authors">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="searchresearchers">
 
-        <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-        <?php 
-                    if (empty($r["_source"]['datePublished'])) {
-                        $r["_source"]['datePublished'] = "";
-                    }
-                ?>
+                    <div class="c-searcher">
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
+                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
+                            <i class="i i-lupa c-searcher__btn-ico"></i>
+                        </button>
+                    </div>
+                </form>
 
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex bd-highlight">
-              <div class="p-2 flex-grow-1 bd-highlight">
-                <h5 class="card-title">
-                  <a class="text-dark" href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                    <?php echo $r["_source"]['nome_completo']; ?>
-                  </a>
-                </h5>
-              </div>
+                <button class="c-btn--tip u-mr-10" v-on:click="showTips = !showTips" title="Dicas de pesquisa">
+                    <i class="i i-btn i-sm i-help"></i>
+                </button>
             </div>
-          </div>
-        </div>
-        <?php endforeach; ?>
-      </div>
 
-      <!-- Navegador de resultados - Início -->
-      <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
-      <!-- Navegador de resultados - Fim -->
+            <transition name="homeeffect">
+                <div class="c-tips" v-if="showTips">
 
-    </main>
+                    <h4>Refinar resultados</h4>
+                    <p>Use os filtros à esquerda para refinar os resultados da sua busca. São diversas opções, como
+                        Campus, Unidade, Departamento, Nome do PPG, e etc.
+                    </p>
 
-  </div>
+                    <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de
+                        cada item listado é exibida a quantidade de resultados disponíceis.
+                    </p> 
+                    <h4></h4>
 
-  <?php include('inc/footer.php'); ?>
-  <script src="inc/js/pages/result.js"></script>
+                    <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
+                        Fechar
+                    </button>
+                </div>
+            </transition>
+
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
+
+            <div class="p-result-authors">
+                <ul class="c-authors-list">
+                    <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
+                    <?php 
+            if (empty($r["_source"]['datePublished'])) {
+              $r["_source"]['datePublished'] = "";
+            }
+          ?>
+
+                    <li class="c-card-author t t-b t-md">
+                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                            <?php echo $r["_source"]['nome_completo']; ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
+
+        </main>
+
+    </div>
+
+    <?php include('inc/footer.php'); ?>
+    <script src="inc/js/pages/result.js"></script>
 </body>
 
 </html>

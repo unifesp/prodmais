@@ -37,7 +37,7 @@ class Departamento {
   require 'inc/meta-header.php';
   require 'inc/functions.php';
   require 'inc/components/GraphBar.php';
-  require 'inc/components/Production.php';
+  require 'inc/components/SList.php';
   require 'inc/components/Who.php';
   require 'inc/components/PPGBadges.php';
   require 'inc/components/TagCloud.php';
@@ -72,7 +72,7 @@ class Departamento {
               <span>Campus Guarulhos</span>
               <span>Escola de Filosofia, Letras e ciências Humanas</span>
             </p>
-            <div class="d-icon-text t-gray u-mb-1">
+            <div class="d-icon-text t-gray u-mb-10">
               <i class="i i-sm i-mapmarker p-departamento-i"></i>
               <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
             </div>
@@ -119,17 +119,17 @@ class Departamento {
         </section>
 
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="l-ppg">
-          <h3 class="t t-title">Palavras chave recorrentes</h3>
+          <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
           <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
           <?php
@@ -149,10 +149,10 @@ class Departamento {
           ?>
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
         <section class="l-ppg">
-          <h3 class='t t-title'>Orientadores e orientadoras</h3>
+          <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
           <ul class="p-departamento-orientadores">
 
@@ -200,7 +200,7 @@ class Departamento {
 
         </section>
 
-        <hr class="c-line u-my-2" />
+        <hr class="c-line u-my-20" />
 
 
         <section class="p-departamento-repos">

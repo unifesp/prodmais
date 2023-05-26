@@ -1,0 +1,128 @@
+.c-profmenu {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin-bottom: 0;
+	margin-top: 2rem;
+	padding: 0 0.5rem 0 0.5rem;
+	width: 100%;
+
+	@media (prefers-color-scheme: light) {
+		background: linear-gradient(90deg, var(--c-pr-5) 0%, var(--c-pr-6) 100%);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		background: linear-gradient(90deg, var(--c-pr-0) 0%, var(--c-pr-1) 100%);
+	}
+
+	@include up-to("md") {
+		padding: 0 2rem 0 2rem;
+	}
+}
+
+.c-profmenu-btn {
+	align-items: center;
+	border: none;
+	display: flex;
+	display: flex;
+	flex-direction: row;
+	font-size: 1.2rem;
+	font-weight: 600;
+	height: 45px;
+	justify-content: center;
+	margin: 1rem -1.4rem 0 -1.4rem;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	transition: all 0.3s ease 0s;
+	width: 100px;
+	@include ico($tabshape-mini);
+
+	&:focus {
+		outline: none;
+	}
+	&:active {
+		background-color: var(--c-bg-1);
+		color: var(--c-pr-3);
+	}
+
+	@media (prefers-color-scheme: light) {
+		background-color: var(--c-pr-3);
+		color: var(--c-pr-2);
+
+		&:hover,
+		&:focus {
+			background-color: var(--c-pr-7);
+			color: var(--c-pr-2);
+
+			.c-profmenu-ico {
+				background-color: var(--c-pr-2);
+			}
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		background-color: var(--c-pr-2);
+		color: var(--c-pr-7);
+
+		&:hover,
+		&:focus {
+			background-color: var(--c-pr-2);
+			color: var(--c-pr-4);
+
+			.c-profmenu-ico {
+				background-color: var(--c-pr-4);
+			}
+		}
+	}
+
+	@include up-to("md") {
+		margin: 1rem -1rem 0 -1rem;
+		width: 180px;
+		@include ico($tabshape-desk);
+
+		@media (prefers-color-scheme: light) {
+			color: var(--c-pr-7);
+		}
+	}
+}
+
+.c-profmenu-ico {
+	background-color: var(--c-pr-7);
+	height: 40px;
+	transition: all 0.3s ease 0s;
+	width: 40px;
+
+	&:hover,
+	&:focus {
+		background-color: var(--c-pr-4);
+	}
+
+	@include up-to("md") {
+		margin-right: 0.4rem;
+	}
+}
+
+.c-profmenu-text {
+	display: none;
+
+	@include up-to("md") {
+		display: block;
+		transform: translateX(-4px);
+	}
+}
+
+.c-profmenu-active {
+	background-color: var(--c-bg-1) !important;
+	color: var(--c-pr-4) !important;
+	z-index: 3;
+
+	.c-profmenu-ico {
+		background-color: var(--c-pr-4) !important;
+		z-index: 4;
+	}
+}

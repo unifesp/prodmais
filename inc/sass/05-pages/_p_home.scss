@@ -1,0 +1,97 @@
+// == PAGE HOME == //
+
+.p-home-wrapper {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 100vh;
+	width: 100vw;
+}
+
+.p-home-info {
+	color: var(--c-pr-2);
+	text-align: center;
+}
+
+.p-home-slogan {
+	align-content: center;
+	-webkit-background-clip: text;
+	background-clip: "text";
+	color: var(--c-pr-2);
+	display: flex;
+	flex-direction: column;
+	font-size: 2.3rem !important;
+	max-width: 500px;
+	padding: 0.7rem 0.5rem;
+	text-align: center;
+	-webkit-text-fill-color: transparent;
+	@include gradient-1;
+}
+
+.p-home-instituicao {
+	margin: 0;
+	margin-bottom: 2rem;
+}
+
+.p-home-logo {
+	display: block;
+	margin-bottom: 0.7rem;
+	max-width: 240px;
+	width: 100%;
+}
+
+.p-home-slogan {
+	font-size: 2rem;
+	max-width: 800px;
+	padding: 0.5rem 0.5rem;
+}
+
+.c-searchcategories,
+.options {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 0.5rem auto;
+}
+
+.p-home-search {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+	padding: 0.2rem;
+	width: 100%;
+	@include transition();
+}
+
+.p-home-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-items: center;
+	margin: 0.2rem;
+	width: 100%;
+
+	&-btn {
+		margin: 2rem auto 1rem auto;
+	}
+}
+
+.p-home-categories {
+	margin-block: 1rem;
+	max-width: 1200px;
+	width: 100%;
+}
+
+@include up-to("md") {
+	.p-home-search {
+		margin: 1rem auto;
+	}
+}
+
+.p-home__tips-btn {
+	position: absolute;
+	right: 2rem;
+	top: 7rem;
+}
