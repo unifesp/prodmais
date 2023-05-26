@@ -45,7 +45,7 @@ $mostrar_area_concentracao = true;
 $mostrar_link_dashboard = true;
 
 // Tema
-$theme = 'Prodmais';
+// $theme = 'Prodmais';
 // $theme = 'Waterbeach';
 // $theme = 'Tomaton';
-// $theme = 'Blueberry';
+$theme = 'Blueberry';
