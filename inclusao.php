@@ -191,6 +191,16 @@ if(isset($_POST['submit'])){
             Excluir todos os dados! Atenção, essa tarefa é irreversível! <a href="tools/delete_all_indexes.php">Clique aqui</a>
         </div>
 
+        <h2 class="t t-h3">Exportar</h2>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=ris">Exportar em formato RIS</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=bibtex">Exportar em formato BIBTEX</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=dspace">Exportar em formato CSV para o DSpace</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=capesprint">Exportar em formato CSV para o CapesPrint</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=authorNetwork">Exportar em formato CSV para o Gephi da Rede de Co-Autoria incluindo publicações</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=authorNetworkWithoutPapers">Exportar em formato CSV para o Gephi da Rede de Co-Autoria sem publicações</a></p>
+        <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=ppgNetworkWithoutPapers">Exportar em formato CSV para o Gephi da Rede de PPGs</a></p>
+        
+
       </div>
     </div>
   </main>
