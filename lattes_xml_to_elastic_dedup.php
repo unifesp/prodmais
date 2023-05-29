@@ -378,7 +378,7 @@ if (isset($_FILES['file'])) {
         echo 'O arquivo zip é inválido ou está corrompido';
       }
     } elseif ($extensao == 'xml') {
-      // Lê o conteúdo do arquivo xml
+      // Lê o conteúdo do arquivo xmlquery
       $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
 
     } else {
@@ -395,6 +395,12 @@ if (isset($_FILES['file'])) {
 } else {
   // Nenhum arquivo foi enviado pelo formulário
     echo 'Nenhum arquivo foi enviado';
+    if (isset($_REQUEST['instituicao'])) {
+        $query["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
+    }
+    if (isset($_REQUEST['area_concentracao'])) {
+        $query['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
+    }
     if (isset($_REQUEST['unidade'])) {
         $query["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
     }
@@ -470,9 +476,28 @@ if ($result_get_curriculo["found"] == true) {
         $ppg_array[] = rtrim($_REQUEST['ppg_nome']);
     }
     $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
+
+    $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
+    if (isset($_REQUEST['instituicao'])) {
+        $instituicao_array[] = rtrim($_REQUEST['instituicao']);
+    }
+    $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
+
+    $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
+    if (isset($_REQUEST['area_concentracao'])) {
+        $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+    }
+    $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+
 } else {
     if (isset($_REQUEST['ppg_nome'])) {
         $doc_curriculo_array['doc']['ppg_nome'] = explode("|", rtrim($_REQUEST['ppg_nome']));
+    }
+    if (isset($_REQUEST['instituicao'])) {
+        $doc_curriculo_array['doc']['instituicao'] = explode("|", rtrim($_REQUEST['instituicao']));
+    }
+    if (isset($_REQUEST['area_concentracao'])) {
+        $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
     }
 };
 
@@ -483,14 +508,7 @@ $doc_curriculo_array["doc"]["source"] = "Base Lattes";
 $doc_curriculo_array["doc"]["type"] = "Curriculum";
 $doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
 
-var_dump($_REQUEST);
-
-if (isset($_REQUEST['instituicao'])) {
-    $doc_curriculo_array["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
-}
-if (isset($_REQUEST['area_concentracao'])) {
-    $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
-}
+//var_dump($_REQUEST);
 
 $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
 $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);
