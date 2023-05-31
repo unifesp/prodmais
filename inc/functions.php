@@ -2741,7 +2741,7 @@ class FacetsNew
     return $facet_string;
   }
 
-  public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $open = false)
+  public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
   {
     global $url_base;
 
@@ -2756,20 +2756,63 @@ class FacetsNew
     $response = Elasticsearch::search(null, 0, $query);
 
 
-    echo '<a href="#" class="list-group-item list-group-item-action active">' . $field_name . '</a>';
-    echo '<ul class="list-group list-group-flush">';
+    $facet_array = array();
+    $facet_array[] = '<details class="c-filterdrop" open="true">';
+    $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
+    $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
-    echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-    echo '<a href="' . $fileName . '?search=_exists_:' . $field . '" style="color:#0040ff;font-size: 90%">Está preenchido</a>
-        <span class="badge badge-primary badge-pill">' . number_format($response["aggregations"]["field_exists"]["doc_count"], 0, ',', '.') . '</span>';
-    echo '</li>';
+    $facet_array[] = '<li class="c-filterdrop__item">';
 
-    echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-    echo '<a href="' . $fileName . '?search=-_exists_:' . $field . '" style="color:#0040ff;font-size: 90%">Não está preenchido</a>
-        <span class="badge badge-primary badge-pill">' . number_format($response["aggregations"]["field_not_exists"]["doc_count"], 0, ',', '.') . '</span>';
-    echo '</li>';
+    if ($alternative_index == false) {
+      $facet_array[] = '<form action="result.php" method="post">';
+    } else {
+      $facet_array[] = '<form action="result_autores.php" method="post">';
+    }
+    $facet_array[] = '<input type="hidden" name="search" value="_exists_:' . $field . '">';
 
-    echo '</ul>';
+    if(isset($get_search['filter'])){              
+      if (count($get_search['filter']) > 0) {
+        foreach ($get_search['filter'] as $filter) {
+          $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
+        }
+      }
+    }
+    $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="Está preenchido" />';
+    $facet_array[] = '</form>';
+
+    $facet_array[] = '<span class="c-filterdrop__count">' . number_format($response["aggregations"]["field_exists"]["doc_count"], 0, ',', '.') . '</span>';
+
+    $facet_array[] = '</li>';
+
+    $facet_array[] = '<li class="c-filterdrop__item">';
+
+    if ($alternative_index == false) {
+      $facet_array[] = '<form action="result.php" method="post">';
+    } else {
+      $facet_array[] = '<form action="result_autores.php" method="post">';
+    }
+    $facet_array[] = '<input type="hidden" name="search" value="-_exists_:' . $field . '">';
+
+    if(isset($get_search['filter'])){              
+      if (count($get_search['filter']) > 0) {
+        foreach ($get_search['filter'] as $filter) {
+          $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
+        }
+      }
+    }
+    $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="Não está preenchido" />';
+    $facet_array[] = '</form>';
+
+    $facet_array[] = '<span class="c-filterdrop__count">' . number_format($response["aggregations"]["field_not_exists"]["doc_count"], 0, ',', '.') . '</span>';
+
+    $facet_array[] = '</li>';
+
+    $facet_array[] = '</ul>';
+    $facet_array[] = '</details>';
+    $facet_string = implode("", $facet_array);
+
+    return $facet_string;
+
   }
 
   public function rebuild_facet($field, $size, $nome_do_campo)

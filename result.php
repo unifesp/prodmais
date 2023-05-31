@@ -106,7 +106,7 @@
                     echo ($facets->facet(basename(__FILE__), "tipo", 100, "Tipo de material", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.nome", 100, "Nome do autor vinculado à instituição", null, "_term", $_POST));
-                    echo ($facets->facet(basename(__FILE__), "vinculo.lattes_id", 100, "ID do Lattes", null, "_term", $_POST));
+                    //echo ($facets->facet(basename(__FILE__), "vinculo.lattes_id", 100, "ID do Lattes", null, "_term", $_POST));
 
                     echo ($facets->facet(basename(__FILE__), "country", 200, "País de publicação", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "datePublished", 120, "Ano de publicação", "desc", "_term", $_POST));
@@ -147,6 +147,8 @@
                     echo ($facets->facet(basename(__FILE__), "vinculo.genero", 100, "Gênero", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.desc_nivel", 100, "Nível", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.desc_curso", 100, "Curso", null, "_term", $_POST));
+
+                    echo ($facets->facetExistsField(basename(__FILE__), "doi", 2, "Possui DOI preenchido?", null, "_term", $_POST));
 
                     ?>
 
