@@ -37,6 +37,9 @@ foreach ($cursor["hits"]["hits"] as $r) {
     unset($openalex_result["results"][0]['abstract_inverted_index']);
     if ($openalex_result['meta']['count'] === 1) {
         $body["doc"]["openalex"] = $openalex_result["results"][0];
+        if (!is_null($openalex_result["results"][0]['doi'])) {
+            $body["doc"]['doi'] = str_replace("https://doi.org/", "", $openalex_result["results"][0]['doi']);;
+        }
     } else {        
         $body["doc"]["openalex"]['empty'] = true;
         $upsert_openalex = Elasticsearch::update($r["_id"], $body);
