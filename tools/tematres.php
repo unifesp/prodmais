@@ -13,8 +13,12 @@
         if (isset($_GET["field"])) {
             $field = $_GET["field"];
             $body["query"]["bool"]["must"][]["query_string"]["query"] = "_exists_:$field";
+            $body["query"]["bool"]["must"][]["query_string"]["query"] = "-_exists_:tematres.$field";
             // $body["query"]["bool"]["must"]["query_string"]["default_field"] = "$field.tematres";
             // $body["query"]["bool"]["must"]["query_string"]["query"] = "false";
+        } else {
+            echo "Não foi informado nenhum campo";
+            exit; 
         }
 
         if (isset($_GET["term"])) {
@@ -34,7 +38,7 @@
         } elseif ($_GET["field"] == "ExternalData.crossref.message.author.affiliation.name") {
             $params["_source"] = ["_id","ExternalData"];
         }
-        $params["size"] = 200;
+        $params["size"] = 1000;
         // if (isset($_GET["field"])) {
         //     $params["from"] = $_GET["from"];
         // }
@@ -237,6 +241,28 @@
                 //print_r($body_upsert);
                 $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
                 unset($body_upsert);
+
+            } elseif ($_GET["field"] == "isPartOf.name") {
+
+                $termCleaned = str_replace("&", "e", $record['_source']["isPartOf"]["name"]);
+                $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
+
+                if ($result_tematres["foundTerm"] == "ND") {
+
+                    $body_upsert["doc"]["tematres"]["isPartOf.name"] = false;
+                    $body_upsert["doc_as_upsert"] = true;
+                
+                } else {
+                    $body_upsert["doc"]["isPartOf"]["name"] = $result_tematres["foundTerm"];
+                    $body_upsert["doc"]["tematres"]["isPartOf.name"] = true;
+                    $body_upsert["doc_as_upsert"] = true;    
+                }          
+
+                //print_r($body_upsert);
+                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                unset($body_upsert);
+                var_dump($resultado_upsert);
+                echo "<br/><br/>";
 
             } else {
                 echo "Campo não configurado";
