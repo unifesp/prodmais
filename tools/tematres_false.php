@@ -38,10 +38,14 @@
         } elseif ($_GET["field"] == "ExternalData.crossref.message.author.affiliation.name") {
             $params["_source"] = ["_id","ExternalData"];
         }
-        $params["size"] = 200;
-        // if (isset($_GET["field"])) {
-        //     $params["from"] = $_GET["from"];
-        // }
+        if (isset($_GET["size"])) {
+            $params["size"] = $_GET["size"];
+        } else {
+            $params["size"] = 10;
+        }
+        if (isset($_GET["from"])) {
+            $params["from"] = $_GET["from"];
+        }
         $response = $client->search($params);
         //var_dump($response);
 
@@ -246,7 +250,7 @@
 
                 $termCleaned = str_replace("&", "e", $record['_source']["isPartOf"]["name"]);
                 $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
-                var_dump($result_tematres);
+                echo $result_tematres["termNotFound"];
                 echo "<br/>";
 
                 if ($result_tematres["foundTerm"] == "ND") {
