@@ -263,6 +263,29 @@
                 unset($body_upsert);
                 var_dump($resultado_upsert);
                 echo "<br/><br/>";
+            
+            } elseif ($_GET["field"] == "EducationEvent.name") {
+
+                $termCleaned = str_replace("&", "e", $record['_source']["EducationEvent"]["name"]);
+                $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
+
+                if ($result_tematres["foundTerm"] == "ND") {
+
+                    $body_upsert["doc"]["tematres"]["EducationEvent.name"] = false;
+                    $body_upsert["doc_as_upsert"] = true;
+                
+                } else {
+                    $body_upsert["doc"]["EducationEvent"]["name"] = $result_tematres["foundTerm"];
+                    $body_upsert["doc"]["tematres"]["EducationEvent.name"] = true;
+                    $body_upsert["doc_as_upsert"] = true;    
+                }          
+
+                //print_r($body_upsert);
+                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                unset($body_upsert);
+                var_dump($resultado_upsert);
+                echo "<br/><br/>";
+
 
             } else {
                 echo "Campo não configurado";
