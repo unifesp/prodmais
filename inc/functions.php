@@ -35,6 +35,7 @@ try {
 /* Create index if not exists */
 if (isset($testIndexCV) && $testIndexCV == false) {
   Elasticsearch::createIndex($index_cv, $client);
+  Elasticsearch::mappingsIndexCV($index_cv, $client);
 }
 
 /* Connect to Elasticsearch | Index PPGs */
@@ -2082,7 +2083,16 @@ class Elasticsearch
                   'my_ascii_folding',
                   'portuguese_stop',
                   'portuguese_stemmer'
+                  ]
+                ],
+                'case_insensitive_analyzer' => [
+                  'tokenizer' => 'keyword',
+                  'filter' => ['lowercase']
                 ]
+            ],
+            'normalizer' => [
+              'case_insensitive' => [
+                'filter' => 'lowercase'
               ]
             ]
           ]
@@ -2128,6 +2138,16 @@ class Elasticsearch
                 ]
               ]
             ],
+            'nome_completo' => [
+              'type' => 'text',
+              'analyzer' => 'portuguese',
+              'fields' => [
+                'keyword' => [
+                  'type' => 'keyword',
+                  'ignore_above' => 256
+                ]
+              ]
+            ],
             'author' => [
               'properties' => [
                 'person' => [
@@ -2135,7 +2155,7 @@ class Elasticsearch
                   'properties' => [
                     'name' => [
                       'type' => 'text',
-                      'analyzer': 'case_insensitive',
+                      'analyzer' => 'rebuilt_portuguese',
                       'fields' => [
                         'keyword' => [
                           'type' => 'keyword',
@@ -2238,6 +2258,34 @@ class Elasticsearch
     // Update the index mapping
     $client->indices()->putMapping($mappingsParams);
   }
+  static function mappingsIndexCV($indexName, $client, $mappings = null)
+  {
+    if (isset($mappings)) {
+      $mappingsParams = $mappings;
+    } else {
+      $mappingsParams = [
+        'index' => $indexName,
+        'body' => [
+          'properties' => [
+            'nome_completo' => [
+              'type' => 'text',
+              'analyzer' => 'rebuilt_portuguese',
+              'fields' => [
+                'keyword' => [
+                  'type' => 'keyword',
+                  'normalizer' => 'case_insensitive',
+                  'ignore_above' => 256
+                ]
+              ]
+            ]
+          ]
+        ]
+      ];
+    }
+    // Update the index mapping
+    $client->indices()->putMapping($mappingsParams);
+  }
+
 }
 
 class Requests
