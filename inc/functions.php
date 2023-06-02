@@ -2135,7 +2135,7 @@ class Elasticsearch
                   'properties' => [
                     'name' => [
                       'type' => 'text',
-                      'analyzer' => 'portuguese',
+                      'analyzer': 'case_insensitive',
                       'fields' => [
                         'keyword' => [
                           'type' => 'keyword',
