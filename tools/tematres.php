@@ -247,6 +247,8 @@
 
                 $termCleaned = str_replace("&", "e", $record['_source']["isPartOf"]["name"]);
                 $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
+                echo $result_tematres["termNotFound"];
+                echo "<br/>";
 
                 if ($result_tematres["foundTerm"] == "ND") {
 
@@ -262,13 +264,15 @@
                 //print_r($body_upsert);
                 $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
                 unset($body_upsert);
-                var_dump($resultado_upsert);
+                //var_dump($resultado_upsert);
                 echo "<br/><br/>";
             
             } elseif ($_GET["field"] == "EducationEvent.name") {
 
                 $termCleaned = str_replace("&", "e", $record['_source']["EducationEvent"]["name"]);
                 $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
+                echo $result_tematres["termNotFound"];
+                echo "<br/>";
 
                 if ($result_tematres["foundTerm"] == "ND") {
 
@@ -284,7 +288,7 @@
                 //print_r($body_upsert);
                 $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
                 unset($body_upsert);
-                var_dump($resultado_upsert);
+                //var_dump($resultado_upsert);
                 echo "<br/><br/>";
 
 
