@@ -38,10 +38,11 @@
         } elseif ($_GET["field"] == "ExternalData.crossref.message.author.affiliation.name") {
             $params["_source"] = ["_id","ExternalData"];
         }
-        $params["size"] = 1000;
-        // if (isset($_GET["field"])) {
-        //     $params["from"] = $_GET["from"];
-        // }
+        if (isset($_GET["size"])) {
+            $params["size"] = $_GET["size"];
+        } else {
+            $params["size"] = 10;
+        }
         $response = $client->search($params);
         //var_dump($response);
 
