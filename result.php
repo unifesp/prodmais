@@ -206,6 +206,7 @@
               !empty($r['_source']['isPartOf']['issn']) ? $issn = $r['_source']['isPartOf']['issn'] : $issn = '';
               !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
               !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
+              isset($r['_source']['openalex']['cited_by_count']) ? $cited_by_count = strval($r['_source']['openalex']['cited_by_count']) : $cited_by_count = '';              
 
               SList::IntelectualProduction(
                 $type = $r['_source']['tipo'],
@@ -220,7 +221,8 @@
                 $refPage = '',
                 $evento = '',
                 $datePublished = $published,
-                $id = ''
+                $id = '',
+                $cited_by_count
               );
               unset($authors);              
             }
