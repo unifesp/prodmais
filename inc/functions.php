@@ -2818,7 +2818,7 @@ class FacetsNew
     }
     $facet_array[] = '<input type="hidden" name="search" value="_exists_:' . $field . '">';
 
-    if(isset($get_search['filter'])){              
+    if(isset($get_search['filter'])){
       if (count($get_search['filter']) > 0) {
         foreach ($get_search['filter'] as $filter) {
           $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
@@ -2907,20 +2907,16 @@ class FacetsNew
       $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 20;
     } else {
       $query["aggs"]["ranges"]["range"]["field"] = "$field";
-      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 0.5;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 0.5;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["to"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][5]["from"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][5]["to"] = 50;
-      $query["aggs"]["ranges"]["range"]["ranges"][6]["from"] = 50;
-      $query["aggs"]["ranges"]["range"]["ranges"][6]["to"] = 100;
-      $query["aggs"]["ranges"]["range"]["ranges"][7]["from"] = 100;
+      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 1;
+      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 1;
+      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 2;
+      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 2;
+      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 5;
+      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 5;
+      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 10;
+      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 10;
+      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 20;
+      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 20;
     }
 
     //$query["aggs"]["counts"]["terms"]["size"] = $size;
@@ -2930,16 +2926,49 @@ class FacetsNew
     $result_count = count($response["aggregations"]["ranges"]["buckets"]);
 
     if ($result_count > 0) {
-      echo '<a href="#" class="list-group-item list-group-item-action active">' . $field_name . '</a>';
-      echo '<ul class="list-group list-group-flush">';
+
+      $facet_array = array();
+      $facet_array[] = '<details class="c-filterdrop" open="true">';
+      $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
+      $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';  
+
       foreach ($response["aggregations"]["ranges"]["buckets"] as $facets) {
+        $facet_array[] = '<li class="c-filterdrop__item">';
+        $facet_array[] = '<form action="result.php" method="post">';
         $facets_array = explode("-", $facets['key']);
-        echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-        echo '<a href="' . $fileName . '?&search=' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']" style="color:#0040ff;font-size: 90%">Intervalo ' . $facets['key'] . '</a>
-                <span class="badge badge-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-        echo '</li>';
+        $facet_array[] = '<input type="hidden" name="search" value="' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']">';
+        if(isset($get_search['filter'])){
+          if (count($get_search['filter']) > 0) {
+            foreach ($get_search['filter'] as $filter) {
+              $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
+            }
+          }
+        }
+
+        $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="Entre: ' . $facets['key'] . '" />';
+        $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+        $facet_array[] = '</li>';
+        $facet_array[] = '</form>';
       };
-      echo '</ul>';
+
+      // echo '<a href="#" class="list-group-item list-group-item-action active">' . $field_name . '</a>';
+      // echo '<ul class="list-group list-group-flush">';
+      // foreach ($response["aggregations"]["ranges"]["buckets"] as $facets) {
+      //   $facets_array = explode("-", $facets['key']);
+      //   echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
+      //   echo '<a href="' . $fileName . '?&search=' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']" style="color:#0040ff;font-size: 90%">Intervalo ' . $facets['key'] . '</a>
+      //           <span class="badge badge-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+      //   echo '</li>';
+      // };
+      // echo '</ul>';
+
+
+      $facet_array[] = '</ul>';
+      $facet_array[] = '</details>';
+      $facet_string = implode("", $facet_array);
+  
+      return $facet_string;
+
     }
   }
 }
