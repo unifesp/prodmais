@@ -2433,291 +2433,6 @@ class Requests
   }
 }
 
-class Facets
-{
-  public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null, $collapsed = true)
-  {
-    global $url_base;
-
-    if (isset($get_search["page"])) {
-      unset($get_search["page"]);
-    }
-
-    $query = $this->query;
-    $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-    if (!empty($_SESSION['oauthuserdata'])) {
-      $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
-    }
-    if (isset($sort)) {
-      $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
-    }
-    $query["aggs"]["counts"]["terms"]["size"] = $size;
-
-    $response = Elasticsearch::search(null, 0, $query, $alternative_index);
-
-    $result_count = count($response["aggregations"]["counts"]["buckets"]);
-
-    if ($result_count == 0) {
-    } elseif (($result_count != 0) && ($result_count < 5)) {
-
-      if (($result_count == 1) && ($response["aggregations"]["counts"]["buckets"][0]["key"] == "")) {
-      } else {
-        echo '<div class="accordion-item">';
-        echo '<h2 class="accordion-header" id="heading' . hash('crc32', $field_name) . '">
-                <button class="accordion-button ' . ($collapsed == true ? "collapsed" : "") . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . hash('crc32', $field_name) . '" aria-expanded="' . ($collapsed == true ? "true" : "false") . '" aria-controls="collapse' . hash('crc32', $field_name) . '">
-                ' . $field_name . '
-                </button>
-                </h2>';
-        echo '<div id="collapse' . hash('crc32', $field_name) . '" class="accordion-collapse collapse ' . ($collapsed == true ? "show" : "") . '" aria-labelledby="heading' . hash('crc32', $field_name) . '" data-bs-parent="#accordionExample">
-                <div class="accordion-body">';
-
-        echo '<ul class="list-group list-group-flush">';
-        foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
-          if ($facets['key'] == "Não preenchido") {
-            echo '<li>';
-            echo '<div uk-grid>
-                                <div class="uk-width-expand" style="color:#333">
-                                    <a href="' . $fileName . '?' . http_build_query($get_search) . '&search=(-_exists_:' . $field . ')">' . $facets['key'] . '</a>
-                                </div>
-                                <div class="uk-width-auto" style="color:#333">
-                                    <span class="uk-badge" style="font-size:80%">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>
-                                </div>';
-            echo '</div></li>';
-          } else {
-            echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-            if ($alternative_index == false) {
-              echo '<form action="result.php" method="post">';
-            } else {
-              echo '<form action="result_autores.php" method="post">';
-            }
-            echo '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
-            echo '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
-            if (isset($get_search['filter'])) {
-              if (count($get_search['filter']) < 0) {
-                foreach ($get_search['filter'] as $filter) {
-                  echo '<input type="hidden" name="filter[]" value="' . $filter . '">';
-                }
-              }
-            }
-            echo '<input class="list-group-item d-flex justify-content-between align-items-center" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
-            echo '</form>';
-
-            echo '<span class="badge bg-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-
-            echo '</li>';
-          }
-        };
-        echo '</ul>';
-        echo '</div></div>';
-      }
-    } else {
-      $i = 0;
-      echo '<div class="accordion-item">';
-      echo '<h2 class="accordion-header" id="heading' . hash('crc32', $field_name) . '">
-            <button class="accordion-button ' . ($collapsed == true ? "collapsed" : "") . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . hash('crc32', $field_name) . '" aria-expanded="' . ($collapsed == true ? "true" : "false") . '" aria-controls="collapse' . hash('crc32', $field_name) . '">
-            ' . $field_name . '
-            </button>
-            </h2>';
-      echo '<div id="collapse' . hash('crc32', $field_name) . '" class="accordion-collapse collapse ' . ($collapsed == true ? "show" : "") . '" aria-labelledby="heading' . hash('crc32', $field_name) . '" data-bs-parent="#accordionExample">';
-      echo '<div class="accordion-body">';
-      echo '<ul class="list-group list-group-flush">';
-      while ($i < 5) {
-        if ($response["aggregations"]["counts"]["buckets"][$i]['key'] == "Não preenchido") {
-          echo '<li>';
-          echo '<div uk-grid>
-                            <div class="uk-width-expand uk-text-small" style="color:#333">
-                                <a href="' . $fileName . '' . http_build_query($get_search) . '&search=(-_exists_:' . $field . ')">' . $response["aggregations"]["counts"]["buckets"][$i]['key'] . '</a>
-                            </div>
-                            <div class="uk-width-auto" style="color:#333">
-                            <span class="uk-badge" style="font-size:80%">' . number_format($response["aggregations"]["counts"]["buckets"][$i]['doc_count'], 0, ',', '.') . '</span>
-                            </div>';
-          echo '</div></li>';
-        } else {
-          echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-          if ($alternative_index == false) {
-            echo '<form action="result.php" method="post">';
-          } else {
-            echo '<form action="result_autores.php" method="post">';
-          }
-          echo '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
-          echo '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $response["aggregations"]["counts"]["buckets"][$i]['key']) . '">';
-          if (isset($get_search['filter'])) {
-            if (count($get_search['filter']) < 0) {
-              foreach ($get_search['filter'] as $filter) {
-                echo '<input type="hidden" name="filter[]" value="' . $filter . '">';
-              }
-            }
-          }
-          echo '<input class="list-group-item d-flex justify-content-between align-items-center" style="text-decoration: none; color: initial;" type="submit" value="' . $response["aggregations"]["counts"]["buckets"][$i]['key'] . '" />';
-          echo '</form>';
-          echo '<span class="badge bg-primary badge-pill">' . number_format($response["aggregations"]["counts"]["buckets"][$i]['doc_count'], 0, ',', '.') . '</span>';
-          echo '</li>';
-        }
-        $i++;
-      }
-
-
-      echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-      echo '<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#' . str_replace(".", "", $field) . 'Modal">mais >>></button>  ';
-      echo '</li>';
-      echo '</ul>';
-      echo '<div class="modal fade" id="' . str_replace(".", "", $field) . 'Modal" tabindex="-1" role="dialog" aria-labelledby="' . str_replace(".", "", $field) . 'ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="' . $field . 'ModalLabel">' . $field_name . '</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group list-group-flush">';
-      foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
-        echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-        echo '<form action="result.php" method="post">';
-        echo '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
-        echo '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
-        if (isset($get_search['filter'])) {
-          if (count($get_search['filter']) < 0) {
-            foreach ($get_search['filter'] as $filter) {
-              echo '<input type="hidden" name="filter[]" value="' . $filter . '">';
-            }
-          }
-        }
-        echo '<input class="list-group-item d-flex justify-content-between align-items-center" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
-        echo '</form>';
-
-        echo '<span class="badge bg-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-
-
-
-        echo '</li>';
-      }
-      echo '</ul>';
-      echo '
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                </div>
-                </div>
-            </div></div></div>
-            ';
-      echo '</div></div>';
-    }
-    echo '</li>';
-  }
-
-  public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $open = false)
-  {
-    global $url_base;
-
-    if (isset($get_search["page"])) {
-      unset($get_search["page"]);
-    }
-
-    $query = $this->query;
-    $query["aggs"]["field_not_exists"]["missing"]["field"] = "$field.keyword";
-    $query["aggs"]["field_exists"]["filter"]["exists"]["field"] = "$field.keyword";
-
-    $response = Elasticsearch::search(null, 0, $query);
-
-
-    echo '<a href="#" class="list-group-item list-group-item-action active">' . $field_name . '</a>';
-    echo '<ul class="list-group list-group-flush">';
-
-    echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-    echo '<a href="' . $fileName . '?search=_exists_:' . $field . '" style="color:#0040ff;font-size: 90%">Está preenchido</a>
-        <span class="badge badge-primary badge-pill">' . number_format($response["aggregations"]["field_exists"]["doc_count"], 0, ',', '.') . '</span>';
-    echo '</li>';
-
-    echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-    echo '<a href="' . $fileName . '?search=-_exists_:' . $field . '" style="color:#0040ff;font-size: 90%">Não está preenchido</a>
-        <span class="badge badge-primary badge-pill">' . number_format($response["aggregations"]["field_not_exists"]["doc_count"], 0, ',', '.') . '</span>';
-    echo '</li>';
-
-    echo '</ul>';
-  }
-
-  public function rebuild_facet($field, $size, $nome_do_campo)
-  {
-    $query = $this->query;
-    $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-    if (isset($sort)) {
-      $query["aggs"]["counts"]["terms"]["order"]["_count"] = "desc";
-    }
-    $query["aggs"]["counts"]["terms"]["size"] = $size;
-
-    $response = Elasticsearch::elasticSearch(null, 0, $query);
-
-    echo '<li class="uk-parent">';
-    echo '<a href="#" style="color:#333">' . $nome_do_campo . '</a>';
-    echo ' <ul class="uk-nav-sub">';
-    foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
-      $termCleaned = str_replace("&", "*", $facets['key']);
-      echo '<li">';
-      echo "<div uk-grid>";
-      echo '<div class="uk-width-2-3 uk-text-small" style="color:#333">';
-      echo '<a href="admin/autoridades.php?term=&quot;' . $termCleaned . '&quot;" style="color:#0040ff;font-size: 90%">' . $termCleaned . ' (' . number_format($facets['doc_count'], 0, ',', '.') . ')</a>';
-      echo '</div>';
-      echo '</li>';
-    };
-    echo '</ul>
-          </li>';
-  }
-
-  public function facet_range($fileName, $field, $size, $field_name, $type_of_number = "")
-  {
-    $query = $this->query;
-    if ($type_of_number == "INT") {
-      $query["aggs"]["ranges"]["range"]["field"] = "$field";
-      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 20;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 20;
-    } else {
-      $query["aggs"]["ranges"]["range"]["field"] = "$field";
-      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 0.5;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 0.5;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["to"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][5]["from"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][5]["to"] = 50;
-      $query["aggs"]["ranges"]["range"]["ranges"][6]["from"] = 50;
-      $query["aggs"]["ranges"]["range"]["ranges"][6]["to"] = 100;
-      $query["aggs"]["ranges"]["range"]["ranges"][7]["from"] = 100;
-    }
-
-    //$query["aggs"]["counts"]["terms"]["size"] = $size;
-
-    $response = Elasticsearch::search(null, 0, $query);
-
-    $result_count = count($response["aggregations"]["ranges"]["buckets"]);
-
-    if ($result_count > 0) {
-      echo '<a href="#" class="list-group-item list-group-item-action active">' . $field_name . '</a>';
-      echo '<ul class="list-group list-group-flush">';
-      foreach ($response["aggregations"]["ranges"]["buckets"] as $facets) {
-        $facets_array = explode("-", $facets['key']);
-        echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
-        echo '<a href="' . $fileName . '?&search=' . $field . ':[' . $facets_array[0] . ' TO ' . $facets_array[1] . ']" style="color:#0040ff;font-size: 90%">Intervalo ' . $facets['key'] . '</a>
-                <span class="badge badge-primary badge-pill">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-        echo '</li>';
-      };
-      echo '</ul>';
-    }
-  }
-}
-
 class FacetsNew
 {
   public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
@@ -2971,6 +2686,78 @@ class FacetsNew
 
     }
   }
+  public function facetcited($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
+  {
+    global $url_base;
+
+    if (isset($get_search["page"])) {
+      unset($get_search["page"]);
+    }
+
+    $query = $this->query;
+    $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
+    if (!empty($_SESSION['oauthuserdata'])) {
+      $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
+    }
+    if (isset($sort)) {
+      $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
+    }
+    $query["aggs"]["counts"]["terms"]["size"] = $size;
+
+    $response = Elasticsearch::search(null, 0, $query, $alternative_index);
+
+    $result_count = count($response["aggregations"]["counts"]["buckets"]);
+
+    if ($result_count === 0) {
+      return;
+    }
+
+    if ($result_count === 1 && empty($response["aggregations"]["counts"]["buckets"][0]['key'])) {
+      return;
+    }
+
+    $facet_array = array();
+    $facet_array[] = '<details class="c-filterdrop" open="true">';
+    $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
+    $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
+
+    foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
+
+      $facet_array[] = '<li class="c-filterdrop__item">';
+
+      if ($alternative_index == false) {
+        $facet_array[] = '<form action="result.php" method="post">';
+      } else {
+        $facet_array[] = '<form action="result_autores.php" method="post">';
+      }
+      $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+
+      $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
+
+      if(isset($get_search['filter'])){              
+        if (count($get_search['filter']) > 0) {
+          foreach ($get_search['filter'] as $filter) {
+            $facet_array[] = '<input type="hidden" name="filter[]" value=\''.$filter.'\'>';
+          }
+        }
+      }
+      
+      $openalex_result = openalexAPIID(str_replace("https://openalex.org/", "", $facets['key']));
+      $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $openalex_result['title'] . '" />';
+      $facet_array[] = '</form>';
+
+      $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+      $facet_array[] = '</li>';
+    }
+
+    $facet_array[] = '</ul>';
+    $facet_array[] = '</details>';
+    $facet_string = implode("", $facet_array);
+
+    return $facet_string;
+  }
+
+
 }
 
 class Citation
@@ -3755,6 +3542,27 @@ function openalexAPI($doi)
         array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => 'https://api.openalex.org/works/https://doi.org/' . $doi . '',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
+        )
+    );
+    // Send the request & save response to $resp
+    $resp = curl_exec($curl);
+    $data = json_decode($resp, true);
+    return $data;
+    // Close request to clear up some resources
+    curl_close($curl);
+}
+
+function openalexAPIID($ID)
+{
+    // Get cURL resource
+    $curl = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array(
+        $curl,
+        array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://api.openalex.org/works/' . $ID . '',
             CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
         )
     );
