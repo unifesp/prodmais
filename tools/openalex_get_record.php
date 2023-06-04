@@ -46,7 +46,7 @@ foreach ($cursor["hits"]["hits"] as $r) {
             $body["doc"]["openalex_referenced_works"][$i]['datePublished'] = (string)$openalex_result_referenced['publication_year'];
             $body["doc"]["openalex_referenced_works"][$i]['authorships'] = $openalex_result_referenced['authorships'];
             $body["doc"]["openalex_referenced_works"][$i]['language'] = $openalex_result_referenced['language'];
-            $body["doc"]["openalex_referenced_works"][$i]['source'] = $openalex_result_referenced['locations']['source']['display_name'];
+            $body["doc"]["openalex_referenced_works"][$i]['source'] = $openalex_result_referenced['primary_location']['source']['display_name'];
             $i++;
         }
     }
