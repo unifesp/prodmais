@@ -36,7 +36,7 @@ foreach ($cursor["hits"]["hits"] as $r) {
     $openalex_result = openalexGetDOI($r['fields']['name'][0]);
     unset($openalex_result["results"][0]['abstract_inverted_index']);
     if ($openalex_result['meta']['count'] === 1) {
-        $body["doc"]["openalex"] = $openalex_result["results"][0];
+        //$body["doc"]["openalex"] = $openalex_result["results"][0];
         if (!is_null($openalex_result["results"][0]['doi'])) {
             $body["doc"]['doi'] = str_replace("https://doi.org/", "", $openalex_result["results"][0]['doi']);;
         }
