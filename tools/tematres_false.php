@@ -292,7 +292,7 @@
                 $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
                 unset($body_upsert);
                 //var_dump($resultado_upsert);
-                echo "<br/><br/>";
+                echo "<br/>";
 
 
             } else {
