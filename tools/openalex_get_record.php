@@ -37,10 +37,17 @@ foreach ($cursor["hits"]["hits"] as $r) {
     } else {
         $body["doc"]["openalex"] = $openalex_result;
     }
+    if (isset($openalex_result['referenced_works'])){
+        $body["doc"]["openalex_referenced_works"] = array();
+        foreach ($openalex_result['referenced_works'] as $referenced_work) {
+            $openalex_result_referenced = openalexAPIID(str_replace("https://openalex.org/", "", $referenced_work));
+            $body["doc"]["openalex_referenced_works"][] = $openalex_result_referenced['title'];
+        }
+    }
     $body["doc_as_upsert"] = true;
-    // //print("<pre>".print_r($body, true)."</pre>");
+    //print("<pre>".print_r($body, true)."</pre>");
     $upsert_openalex = Elasticsearch::update($r["_id"], $body);
-    // print("<pre>" . print_r($upsert_openalex, true) . "</pre>");
+    //print("<pre>" . print_r($upsert_openalex, true) . "</pre>");
     ob_flush();
     flush();
 }
