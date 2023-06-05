@@ -86,5 +86,6 @@ foreach ($cursor["hits"]["hits"] as $r) {
         //echo '<br/>';
         //var_dump($upsert_openalex);
     }
-
+    unset($openalex_result);
+    unset($body);
 }
