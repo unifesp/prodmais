@@ -200,6 +200,11 @@ if(isset($_POST['submit'])){
         <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=authorNetworkWithoutPapers">Exportar em formato CSV para o Gephi da Rede de Co-Autoria sem publicações</a></p>
         <p><a href="tools/export_old.php?<?php echo $_SERVER["QUERY_STRING"] ?>&format=ppgNetworkWithoutPapers">Exportar em formato CSV para o Gephi da Rede de PPGs</a></p>
         
+        <p><a href="tools/export_field.php?field=EducationEvent.name">Exportar Nomes de eventos (EducationEvent.name)</a></p>
+        <p><a href="tools/export_field.php?field=isPartOf.name">Exportar nomes de obras no todo (isPartOf.name)</a></p>
+
+
+
 
       </div>
     </div>
