@@ -57,7 +57,7 @@ foreach ($cursor["hits"]["hits"] as $r) {
                 $body["doc"]["openalex_referenced_works"] = array();
                 $i = 0;
                 foreach ($openalex_result["results"][0]['referenced_works'] as $referenced_work) {
-                    $openalex_result_referenced = openalexAPIID(str_replace("https://openalex.org/", "", $referenced_work));
+                    $openalex_result_referenced = openalexAPIID(str_replace("https://openalex.org/", "", $referenced_work), $client);
                     $body["doc"]["openalex_referenced_works"][$i]['name'] = $openalex_result_referenced['title'];
                     $body["doc"]["openalex_referenced_works"][$i]['datePublished'] = (string)$openalex_result_referenced['publication_year'];
                     $body["doc"]["openalex_referenced_works"][$i]['authorships'] = $openalex_result_referenced['authorships'];

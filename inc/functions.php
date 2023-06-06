@@ -3629,10 +3629,16 @@ function openalexAPIID($ID, $client)
             // Send the request & save response to $resp
             $resp = curl_exec($curl);
             $data = json_decode($resp, true);
-            unset($data['abstract_inverted_index']);
 
-            $body['doc'] = $data;
-            $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+            if (!is_null($data)) {
+                unset($data['abstract_inverted_index']);
+                $body['doc'] = $data;
+                $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+            } else {
+                $data['id'] = 'NotFound';
+                $body['doc']['openalex_not_found'] = 'Not Found'; 
+            }
+
             $body['doc_as_upsert'] = true;
             $upsert_openalexcitedworks = Elasticsearch::update(str_replace('https://openalex.org/', "", $data['id']), $body, 'openalexcitedworks');
 
@@ -3656,10 +3662,16 @@ function openalexAPIID($ID, $client)
         // Send the request & save response to $resp
         $resp = curl_exec($curl);
         $data = json_decode($resp, true);
-        unset($data['abstract_inverted_index']);
 
-        $body['doc'] = $data;
-        $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+        if (!is_null($data)) {
+            unset($data['abstract_inverted_index']);
+            $body['doc'] = $data;
+            $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+        } else {
+            $data['id'] = 'NotFound';
+            $body['doc']['openalex_not_found'] = 'Not Found'; 
+        }
+
         $body['doc_as_upsert'] = true;
         $upsert_openalexcitedworks = Elasticsearch::update(str_replace('https://openalex.org/', "", $data['id']), $body, 'openalexcitedworks');
 
