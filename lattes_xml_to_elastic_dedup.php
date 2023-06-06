@@ -486,12 +486,14 @@ if ($result_get_curriculo["found"] == true) {
     }
     $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
 
-    $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
-    if (isset($_REQUEST['area_concentracao'])) {
-        $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
-    }
-    if (!is_null($area_concentracao_array)){
-        $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+    if (isset($result_get_curriculo["_source"]["area_concentracao"])) {
+        $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
+        if (isset($_REQUEST['area_concentracao'])) {
+            $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+        }
+        if (!is_null($area_concentracao_array)){
+            $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+        }
     }
 } else {
     if (isset($_REQUEST['ppg_nome'])) {
