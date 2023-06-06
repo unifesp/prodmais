@@ -487,8 +487,9 @@ if ($result_get_curriculo["found"] == true) {
     if (isset($_REQUEST['area_concentracao'])) {
         $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
     }
-    $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
-
+    if (!is_null($area_concentracao_array)){
+        $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+    }
 } else {
     if (isset($_REQUEST['ppg_nome'])) {
         $doc_curriculo_array['doc']['ppg_nome'] = explode("|", rtrim($_REQUEST['ppg_nome']));
