@@ -156,7 +156,7 @@
                       echo ($facets->facet(basename(__FILE__), "openalex.open_access.oa_status", 100, "Status de acesso aberto segundo o OpenAlex?", null, "_term", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex.authorships.institutions.display_name", 100, "Instituição normalizada - OpenAlex", null, "_term", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.name", 50, "Trabalhos mais citados - OpenAlex", null, "_term", $_POST));
-                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.datePublished", 50, "Ano de publicação dos trabalhos mais citados - OpenAlex", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.datePublished", 50, "Ano de publicação dos trabalhos mais citados - OpenAlex", "desc", "_term", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.authorships.author.display_name", 50, "Autores mais citados - OpenAlex", null, "_term", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.language", 10, "Idioma dos trabalhos mais citados - OpenAlex", null, "_term", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.source", 50, "Publicação no todo dos trabalhos mais citados - OpenAlex", null, "_term", $_POST));
