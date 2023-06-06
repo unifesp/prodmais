@@ -3575,15 +3575,23 @@ function openalexAPI($doi, $client)
         $resp = curl_exec($curl);
         $data = json_decode($resp, true);
 
+        //var_dump($doi);
 
-        unset($data['abstract_inverted_index']);
-        $body['doc'] = $data;
-        $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+        //var_dump($resp);
+
+        if (!is_null($data)) {
+            unset($data['abstract_inverted_index']);
+            $body['doc'] = $data;
+            $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+        } else {
+            $data['id'] = 'NotFound';
+            $body['doc']['openalex_not_found'] = 'Not Found'; 
+        }        
         $body['doc_as_upsert'] = true;
         //echo "<pre>".print_r($body, true)."</pre>";
 
         $upsert_openalexcitedworks = Elasticsearch::update(str_replace('https://openalex.org/', "", $data['id']), $body, 'openalexcitedworks');
-        var_dump($upsert_openalexcitedworks);
+        //var_dump($upsert_openalexcitedworks);
 
 
         return $data;
@@ -3601,10 +3609,9 @@ function openalexAPIID($ID, $client)
 
     $params = [];
     $params['index'] = 'openalexcitedworks';
-    $params['id'] = $ID;
+    $params['id'] = $ID;    
     try {
         $cursor = $client->get($params);        
-        
         if ($response['found']) {
             return $cursor['_source'];
         } else {
@@ -3635,6 +3642,31 @@ function openalexAPIID($ID, $client)
         }
     } catch (Exception $e) {
         // echo "Erro: " . $e->getMessage() . "\n";
+        // Get cURL resource
+        $curl = curl_init();
+        // Set some options - we are passing in a useragent too here
+        curl_setopt_array(
+            $curl,
+            array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => 'https://api.openalex.org/works/' . $ID . '',
+                CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
+            )
+        );
+        // Send the request & save response to $resp
+        $resp = curl_exec($curl);
+        $data = json_decode($resp, true);
+        unset($data['abstract_inverted_index']);
+
+        $body['doc'] = $data;
+        $body['doc']['doi_edited'] = str_replace('https://doi.org/', "", $data['doi']);
+        $body['doc_as_upsert'] = true;
+        $upsert_openalexcitedworks = Elasticsearch::update(str_replace('https://openalex.org/', "", $data['id']), $body, 'openalexcitedworks');
+
+        return $data;
+        // Close request to clear up some resources
+        curl_close($curl);
+
     }
 }
 
