@@ -2619,34 +2619,23 @@ class FacetsNew
           </li>';
   }
 
-  public function facet_range($fileName, $field, $size, $field_name, $type_of_number = "")
+  public function facet_range($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
   {
     $query = $this->query;
-    if ($type_of_number == "INT") {
-      $query["aggs"]["ranges"]["range"]["field"] = "$field";
-      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 20;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 20;
-    } else {
-      $query["aggs"]["ranges"]["range"]["field"] = "$field";
-      $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 1;
-      $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 2;
-      $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 5;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 10;
-      $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 20;
-      $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 20;
-    }
+
+    $query["aggs"]["ranges"]["range"]["field"] = "$field";
+    $query["aggs"]["ranges"]["range"]["ranges"][0]["to"] = 1;
+    $query["aggs"]["ranges"]["range"]["ranges"][1]["from"] = 1;
+    $query["aggs"]["ranges"]["range"]["ranges"][1]["to"] = 2;
+    $query["aggs"]["ranges"]["range"]["ranges"][2]["from"] = 2;
+    $query["aggs"]["ranges"]["range"]["ranges"][2]["to"] = 5;
+    $query["aggs"]["ranges"]["range"]["ranges"][3]["from"] = 5;
+    $query["aggs"]["ranges"]["range"]["ranges"][3]["to"] = 10;
+    $query["aggs"]["ranges"]["range"]["ranges"][4]["from"] = 10;
+    $query["aggs"]["ranges"]["range"]["ranges"][4]["to"] = 20;
+    $query["aggs"]["ranges"]["range"]["ranges"][5]["from"] = 20;
+    $query["aggs"]["ranges"]["range"]["ranges"][5]["to"] = 50;
+    $query["aggs"]["ranges"]["range"]["ranges"][6]["from"] = 50;
 
     //$query["aggs"]["counts"]["terms"]["size"] = $size;
 
