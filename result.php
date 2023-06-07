@@ -19,6 +19,10 @@
       $_POST["fields"] = $fields;
     }
 
+    if (empty($_POST)) {
+      $_POST['search'] = "";
+    }
+
 
     $result_post = Requests::postParser($_POST);
     if (!empty($_POST)) {
