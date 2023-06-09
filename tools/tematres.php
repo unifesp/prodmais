@@ -37,6 +37,8 @@
             $params["_source"] = ["_id","funder"];
         } elseif ($_GET["field"] == "ExternalData.crossref.message.author.affiliation.name") {
             $params["_source"] = ["_id","ExternalData"];
+        } elseif ($_GET["field"] == "EducationEvent.name") {
+            $params["_source"] = ["_id","EducationEvent"];
         }
         if (isset($_GET["size"])) {
             $params["size"] = $_GET["size"];
@@ -56,15 +58,15 @@
 
         <?php
         // Pega cada um dos registros da resposta
-        foreach ($response["hits"]["hits"] as $record) {
+        foreach ($response["hits"]["hits"] as $r) {
 
             if ($_GET["field"] == "author.person.affiliation") {
 
                 $i = 0;
-                $body_upsert["doc"]["author"] = $record['_source']['author'];
+                $body_upsert["doc"]["author"] = $r['_source']['author'];
     
                 // Para cada autor no registro
-                foreach ($record['_source']['author'] as $author) {
+                foreach ($r['_source']['author'] as $author) {
     
                     if (isset($author["person"]["affiliation"])) {
                         $i_aff = 0;
@@ -99,16 +101,16 @@
                     $i++;
                 }
     
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
 
             } elseif ($_GET['field'] == 'ExternalData.crossref.message.author.affiliation.name') {
 
                 $i = 0;
-                $body_upsert['doc']['ExternalData']['crossref']['message']['author'] = $record['_source']['ExternalData']['crossref']['message']['author'];
+                $body_upsert['doc']['ExternalData']['crossref']['message']['author'] = $r['_source']['ExternalData']['crossref']['message']['author'];
     
                 // Para cada autor no registro
-                foreach ($record['_source']['ExternalData']['crossref']['message']['author'] as $author) {
+                foreach ($r['_source']['ExternalData']['crossref']['message']['author'] as $author) {
                     //print("<pre>".print_r($author,true)."</pre>");
     
                     if (isset($author["affiliation"])) {
@@ -152,16 +154,16 @@
                 //print("<pre>".print_r($body_upsert,true)."</pre>");
                 //echo "<br/>";
                 $body_upsert["doc_as_upsert"] = true;
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
 
             } elseif ($_GET['field'] == 'ExternalData.crossref.message.funder.name') {
 
                 $i = 0;
-                $body_upsert['doc']['ExternalData']['crossref']['message']['funder'] = $record['_source']['ExternalData']['crossref']['message']['funder'];
+                $body_upsert['doc']['ExternalData']['crossref']['message']['funder'] = $r['_source']['ExternalData']['crossref']['message']['funder'];
     
                 // Para cada autor no registro
-                foreach ($record['_source']['ExternalData']['crossref']['message']['funder'] as $funder) {
+                foreach ($r['_source']['ExternalData']['crossref']['message']['funder'] as $funder) {
                     //print("<pre>".print_r($author,true)."</pre>");
     
                     $termCleaned = str_replace("&", "e", $funder["name"]);
@@ -199,17 +201,17 @@
                 //print("<pre>".print_r($body_upsert,true)."</pre>");
                 //echo "<br/>";
                 $body_upsert["doc_as_upsert"] = true;
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
     
             } elseif ($_GET["field"] == "funder") {
 
                 $i = 0;
-                $body_upsert["doc"]["funder"] = $record['_source']['funder'];
+                $body_upsert["doc"]["funder"] = $r['_source']['funder'];
     
                 // Para cada funder no registro
                 $i_funder = 0;
-                foreach ($record['_source']['funder'] as $funder) {
+                foreach ($r['_source']['funder'] as $funder) {
                     // echo "<br/>";
                     // print_r($funder);
                     // echo "<br/>";
@@ -240,12 +242,12 @@
                 
 
                 //print_r($body_upsert);
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
 
             } elseif ($_GET["field"] == "isPartOf.name") {
 
-                $termCleaned = str_replace("&", "e", $record['_source']["isPartOf"]["name"]);
+                $termCleaned = str_replace("&", "e", $r['_source']["isPartOf"]["name"]);
                 $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
                 //echo $result_tematres["termNotFound"];
                 //echo "<br/>";
@@ -262,14 +264,14 @@
                 }          
 
                 //print_r($body_upsert);
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
                 //var_dump($resultado_upsert);
                 //echo "<br/><br/>";
             
             } elseif ($_GET["field"] == "EducationEvent.name") {
 
-                $termCleaned = str_replace("&", "e", $record['_source']["EducationEvent"]["name"]);
+                $termCleaned = str_replace("&", "e", $r['_source']["EducationEvent"]["name"]);
                 $result_tematres = Authorities::tematresQuery($termCleaned, $tematres_url);
                 //echo $result_tematres["termNotFound"];
                 //echo "<br/>";
@@ -286,7 +288,7 @@
                 }          
 
                 //print_r($body_upsert);
-                $resultado_upsert = Elasticsearch::update($record["_id"], $body_upsert);
+                $resultado_upsert = Elasticsearch::update($r["_id"], $body_upsert);
                 unset($body_upsert);
                 //var_dump($resultado_upsert);
                 //echo "<br/><br/>";
