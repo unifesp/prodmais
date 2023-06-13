@@ -7,7 +7,7 @@
 // Set directory to ROOT
 chdir('../');
 // Include essencial files
-include('inc/config.php'); 
+include('inc/config.php');
 include('inc/functions.php');
 
 $query["query"]["query_string"]["query"] = "*";
@@ -19,14 +19,12 @@ $params["_source_includes"] = ["_id"];
 $params["body"] = $query;
 
 
-$cursor = $client->search($params); 
+$cursor = $client->search($params);
 
-foreach ($cursor["hits"]["hits"] as $r) {   
-    $record_blob[] = 'https://unifesp.br/prodmais/profile/'.$r['_id'].'|';
+foreach ($cursor["hits"]["hits"] as $r) {
+    $record_blob[] = '' . $url_base . ' /profile/ ' . $r['_id'] . '|';
 }
 foreach ($record_blob as $record) {
     $record_array = explode('|', $record);
     echo implode("<br/>", $record_array);
 }
-
-?>
