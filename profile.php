@@ -213,7 +213,7 @@ if (!empty($_REQUEST["lattesID"])) {
                         <?php endif; ?>
                         <?php if (!empty($profile["email"])): ?>
                         <p class="t t-prof">E-Mail:
-                            <?php echo $profile["email"][0] ?>
+                            <?php echo $profile["email"] ?>
                         </p>
                         <?php endif; ?>
 
