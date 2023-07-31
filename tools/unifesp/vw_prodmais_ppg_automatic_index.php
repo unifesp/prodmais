@@ -44,7 +44,6 @@ while (($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) != false) {
     $output = curl_exec($ch);
 
     unset($queryParams);
-        
 }
 
 oci_close($conexao);

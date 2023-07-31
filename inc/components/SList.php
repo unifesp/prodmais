@@ -176,6 +176,15 @@ class SList
     return $buf;
   }
 
+  static function cited_by_countRendered($cited_by_count)
+  {
+    return "
+      <p class='t t-light'>
+        Quantidade de citações obtidas no OpenAlex: $cited_by_count
+      </p>";
+
+  }
+
   static function genericItem(
     $type,
     $itemName,
@@ -241,7 +250,8 @@ class SList
     $refPage,
     $evento,
     $datePublished,
-    $id
+    $id,
+    $cited_by_count
   ) {
 
     $bullet = SList::bulletIntelectualProduction($type);
@@ -252,6 +262,7 @@ class SList
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
     $fonteRendered = SList::fonteRendered($refName, $refVol, $refFascicle, $refPage);
+    !empty($cited_by_count) ? $cited_by_countRendered = SList::cited_by_countRendered($cited_by_count) : $cited_by_countRendered = '';
 
 
     // (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
@@ -274,7 +285,9 @@ class SList
 					</div>
           $datePublished
 
-          $fonteRendered					
+          $fonteRendered
+          
+          $cited_by_countRendered
 
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>

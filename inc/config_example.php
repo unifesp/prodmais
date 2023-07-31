@@ -42,10 +42,12 @@ $slogan = 'Slogan';
 
 $mostrar_instituicao = true;
 $mostrar_area_concentracao = true;
+$mostrar_existe_doi = true;
+$mostrar_openalex = true;
 $mostrar_link_dashboard = true;
 
 // Tema
-$theme = 'Prodmais';
+// $theme = 'Prodmais';
 // $theme = 'Waterbeach';
 // $theme = 'Tomaton';
-// $theme = 'Blueberry';
+$theme = 'Blueberry';

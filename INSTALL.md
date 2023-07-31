@@ -59,6 +59,11 @@ Editar o arquivo config.php
 
     nano inc/config.php
 
+Criar o diretório tmp
+
+    mkdir tmp
+    chown -R www-data:www-data tmp
+
 Editar no arquivo config.php as variáveis: $branch, $branch_description, $url_base, $facebook_image (opcional) e $instituicao.
 
 Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usando o endereço htttp://localhost/NOMEDODIRETÓRIO

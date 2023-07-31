@@ -3,6 +3,9 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 function get_curriculum($identificador)
 {
     try {
@@ -18,7 +21,7 @@ function get_curriculum($identificador)
         $response = $client->get($params);
 
         return $response;
-    } catch (\Exception $e) {
+    } catch (\Exception $e) {        
         echo $e->getMessage();
     }
 }
@@ -57,8 +60,11 @@ function comparaprod_title($doc)
 
     $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
     $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
-    $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
-
+    if (!is_null($doc["doc"]['author'][0]['person']['name'])){
+        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
+    } else {
+        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
+    }
     if (!empty($doc['doc']['isPartOf']['name'])) {
         $query['query']['bool']['filter'][]["term"]["isPartOf.name.keyword"] = $doc['doc']['isPartOf']['name'];
     }
@@ -332,12 +338,72 @@ if (!isset($_GET['tag'])) {
     $_POST['tag'] = null;
 }
 
-// Testa se foi enviado um arquivo
-if ($_FILES['file']['size'] != 0) {
+// Verifica se um arquivo foi enviado pelo formulário
+if (isset($_FILES['file'])) {
+  // Recebe o arquivo enviado pelo formulário
+  $arquivo = $_FILES['file'];
 
-    $curriculo = simplexml_load_file($_FILES['file']['tmp_name']);
+  // Verifica se o arquivo é válido
+  if ($arquivo['error'] == 0) {
+    // Obtém o nome e a extensão do arquivo
+    $nome = $arquivo['name'];
+    $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+
+    // Verifica se o arquivo é zip ou xml
+    if ($extensao == 'zip') {
+      // Cria um objeto ZipArchive
+      $zip = new ZipArchive();
+
+      // Abre o arquivo zip
+      if ($zip->open($arquivo['tmp_name']) === true) {
+        // Extrai o conteúdo do zip para um diretório temporário
+        $temp_dir = 'tmp/zip_' . uniqid();
+        $zip->extractTo($temp_dir);
+        $zip->close();
+
+        // Procura pelo arquivo curriculo.xml no diretório temporário
+        $xml_file = $temp_dir . '/curriculo.xml';
+        if (file_exists($xml_file)) {
+            echo "arquivo existe";
+          // Lê o conteúdo do arquivo xml
+          $file_xml_lattes = file_get_contents($xml_file);
+             
+
+          // Remove o diretório temporário e seus arquivos
+          array_map('unlink', glob($temp_dir . '/*'));
+          rmdir($temp_dir);
+        } else {
+          // Não encontrou o arquivo curriculo.xml no zip
+          echo 'O arquivo zip não contém o arquivo curriculo.xml';
+        }
+      } else {
+        // Não conseguiu abrir o arquivo zip
+        echo 'O arquivo zip é inválido ou está corrompido';
+      }
+    } elseif ($extensao == 'xml') {
+      // Lê o conteúdo do arquivo xmlquery
+      $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
+
+    } else {
+      // O arquivo não é zip nem xml
+      echo 'O arquivo não é zip nem xml';
+    }
+  } else {
+    // O arquivo não foi enviado corretamente
+    echo 'Ocorreu um erro ao enviar o arquivo';
+  }
+
+  $curriculo = simplexml_load_string($file_xml_lattes);
+
 } else {
-    echo "Não foi enviado um arquivo XML";
+  // Nenhum arquivo foi enviado pelo formulário
+    echo 'Nenhum arquivo foi enviado';
+    if (isset($_REQUEST['instituicao'])) {
+        $query["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
+    }
+    if (isset($_REQUEST['area_concentracao'])) {
+        $query['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
+    }
     if (isset($_REQUEST['unidade'])) {
         $query["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
     }
@@ -413,9 +479,31 @@ if ($result_get_curriculo["found"] == true) {
         $ppg_array[] = rtrim($_REQUEST['ppg_nome']);
     }
     $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
+
+    $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
+    if (isset($_REQUEST['instituicao'])) {
+        $instituicao_array[] = rtrim($_REQUEST['instituicao']);
+    }
+    $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
+
+    if (isset($result_get_curriculo["_source"]["area_concentracao"])) {
+        $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
+        if (isset($_REQUEST['area_concentracao'])) {
+            $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+        }
+        if (!is_null($area_concentracao_array)){
+            $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+        }
+    }
 } else {
     if (isset($_REQUEST['ppg_nome'])) {
         $doc_curriculo_array['doc']['ppg_nome'] = explode("|", rtrim($_REQUEST['ppg_nome']));
+    }
+    if (isset($_REQUEST['instituicao'])) {
+        $doc_curriculo_array['doc']['instituicao'] = explode("|", rtrim($_REQUEST['instituicao']));
+    }
+    if (isset($_REQUEST['area_concentracao'])) {
+        $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
     }
 };
 
@@ -426,14 +514,7 @@ $doc_curriculo_array["doc"]["source"] = "Base Lattes";
 $doc_curriculo_array["doc"]["type"] = "Curriculum";
 $doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
 
-var_dump($_REQUEST);
-
-if (isset($_REQUEST['instituicao'])) {
-    $doc_curriculo_array["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
-}
-if (isset($_REQUEST['area_concentracao'])) {
-    $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
-}
+//var_dump($_REQUEST);
 
 $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
 $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);

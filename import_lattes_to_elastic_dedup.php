@@ -353,12 +353,31 @@ $doc_curriculo_array = [];
 if ($result_get_curriculo["found"] == true) {
     $ppg_array = $result_get_curriculo["_source"]["ppg_nome"];
     if (isset($_REQUEST['ppg_nome'])) {
-        $ppg_array[] = $_REQUEST['ppg_nome'];
+        $ppg_array[] = rtrim($_REQUEST['ppg_nome']);
     }
     $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
+
+    $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
+    if (isset($_REQUEST['instituicao'])) {
+        $instituicao_array[] = rtrim($_REQUEST['instituicao']);
+    }
+    $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
+
+    $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
+    if (isset($_REQUEST['area_concentracao'])) {
+        $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+    }
+    $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+
 } else {
     if (isset($_REQUEST['ppg_nome'])) {
-        $doc_curriculo_array['doc']['ppg_nome'] = explode("|", $_REQUEST['ppg_nome']);
+        $doc_curriculo_array['doc']['ppg_nome'] = explode("|", rtrim($_REQUEST['ppg_nome']));
+    }
+    if (isset($_REQUEST['instituicao'])) {
+        $doc_curriculo_array['doc']['instituicao'] = explode("|", rtrim($_REQUEST['instituicao']));
+    }
+    if (isset($_REQUEST['area_concentracao'])) {
+        $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
     }
 };
 
@@ -368,12 +387,6 @@ if (isset($_REQUEST['tag'])) {
     $doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
 } else {
     $doc_curriculo_array["doc"]["tag"] = "";
-}
-if (isset($_REQUEST['instituicao'])) {
-    $doc_curriculo_array["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
-}
-if (isset($_REQUEST['area_concentracao'])) {
-    $doc_curriculo_array['doc']['area_concentracao'] = explode("|", rtrim($_REQUEST['area_concentracao']));
 }
 $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
 $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);

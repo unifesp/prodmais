@@ -8,7 +8,7 @@
   require 'inc/meta-header.php';
   require 'inc/functions.php';
   ?>
-  <title><?php echo $branch ?> — Busca por categoria - <?php echo $profile["nome_completo"] ?></title>
+  <title><?php echo $branch ?> — Busca por categoria</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="description" content="Indicadores de dados referentes à Unifesp." />

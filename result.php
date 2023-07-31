@@ -19,6 +19,10 @@
       $_POST["fields"] = $fields;
     }
 
+    if (empty($_POST)) {
+      $_POST['search'] = "";
+    }
+
 
     $result_post = Requests::postParser($_POST);
     if (!empty($_POST)) {
@@ -106,7 +110,7 @@
                     echo ($facets->facet(basename(__FILE__), "tipo", 100, "Tipo de material", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.nome", 100, "Nome do autor vinculado à instituição", null, "_term", $_POST));
-                    echo ($facets->facet(basename(__FILE__), "vinculo.lattes_id", 100, "ID do Lattes", null, "_term", $_POST));
+                    //echo ($facets->facet(basename(__FILE__), "vinculo.lattes_id", 100, "ID do Lattes", null, "_term", $_POST));
 
                     echo ($facets->facet(basename(__FILE__), "country", 200, "País de publicação", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "datePublished", 120, "Ano de publicação", "desc", "_term", $_POST));
@@ -147,6 +151,23 @@
                     echo ($facets->facet(basename(__FILE__), "vinculo.genero", 100, "Gênero", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.desc_nivel", 100, "Nível", null, "_term", $_POST));
                     echo ($facets->facet(basename(__FILE__), "vinculo.desc_curso", 100, "Curso", null, "_term", $_POST));
+
+                    if ($mostrar_existe_doi) {
+                      echo ($facets->facetExistsField(basename(__FILE__), "doi", 2, "Possui DOI preenchido?", null, "_term", $_POST));
+                    }
+
+                    if ($mostrar_openalex) {
+                      echo ($facets->facet(basename(__FILE__), "openalex.open_access.oa_status", 100, "Status de acesso aberto segundo o OpenAlex?", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex.authorships.institutions.display_name", 100, "Instituição normalizada - OpenAlex", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.name", 50, "Trabalhos mais citados - OpenAlex", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.datePublished", 50, "Ano de publicação dos trabalhos mais citados - OpenAlex", "desc", "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.authorships.author.display_name", 50, "Autores mais citados - OpenAlex", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.language", 10, "Idioma dos trabalhos mais citados - OpenAlex", null, "_term", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.source", 50, "Publicação no todo dos trabalhos mais citados - OpenAlex", null, "_term", $_POST));
+                      //echo ($facets->facetcited(basename(__FILE__), "openalex.referenced_works", 5, "5 trabalhos mais citados - OpenAlex", null, "_term", $_POST));
+                      echo($facets->facet_range(basename(__FILE__), "openalex.cited_by_count", 100, "Número de citações obtidas - OpenAlex", null, "_term", $_POST));
+                      
+                    }
 
                     ?>
 
@@ -204,6 +225,7 @@
               !empty($r['_source']['isPartOf']['issn']) ? $issn = $r['_source']['isPartOf']['issn'] : $issn = '';
               !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
               !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
+              isset($r['_source']['openalex']['cited_by_count']) ? $cited_by_count = strval($r['_source']['openalex']['cited_by_count']) : $cited_by_count = '';              
 
               SList::IntelectualProduction(
                 $type = $r['_source']['tipo'],
@@ -218,7 +240,8 @@
                 $refPage = '',
                 $evento = '',
                 $datePublished = $published,
-                $id = ''
+                $id = '',
+                $cited_by_count
               );
               unset($authors);              
             }
