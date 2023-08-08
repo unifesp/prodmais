@@ -4,6 +4,29 @@
     // header('Content-type: text/tab-separated-values; charset=utf-8');
     // header("Content-Disposition: attachment; filename=$file");
 
+
+    function processProject(Array $project) {
+        //echo "<pre>".print_r($project, true)."</pre>";
+        $projectArray = [];
+        if (isset($project['attributes'])) {
+            $projectArray[0] = $project['attributes']['NOME-DO-PROJETO'];
+            $projectArray[1] = $project['attributes']['ANO-INICIO'];
+            $projectArray[2] = $project['attributes']['ANO-FIM'];
+            $projectArray[3] = $project['attributes']['SITUACAO'];
+            $projectArray[4] = $project['attributes']['DESCRICAO-DO-PROJETO'];
+        } else {
+            foreach ($project as $key => $projeto_de_pesquisa) {
+                $projectArray[0] = $projeto_de_pesquisa['attributes']['NOME-DO-PROJETO'];
+                $projectArray[1] = $projeto_de_pesquisa['attributes']['ANO-INICIO'];
+                $projectArray[2] = $projeto_de_pesquisa['attributes']['ANO-FIM'];
+                $projectArray[3] = $projeto_de_pesquisa['attributes']['SITUACAO'];
+                $projectArray[4] = $projeto_de_pesquisa['attributes']['DESCRICAO-DO-PROJETO'];
+            }
+        }
+        return $projectArray;
+    }
+
+
     // Set directory to ROOT
     chdir('../');
     // Include essencial files
@@ -22,37 +45,32 @@
     $cursor = $client->search($params);
     $total = $cursor["hits"]["total"];
 
-    $content[] = "id\ttítulo";
+    $content[] = "id\ttítulo\tanoinicio\tanofim\tsituacao\tdescricaodoprojeto";
 
     foreach ($cursor["hits"]["hits"] as $r) {
         foreach ($r['_source']['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
             foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
                 $dataJson = str_replace('@', '', json_encode($atuacao_profissional));
                 $atuacao_profissional = json_decode($dataJson, true);
-                //echo "<pre>".print_r($atuacao_profissional, true)."</pre>";
                 $projetoArray = [];
                 if (isset($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
                     if (isset($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO']['PROJETO-DE-PESQUISA'])) {
-                        //echo "<pre>".print_r($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO']['PROJETO-DE-PESQUISA'], true)."</pre>";
-                        $projetoArray[0] = $atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO']['PROJETO-DE-PESQUISA']['attributes']['NOME-DO-PROJETO'];
+                        $projetoArray = processProject($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO']['PROJETO-DE-PESQUISA']);
                         $content[] = $r['_id']."\t".implode("\t", $projetoArray);
                         unset($projetoArray);
                     } else {
                         foreach ($atuacao_profissional['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
+                            
                             if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA']['attributes'])) {
-                                $projetoArray[0] = $participacao_em_projeto['PROJETO-DE-PESQUISA']['attributes']['NOME-DO-PROJETO'];
+                                $projetoArray = processProject($participacao_em_projeto['PROJETO-DE-PESQUISA']);
                             } else {
                                 if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
                                     foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
-                                        $projetoArray[0] = $projeto_de_pesquisa['attributes']['NOME-DO-PROJETO'];
+                                        $projetoArray = processProject($projeto_de_pesquisa);
                                         $content[] = $r['_id']."\t".implode("\t", $projetoArray);
                                         unset($projetoArray);
                                     }
-                                } else {
-                                    
-                                }
-
-                                //echo "<pre>".print_r($participacao_em_projeto['PROJETO-DE-PESQUISA'], true)."</pre><br/><br/><br/><br/>";
+                                } else {}
                             }
                             if (isset($projetoArray)) {
                                 $content[] = $r['_id']."\t".implode("\t", $projetoArray);
@@ -60,29 +78,8 @@
                             }
                         }
                     }
-
-        //             $projectArray = [];
-        //             foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
-        //                 foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
-        //                     if (!empty($projeto_de_pesquisa['@attributes'])) {
-        //                         //echo "<pre>".print_r($projeto_de_pesquisa, true)."</pre>";
-        //                         $projectArray[] = $projeto_de_pesquisa['@attributes']['NOME-DO-PROJETO'];
-        //                     } else {
-        //                         //$projectArray[] = $projeto_de_pesquisa['NOME-DO-PROJETO'];
-        //                         echo "<pre>".print_r($key, true)."</pre>";
-        //                         echo "<pre>".print_r($projeto_de_pesquisa, true)."</pre>";
-        //                     }
-        //                 }
-        //                 //echo "<pre>".print_r($projeto, true)."</pre>";
-        //                 //print_r($projeto['PROJETO-DE-PESQUISA']['@attributes']['NOME-DO-PROJETO']);
-        //             }
-        //             $content[] = $r['_id']."\t".implode(" | ", $projectArray);
-        //             unset($projectArray);
-
                 }
-
             }
-
         }
     }
 
