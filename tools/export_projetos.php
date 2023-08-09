@@ -155,4 +155,4 @@
             }
         }
     }
-    echo implode("\n<br/>", $content);
+    echo implode("\n", $content);
