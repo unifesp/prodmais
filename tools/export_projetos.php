@@ -1,8 +1,8 @@
 <?php
 
-    // $file="export_projetos_bdpi.tsv";
-    // header('Content-type: text/tab-separated-values; charset=utf-8');
-    // header("Content-Disposition: attachment; filename=$file");
+    $file="export_projetos_bdpi.tsv";
+    header('Content-type: text/tab-separated-values; charset=utf-8');
+    header("Content-Disposition: attachment; filename=$file");
 
 
     function processProject(Array $project) {
