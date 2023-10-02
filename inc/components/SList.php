@@ -255,7 +255,11 @@ class SList
   ) {
 
     $bullet = SList::bulletIntelectualProduction($type);
-    $authorsRendered = implode('; ', $authors);
+    if (is_array($authors)) {
+      $authorsRendered = implode('; ', $authors);
+    } else {
+      $authorsRendered = "";
+    }
 
     !empty($doi) ? $doiCleaned = SList::doiCleaned($doi) : $doiCleaned = '';
     !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';    

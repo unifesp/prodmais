@@ -216,9 +216,11 @@
             <?php
 
             foreach ($cursor["hits"]["hits"] as $r) {
-              foreach ($r["_source"]["author"] as $author) {
-                $authors[] = $author["person"]["name"];
-              }
+              if (isset($r["_source"]["author"])) {
+                foreach ($r["_source"]["author"] as $author) {
+                  $authors[] = $author["person"]["name"];
+                }
+            }
 
               !empty($r["_source"]['url']) ? $url = $r["_source"]['url'] : $url = '';
               !empty($r["_source"]['doi']) ? $doi = $r["_source"]['doi'] : $doi = '';
@@ -226,6 +228,10 @@
               !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
               !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
               isset($r['_source']['openalex']['cited_by_count']) ? $cited_by_count = strval($r['_source']['openalex']['cited_by_count']) : $cited_by_count = '';              
+
+              if (empty($r['_source']['author'])) {
+                $authors = '';
+              }
 
               SList::IntelectualProduction(
                 $type = $r['_source']['tipo'],
@@ -243,7 +249,7 @@
                 $id = '',
                 $cited_by_count
               );
-              unset($authors);              
+              unset($authors);
             }
             
 
