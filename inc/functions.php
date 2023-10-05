@@ -8,64 +8,47 @@ include('components/Categories.php');
 
 /* Connect to Elasticsearch - Index */
 try {
-    $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
     //print("<pre>".print_r($client,true)."</pre>");
     $indexParams['index'] = $index;
     $testIndex = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex($index, $client);
+    Elasticsearch::mappingsIndex($index, $client);
 } catch (Exception $e) {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Elasticsearch não foi encontrado.</div>';
 }
 
-/* Create index if not exists */
-if (isset($testIndex) && $testIndex == false) {
-    Elasticsearch::createIndex($index, $client);
-    Elasticsearch::mappingsIndex($index, $client);
-}
-
 /* Connect to Elasticsearch | Index CV */
 try {
-    $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
     //print("<pre>".print_r($client,true)."</pre>");
     $indexParams['index'] = $index_cv;
     $testIndexCV = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex($index_cv, $client);
+    Elasticsearch::mappingsIndexCV($index_cv, $client);
 } catch (Exception $e) {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de CV no Elasticsearch não foi encontrado.</div>';
 }
 
-/* Create index if not exists */
-if (isset($testIndexCV) && $testIndexCV == false) {
-    Elasticsearch::createIndex($index_cv, $client);
-    Elasticsearch::mappingsIndexCV($index_cv, $client);
-}
-
 /* Connect to Elasticsearch | Index PPGs */
 try {
-    $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
     $indexParams['index'] = $index_ppg;
     $testIndexPPG = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex($index_ppg, $client);
 } catch (Exception $e) {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de PPG no Elasticsearch não foi encontrado.</div>';
-}
-
-/* Create index if not exists */
-if (isset($testIndexPPG) && $testIndexPPG == false) {
-    Elasticsearch::createIndex($index_ppg, $client);
 }
 
 /* Connect to Elasticsearch | Index Cited Works */
 try {
-    $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
     $indexParams['index'] = 'openalexcitedworks';
     $testIndexCitedworks = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex('openalexcitedworks', $client);
 } catch (Exception $e) {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de PPG no Elasticsearch não foi encontrado.</div>';
 }
-
-/* Create index if not exists */
-if (isset($testIndexCitedworks) && $testIndexCitedworks == false) {
-    Elasticsearch::createIndex('openalexcitedworks', $client);
-}
-
 
 /* Definição de idioma */
 
@@ -588,7 +571,7 @@ class paginaInicial
         global $index;
         $query['aggs']['group_by_state']['terms']['field'] = "$field.keyword";
         $query['aggs']['group_by_state']['terms']['size'] = 200;
-        $query["aggs"]['group_by_state']["terms"]["order"]['_term'] = "asc";
+        $query["aggs"]['group_by_state']["terms"]["order"]['_key'] = "asc";
         $params = [
             'index' => $index,
             'size' => 0,

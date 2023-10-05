@@ -8,7 +8,7 @@ require '../../inc/functions.php';
 
 /* Connect to Elasticsearch - Index */
 try {
-    $client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    $client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
     $indexParams['index']  = $argv[3];
     $testIndex = $client->indices()->exists($indexParams);
 } catch (Exception $e) {

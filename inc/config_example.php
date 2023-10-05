@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 $hosts = ['localhost'];
 
 /* Endereço base */
-$url_base = "http://localhost:8080/prodmais";
+$url_base = "http://localhost/prodmais";
 
 
 /* Configurações do Elasticsearch */
@@ -24,7 +24,7 @@ $index_ppg = "prodmaisppg";
 require(__DIR__ . '/../vendor/autoload.php');
 
 /* Load Elasticsearch Client */
-$client = \Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
 
 /* Login */
 $login_user = "admin";
