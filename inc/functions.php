@@ -2448,6 +2448,8 @@ class Requests
 
 class FacetsNew
 {
+    public $query;
+
     public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
     {
         global $url_base;
