@@ -2,9 +2,8 @@
     "require": {
         "elasticsearch/elasticsearch": "~7.4",
         "caseyamcl/phpoaipmh": "~3.0",
-        "guzzlehttp/guzzle": "~6.0",
+        "guzzlehttp/guzzle": "~7.8",
         "gettext/gettext": "~5.1",
-        "renanbr/crossref-client": "^1.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "erusev/parsedown": "^1.7"
     },
