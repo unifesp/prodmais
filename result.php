@@ -216,9 +216,14 @@
             <?php
 
             foreach ($cursor["hits"]["hits"] as $r) {
-              foreach ($r["_source"]["author"] as $author) {
-                $authors[] = $author["person"]["name"];
+              if (isset($r["_source"]["author"])) {
+                foreach ($r["_source"]["author"] as $author) {
+                  $authors[] = $author["person"]["name"];
+                }
+              } else {
+                $authors[] = '';
               }
+
 
               !empty($r["_source"]['url']) ? $url = $r["_source"]['url'] : $url = '';
               !empty($r["_source"]['doi']) ? $doi = $r["_source"]['doi'] : $doi = '';
