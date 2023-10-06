@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
+<style>
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+</style>
+
 
 <head>
     <?php    
@@ -19,7 +28,7 @@ $password = $login_password;
  
 if(isset($_POST['submit'])){
     if($_POST['username'] == $username && $_POST['password'] == $password){
-        ?>
+?>
 
 <body class="c-wrapper-body">
     <main class="c-wrapper-container">
@@ -118,80 +127,6 @@ if(isset($_POST['submit'])){
                     </div>
                 </form>
 
-                <!-- <h2 class="t t-h3 ">Inserir um DOI de artigo que queira incluir (sem https://doi.org/)</h2>
-
-        <form class="p-inclusao-form" action="doi_to_elastic.php" method="get">
-          <div class="custom-file">
-            <input class="c-input--sm" type="text" placeholder="Insira um DOI" name="doi" data-validation="required">
-            <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
-          </div>
-          <input class="c-input--sm" type="text" placeholder="TAG para formar um grupo" name="tag">
-          <button class="c-btn" type="submit">Enviar</button>
-
-        </form>
-
-        <h2 class="t t-h3 ">Enviar um arquivo da Web of Science (UTF-8, separado por tabulações)</h2>
-
-        <form class="p-inclusao-form" action="wos_upload.php" method="post" accept-charset="utf-8"
-          enctype="multipart/form-data">
-
-          <div class="custom-file">
-            <input class="c-input--sm" type="file" class="custom-file-input" id="fileXML" aria-describedby="fileXML"
-              name="file">
-            <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
-          </div>
-          <input class="c-input--sm" type="text" placeholder="TAG para formar um grupo" name="tag">
-
-          <button class="c-btn" type="submit">Upload</button>
-
-        </form>
-
-        <h2 class="t t-h3 ">Enviar um arquivo do INCITES (CSV)</h2>
-
-        <form class="p-inclusao-form" action="incites_upload.php" method="post" accept-charset="utf-8"
-          enctype="multipart/form-data">
-
-          <div class="custom-file">
-            <input class="c-input--sm" type="file" class="custom-file-input" id="fileXML" aria-describedby="fileXML"
-              name="file">
-            <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
-          </div>
-          <input class="c-input--sm" type="text" placeholder="TAG para formar um grupo" name="tag">
-          <button class="c-btn" type="submit">Upload</button>
-
-
-        </form>
-
-        <h2 class="t t-h3 ">Enviar um arquivo do Scopus (CSV - All available information)</h2>
-
-        <form class="p-inclusao-form" action="scopus_upload.php" method="post" accept-charset="utf-8"
-          enctype="multipart/form-data">
-          <div class="custom-file">
-            <input class="c-input--sm" type="file" class="custom-file-input" id="fileXML" aria-describedby="fileXML"
-              name="file">
-            <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
-          </div>
-          <input class="c-input--sm" type="text" placeholder="TAG para formar um grupo" name="tag">
-          <button class="c-btn" type="submit">Upload</button>
-
-        </form>
-
-        <h2 class="t t-h3 ">Enviar um arquivo do SCIVAL (CSV - All available information)</h2>
-
-        <form class="p-inclusao-form " action="scival_upload.php" method="post" accept-charset="utf-8"
-          enctype="multipart/form-data">
-
-          <div class="custom-file">
-            <input class="c-input--sm" type="file" class="custom-file-input" id="fileXML" aria-describedby="fileXML"
-              name="file">
-            <label class="custom-file-label" for="fileXML">Escolha o arquivo</label>
-          </div>
-
-          <input class="c-input--sm" type="text" placeholder="TAG para formar um grupo" name="tag">
-          <button class="c-btn" type="submit">Upload</button>
-
-        </form> -->
-
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
                 <div class="alert alert-danger" role="alert">
@@ -250,15 +185,15 @@ if(isset($_POST['submit'])){
     ?>
 
 <body>
-
-    <form class="p-inclusao-form" method="post">
-        <h1><?php echo $branch ?> - Login</h1>
-        Usuário: <input class="c-input--sm" type="text" name="username" /><br />
-        Senha: <input class="c-input--sm" type="password" name="password" /><br />
-        <input class="c-btn" type='submit' name='submit' value="Login" />
-    </form>
+    <div class="form-container">
+        <form class="p-inclusao-form" method="post">
+            <h1><?php echo $branch ?> - Login</h1>
+            Usuário: <input class="c-input--sm" type="text" name="username" /><br />
+            Senha: <input class="c-input--sm" type="password" name="password" /><br />
+            <input class="c-btn" type='submit' name='submit' value="Login" />
+        </form>
+    </div>
 </body>
 <?php
-}
- 
+} 
 ?>
