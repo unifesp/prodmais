@@ -128,11 +128,9 @@ if (!empty($_REQUEST["lattesID"])) {
 <html lang="pt-br">
 
 <head>
-
     <?php
     include 'inc/meta-header.php';
     ?>
-
     <title>
         <?php echo $branch ?> — Perfil do pesquisador -
         <?php echo $profile["nome_completo"] ?>
@@ -143,11 +141,6 @@ if (!empty($_REQUEST["lattesID"])) {
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
     <link rel="stylesheet" href="<?php echo $url_base; ?>/inc/sass/main.css" />
     <script src="<?php echo $url_base; ?>/inc/js/vue.min.js"></script>
-
-    <!-- PlumX Script -->
-    <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
-
-
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
