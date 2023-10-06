@@ -1851,6 +1851,7 @@ class ActiveFilters
 
 class AuthorFacets
 {
+    public $query;
     public function authorfacet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null, $collapsed = true)
     {
         global $url_base;

@@ -41,7 +41,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     ?>
     <title><?php echo $branch ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Indicadores de dados referentes à Unifesp." />
+    <meta name="description" content="Produção científica e acadêmica" />
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
     <!-- Facebook Tags - START -->
     <meta property="og:locale" content="pt_BR">

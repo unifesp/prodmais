@@ -32,7 +32,7 @@ class Departamento {
 ?>
 
 <head>
-  <?php
+    <?php
   require 'inc/config.php';
   require 'inc/meta-header.php';
   require 'inc/functions.php';
@@ -43,44 +43,44 @@ class Departamento {
   require 'inc/components/TagCloud.php';
   require '_fakedata.php';
   ?>
-  <meta charset="utf-8" />
-  <title><?php echo $branch; ?> - Departamento Letras</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="Prodmais Unifesp." />
-  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+    <meta charset="utf-8" />
+    <title><?php echo $branch; ?> - Departamento Letras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Departamento" />
+    <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
-  <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
+    <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
 
-  <?php require 'inc/navbar.php'; ?>
-  <main class="c-wrapper-container">
-    <div class="c-wrapper-paper">
+    <?php require 'inc/navbar.php'; ?>
+    <main class="c-wrapper-container">
+        <div class="c-wrapper-paper">
 
-      <div class="c-wrapper-inner">
+            <div class="c-wrapper-inner">
 
-        <section class="p-departamento-header">
-          <div class="p-departamento-header-one">
-            <i class="i i-building p-departamento-logo"></i>
-          </div>
+                <section class="p-departamento-header">
+                    <div class="p-departamento-header-one">
+                        <i class="i i-building p-departamento-logo"></i>
+                    </div>
 
-          <div class="p-departamento-header-two">
-            <h1 class="t t-h1">Departamento X</h1>
-            <p class="t t-b ty-light-a">
-              <span>Campus Guarulhos</span>
-              <span>Escola de Filosofia, Letras e ciências Humanas</span>
-            </p>
-            <div class="d-icon-text t-gray u-mb-10">
-              <i class="i i-sm i-mapmarker p-departamento-i"></i>
-              <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
-            </div>
+                    <div class="p-departamento-header-two">
+                        <h1 class="t t-h1">Departamento X</h1>
+                        <p class="t t-b ty-light-a">
+                            <span>Campus Guarulhos</span>
+                            <span>Escola de Filosofia, Letras e ciências Humanas</span>
+                        </p>
+                        <div class="d-icon-text t-gray u-mb-10">
+                            <i class="i i-sm i-mapmarker p-departamento-i"></i>
+                            <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
+                        </div>
 
-          </diV>
-          <div class="p-departamento-header-three">
-            <div class="p-departamento-header-three-inner">
-              <?php
+                    </diV>
+                    <div class="p-departamento-header-three">
+                        <div class="p-departamento-header-three-inner">
+                            <?php
               Who::mini(
                 $picture = "inc/images/tmp/profile.jpg",
                 $name = 'Sócrates',
@@ -88,51 +88,51 @@ class Departamento {
                 $link = 'https://unifesp.br/prodmais/index.php'
                 )
                 ?>
-            </div>
-            <div class="p-departamento-header-three-inner">
-              <p class="t t-gray t-b">Secretaria:</p>
-              <p class="t t-gray">Maria Oliveira</p>
-              <p class="t t-gray">Olívia Maria</p>
-            </div>
+                        </div>
+                        <div class="p-departamento-header-three-inner">
+                            <p class="t t-gray t-b">Secretaria:</p>
+                            <p class="t t-gray">Maria Oliveira</p>
+                            <p class="t t-gray">Olívia Maria</p>
+                        </div>
 
-            <div class="p-departamento-header-three-inner">
-              <a href="" target="blank">
-                <div class="d-icon-text t-gray">
-                  <i class="i i-sm i-mail p-departamento-i"></i> email@email.com
-                </div>
-              </a>
+                        <div class="p-departamento-header-three-inner">
+                            <a href="" target="blank">
+                                <div class="d-icon-text t-gray">
+                                    <i class="i i-sm i-mail p-departamento-i"></i> email@email.com
+                                </div>
+                            </a>
 
-              <div class="d-icon-text t-gray">
-                <i class="i i-sm i-phone p-departamento-i"></i> (11) 5555-5555
-              </div>
+                            <div class="d-icon-text t-gray">
+                                <i class="i i-sm i-phone p-departamento-i"></i> (11) 5555-5555
+                            </div>
 
-              <a href="" target="blank">
-                <div class="d-icon-text t-gray">
-                  <i class="i i-sm i-web p-departamento-i"></i> site
-                </div>
-              </a>
-            </div>
-
-
-          </div>
-
-        </section>
+                            <a href="" target="blank">
+                                <div class="d-icon-text t-gray">
+                                    <i class="i i-sm i-web p-departamento-i"></i> site
+                                </div>
+                            </a>
+                        </div>
 
 
-        <hr class="c-line u-my-20" />
+                    </div>
+
+                </section>
 
 
-        <section class="l-ppg">
-          <h3 class="t t-h3">Palavras chave recorrentes</h3>
+                <hr class="c-line u-my-20" />
 
-          <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
 
-        </section>
+                <section class="l-ppg">
+                    <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
-        <hr class="c-line u-my-20" />
+                    <?php Tag::cloud( $categorysFake, $hasLink = false ); ?>
 
-        <section class="l-ppg">
-          <?php
+                </section>
+
+                <hr class="c-line u-my-20" />
+
+                <section class="l-ppg">
+                    <?php
             $legends = array(
               "Artigos publicados",
               "Textos em jornais e revistas",
@@ -147,17 +147,17 @@ class Departamento {
               $lines = 30
             );
           ?>
-        </section>
+                </section>
 
-        <hr class="c-line u-my-20" />
+                <hr class="c-line u-my-20" />
 
-        <section class="l-ppg">
-          <h3 class='t t-h3'>Orientadores e orientadoras</h3>
+                <section class="l-ppg">
+                    <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
-          <ul class="p-departamento-orientadores">
+                    <ul class="p-departamento-orientadores">
 
-            <li>
-              <?php
+                        <li>
+                            <?php
                 Who::ppg(
                   $picture = "inc/images/tmp/profile.jpg",
                   $name = 'Sebastião',
@@ -165,9 +165,9 @@ class Departamento {
                   $link = 'https://unifesp.br/prodmais/index.php'
                 )
               ?>
-            </li>
-            <li>
-              <?php
+                        </li>
+                        <li>
+                            <?php
                 Who::ppg(
                   $picture = "inc/images/tmp/profile.jpg",
                   $name = 'Sócrates',
@@ -175,9 +175,9 @@ class Departamento {
                   $link = 'https://unifesp.br/prodmais/index.php'
                 )
               ?>
-            </li>
-            <li>
-              <?php
+                        </li>
+                        <li>
+                            <?php
                   Who::ppg(
                     $picture = "inc/images/tmp/profile.jpg",
                     $name = 'Sêneca',
@@ -185,9 +185,9 @@ class Departamento {
                     $link = 'https://unifesp.br/prodmais/index.php'
                   )
                 ?>
-            </li>
-            <li>
-              <?php
+                        </li>
+                        <li>
+                            <?php
                   Who::ppg(
                     $picture = "inc/images/tmp/profile.jpg",
                     $name = 'Salomão',
@@ -195,45 +195,45 @@ class Departamento {
                     $link = 'https://unifesp.br/prodmais/index.php'
                   )
                 ?>
-            </li>
-          </ul>
+                        </li>
+                    </ul>
 
-        </section>
+                </section>
 
-        <hr class="c-line u-my-20" />
+                <hr class="c-line u-my-20" />
 
 
-        <section class="p-departamento-repos">
-          <?php echo Departamento::repos(
+                <section class="p-departamento-repos">
+                    <?php echo Departamento::repos(
             $type = 'Sucupira',
             $link = 'https://repositorio.unifesp.br/handle/11600/6108'
             ); ?>
-          <?php echo Departamento::repos(
+                    <?php echo Departamento::repos(
             $type = 'Repositório de dados de esquisa',
             $link = 'https://repositoriodedados.unifesp.br/dataverse/eflch'
             ); ?>
 
-          <?php echo Departamento::repos(
+                    <?php echo Departamento::repos(
             $type = 'Repositório institucional',
             $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml;jsessionid=OLRUfmVYapfO6QJKy+Wf0KS1.sucupira-218?popup=true&cd_programa=33009015089P5'
             ); ?>
-        </section>
+                </section>
 
 
-        <p class="t t-lastUpdate t-right">Atualização Lattes em </p>
-        <p class="t t-lastUpdate t-right">Processado em </p>
+                <p class="t t-lastUpdate t-right">Atualização Lattes em </p>
+                <p class="t t-lastUpdate t-right">Processado em </p>
 
-      </div> <!-- c-wrapper-inner -->
-    </div> <!-- c-wrapper-paper -->
-  </main> <!-- c-wrapper-container -->
+            </div> <!-- c-wrapper-inner -->
+        </div> <!-- c-wrapper-paper -->
+    </main> <!-- c-wrapper-container -->
 
 
-  </div> <!-- end result-container -->
+    </div> <!-- end result-container -->
 
-  <?php include('inc/footer.php'); ?>
-  <script>
+    <?php include('inc/footer.php'); ?>
+    <script>
 
-  </script>
+    </script>
 </body>
 
 
