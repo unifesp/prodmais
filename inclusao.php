@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
                     </div>
                 </form>
 
-                <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
+                <!-- <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
 
                 <form class="p-inclusao-form" action="include_ppg.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data" title="Formulário de Inserção de um Programa de Pós Graduação">
@@ -125,7 +125,7 @@ if(isset($_POST['submit'])){
                     <div class="input-group-append">
                         <button class="c-btn" type="submit">Incluir</button>
                     </div>
-                </form>
+                </form> -->
 
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
