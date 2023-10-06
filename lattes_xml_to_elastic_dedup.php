@@ -2115,7 +2115,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 //sleep(5);
 
 $url = 'result.php';
-$data = ['filter' => ['vinculo.lattes_id' => $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'}]];
+$data = [];
 $options = [
     'http' => [
         'header' => "Content-type: application/x-www-form-urlencoded\r\n",
