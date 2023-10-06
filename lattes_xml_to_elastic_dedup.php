@@ -21,7 +21,7 @@ function get_curriculum($identificador)
         $response = $client->get($params);
 
         return $response;
-    } catch (\Exception $e) {        
+    } catch (\Exception $e) {
         echo $e->getMessage();
     }
 }
@@ -39,12 +39,12 @@ function comparaprod_doi($doi)
     $params['body'] = $query;
     $cursor = $client->search($params);
     $total = $cursor['hits']['total']['value'];
-    echo 'Resultado total com DOI: ' . $total . '';
-    foreach ($cursor['hits']['hits'] as $r) {
-        echo '<br/>';
-        echo '' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
-        echo '<br/>';
-    }
+    //echo 'Resultado total com DOI: ' . $total . '';
+    // foreach ($cursor['hits']['hits'] as $r) {
+    //     echo '<br/>';
+    //     echo '' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
+    //     echo '<br/>';
+    // }
 
     if ($total >= 1) {
         return $r;
@@ -81,12 +81,12 @@ function comparaprod_title($doc)
     $params['body'] = $query;
     $cursor = $client->search($params);
     $total = $cursor['hits']['total']['value'];
-    echo 'Resultado total com Titulo: ' . $total . '';
+    //echo 'Resultado total com Titulo: ' . $total . '';
 
     foreach ($cursor['hits']['hits'] as $r) {
-        echo '<br/>';
-        echo 'Score: ' . $r['_score'] . ' - ' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
-        echo '<br/>';
+    //     echo '<br/>';
+    //     echo 'Score: ' . $r['_score'] . ' - ' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
+    //     echo '<br/>';
     }
 
     if ($total >= 1) {
@@ -458,7 +458,7 @@ if (isset($_FILES['file'])) {
     $query["doc_as_upsert"] = true;
 
     $resultado_curriculo = Elasticsearch::update($id, $query, $index_cv);
-    print_r($resultado_curriculo);
+    //print_r($resultado_curriculo);
 
     unset($query);
 
@@ -564,10 +564,10 @@ if (isset($_REQUEST['researcherid'])) {
 if (isset($_REQUEST['lattes10'])) {
     $doc_curriculo_array['doc']['lattes10'] = $_REQUEST['lattes10'];
 }
-print_r($curriculo->attributes()->{'DATA-ATUALIZACAO'});
+//print_r($curriculo->attributes()->{'DATA-ATUALIZACAO'});
 $doc_curriculo_array["doc"]["data_atualizacao"] = substr((string) $curriculo->attributes()->{'DATA-ATUALIZACAO'}, 4, 4) . "-" . substr((string) $curriculo->attributes()->{'DATA-ATUALIZACAO'}, 2, 2);
-echo "<br/>";
-print_r($doc_curriculo_array["doc"]["data_atualizacao"]);
+//echo "<br/>";
+//print_r($doc_curriculo_array["doc"]["data_atualizacao"]);
 $doc_curriculo_array["doc"]["nome_completo"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
 $doc_curriculo_array["doc"]["nome_em_citacoes_bibliograficas"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-EM-CITACOES-BIBLIOGRAFICAS'};
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'NACIONALIDADE'})) {
@@ -1183,9 +1183,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        echo "<br/>";
-        print_r($resultado);
-        echo "<br/><br/>";
+        //echo "<br/>";
+        //print_r($resultado);
+        //echo "<br/><br/>";
 
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
@@ -1287,9 +1287,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        echo "<br/>";
-        print_r($resultado);
-        echo "<br/><br/>";
+        //echo "<br/>";
+        //print_r($resultado);
+        //echo "<br/><br/>";
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1392,9 +1392,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
 
 
             unset($dadosBasicosDoTrabalho);
@@ -1492,9 +1492,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
 
 
             unset($dadosBasicosDoTrabalho);
@@ -1598,9 +1598,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        echo "<br/>";
-        print_r($resultado);
-        echo "<br/><br/>";
+        //echo "<br/>";
+        //print_r($resultado);
+        //echo "<br/><br/>";
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1698,9 +1698,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1797,9 +1797,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1899,9 +1899,9 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1988,9 +1988,9 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            echo "<br/>";
-            print_r($resultado);
-            echo "<br/><br/>";
+            //echo "<br/>";
+            //print_r($resultado);
+            //echo "<br/><br/>";
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -2097,9 +2097,9 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
                 // Comparador
                 $resultado = upsert($doc, $sha256);
-                echo "<br/>";
-                print_r($resultado);
-                echo "<br/><br/>";
+                //echo "<br/>";
+                //print_r($resultado);
+                //echo "<br/><br/>";
                 unset($dadosBasicosDoTrabalho);
                 unset($detalhamentoDoTrabalho);
                 unset($obra);
@@ -2111,3 +2111,20 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
         }
     }
 }
+
+//sleep(5);
+
+$url = 'result.php';
+$data = ['filter' => ['vinculo.lattes_id' => $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'}]];
+$options = [
+    'http' => [
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    ]
+];
+
+$context = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+header('Location: ' . $url);

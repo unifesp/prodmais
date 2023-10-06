@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+require '../inc/config.php';
 
 $url = "localhost:9200/prodmais";
 $ch = curl_init();
@@ -8,7 +10,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 $result = json_decode($result);
-var_dump($result);
+//var_dump($result);
 curl_close($ch);
 
 
@@ -20,7 +22,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 $result = json_decode($result);
-var_dump($result);
+//var_dump($result);
 curl_close($ch);
 
 $url = "localhost:9200/prodmaisppg";
@@ -31,5 +33,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $result = curl_exec($ch);
 $result = json_decode($result);
-var_dump($result);
+//var_dump($result);
 curl_close($ch);
+
+header ("Location: $url_base");
