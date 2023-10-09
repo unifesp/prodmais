@@ -26,8 +26,8 @@ O Prodmais é uma ferramenta que agrega informações sobre produções acadêmi
 
 **Dependências**
 
-- Elasticsearch 7.4+
-- PHP 7.4+
+- Elasticsearch 8.10+
+- PHP 8.2+
 - Dependências do PHP: php-cgi, php-curl, php-xml.
 
 🖥️ [Instalação](/INSTALL.md)

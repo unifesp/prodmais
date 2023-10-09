@@ -6,21 +6,21 @@
 
 O primeiro passo é instalar o Elasticsearch:
 
-    wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
     sudo apt-get install apt-transport-https
-    echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+    wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
     sudo apt-get update && sudo apt-get install elasticsearch
 
 Por padrão, o elasticseach não exige senha na instalação.
 
-### Instalação do PHP 7.4
+### Instalação do PHP 8.2
 
     sudo apt -y install lsb-release apt-transport-https ca-certificates
     sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
     sudo apt update
-    sudo apt -y install php7.4
-    sudo apt-get install php7.4-{cgi,curl,mbstring,zip,xml}
+    sudo apt -y install php8.2
+    sudo apt-get install php8.2-{cgi,curl,mbstring,zip,xml}
 
 ### Instalação do Apache2
 
@@ -31,14 +31,13 @@ Por padrão, o elasticseach não exige senha na instalação.
 
     sudo a2enmod rewrite
 
-    E adicionar ao apache conf: 
+    E adicionar ao apache conf:
 
         <Directory /var/www/html/prodmais>
             Options Indexes FollowSymLinks
             AllowOverride All
             Require all granted
         </Directory>
-
 
 ### Clonagem do repositório do Prodmais
 
