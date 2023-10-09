@@ -163,7 +163,7 @@
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.datePublished", 50, "Ano de publicação dos trabalhos mais citados - OpenAlex", "desc", "_key", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.authorships.author.display_name", 50, "Autores mais citados - OpenAlex", null, "_key", $_POST));
                       echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.language", 10, "Idioma dos trabalhos mais citados - OpenAlex", null, "_key", $_POST));
-                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.source", 50, "Publicação no todo dos trabalhos mais citados - OpenAlex", null, "_key", $_POST));
+                      echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.source", 50, "Nome da publicação dos trabalhos mais citados - OpenAlex", null, "_key", $_POST));
                       //echo ($facets->facetcited(basename(__FILE__), "openalex.referenced_works", 5, "5 trabalhos mais citados - OpenAlex", null, "_key", $_POST));
                       echo($facets->facet_range(basename(__FILE__), "openalex.cited_by_count", 100, "Número de citações obtidas - OpenAlex", null, "_key", $_POST));
                       
