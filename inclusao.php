@@ -164,8 +164,13 @@ if(isset($_POST['submit'])){
                 <p><a href="tools/export_field.php?field=isPartOf.name">Exportar nomes de obras no todo
                         (isPartOf.name)</a></p>
 
-
-
+                <h2 class="t t-h3">Enriquecimento de registros</h2>
+                <p><a href="tools/openalex_get_doi.php?size=500">Coletar 500 registros no Openalex com DOI (É necessário
+                        repetir este procedimento até zerar a quantidade de registros)</a></p>
+                <p><a href="tools/openalex_get_record.php?size=10">Atualizar 10 registros no Openalex que não possuem
+                        DOI, com base no título.
+                        (É necessário repetir este procedimento até zerar a quantidade de registros, mas esse é um
+                        procedimento demorado, que deve ser realizado com poucos registros de cada vez)</a></p>
 
             </div>
         </div>
