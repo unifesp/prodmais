@@ -69,11 +69,6 @@
                     <h4 class="t t-h4">Tipo de vínculo</h4>
                     <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
                 </div>
-
-                <div class="col-12 col-md-6">
-                    <h4 class="t t-h4">Base de dados</h4>
-                    <?php paginaInicial::fonte_inicio(); ?>
-                </div>
             </div>
         </div>
     </main>
