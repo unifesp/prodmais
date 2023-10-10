@@ -172,6 +172,9 @@ if(isset($_POST['submit'])){
                         (É necessário repetir este procedimento até zerar a quantidade de registros, mas esse é um
                         procedimento demorado, que deve ser realizado com poucos registros de cada vez)</a></p>
 
+                <h2 class="t t-h3">Sitemaps</h2>
+                <p><a href="tools/generate_sitemaps.php">Gerar sitemaps</a></p>
+
             </div>
         </div>
     </main>
