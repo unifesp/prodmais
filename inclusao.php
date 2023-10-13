@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
                     </div>
                 </form>
 
-                <!-- <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
+                <h2 class="t t-h3 ">Inserir um Programa de Pós-Graduação (PPG)</h2>
 
                 <form class="p-inclusao-form" action="include_ppg.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data" title="Formulário de Inserção de um Programa de Pós Graduação">
@@ -96,13 +96,14 @@ if(isset($_POST['submit'])){
                         <input class="c-input--sm" type="text" placeholder="ID do Curso" name="ID_CURSO">
                         <input class="c-input--sm" type="text" placeholder="Código CAPES" name="COD_CAPES">
                         <input class="c-input--sm" type="text" placeholder="Conceito CAPES" name="CONCEITO_CAPES">
+                        <input class="c-input--sm" type="text" placeholder="Instituição" name="NOME_INSTITUICAO">
                         <input class="c-input--sm" type="text" placeholder="Campus" name="NOME_CAMPUS">
                     </div>
 
                     <div class="input-group">
                         <input class="c-input--sm" type="text" placeholder="Sigla da Câmara" name="SIGLA_CAMARA">
                         <input class="c-input--sm" type="text" placeholder="Nome da Câmara" name="NOME_CAMARA">
-                        <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="NOME_PPG">
+                        <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="NOME_PPG" required />
                         <input class="c-input--sm" type="text" placeholder="Data de início do PPG" name="INI_PPG">
                     </div>
                     <div class="input-group">
@@ -125,8 +126,7 @@ if(isset($_POST['submit'])){
                     <div class="input-group-append">
                         <button class="c-btn" type="submit">Incluir</button>
                     </div>
-                </form> -->
-
+                </form>
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
                 <div class="alert alert-danger" role="alert">

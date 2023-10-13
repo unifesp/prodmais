@@ -3,12 +3,20 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
-$identificador = $_REQUEST['ID_CURSO'];
+if($_REQUEST['ID_CURSO']) {
+    $identificador = $_REQUEST['ID_CURSO'];
+} else {
+    $identificador =  hash('sha256', '' . $_REQUEST['NOME_PPG'] . '' . isset($_REQUEST['NOME_INSTITUICAO']) ? $_REQUEST['NOME_INSTITUICAO'] : '' . '');
+}
+
 if (isset($_REQUEST['ID_CURSO'])) {
     $doc_ppg_array['doc']['ID_CURSO'] = $_REQUEST['ID_CURSO'];
 }
 if (isset($_REQUEST['COD_CAPES'])) {
     $doc_ppg_array['doc']['COD_CAPES'] = $_REQUEST['COD_CAPES'];
+}
+if (isset($_REQUEST['NOME_INSTITUICAO'])) {
+    $doc_ppg_array['doc']['NOME_INSTITUICAO'] = $_REQUEST['NOME_INSTITUICAO'];
 }
 if (isset($_REQUEST['NOME_CAMPUS'])) {
     $doc_ppg_array['doc']['NOME_CAMPUS'] = $_REQUEST['NOME_CAMPUS'];
@@ -52,3 +60,20 @@ if (isset($_REQUEST['NOME_COORDENADOR'])) {
 $doc_ppg_array["doc_as_upsert"] = true;
 
 $resultado_ppg = Elasticsearch::update($identificador, $doc_ppg_array, $index_ppg);
+
+
+sleep(5);
+$url = 'ppgs.php';
+$data = [];
+$options = [
+    'http' => [
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    ]
+];
+
+$context = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+header('Location: ' . $url);
