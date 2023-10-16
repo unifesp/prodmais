@@ -14,6 +14,18 @@ if (!empty($_REQUEST["ID"])) {
     $ppg = $cursor["_source"];
 
     echo "<br/><br/><br/><br/><pre>" . print_r($ppg, true) . "</pre>";
+
+
+    // Get infos to graph
+
+    $params = [];
+    $params["index"] = $index;
+    $query["query"]["bool"]["filter"]["term"]["vinculo.ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $params["body"] = $query;
+    $cursorTotal = $client->count($params);
+    $total_producoes = $cursorTotal["count"];
+
+    echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
 } else {
     echo '<script>window.location.href = "index.php";</script>';
     die();
@@ -44,9 +56,9 @@ class PPG
 
         echo
         "<a class='p-ppg__externos' href='$link' target='blank'>
-      <img class='p-ppg__plataforms' src='inc/images/logos/$ico' title='$text'/>
-      <p class='t t-light'><b>$text</b></p>
-    </a>";
+            <img class='p-ppg__plataforms' src='inc/images/logos/$ico' title='$text'/>
+            <p class='t t-light'><b>$text</b></p>
+        </a>";
     }
 }
 ?>
@@ -87,9 +99,9 @@ class PPG
                         <i class="i i-ppg-logo p-ppg__logo"></i>
                     </div>
 
-                    <div class="p-ppg__header-2">
-                        <h1 class="t t-h1">PPG <?php echo $ppg["NOME_PPG"]; ?></h1>
-                        <h2 class="t t-h2">Programa de Pós Graduação em <?php echo $ppg["NOME_PPG"]; ?></h2>
+                    <div class="">
+                        <!-- <h1 class="t t-h1">PPG < ?php echo $ppg["NOME_PPG"]; ?></h1> -->
+                        <h1 class="t t-h1">Programa de Pós Graduação: <?php echo $ppg["NOME_PPG"]; ?></h1>
                         <p class="t t-b ty-light-a">
                             <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
                             <span><?php echo $ppg["NOME_CAMARA"]; ?></span>
@@ -180,6 +192,8 @@ class PPG
                 </section>
 
                 <hr class="c-line u-my-20" />
+
+                <p>Total de produções registradas no Prodmais: <?php echo $total_producoes; ?></p>
 
                 <section class="l-ppg">
                     <?php
