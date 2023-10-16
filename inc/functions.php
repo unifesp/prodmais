@@ -1849,10 +1849,10 @@ class ActiveFilters
     }
 }
 
-class AuthorFacets
+class DataFacets
 {
     public $query;
-    public function authorfacet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null, $collapsed = true)
+    public function AuthorFacet($field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null, $collapsed = true)
     {
         global $url_base;
 
@@ -1889,6 +1889,22 @@ class AuthorFacets
             $i++;
         }
 
+        return json_encode($response_array);
+    }
+
+    public function PPGTags($ppgname)
+    {
+        global $index;
+        $query["query"]["bool"]["filter"]["term"]["vinculo.ppg_nome.keyword"] = $ppgname;
+        $query["aggs"]["counts"]["terms"]["field"] = "about.keyword";
+        $query["aggs"]["counts"]["terms"]["size"] = 50;
+        $response = Elasticsearch::search(null, 0, $query, $index);
+        $i = 0;
+        foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
+            $response_array[$i]["category"] = $facets['key'];
+            $response_array[$i]["amount"] = $facets['doc_count'];
+            $i++;
+        }
         return json_encode($response_array);
     }
 }

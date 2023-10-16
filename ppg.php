@@ -4,6 +4,7 @@
 <?php
 
 require 'inc/config.php';
+require 'inc/functions.php';
 
 if (!empty($_REQUEST["ID"])) {
 
@@ -26,6 +27,10 @@ if (!empty($_REQUEST["ID"])) {
     $total_producoes = $cursorTotal["count"];
 
     echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
+
+    $ppgtags = new DataFacets();
+    $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
+    shuffle($resultppgtags);
 } else {
     echo '<script>window.location.href = "index.php";</script>';
     die();
@@ -67,7 +72,6 @@ class PPG
     <?php
     require 'inc/config.php';
     require 'inc/meta-header.php';
-    require 'inc/functions.php';
     require 'inc/components/GraphBar.php';
     require 'inc/components/SList.php';
     require 'inc/components/Who.php';
@@ -184,7 +188,7 @@ class PPG
                     <h3 class="t t-h3">Palavras chave recorrentes</h3>
 
                     <div>
-                        <?php Tag::cloud($categorysFake, $hasLink = false); ?>
+                        <?php Tag::cloud($resultppgtags, $hasLink = false); ?>
 
                     </div> <!-- end -->
 

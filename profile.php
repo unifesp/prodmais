@@ -112,8 +112,8 @@ if (!empty($_REQUEST["lattesID"])) {
 
 <head>
     <?php
-    include 'inc/meta-header.php';
-    ?>
+  include 'inc/meta-header.php';
+  ?>
     <title>
         <?php echo $branch ?> — Perfil do pesquisador -
         <?php echo $profile["nome_completo"] ?>
@@ -127,12 +127,12 @@ if (!empty($_REQUEST["lattesID"])) {
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
     <?php
-    if (file_exists('inc/google_analytics.php')) {
-      include 'inc/google_analytics.php';
-    } elseif (file_exists('../inc/google_analytics.php')) {
-      include '../inc/google_analytics.php';
-    }
-    ?>
+  if (file_exists('inc/google_analytics.php')) {
+    include 'inc/google_analytics.php';
+  } elseif (file_exists('../inc/google_analytics.php')) {
+    include '../inc/google_analytics.php';
+  }
+  ?>
 
     <!-- NAV -->
     <?php require 'inc/navbar.php'; ?>
@@ -156,36 +156,36 @@ if (!empty($_REQUEST["lattesID"])) {
                         <h1 class="t-h1">
                             <?php echo $profile["nome_completo"] ?>
 
-                            <?php if ($profile["nacionalidade"] == "B"): ?>
+                            <?php if ($profile["nacionalidade"] == "B") : ?>
                             <img class="country-flag" src="<?php echo $url_base; ?>/inc/images/country_flags/br.svg"
                                 alt="nacionalidade brasileira" title="nacionalidade brasileira" />
                             <?php endif; ?>
                         </h1>
 
                         <!-- <div class="u-mb-20  "></div> -->
-                        <?php if (!empty($profile["instituicao"][0])): ?>
+                        <?php if (!empty($profile["instituicao"][0])) : ?>
                         <h3 class="t t-prof"><?php echo $profile["instituicao"][0] ?></h3>
-                        <?php else: ?>
+                        <?php else : ?>
                         <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
                         <?php endif; ?>
-                        <?php if (!empty($profile["unidade"][0])): ?>
+                        <?php if (!empty($profile["unidade"][0])) : ?>
                         <p class="t t-prof">
                             <?php echo $profile["unidade"][0] ?>
                         </p>
                         <?php endif; ?>
-                        <?php if (!empty($profile["departamento"][0])): ?>
+                        <?php if (!empty($profile["departamento"][0])) : ?>
                         <p class="t t-prof">
                             <?php echo $profile["departamento"][0] ?>
                         </p>
                         <?php endif; ?>
-                        <?php if (!empty($profile["ppg_nome"][0])): ?>
-                        <?php foreach ($profile["ppg_nome"] as $key => $ppg_nome): ?>
+                        <?php if (!empty($profile["ppg_nome"][0])) : ?>
+                        <?php foreach ($profile["ppg_nome"] as $key => $ppg_nome) : ?>
                         <p class="t t-prof">Programa de Pós-Graduação:
                             <?php echo $ppg_nome ?>
                         </p>
                         <?php endforeach; ?>
                         <?php endif; ?>
-                        <?php if (!empty($profile["email"])): ?>
+                        <?php if (!empty($profile["email"])) : ?>
                         <p class="t t-prof">E-Mail:
                             <?php echo $profile["email"] ?>
                         </p>
@@ -224,24 +224,24 @@ if (!empty($_REQUEST["lattesID"])) {
 
                             <div class="c-graph-line">
                                 <?php
-                                  foreach ($trabalhos_publicados as $i => $j) {
-                                    if ($j['total'] / $years_array_max <= 1 && $j['total'] / $years_array_max > 0.8) {
-                                      $weight = 4;
-                                    } elseif ($j['total'] / $years_array_max <= 0.8 && $j['total'] / $years_array_max > 0.6) {
-                                      $weight = 3;
-                                    } elseif ($j['total'] / $years_array_max <= 0.6 && $j['total'] / $years_array_max > 0.4) {
-                                      $weight = 2;
-                                    } elseif ($j['total'] / $years_array_max <= 0.4 && $j['total'] / $years_array_max > 0.2) {
-                                      $weight = 1;
-                                    } else {
-                                      $weight = 0;
-                                    }
-                                    echo "<div class='c-graph-unit' data-weight='{$weight}' title='{$j['year']} — total: {$j['total']}'></div>";
-                                  }
-                                  unset($i);
-                                  unset($j);
-                                  unset($weight);
-                                ?>
+                foreach ($trabalhos_publicados as $i => $j) {
+                  if ($j['total'] / $years_array_max <= 1 && $j['total'] / $years_array_max > 0.8) {
+                    $weight = 4;
+                  } elseif ($j['total'] / $years_array_max <= 0.8 && $j['total'] / $years_array_max > 0.6) {
+                    $weight = 3;
+                  } elseif ($j['total'] / $years_array_max <= 0.6 && $j['total'] / $years_array_max > 0.4) {
+                    $weight = 2;
+                  } elseif ($j['total'] / $years_array_max <= 0.4 && $j['total'] / $years_array_max > 0.2) {
+                    $weight = 1;
+                  } else {
+                    $weight = 0;
+                  }
+                  echo "<div class='c-graph-unit' data-weight='{$weight}' title='{$j['year']} — total: {$j['total']}'></div>";
+                }
+                unset($i);
+                unset($j);
+                unset($weight);
+                ?>
                                 <span class="c-graph-label">Trabalhos publicados</span>
                             </div>
 
@@ -326,18 +326,18 @@ if (!empty($_REQUEST["lattesID"])) {
                     <hr class="c-line u-my-20" />
                     <h3 class="t t-h3">Tags mais usadas</h3>
                     <?php
-                      $authorfacets = new AuthorFacets();
-                      $authorfacets->query = $result_get['query'];
+          $authorfacets = new DataFacets();
+          $authorfacets->query = $result_get['query'];
 
-                      if (!isset($_GET)) {
-                        $_GET = null;
-                      }
+          if (!isset($_GET)) {
+            $_GET = null;
+          }
 
-                      $resultaboutfacet = json_decode($authorfacets->authorfacet(basename(__FILE__), "about", 120, "Palavras-chave do autor", null, "_term", $_GET), true);
-                      shuffle($resultaboutfacet);
+          $resultaboutfacet = json_decode($authorfacets->authorfacet("about", 120, "Palavras-chave do autor", null, "_term", $_GET), true);
+          shuffle($resultaboutfacet);
 
-                      Tag::cloud($resultaboutfacet, $hasLink = false);
-                    ?>
+          Tag::cloud($resultaboutfacet, $hasLink = false);
+          ?>
                     <hr class="c-line u-my-20" />
                     <?php if (isset($profile["idiomas"])) : ?>
                     <div>
@@ -347,39 +347,39 @@ if (!empty($_REQUEST["lattesID"])) {
                         <div class="s-list">
                             <div class="s-list-bullet">
                                 <?php
-                                  switch ($idioma["descricaoDoIdioma"]) {
-                                    case "Inglês":
-                                      $lang = 'en';
-                                      break;
-                                    case "Espanhol":
-                                      $lang = 'es';
-                                      break;
-                                    case "Português":
-                                      $lang = 'pt';
-                                      break;
-                                    case "Italiano":
-                                      $lang = 'it';
-                                      break;
-                                    case "Francês":
-                                      $lang = 'fr';
-                                      break;
-                                    case "Alemão":
-                                      $lang = 'de';
-                                      break;
-                                    case "Russo":
-                                      $lang = 'ru';
-                                      break;
-                                    case "Mandarin":
-                                      $lang = 'zh';
-                                      break;
-                                    default:
-                                      $lang = 'idioma';
-                                      break;
-                                  };
-                                  $idi = $idioma["descricaoDoIdioma"];
+                    switch ($idioma["descricaoDoIdioma"]) {
+                      case "Inglês":
+                        $lang = 'en';
+                        break;
+                      case "Espanhol":
+                        $lang = 'es';
+                        break;
+                      case "Português":
+                        $lang = 'pt';
+                        break;
+                      case "Italiano":
+                        $lang = 'it';
+                        break;
+                      case "Francês":
+                        $lang = 'fr';
+                        break;
+                      case "Alemão":
+                        $lang = 'de';
+                        break;
+                      case "Russo":
+                        $lang = 'ru';
+                        break;
+                      case "Mandarin":
+                        $lang = 'zh';
+                        break;
+                      default:
+                        $lang = 'idioma';
+                        break;
+                    };
+                    $idi = $idioma["descricaoDoIdioma"];
 
-                                  echo "<i class='i i-lang-$lang i-lang' title='$idi' alt='$idi'></i>"
-                                ?>
+                    echo "<i class='i i-lang-$lang i-lang' title='$idi' alt='$idi'></i>"
+                    ?>
                             </div>
 
                             <div class="s-list-content">
@@ -401,113 +401,113 @@ if (!empty($_REQUEST["lattesID"])) {
 
                     <!-- Livre Docência -->
                     <?php
-                      if (isset($profile["formacao_academica_titulacao_livreDocencia"])) {
+          if (isset($profile["formacao_academica_titulacao_livreDocencia"])) {
 
-                        foreach ($profile["formacao_academica_titulacao_livreDocencia"] as $key => $livreDocencia) {
+            foreach ($profile["formacao_academica_titulacao_livreDocencia"] as $key => $livreDocencia) {
 
-                          !empty($livreDocencia["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ? 
-                            $b = $livreDocencia["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $b = '';
+              !empty($livreDocencia["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ?
+                $b = $livreDocencia["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $b = '';
 
-                          !empty($livreDocencia["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ? 
-                            $c = $livreDocencia["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $c = '';
+              !empty($livreDocencia["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ?
+                $c = $livreDocencia["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $c = '';
 
-                          SList::genericItem(
-                            $type = 'formation',
-                            $itemName = 'Livre Docência',
-                            $itemNameLink = '',
-                            $itemInfoA = $livreDocencia["tituloDoTrabalho"],
-                            $itemInfoB = $b,
-                            $itemInfoC = $c,
-                            $itemInfoD = $livreDocencia["nomeInstituicao"],
-                            $itemInfoE = '',
-                            $authors = '',
-                            $tags = '',
-                            $yearStart = '',
-                            $yearEnd = $livreDocencia["anoDeObtencaoDoTitulo"]
-                          );
-                        }
-                      }
-                    ?>
+              SList::genericItem(
+                $type = 'formation',
+                $itemName = 'Livre Docência',
+                $itemNameLink = '',
+                $itemInfoA = $livreDocencia["tituloDoTrabalho"],
+                $itemInfoB = $b,
+                $itemInfoC = $c,
+                $itemInfoD = $livreDocencia["nomeInstituicao"],
+                $itemInfoE = '',
+                $authors = '',
+                $tags = '',
+                $yearStart = '',
+                $yearEnd = $livreDocencia["anoDeObtencaoDoTitulo"]
+              );
+            }
+          }
+          ?>
                     <!-- Doutorado -->
                     <?php
-                    if (isset($profile["formacao_academica_titulacao_doutorado"])) {
-                    foreach ($profile["formacao_academica_titulacao_doutorado"] as $key => $doutorado) {
+          if (isset($profile["formacao_academica_titulacao_doutorado"])) {
+            foreach ($profile["formacao_academica_titulacao_doutorado"] as $key => $doutorado) {
 
-                        !empty($doutorado["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ? 
-                          $especialidade = $doutorado["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $especialidade = '';
+              !empty($doutorado["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ?
+                $especialidade = $doutorado["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $especialidade = '';
 
-                        !empty($doutorado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ? 
-                          $subArea = $doutorado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $subArea = '';
+              !empty($doutorado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ?
+                $subArea = $doutorado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $subArea = '';
 
-                        SList::genericItem(
-                          $type = 'formation',
-                          $itemName = 'Doutorado em ' . $doutorado["nomeCurso"],
-                          $itemNameLink = '',
-                          $itemInfoA = $doutorado["tituloDaDissertacaoTese"],
-                          $itemInfoB = $especialidade,
-                          $itemInfoC = $subArea,
-                          $itemInfoD = 'Orientação: ' . $doutorado["nomeDoOrientador"],
-                          $itemInfoE = $doutorado["nomeInstituicao"],
-                          $authors = '',
-                          $yearStart = $doutorado["anoDeInicio"],
-                          $yearEnd = $doutorado["anoDeConclusao"]
-                        );
-                      }
-                    }
-                    ?>
+              SList::genericItem(
+                $type = 'formation',
+                $itemName = 'Doutorado em ' . $doutorado["nomeCurso"],
+                $itemNameLink = '',
+                $itemInfoA = $doutorado["tituloDaDissertacaoTese"],
+                $itemInfoB = $especialidade,
+                $itemInfoC = $subArea,
+                $itemInfoD = 'Orientação: ' . $doutorado["nomeDoOrientador"],
+                $itemInfoE = $doutorado["nomeInstituicao"],
+                $authors = '',
+                $yearStart = $doutorado["anoDeInicio"],
+                $yearEnd = $doutorado["anoDeConclusao"]
+              );
+            }
+          }
+          ?>
 
                     <!-- Mestrado -->
                     <?php
-                    if (isset($profile["formacao_academica_titulacao_mestrado"])) {
-                      foreach ($profile["formacao_academica_titulacao_mestrado"] as $key => $mestrado) {
+          if (isset($profile["formacao_academica_titulacao_mestrado"])) {
+            foreach ($profile["formacao_academica_titulacao_mestrado"] as $key => $mestrado) {
 
-                        !empty($mestrado["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ? 
-                          $especialidade = $mestrado["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $especialidade = '';
+              !empty($mestrado["area_do_conhecimento"][0]["nomeDaEspecialidade"]) ?
+                $especialidade = $mestrado["area_do_conhecimento"][0]["nomeDaEspecialidade"] : $especialidade = '';
 
-                        !empty($mestrado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ? 
-                          $subArea = $mestrado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $subArea = '';
+              !empty($mestrado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"]) ?
+                $subArea = $mestrado["area_do_conhecimento"][0]["nomeDaSubAreaDoConhecimento"] : $subArea = '';
 
-                        SList::genericItem(
-                          $type = 'formation',
-                          $itemName = 'Mestrado em ' . $mestrado["nomeCurso"],
-                          $itemNameLink = '',
-                          $itemInfoA = $mestrado["tituloDaDissertacaoTese"],
-                          $itemInfoB = $especialidade,
-                          $itemInfoC = $subArea,
-                          $itemInfoD = 'Orientação: ' . $mestrado["nomeDoOrientador"],
-                          $itemInfoE = $mestrado["nomeInstituicao"],
-                          $authors = '',
-                          $tags = '',
-                          $yearStart = $mestrado["anoDeInicio"],
-                          $yearEnd = $mestrado["anoDeConclusao"]
-                        );
-                      }
-                    }
-                    ?>
+              SList::genericItem(
+                $type = 'formation',
+                $itemName = 'Mestrado em ' . $mestrado["nomeCurso"],
+                $itemNameLink = '',
+                $itemInfoA = $mestrado["tituloDaDissertacaoTese"],
+                $itemInfoB = $especialidade,
+                $itemInfoC = $subArea,
+                $itemInfoD = 'Orientação: ' . $mestrado["nomeDoOrientador"],
+                $itemInfoE = $mestrado["nomeInstituicao"],
+                $authors = '',
+                $tags = '',
+                $yearStart = $mestrado["anoDeInicio"],
+                $yearEnd = $mestrado["anoDeConclusao"]
+              );
+            }
+          }
+          ?>
                     <!-- Graduação -->
                     <?php
-                    if (isset($profile["formacao_academica_titulacao_graduacao"])) {
-                      foreach ($profile["formacao_academica_titulacao_graduacao"] as $key => $graduacao) {
-                        $orientador = '';
-                        !empty($graduacao["nomeDoOrientador"]) ? 
-                          $orientador = 'Orientação: ' . $graduacao["nomeDoOrientador"] : $orientador = '';
-                        SList::genericItem(
-                          $type = 'formation',
-                          $itemName = 'Graduação em ' . $graduacao["nomeCurso"],
-                          $itemNameLink = '',
-                          $itemInfoA = $graduacao["tituloDoTrabalhoDeConclusaoDeCurso"],
-                          $itemInfoB = $orientador,
-                          $itemInfoC = $graduacao["nomeInstituicao"],
-                          $itemInfoD = '',
-                          $itemInfoE = '',
-                          $authors = '',
-                          $tags = '',
-                          $yearStart = $graduacao["anoDeInicio"],
-                          $yearEnd = $graduacao["anoDeConclusao"]
-                        );
-                      }
-                    }
-                    ?>
+          if (isset($profile["formacao_academica_titulacao_graduacao"])) {
+            foreach ($profile["formacao_academica_titulacao_graduacao"] as $key => $graduacao) {
+              $orientador = '';
+              !empty($graduacao["nomeDoOrientador"]) ?
+                $orientador = 'Orientação: ' . $graduacao["nomeDoOrientador"] : $orientador = '';
+              SList::genericItem(
+                $type = 'formation',
+                $itemName = 'Graduação em ' . $graduacao["nomeCurso"],
+                $itemNameLink = '',
+                $itemInfoA = $graduacao["tituloDoTrabalhoDeConclusaoDeCurso"],
+                $itemInfoB = $orientador,
+                $itemInfoC = $graduacao["nomeInstituicao"],
+                $itemInfoD = '',
+                $itemInfoE = '',
+                $authors = '',
+                $tags = '',
+                $yearStart = $graduacao["anoDeInicio"],
+                $yearEnd = $graduacao["anoDeConclusao"]
+              );
+            }
+          }
+          ?>
                 </div>
             </transition>
             <transition name="tabeffect">
@@ -515,63 +515,63 @@ if (!empty($_REQUEST["lattesID"])) {
                     <div class="profile-pi">
                         <h3 class="t t-h3 u-mb-20">Produção</h3>
                         <?php
-                        foreach ($cursor_works['hits']['hits'] as $key => $work) {
-                          $works[$work['_source']['datePublished']][] = $work;
-                        }
-                        for ($i = 2040; $i >= 1900; $i -= 1) {
-                          if (!empty($works[$i])) {
-                            echo '<hr class="c-line"></hr>
+            foreach ($cursor_works['hits']['hits'] as $key => $work) {
+              $works[$work['_source']['datePublished']][] = $work;
+            }
+            for ($i = 2040; $i >= 1900; $i -= 1) {
+              if (!empty($works[$i])) {
+                echo '<hr class="c-line"></hr>
                             <h3 class="t-b c-pi-year">' . $i . '</h3>
                             <hr class="c-line u-mb-20"></hr> ';
 
-                            echo '<ul name="Lista de produções no ano de ' . $i . '">';
-                            foreach ($works[$i] as $key => $work) {
+                echo '<ul name="Lista de produções no ano de ' . $i . '">';
+                foreach ($works[$i] as $key => $work) {
 
-                            $authors = [];
-                            foreach ($work["_source"]["author"] as $author) {
-                            $authors[] = $author["person"]["name"];
-                            }
+                  $authors = [];
+                  foreach ($work["_source"]["author"] as $author) {
+                    $authors[] = $author["person"]["name"];
+                  }
 
-                            !empty($work['_source']['url']) ? 
-                            $url = $work['_source']['url'] : $url = '';
+                  !empty($work['_source']['url']) ?
+                    $url = $work['_source']['url'] : $url = '';
 
-                            !empty($work['_source']['doi']) ? 
-                            $doi = $work['_source']['doi'] : $doi = '';
+                  !empty($work['_source']['doi']) ?
+                    $doi = $work['_source']['doi'] : $doi = '';
 
-                            !empty($work['_source']['isPartOf']['name']) ? 
-                            $refName = $work['_source']['isPartOf']['name'] : $refName = '';
+                  !empty($work['_source']['isPartOf']['name']) ?
+                    $refName = $work['_source']['isPartOf']['name'] : $refName = '';
 
-                            !empty($work['_source']['isPartOf']['volume']) ? 
-                            $vol = $work['_source']['isPartOf']['volume'] : $vol = '';
+                  !empty($work['_source']['isPartOf']['volume']) ?
+                    $vol = $work['_source']['isPartOf']['volume'] : $vol = '';
 
-                            !empty($work['_source']['isPartOf']['fasciculo']) ? 
-                            $fascicle = $work['_source']['isPartOf']['fasciculo'] : $fascicle = '';
+                  !empty($work['_source']['isPartOf']['fasciculo']) ?
+                    $fascicle = $work['_source']['isPartOf']['fasciculo'] : $fascicle = '';
 
-                            !empty($work['_source']['pageStart']) ?
-                            $pageStart = $work['_source']['pageStart'] : $pageStart = '';
+                  !empty($work['_source']['pageStart']) ?
+                    $pageStart = $work['_source']['pageStart'] : $pageStart = '';
 
-                            SList::IntelectualProduction(
-                            $type = $work['_source']['tipo'],
-                            $name = $work['_source']['name'],
-                            $authors = $authors,
-                            $url = $url,
-                            $doi = $doi,
-                            $issn = '',
-                            $refName =  $refName,
-                            $refVol = $vol,
-                            $refFascicle =  $fascicle,
-                            $refPage = $pageStart,
-                            $event = '',
-                            $evento = '',
-                            $datePublished = '',
-                            $id = ''
-                            );
-                            }
-                            unset($authors);
-                            echo '</ul>';
-                          }
-                        }
-                        ?>
+                  SList::IntelectualProduction(
+                    $type = $work['_source']['tipo'],
+                    $name = $work['_source']['name'],
+                    $authors = $authors,
+                    $url = $url,
+                    $doi = $doi,
+                    $issn = '',
+                    $refName =  $refName,
+                    $refVol = $vol,
+                    $refFascicle =  $fascicle,
+                    $refPage = $pageStart,
+                    $event = '',
+                    $evento = '',
+                    $datePublished = '',
+                    $id = ''
+                  );
+                }
+                unset($authors);
+                echo '</ul>';
+              }
+            }
+            ?>
                     </div>
                 </div>
             </transition>
@@ -581,51 +581,51 @@ if (!empty($_REQUEST["lattesID"])) {
 
                     <?php
 
-                    foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
-                      foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
-                        echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
-                        if (isset($atuacao_profissional['VINCULOS'])) {
-                          if (count($atuacao_profissional['VINCULOS']) == 1) {
-                            echo '<ul>';
-                            SList::genericItem(
-                              $type = "professional",
-                              $itemName = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
-                              $itemNameLink = '',
-                              $itemInfoA = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'],
-                              $itemInfoB = '',
-                              $itemInfoC = '',
-                              $itemInfoD = '',
-                              $itemInfoE = '',
-                              $authors = '',
-                              $tags = '',
-                              $yearStart = $atuacao_profissional['VINCULOS']['@attributes']['ANO-INICIO'],
-                              $yearEnd = $atuacao_profissional['VINCULOS']['@attributes']['ANO-FIM']
-                            );
-                            echo '</ul>';
-                            } else {
-                              echo '<ul>';
-                              for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
-                                SList::genericItem(
-                                  $type = "professional",
-                                  $itemName = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
-                                  $itemNameLink = '',
-                                  $itemInfoA = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-VINCULO-INFORMADO'],
-                                  $itemInfoB = '',
-                                  $itemInfoC = '',
-                                  $itemInfoD = '',
-                                  $itemInfoE = '',
-                                  $authors = '',
-                                  $tags = '',
-                                  $yearStart = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-INICIO'],
-                                  $yearEnd = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-FIM']
-                                );
-                              }
-                            echo '</ul>';
-                          }
-                        }
-                      }
-                    }
-                    ?>
+          foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+            foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
+              echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+              if (isset($atuacao_profissional['VINCULOS'])) {
+                if (count($atuacao_profissional['VINCULOS']) == 1) {
+                  echo '<ul>';
+                  SList::genericItem(
+                    $type = "professional",
+                    $itemName = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
+                    $itemNameLink = '',
+                    $itemInfoA = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'],
+                    $itemInfoB = '',
+                    $itemInfoC = '',
+                    $itemInfoD = '',
+                    $itemInfoE = '',
+                    $authors = '',
+                    $tags = '',
+                    $yearStart = $atuacao_profissional['VINCULOS']['@attributes']['ANO-INICIO'],
+                    $yearEnd = $atuacao_profissional['VINCULOS']['@attributes']['ANO-FIM']
+                  );
+                  echo '</ul>';
+                } else {
+                  echo '<ul>';
+                  for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
+                    SList::genericItem(
+                      $type = "professional",
+                      $itemName = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
+                      $itemNameLink = '',
+                      $itemInfoA = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-VINCULO-INFORMADO'],
+                      $itemInfoB = '',
+                      $itemInfoC = '',
+                      $itemInfoD = '',
+                      $itemInfoE = '',
+                      $authors = '',
+                      $tags = '',
+                      $yearStart = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-INICIO'],
+                      $yearEnd = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-FIM']
+                    );
+                  }
+                  echo '</ul>';
+                }
+              }
+            }
+          }
+          ?>
 
                 </div> <!-- end tab-three -->
             </transition>
@@ -636,82 +636,82 @@ if (!empty($_REQUEST["lattesID"])) {
                     <h3 class="t t-h3 u-mb-20">Orientações e supervisões</h3>
 
                     <?php
-                    if (!empty($profile['orientacoes'])) {
-                      $orientacoes_andamento_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
-                      foreach ($orientacoes_andamento_labels as $orientacao_andamento_label) {
-                        $i_orientacao_andamento = 0;
-                        foreach ($profile['orientacoes'] as $orientacao_andamento) {
-                          if ($orientacao_andamento['natureza'] == $orientacao_andamento_label) {
-                            $orientacao_andamento_array[$orientacao_andamento_label][$i_orientacao_andamento] = $orientacao_andamento;
-                          }
-                          $i_orientacao_andamento++;
-                        }
-                        if (isset($orientacao_andamento_array[$orientacao_andamento_label])) {
-                          if (count($orientacao_andamento_array[$orientacao_andamento_label]) > 0) {
-                            echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_andamento_label . ' em andamento</h4>';
-                            echo '<ul>';
-                            foreach ($orientacao_andamento_array[$orientacao_andamento_label] as $orientacao_andamento_echo) {                              
-                              SList::genericItem(
-                              $type = 'orientation',
-                              $itemName = $orientacao_andamento_echo["nomeDoOrientando"],
-                              $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
-                              $itemInfoA = $orientacao_andamento_echo["titulo"],
-                              $itemInfoB = $orientacao_andamento_echo["nomeDoCurso"],
-                              $itemInfoC = $orientacao_andamento_echo["nomeDaAgencia"],
-                              $itemInfoD = $orientacao_andamento_echo["nomeDaInstituicao"],
-                              $itemInfoE = '',
-                              $authors = '',
-                              $tags = '',
-                              $yearStart = $orientacao_andamento_echo["ano"],
-                              $yearEnd = ''
-                              );
-                            }
-                            echo '</ul>';
-                          }
-                        }
-                        unset($orientacao_andamento_array);
-                      }
-                    }
-                    ?>
+          if (!empty($profile['orientacoes'])) {
+            $orientacoes_andamento_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
+            foreach ($orientacoes_andamento_labels as $orientacao_andamento_label) {
+              $i_orientacao_andamento = 0;
+              foreach ($profile['orientacoes'] as $orientacao_andamento) {
+                if ($orientacao_andamento['natureza'] == $orientacao_andamento_label) {
+                  $orientacao_andamento_array[$orientacao_andamento_label][$i_orientacao_andamento] = $orientacao_andamento;
+                }
+                $i_orientacao_andamento++;
+              }
+              if (isset($orientacao_andamento_array[$orientacao_andamento_label])) {
+                if (count($orientacao_andamento_array[$orientacao_andamento_label]) > 0) {
+                  echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_andamento_label . ' em andamento</h4>';
+                  echo '<ul>';
+                  foreach ($orientacao_andamento_array[$orientacao_andamento_label] as $orientacao_andamento_echo) {
+                    SList::genericItem(
+                      $type = 'orientation',
+                      $itemName = $orientacao_andamento_echo["nomeDoOrientando"],
+                      $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_andamento_echo["numeroIDOrientado"],
+                      $itemInfoA = $orientacao_andamento_echo["titulo"],
+                      $itemInfoB = $orientacao_andamento_echo["nomeDoCurso"],
+                      $itemInfoC = $orientacao_andamento_echo["nomeDaAgencia"],
+                      $itemInfoD = $orientacao_andamento_echo["nomeDaInstituicao"],
+                      $itemInfoE = '',
+                      $authors = '',
+                      $tags = '',
+                      $yearStart = $orientacao_andamento_echo["ano"],
+                      $yearEnd = ''
+                    );
+                  }
+                  echo '</ul>';
+                }
+              }
+              unset($orientacao_andamento_array);
+            }
+          }
+          ?>
 
                     <?php
-                    if (!empty($profile['orientacoesconcluidas'])) {
-                      $orientacoes_concluidas_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
-                      foreach ($orientacoes_concluidas_labels as $orientacao_concluidas_label) {
-                        $i_orientacao_concluidas = 0;
-                        foreach ($profile['orientacoesconcluidas'] as $orientacao_concluidas) {
-                          if ($orientacao_concluidas['natureza'] == $orientacao_concluidas_label) {
-                            $orientacao_concluidas_array[$orientacao_concluidas_label][$i_orientacao_concluidas] = $orientacao_concluidas;
-                          }
-                          $i_orientacao_concluidas++;
-                        }
-                        if (isset($orientacao_concluidas_array)) {
-                          if (count($orientacao_concluidas_array[$orientacao_concluidas_label]) > 0) {
-                            echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_concluidas_label . ' concluídas</h4>';
-                            echo '<ul>';
-                            foreach ($orientacao_concluidas_array[$orientacao_concluidas_label] as $orientacao_concluidas_echo) {                            
-                              SList::genericItem(
-                              $type = 'orientation',
-                              $itemName = $orientacao_concluidas_echo["nomeDoOrientando"],
-                              $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_concluidas_echo["numeroIDOrientado"],
-                              $itemInfoA = $orientacao_concluidas_echo["titulo"],
-                              $itemInfoB = $orientacao_concluidas_echo["nomeDoCurso"],
-                              $itemInfoC = $orientacao_concluidas_echo["nomeDaAgencia"],
-                              $itemInfoD = $orientacao_concluidas_echo["nomeDaInstituicao"],
-                              $itemInforE = '',
-                              $authors = '',
-                              $tags = '',
-                              $yearStart = '',
-                              $yearEnd = $orientacao_concluidas_echo["ano"]
-                              );
-                            }
-                            echo '</ul>';
-                          }
-                          unset($orientacao_concluidas_array);
-                        }
-                      }
-                    }
-                    ?>
+          if (!empty($profile['orientacoesconcluidas'])) {
+            $orientacoes_concluidas_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
+            foreach ($orientacoes_concluidas_labels as $orientacao_concluidas_label) {
+              $i_orientacao_concluidas = 0;
+              foreach ($profile['orientacoesconcluidas'] as $orientacao_concluidas) {
+                if ($orientacao_concluidas['natureza'] == $orientacao_concluidas_label) {
+                  $orientacao_concluidas_array[$orientacao_concluidas_label][$i_orientacao_concluidas] = $orientacao_concluidas;
+                }
+                $i_orientacao_concluidas++;
+              }
+              if (isset($orientacao_concluidas_array)) {
+                if (count($orientacao_concluidas_array[$orientacao_concluidas_label]) > 0) {
+                  echo '<h4 class="t t-subtitle u-mb-20">' . $orientacao_concluidas_label . ' concluídas</h4>';
+                  echo '<ul>';
+                  foreach ($orientacao_concluidas_array[$orientacao_concluidas_label] as $orientacao_concluidas_echo) {
+                    SList::genericItem(
+                      $type = 'orientation',
+                      $itemName = $orientacao_concluidas_echo["nomeDoOrientando"],
+                      $itemNameLink = "https://lattes.cnpq.br/" . $orientacao_concluidas_echo["numeroIDOrientado"],
+                      $itemInfoA = $orientacao_concluidas_echo["titulo"],
+                      $itemInfoB = $orientacao_concluidas_echo["nomeDoCurso"],
+                      $itemInfoC = $orientacao_concluidas_echo["nomeDaAgencia"],
+                      $itemInfoD = $orientacao_concluidas_echo["nomeDaInstituicao"],
+                      $itemInforE = '',
+                      $authors = '',
+                      $tags = '',
+                      $yearStart = '',
+                      $yearEnd = $orientacao_concluidas_echo["ano"]
+                    );
+                  }
+                  echo '</ul>';
+                }
+                unset($orientacao_concluidas_array);
+              }
+            }
+          }
+          ?>
 
                 </div> <!-- end tab-four -->
             </transition>
@@ -721,49 +721,49 @@ if (!empty($_REQUEST["lattesID"])) {
                     <h3 class="t t-h3 u-mb-20">Gestão</h3>
 
                     <?php
-                    foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
-                      foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
-                        if (isset($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO'])) {
-                          echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
-                          if (isset($atuacao_profissional['VINCULOS'])) {
-                            echo '<ul>';
-                            foreach ($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO']['DIRECAO-E-ADMINISTRACAO'] as $key => $direcao_e_administracao) {                              
-                              if (isset($direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'])) {
-                                SList::genericItem(
-                                  $type = 'managing',
-                                  $itemName = $direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'],
-                                  $itemNameLink = '',
-                                  $itemInfoB = $direcao_e_administracao['@attributes']['NOME-ORGAO'],
-                                  $itemInfoC = $direcao_e_administracao['@attributes']['NOME-UNIDADE'],
-                                  $itemInfoD = '',
-                                  $itemInfoE = '',
-                                  $authors = '',
-                                  $tags = '',
-                                  $yearStart = $direcao_e_administracao['@attributes']['ANO-INICIO'],
-                                  $yearEnd = $direcao_e_administracao['@attributes']['ANO-FIM']
-                                );
-                              } else {
-                                SList::genericItem(
-                                  $type = 'managing',
-                                  $itemName = $direcao_e_administracao['CARGO-OU-FUNCAO'],
-                                  $itemNameLink = '',
-                                  $itemInfoB = $direcao_e_administracao['NOME-ORGAO'],
-                                  $itemInfoC = $direcao_e_administracao['NOME-UNIDADE'],
-                                  $itemInfoD = '',
-                                  $itemInfoE = '',
-                                  $authors = '',
-                                  $tags = '',
-                                  $yearStart = $direcao_e_administracao['ANO-INICIO'],
-                                  $yearEnd = $direcao_e_administracao['ANO-FIM']
-                                );
-                              }
-                            }
-                            echo '</ul>';
-                          }
-                        }
-                      }
+          foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+            foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
+              if (isset($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO'])) {
+                echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                if (isset($atuacao_profissional['VINCULOS'])) {
+                  echo '<ul>';
+                  foreach ($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO']['DIRECAO-E-ADMINISTRACAO'] as $key => $direcao_e_administracao) {
+                    if (isset($direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'])) {
+                      SList::genericItem(
+                        $type = 'managing',
+                        $itemName = $direcao_e_administracao['@attributes']['CARGO-OU-FUNCAO'],
+                        $itemNameLink = '',
+                        $itemInfoB = $direcao_e_administracao['@attributes']['NOME-ORGAO'],
+                        $itemInfoC = $direcao_e_administracao['@attributes']['NOME-UNIDADE'],
+                        $itemInfoD = '',
+                        $itemInfoE = '',
+                        $authors = '',
+                        $tags = '',
+                        $yearStart = $direcao_e_administracao['@attributes']['ANO-INICIO'],
+                        $yearEnd = $direcao_e_administracao['@attributes']['ANO-FIM']
+                      );
+                    } else {
+                      SList::genericItem(
+                        $type = 'managing',
+                        $itemName = $direcao_e_administracao['CARGO-OU-FUNCAO'],
+                        $itemNameLink = '',
+                        $itemInfoB = $direcao_e_administracao['NOME-ORGAO'],
+                        $itemInfoC = $direcao_e_administracao['NOME-UNIDADE'],
+                        $itemInfoD = '',
+                        $itemInfoE = '',
+                        $authors = '',
+                        $tags = '',
+                        $yearStart = $direcao_e_administracao['ANO-INICIO'],
+                        $yearEnd = $direcao_e_administracao['ANO-FIM']
+                      );
                     }
-                    ?>
+                  }
+                  echo '</ul>';
+                }
+              }
+            }
+          }
+          ?>
                 </div>
             </transition>
 
@@ -772,77 +772,77 @@ if (!empty($_REQUEST["lattesID"])) {
                     <h3 class="t t-h3 u-mb-20">Pesquisa</h3>
 
                     <?php
-                    foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
-                      foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
-                        if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
-                          echo '<h4 class="t t-subtitle u-my-20">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
-                          foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
-                            if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
-                              foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
-                                if (!empty($projeto_de_pesquisa['@attributes'])) {
-                                foreach ($projeto_de_pesquisa['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $key => $integrante_do_projeto) {
-                                  if (isset($integrante_do_projeto['@attributes']['NOME-COMPLETO'])) {
-                                    $integrantes_do_projeto[] = $integrante_do_projeto['@attributes']['NOME-COMPLETO'];
-                                  }
-                                }
-                                echo '<ul>';
-                                if (!isset($integrantes_do_projeto)) {
-                                  $integrantes_do_projeto = [];
-                                }
-                                SList::genericItem(
-                                  $type = 'research',
-                                  $itemName = $projeto_de_pesquisa['@attributes']['NOME-DO-PROJETO'],
-                                  $itemNameLink = '',
-                                  $itemInfoA = $projeto_de_pesquisa['@attributes']['DESCRICAO-DO-PROJETO'],
-                                  $itemInfoB = '',
-                                  $itemInfoC = '',
-                                  $itemInfoD = '',
-                                  $itemInfoE = '',
-                                  $authors = implode(', ', $integrantes_do_projeto),
-                                  $tags = '',
-                                  $yearStart = $projeto_de_pesquisa['@attributes']['ANO-INICIO'],
-                                  $yearEnd = $projeto_de_pesquisa['@attributes']['ANO-FIM']
-                                );
-                                echo '</ul>';
-                                unset($integrantes_do_projeto);
-                                } else {
-                                    if (isset($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO'])) {
-                                      unset($integrantes_do_projeto);
-                                    if (isset($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO']['@attributes'])) {
-                                      $integrantes_do_projeto[] = $projeto_de_pesquisa['INTEGRANTES-DO-PROJETO']['@attributes']['NOME-COMPLETO'];
-                                    } else {
-                                      foreach ($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO'] as $key => $integrante_do_projeto) {
-                                        $integrantes_do_projeto[] = $integrante_do_projeto['@attributes']['NOME-COMPLETO'];
-                                      }
-                                    }
-                                  }
-                                  if (isset($projeto_de_pesquisa['NOME-DO-PROJETO'])) {
-                                    (isset($integrantes_do_projeto)) ? $integrantesDoProjeto = implode(', ', $integrantes_do_projeto) : $integrantesDoProjeto = '';
-                                    echo '<ul>';
-                                    SList::genericItem(
-                                      $type = 'research',
-                                      $itemName = $projeto_de_pesquisa['NOME-DO-PROJETO'],
-                                      $itemNameLink = '',
-                                      $itemInfoA = $projeto_de_pesquisa['DESCRICAO-DO-PROJETO'],
-                                      $itemInfoB = '',
-                                      $itemInfoC = '',
-                                      $itemInfoD = '',
-                                      $itemInfoE = '',
-                                      $authors = $integrantesDoProjeto,
-                                      $tags = '',
-                                      $yearStart = $projeto_de_pesquisa['ANO-INICIO'],
-                                      $yearEnd = $projeto_de_pesquisa['ANO-FIM']
-                                    );
-                                    echo '</ul>';
-                                  }
-                                }
-                              }
+          foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+            foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
+              if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
+                echo '<h4 class="t t-subtitle u-my-20">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
+                  if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
+                    foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
+                      if (!empty($projeto_de_pesquisa['@attributes'])) {
+                        foreach ($projeto_de_pesquisa['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $key => $integrante_do_projeto) {
+                          if (isset($integrante_do_projeto['@attributes']['NOME-COMPLETO'])) {
+                            $integrantes_do_projeto[] = $integrante_do_projeto['@attributes']['NOME-COMPLETO'];
+                          }
+                        }
+                        echo '<ul>';
+                        if (!isset($integrantes_do_projeto)) {
+                          $integrantes_do_projeto = [];
+                        }
+                        SList::genericItem(
+                          $type = 'research',
+                          $itemName = $projeto_de_pesquisa['@attributes']['NOME-DO-PROJETO'],
+                          $itemNameLink = '',
+                          $itemInfoA = $projeto_de_pesquisa['@attributes']['DESCRICAO-DO-PROJETO'],
+                          $itemInfoB = '',
+                          $itemInfoC = '',
+                          $itemInfoD = '',
+                          $itemInfoE = '',
+                          $authors = implode(', ', $integrantes_do_projeto),
+                          $tags = '',
+                          $yearStart = $projeto_de_pesquisa['@attributes']['ANO-INICIO'],
+                          $yearEnd = $projeto_de_pesquisa['@attributes']['ANO-FIM']
+                        );
+                        echo '</ul>';
+                        unset($integrantes_do_projeto);
+                      } else {
+                        if (isset($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO'])) {
+                          unset($integrantes_do_projeto);
+                          if (isset($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO']['@attributes'])) {
+                            $integrantes_do_projeto[] = $projeto_de_pesquisa['INTEGRANTES-DO-PROJETO']['@attributes']['NOME-COMPLETO'];
+                          } else {
+                            foreach ($projeto_de_pesquisa['INTEGRANTES-DO-PROJETO'] as $key => $integrante_do_projeto) {
+                              $integrantes_do_projeto[] = $integrante_do_projeto['@attributes']['NOME-COMPLETO'];
                             }
                           }
                         }
+                        if (isset($projeto_de_pesquisa['NOME-DO-PROJETO'])) {
+                          (isset($integrantes_do_projeto)) ? $integrantesDoProjeto = implode(', ', $integrantes_do_projeto) : $integrantesDoProjeto = '';
+                          echo '<ul>';
+                          SList::genericItem(
+                            $type = 'research',
+                            $itemName = $projeto_de_pesquisa['NOME-DO-PROJETO'],
+                            $itemNameLink = '',
+                            $itemInfoA = $projeto_de_pesquisa['DESCRICAO-DO-PROJETO'],
+                            $itemInfoB = '',
+                            $itemInfoC = '',
+                            $itemInfoD = '',
+                            $itemInfoE = '',
+                            $authors = $integrantesDoProjeto,
+                            $tags = '',
+                            $yearStart = $projeto_de_pesquisa['ANO-INICIO'],
+                            $yearEnd = $projeto_de_pesquisa['ANO-FIM']
+                          );
+                          echo '</ul>';
+                        }
                       }
                     }
-                    ?>
+                  }
+                }
+              }
+            }
+          }
+          ?>
 
                     <h3 class="t t-h3 u-mb-20">Outras atividades técnico científicas</h3>
 
