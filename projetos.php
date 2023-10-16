@@ -97,111 +97,116 @@ $arrProjetos = '{
   ]
 }';
 
-class ListProjetos {
-  static function listAll($data) {
+class ListProjetos
+{
+  static function listAll($data)
+  {
     $arr = json_decode($data);
-    $projetos = $arr -> projetos ;
+    $projetos = $arr->projetos;
     // var_dump($projetos );
-   
-    foreach( $projetos as $p ) {
-      if (!empty($p -> palavras_chave)) {
-        $tags = $p -> palavras_chave;
+
+    foreach ($projetos as $p) {
+      if (!empty($p->palavras_chave)) {
+        $tags = $p->palavras_chave;
       }
 
-      $p -> concluido === "true" ? $concluido = "Projeto Concluído" : $concluido = "";
+      $p->concluido === "true" ? $concluido = "Projeto Concluído" : $concluido = "";
 
       SList::genericItem(
         $type = 'ppg',
-        $itemName = $p -> nome,
+        $itemName = $p->nome,
         $itemNameLink = '',
         $itemInfoA = '',
         $itemInfoB = '',
         $itemInfoD = '',
-        $itemInfoC = '<i>Coordenação:</i> ' . $p -> coordenacao . '<i> | Integrantes:</i> ' . implode(', ', $p -> integrantes),
+        $itemInfoC = '<i>Coordenação:</i> ' . $p->coordenacao . '<i> | Integrantes:</i> ' . implode(', ', $p->integrantes),
         $itemInfoE = '',
         $authors = '',
         $tags = $tags,
-        $yearStart = $p -> ano_inicial,
-        $yearEnd = $p -> ano_final
+        $yearStart = $p->ano_inicial,
+        $yearEnd = $p->ano_final
       );
       unset($tags);
     }
   }
 }
-        
+
 ?>
 
 <head>
-  <?php
-        require 'inc/config.php';
-        require 'inc/meta-header.php';
-        require 'inc/functions.php';
-        require 'inc/components/SList.php';
-        require 'inc/components/TagCloud.php';
-        require '_fakedata.php';
-        ?>
-  <meta charset="utf-8" />
-  <title><?php echo $branch; ?> - Projetos de pesquisa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="Prodmais Unifesp." />
-  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+    <?php
+  require 'inc/config.php';
+  require 'inc/meta-header.php';
+  require 'inc/functions.php';
+  require 'inc/components/SList.php';
+  require 'inc/components/TagCloud.php';
+  require '_fakedata.php';
+  ?>
+    <meta charset="utf-8" />
+    <title><?php echo $branch; ?> - Projetos de pesquisa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Prodmais." />
+    <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
-  <?php if(file_exists('inc/google_analytics.php')){include 'inc/google_analytics.php';}?>
+    <?php if (file_exists('inc/google_analytics.php')) {
+    include 'inc/google_analytics.php';
+  } ?>
 
-  <?php require 'inc/navbar.php'; ?>
+    <?php require 'inc/navbar.php'; ?>
 
-  <main class="c-wrapper-container">
-    <div class="c-wrapper-paper">
-      <div class="c-wrapper-inner">
-        <h1 class=" t t-h1 u-mb-20">Projetos de pesquisa</h1>
+    <main class="c-wrapper-container">
+        <div class="c-wrapper-paper">
+            <div class="c-wrapper-inner">
+                <h1 class=" t t-h1 u-mb-20">Projetos de pesquisa</h1>
 
-        <hr class="c-line u-mb-30" />
+                <hr class="c-line u-mb-30" />
 
-        <section class="p-projetos-container">
+                <section class="p-projetos-container">
 
-          <div class="p-projetos-inputs">
+                    <div class="p-projetos-inputs">
 
-            <div class="c-searcher">
-              <input class="" type="text" />
-              <i class="i i-sm i-magnifying c-searcher-btn"></i>
+                        <div class="c-searcher">
+                            <input class="" type="text" />
+                            <i class="i i-sm i-magnifying c-searcher-btn"></i>
+                        </div>
+                        <div class="c-switch-container">
+                            <input id="switch-projetos-concluidos" class="c-switch c-switch-shadow" type="checkbox" />
+                            <label for="switch-projetos-concluidos"></label>
+                            <span class="c-switch-text"> Concluídos </span>
+                        </div>
+                        <div class="c-switch-container">
+                            <input id="switch-projetos-andamento" class="c-switch c-switch-shadow" type="checkbox"
+                                checked />
+                            <label for="switch-projetos-andamento"></label>
+                            <span class="c-switch-text"> Em andamento </span>
+                        </div>
+                    </div>
+
+                    <div class="p-projetos-lista">
+                        <?php ListProjetos::listAll($arrProjetos); ?>
+                    </div>
+                </section>
+
             </div>
-            <div class="c-switch-container">
-              <input id="switch-projetos-concluidos" class="c-switch c-switch-shadow" type="checkbox" />
-              <label for="switch-projetos-concluidos"></label>
-              <span class="c-switch-text"> Concluídos </span>
-            </div>
-            <div class="c-switch-container">
-              <input id="switch-projetos-andamento" class="c-switch c-switch-shadow" type="checkbox" checked />
-              <label for="switch-projetos-andamento"></label>
-              <span class="c-switch-text"> Em andamento </span>
-            </div>
-          </div>
+        </div>
+    </main>
 
-          <div class="p-projetos-lista">
-            <?php ListProjetos::listAll($arrProjetos); ?>
-          </div>
-        </section>
+    <?php include('inc/footer.php'); ?>
+    <script>
+    let filterConcluido = document.getElementById('switch-projetos-concluidos')
+    let filterAndamento = document.getElementById('switch-projetos-andamento')
 
-      </div>
-    </div>
-  </main>
+    filterConcluido.addEventListener("click", function() {
+        if (filterAndamento.checked === true) filterAndamento.checked = false
+    })
 
-  <?php include('inc/footer.php'); ?>
-  <script>
-  let filterConcluido = document.getElementById('switch-projetos-concluidos')
-  let filterAndamento = document.getElementById('switch-projetos-andamento')
-
-  filterConcluido.addEventListener("click", function() {
-    if (filterAndamento.checked === true) filterAndamento.checked = false
-  })
-
-  filterAndamento.addEventListener("click", function() {
-    if (filterConcluido.checked === true) filterConcluido.checked = false
-  })
-  </script>
+    filterAndamento.addEventListener("click", function() {
+        if (filterConcluido.checked === true) filterConcluido.checked = false
+    })
+    </script>
 </body>
 
 </html>

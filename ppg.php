@@ -66,7 +66,7 @@ class PPG
     <meta charset="utf-8" />
     <title><?php echo $branch; ?> - PPG <?php echo $ppg["NOME_PPG"]; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Prodmais Unifesp." />
+    <meta name="description" content="Prodmais." />
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 </head>
@@ -322,8 +322,7 @@ class PPG
             </tbody>
           </table> -->
 
-                <p class="t t-lastUpdate t-right">Atualização Lattes em </p>
-                <p class="t t-lastUpdate t-right">Processado em </p>
+
 
             </div> <!-- c-wrapper-inner -->
         </div> <!-- c-wrapper-paper -->
