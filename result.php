@@ -26,13 +26,13 @@
 
   $result_post = Requests::postParser($_POST);
   if (!empty($_POST)) {
-    $limit = $result_post['limit'];
+    $limit_records = $result_post['limit'];
     $page = $result_post['page'];
     $params = [];
     $params["index"] = $index;
     $params["body"] = $result_post['query'];
     $cursorTotal = $client->count($params);
-    $total = $cursorTotal["count"];
+    $total_records = $cursorTotal["count"];
     if (isset($_POST["sort"])) {
       $result_post['query']["sort"][$_POST["sort"]]["unmapped_type"] = "long";
       $result_post['query']["sort"][$_POST["sort"]]["missing"] = "_last";
@@ -46,11 +46,11 @@
       $result_post['query']["sort"]["_uid"]["mode"] = "max";
     }
     $params["body"] = $result_post['query'];
-    $params["size"] = $limit;
+    $params["size"] = $limit_records;
     $params["from"] = $result_post['skip'];
     $cursor = $client->search($params);
   } else {
-    $limit = 10;
+    $limit_records = 50;
     $page = 1;
     $total = 0;
     $cursor["hits"]["hits"] = [];
@@ -186,10 +186,10 @@
       }
       ?>
 
-            <?php ui::newpagination($page, $total, $limit, $_POST, 'result'); ?>
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, 'result'); ?>
             <br />
 
-            <?php if ($total == 0) : ?>
+            <?php if ($total_records == 0) : ?>
             <br />
             <div class="alert alert-info" role="alert">
                 Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
@@ -253,7 +253,7 @@
 
       (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
 
-      ui::newpagination($page, $total, $limit, $_POST, 'result');
+      ui::newpagination($page, $total_records, $limit_records, $_POST, 'result');
       ?>
 
         </main>

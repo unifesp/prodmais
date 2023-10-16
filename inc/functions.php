@@ -2301,7 +2301,7 @@ class Requests
         }
 
         /* Pagination variables */
-        $limit = 20;
+        $limit = 50;
         $skip = ($page - 1) * $limit;
         $next = ($page + 1);
         $prev = ($page - 1);
@@ -2371,7 +2371,7 @@ class Requests
         }
 
         /* Pagination variables */
-        $limit = 20;
+        $limit = 50;
         $skip = ($page - 1) * $limit;
         $next = ($page + 1);
         $prev = ($page - 1);

@@ -14,8 +14,8 @@ if (isset($_POST["filter"])) {
 
 if (isset($_POST["search"]) & !empty($_POST["search"])) {
     if (!str_contains($_POST['search'], 'nome_completo')) {
-      $_POST["search"] = 'nome_completo:' .$_POST['search']. '';
-    }    
+        $_POST["search"] = 'nome_completo:' . $_POST['search'] . '';
+    }
 } else {
     $_POST["search"] = '';
 }
@@ -24,18 +24,18 @@ if (isset($fields)) {
     $_POST["fields"] = $fields;
 }
 $result_post = Requests::postParser($_POST);
-$limit = $result_post['limit'];
+$limit_records = 50;
 $page = $result_post['page'];
 $params = [];
 $params["index"] = $index_cv;
 $params["body"] = $result_post['query'];
 $cursorTotal = $client->count($params);
-$total = $cursorTotal["count"];
+$total_records = $cursorTotal["count"];
 $result_post['query']["sort"]["nome_completo.keyword"]["unmapped_type"] = "long";
 $result_post['query']["sort"]["nome_completo.keyword"]["missing"] = "_last";
 $result_post['query']["sort"]["nome_completo.keyword"]["order"] = "asc";
 $params["body"] = $result_post['query'];
-$params["size"] = $limit;
+$params["size"] = $limit_records;
 $params["from"] = $result_post['skip'];
 $cursor = $client->search($params);
 
@@ -95,21 +95,21 @@ $get_data = $_GET;
                         $_POST = null;
                     }
                     if ($mostrar_instituicao) {
-                        echo($facets->facet(basename(__FILE__), "instituicao", 100, "Instituição", null, "_term", $_POST, $index_cv));
-                    }    
-                    echo($facets->facet(basename(__FILE__), "campus", 100, "Campus", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "desc_gestora", 100, "Gestora", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "unidade", 100, "Unidade", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "departamento", 100, "Departamento", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "divisao", 100, "Divisão", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "secao", 100, "Seção", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", null, "_term", $_POST, $index_cv));
+                        echo ($facets->facet(basename(__FILE__), "instituicao", 100, "Instituição", null, "_term", $_POST, $index_cv));
+                    }
+                    echo ($facets->facet(basename(__FILE__), "campus", 100, "Campus", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "desc_gestora", 100, "Gestora", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "unidade", 100, "Unidade", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "departamento", 100, "Departamento", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "divisao", 100, "Divisão", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "secao", 100, "Seção", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", null, "_term", $_POST, $index_cv));
                     if ($mostrar_area_concentracao) {
-                        echo($facets->facet(basename(__FILE__), "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, $index_cv));
-                    }  
-                    echo($facets->facet(basename(__FILE__), "tipvin", 100, "Tipo de vínculo", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "desc_nivel", 100, "Nível", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "desc_curso", 100, "Curso", null, "_term", $_POST, $index_cv));
+                        echo ($facets->facet(basename(__FILE__), "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, $index_cv));
+                    }
+                    echo ($facets->facet(basename(__FILE__), "tipvin", 100, "Tipo de vínculo", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "desc_nivel", 100, "Nível", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "desc_curso", 100, "Curso", null, "_term", $_POST, $index_cv));
 
                     //echo($facets->facet(basename(__FILE__), "tag", 100, "Tag", null, "_term", $_POST, $index_cv));
                     // echo($facets->facet(basename(__FILE__), "nacionalidade", 100, "Nacionalidade", null, "_term", $_POST, $index_cv));
@@ -120,21 +120,21 @@ $get_data = $_GET;
                     //echo($facets->facet(basename(__FILE__), "endereco.endereco_profissional.pais", 100, "País do endereço profissional", null, "_term", $_POST, $index_cv));
                     //echo($facets->facet(basename(__FILE__), "endereco.endereco_profissional.cidade", 100, "Cidade do endereço profissional", null, "_term", $_POST, $index_cv));
 
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_graduacao.nomeInstituicao", 100, "Instituição em que cursou graduação", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_graduacao.nomeCurso", 100, "Nome do curso na graduação", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestrado.nomeInstituicao", 100, "Instituição em que cursou mestrado", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestrado.nomeCurso", 100, "Nome do curso no mestrado", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestradoProfissionalizante.nomeInstituicao", 100, "Instituição em que cursou mestrado profissional", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestradoProfissionalizante.nomeCurso", 100, "Nome do curso no mestrado profissional", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_doutorado.nomeInstituicao", 100, "Instituição em que cursou doutorado", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_doutorado.nomeCurso", 100, "Nome do curso no doutorado", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_academica_titulacao_livreDocencia.nomeInstituicao", 100, "Instituição em que cursou livre docência", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "formacao_maxima", 10, "Maior formação que iniciou", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "genero", 100, "Genero", null, "_term", $_POST, $index_cv));
-                    echo($facets->facet(basename(__FILE__), "pais_de_nascimento", 100, "País de nascimento", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_graduacao.nomeInstituicao", 100, "Instituição em que cursou graduação", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_graduacao.nomeCurso", 100, "Nome do curso na graduação", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestrado.nomeInstituicao", 100, "Instituição em que cursou mestrado", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestrado.nomeCurso", 100, "Nome do curso no mestrado", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestradoProfissionalizante.nomeInstituicao", 100, "Instituição em que cursou mestrado profissional", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_mestradoProfissionalizante.nomeCurso", 100, "Nome do curso no mestrado profissional", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_doutorado.nomeInstituicao", 100, "Instituição em que cursou doutorado", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_doutorado.nomeCurso", 100, "Nome do curso no doutorado", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_academica_titulacao_livreDocencia.nomeInstituicao", 100, "Instituição em que cursou livre docência", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "formacao_maxima", 10, "Maior formação que iniciou", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "genero", 100, "Genero", null, "_term", $_POST, $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "pais_de_nascimento", 100, "País de nascimento", null, "_term", $_POST, $index_cv));
 
-                ?>
+                    ?>
                 </div>
             </details>
         </nav>
@@ -180,17 +180,17 @@ $get_data = $_GET;
             </transition>
 
             <!-- Navegador de resultados - Início -->
-            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, 'result_autores'); ?>
             <!-- Navegador de resultados - Fim -->
 
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                    <?php 
-            if (empty($r["_source"]['datePublished'])) {
-              $r["_source"]['datePublished'] = "";
-            }
-          ?>
+                    <?php
+                        if (empty($r["_source"]['datePublished'])) {
+                            $r["_source"]['datePublished'] = "";
+                        }
+                        ?>
 
                     <li class="c-card-author t t-b t-md">
                         <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
@@ -202,7 +202,7 @@ $get_data = $_GET;
             </div>
 
             <!-- Navegador de resultados - Início -->
-            <?php ui::newpagination($page, $total, $limit, $_POST, 'result_autores'); ?>
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, 'result_autores'); ?>
             <!-- Navegador de resultados - Fim -->
 
         </main>
