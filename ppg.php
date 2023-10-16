@@ -128,41 +128,21 @@ class PPG
                     </div>
 
                     <div class="">
-                        <!-- <h1 class="t t-h1">PPG < ?php echo $ppg["NOME_PPG"]; ?></h1> -->
                         <h1 class="t t-h1">Programa de Pós Graduação: <?php echo $ppg["NOME_PPG"]; ?></h1>
                         <p class="t t-b ty-light-a">
                             <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
                             <span><?php echo $ppg["NOME_CAMARA"]; ?></span>
                         </p>
-                        <!--
-            <div class="d-icon-text t-gray u-mb-10">
-              <i class="i i-sm i-mapmarker p-ppg__i"></i>
-              <b>Estrada do Caminho Velho nª 123 - Bairro, Cidade - SP</b>
-            </div>
-            -->
 
                         <div class="d-icon-text">
                             <i class='i i-people-manager'></i>
                             <span class="t t-gray t-b">Coordenação: <?php echo $ppg["NOME_COORDENADOR"]; ?></span>
                         </div>
-
-                        <!--
-            <p class="t t-gray t-b">Secretaria:</p>
-            <p class="t t-gray">Maria Oliveira</p>
-            <p class="t t-gray">Olívia Maria</p>
-            -->
-
+                        <br />
 
                         <div class="d-icon-text t-gray">
                             <i class="i i-sm i-mail p-ppg__i"></i> <?php echo $ppg["PPG_EMAIL"]; ?>
                         </div>
-
-
-                        <!--
-            <div class="d-icon-text t-gray">
-              <i class="i i-sm i-phone p-ppg__i"></i> (11) 5555-5555
-            </div>
-            -->
 
                         <a href="<?php echo $ppg["PPG_SITE"]; ?>" target="blank">
                             <div class="d-icon-text t-gray">
@@ -187,18 +167,8 @@ class PPG
                         </div>
                         <div class="p-ppg__badges-capes">
                             <?php echo PPGBadges::capes(
-                                $rate = 4,
-                                $title = 'Mestrado acadêmico'
-                            ); ?>
-
-                            <?php echo PPGBadges::capes(
-                                $rate = 6,
-                                $title = 'Doutorado acadêmico'
-                            ); ?>
-
-                            <?php echo PPGBadges::capes(
-                                $rate = 6,
-                                $title = 'Outro '
+                                $rate = $ppg["CONCEITO_CAPES"],
+                                $title = $ppg["NIVEL"]
                             ); ?>
                         </div>
                     </div>
