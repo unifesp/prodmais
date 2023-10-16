@@ -7,15 +7,13 @@ class Who
     $name,
     $title,
     $link
-  ){
-    $title ? $titleRender = "<b class='c-who-title'>$title</b>" : '';
+  ) {
     echo ("
       
     <a href='$link' class='c-who' target='blank'/>
       <img class='c-who-photo u-grayscale' src=$picture />
       <div class='c-who-text'>
-        <b class='c-who-name'>$name</b>
-        <p>$titleRender</p>
+        <b>$name</b>
       </div>
     </a>
     ");
@@ -26,7 +24,7 @@ class Who
     $name,
     $title,
     $link
-  ){
+  ) {
     $title ? $titleRender = "<b class='c-who-title'>$title</b>" : '';
     echo ("
       
@@ -40,4 +38,3 @@ class Who
     ");
   }
 }
-?>

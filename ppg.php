@@ -6,6 +6,22 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
+function lattesID10($lattesID16)
+{
+    $url = 'https://lattes.cnpq.br/' . $lattesID16 . '';
+
+    $headers = @get_headers($url);
+
+    $lattesID10 = "";
+    foreach ($headers as $h) {
+        if (substr($h, 0, 87) == 'Location: http://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=') {
+            $lattesID10 = trim(substr($h, 87));
+            break;
+        }
+    }
+    return $lattesID10;
+}
+
 if (!empty($_REQUEST["ID"])) {
 
     $params = [];
@@ -31,6 +47,14 @@ if (!empty($_REQUEST["ID"])) {
     $ppgtags = new DataFacets();
     $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
     shuffle($resultppgtags);
+
+
+    $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $params_orientadores = [];
+    $params_orientadores["index"] = $index_cv;
+    $params_orientadores["_source"] = ["nome_completo"];
+    $params_orientadores["body"] = $query_orientadores;
+    $cursor_orientadores = $client->search($params_orientadores);
 } else {
     echo '<script>window.location.href = "index.php";</script>';
     die();
@@ -197,7 +221,8 @@ class PPG
 
                 <hr class="c-line u-my-20" />
 
-                <p>Total de produções registradas no Prodmais: <?php echo $total_producoes; ?></p>
+                <p>Total de produções registradas no Prodmais por pesquisadores vinculados ao PPG:
+                    <?php echo $total_producoes; ?></p>
 
                 <section class="l-ppg">
                     <?php
@@ -241,47 +266,22 @@ class PPG
                     <h3 class='t t-h3'>Orientadores e orientadoras</h3>
 
                     <ul class="p-ppg__orientadores">
+                        <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
+                            <li>
+                                <?php
+                                $id = $value["_id"];
+                                $lattesID10 = lattesID10($value["_id"]);
 
-                        <li>
-                            <?php
-                            Who::ppg(
-                                $picture = "inc/images/tmp/profile.jpg",
-                                $name = 'Sebastião',
-                                $title = 'Linha de pesquisa',
-                                $link = 'https://unifesp.br/prodmais/index.php'
-                            )
-                            ?>
-                        </li>
-                        <li>
-                            <?php
-                            Who::ppg(
-                                $picture = "inc/images/tmp/profile.jpg",
-                                $name = 'Sócrates',
-                                $title = 'Linha de pesquisa',
-                                $link = 'https://unifesp.br/prodmais/index.php'
-                            )
-                            ?>
-                        </li>
-                        <li>
-                            <?php
-                            Who::ppg(
-                                $picture = "inc/images/tmp/profile.jpg",
-                                $name = 'Sêneca',
-                                $title = 'Linha de pesquisa',
-                                $link = 'https://unifesp.br/prodmais/index.php'
-                            )
-                            ?>
-                        </li>
-                        <li>
-                            <?php
-                            Who::ppg(
-                                $picture = "inc/images/tmp/profile.jpg",
-                                $name = 'Salomão',
-                                $title = 'Linha de pesquisa',
-                                $link = 'https://unifesp.br/prodmais/index.php'
-                            )
-                            ?>
-                        </li>
+
+                                Who::ppg(
+                                    $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=$lattesID10",
+                                    $name = $value["_source"]["nome_completo"],
+                                    $title = "",
+                                    $link = "profile.php?lattesID=$id"
+                                )
+                                ?>
+                            </li>
+                        <?php } ?>
                     </ul>
 
                 </section>
