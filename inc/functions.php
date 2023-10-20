@@ -1876,13 +1876,14 @@ class DataFacets
 
         $response = Elasticsearch::search(null, 0, $query, $alternative_index);
 
-        $result_count = count($response["aggregations"]["counts"]["buckets"]);
+        //$result_count = count($response["aggregations"]["counts"]["buckets"]);
 
         // echo "<br/><br/>";
         // print("<pre>" . print_r($query, true) . "</pre>");
         // echo "<br/><br/>";
 
         $i = 0;
+        $response_array = [];
         foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
             $response_array[$i]["category"] = $facets['key'];
             $response_array[$i]["amount"] = $facets['doc_count'];
