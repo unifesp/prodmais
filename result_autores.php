@@ -88,7 +88,7 @@ $get_data = $_GET;
                 <div class="c-filterlist__content">
 
                     <?php
-                    $facets = new FacetsNew();
+                    $facets = new Facets();
                     $facets->query = $result_post['query'];
 
                     if (!isset($_POST)) {
@@ -143,12 +143,10 @@ $get_data = $_GET;
 
             <div class="p-result-search-ctn">
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
-                    enctype="multipart/form-data" id="searchresearchers">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="searchresearchers">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
-                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador" aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
@@ -186,17 +184,17 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                    <?php
+                        <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                    <li class="c-card-author t t-b t-md">
-                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                            <?php echo $r["_source"]['nome_completo']; ?>
-                        </a>
-                    </li>
+                        <li class="c-card-author t t-b t-md">
+                            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                                <?php echo $r["_source"]['nome_completo']; ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>

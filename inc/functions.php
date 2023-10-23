@@ -2447,7 +2447,7 @@ class Requests
     }
 }
 
-class FacetsNew
+class Facets
 {
     public $query;
 
