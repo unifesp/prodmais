@@ -40,6 +40,16 @@ try {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de PPG no Elasticsearch não foi encontrado.</div>';
 }
 
+/* Connect to Elasticsearch | Index Projetos */
+try {
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    $indexParams['index'] = $index_projetos;
+    $testIndexProjetos = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex($index_projetos, $client);
+} catch (Exception $e) {
+    $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de Projetos no Elasticsearch não foi encontrado.</div>';
+}
+
 /* Connect to Elasticsearch | Index Cited Works */
 try {
     //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
@@ -2758,6 +2768,23 @@ class Facets
         $facet_string = implode("", $facet_array);
 
         return $facet_string;
+    }
+
+    public function dataFacet($field, $size, $sort, $sort_type, $get_search)
+    {
+        $query = $get_search;
+        $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
+        if (!empty($_SESSION['oauthuserdata'])) {
+            $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
+        }
+        if (isset($sort)) {
+            $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
+        }
+        $query["aggs"]["counts"]["terms"]["size"] = $size;
+
+        $response = Elasticsearch::search(null, 0, $query, null);
+
+        return $response;
     }
 }
 
