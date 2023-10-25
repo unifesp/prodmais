@@ -60,27 +60,26 @@ $cursor_ppgs = $client->search($params);
                         </a>
                     </li>
                     <?php if (count($cursor_ppgs['hits']['hits']) !== 0) : ?>
-                        <li class=" sitemenu-item">
-                            <a class="sitemenu-link" href="ppgs.php" title="Programas de pós graduação">
-                                PPGs
-                                <i class="i i-ppg-logo sitemenu-ico"></i>
-                            </a>
-                        </li>
+                    <li class=" sitemenu-item">
+                        <a class="sitemenu-link" href="ppgs.php" title="Programas de pós graduação">
+                            PPGs
+                            <i class="i i-ppg-logo sitemenu-ico"></i>
+                        </a>
+                    </li>
                     <?php endif; ?>
-                    <!-- <li class=" sitemenu-item">
+                    <li class=" sitemenu-item">
                         <a class="sitemenu-link" href="projetos.php" title="Projetos de pesquisa">
                             Projetos de Pesquisa
                             <i class="i i-project sitemenu-ico"></i>
                         </a>
-                    </li> -->
-
+                    </li>
                     <?php if ($mostrar_link_dashboard) : ?>
-                        <li class="sitemenu-item">
-                            <a class="sitemenu-link" href="predash.php" title="Dashboard">
-                                Dashboard
-                                <i class="i i-dashboard sitemenu-ico"></i>
-                            </a>
-                        </li>
+                    <li class="sitemenu-item">
+                        <a class="sitemenu-link" href="predash.php" title="Dashboard">
+                            Dashboard
+                            <i class="i i-dashboard sitemenu-ico"></i>
+                        </a>
+                    </li>
                     <?php endif; ?>
 
                     <!-- <li class="sitemenu-item">

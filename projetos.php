@@ -1,212 +1,168 @@
 <!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
-
 <?php
-$arrProjetos = '{
-	"projetos": [
-    {
-      "nome": "Caracterização química, funcional e potencial biotecnológico de mix balanceado de resíduo vegetal associado a subprodutos de origem vegetal",
-      "descricao": "O setor alimentício produz grande quantidade de lixo, tanto liquido como sólidos provenientes da produção, preparação e consumo de alimentos. Por sua composição, os resíduos provenientes de vegetais e frutas podem ser uma matéria prima de alto valor agregado para produção de novos produtos. Há grande interesse na utilização de fontes naturais no processamento de alimentos. Estudos apresentam substituição dos ingredientes sintéticos por aditivos naturais particularmente derivados de plantas e subprodutos agroindustriais. Bioconservação (usando compostos fenólicos) também está sendo objeto de diversos estudos como uma alternativa eficiente para aditivos alimentares. A avaliação da bioacessibilidade de compostos bioativos de vegetais vem sendo de grande interesse. Associar o potencial funcional e biotecnológico da FFH e demais resíduos vegetais com as propriedades funcionais de subprodutos da jabuticabeira é o objetivo deste trabalho. Serão identificados resíduos mais produzidos em UAN´s por processo mínimo. Estes associados a resíduo de mix de vegetal e frutas gerado na produção de bebida isotônica e subproduto de jabuticabeira serão base na elaboração de mix balanceado(MB). Será feita a caracterização química e funcional do MB e o mesmo será utilizado como substrato para produção de biomassa.. ",
-      "coordenacao": "Edira Castello Branco de Andrade Gonçalves",
-      "concluido": "false",
-      "natureza": "pesquisa",
-      "alunos_graducacao": "1",
-      "alunos_mestrado_academico": "1",
-      "alunos_doutorado": "1",
-      "financiamento": "",
-      "financiadores": "Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do RJ",
-      "Número-producoes": "31",
-      "ano_inicial": "2018",
-      "ano_final": "2022",
-      "integrantes": [
-        "Roberta Melquiades Silva de Andrade",
-        "Pedro Paulo Saldanha Coimbra",
-        "Nathânia de Sá Mendes",
-        "Tamara Righetti Tupini Cavalheiro",
-        "Elisa Dávila Costa Cavalcanti"
-      ],
-      "palavras_chave": [
-        "química", 
-        "biotecnologia", 
-        "balanceamento vegetal", 
-        "lixo", 
-        "sólidos", 
-        "teste"
-      ]
-    },
-    {
-      "nome": "Caracterização química, funcional e potencial biotecnológico de mix balanceado de resíduo vegetal associado a subprodutos de origem vegetal",
-      "descricao": "O setor alimentício produz grande quantidade de lixo, tanto liquido como sólidos provenientes da produção, preparação e consumo de alimentos. Por sua composição, os resíduos provenientes de vegetais e frutas podem ser uma matéria prima de alto valor agregado para produção de novos produtos. Há grande interesse na utilização de fontes naturais no processamento de alimentos. Estudos apresentam substituição dos ingredientes sintéticos por aditivos naturais particularmente derivados de plantas e subprodutos agroindustriais. Bioconservação (usando compostos fenólicos) também está sendo objeto de diversos estudos como uma alternativa eficiente para aditivos alimentares. A avaliação da bioacessibilidade de compostos bioativos de vegetais vem sendo de grande interesse. Associar o potencial funcional e biotecnológico da FFH e demais resíduos vegetais com as propriedades funcionais de subprodutos da jabuticabeira é o objetivo deste trabalho. Serão identificados resíduos mais produzidos em UAN´s por processo mínimo. Estes associados a resíduo de mix de vegetal e frutas gerado na produção de bebida isotônica e subproduto de jabuticabeira serão base na elaboração de mix balanceado(MB). Será feita a caracterização química e funcional do MB e o mesmo será utilizado como substrato para produção de biomassa.. ",
-      "coordenacao": "Edira Castello Branco de Andrade Gonçalves",
-      "concluido": "false",
-      "natureza": "pesquisa",
-      "alunos_graducacao": "1",
-      "alunos_mestrado_academico": "1",
-      "alunos_doutorado": "1",
-      "financiamento": "",
-      "financiadores": "Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do RJ",
-      "Número-producoes": "31",
-      "ano_inicial": "2018",
-      "ano_final": "2022",
-      "integrantes": [
-        "Roberta Melquiades Silva de Andrade",
-        "Pedro Paulo Saldanha Coimbra",
-        "Nathânia de Sá Mendes",
-        "Tamara Righetti Tupini Cavalheiro",
-        "Elisa Dávila Costa Cavalcanti"
-      ],
-      "palavras_chave": [
-        "química", 
-        "biotecnologia", 
-        "balanceamento vegetal", 
-        "lixo", 
-        "sólidos", 
-        "teste"
-      ]
-    },
-    {
-      "nome": "Caracterização química, funcional e potencial biotecnológico de mix balanceado de resíduo vegetal associado a subprodutos de origem vegetal",
-      "descricao": "O setor alimentício produz grande quantidade de lixo, tanto liquido como sólidos provenientes da produção, preparação e consumo de alimentos. Por sua composição, os resíduos provenientes de vegetais e frutas podem ser uma matéria prima de alto valor agregado para produção de novos produtos. Há grande interesse na utilização de fontes naturais no processamento de alimentos. Estudos apresentam substituição dos ingredientes sintéticos por aditivos naturais particularmente derivados de plantas e subprodutos agroindustriais. Bioconservação (usando compostos fenólicos) também está sendo objeto de diversos estudos como uma alternativa eficiente para aditivos alimentares. A avaliação da bioacessibilidade de compostos bioativos de vegetais vem sendo de grande interesse. Associar o potencial funcional e biotecnológico da FFH e demais resíduos vegetais com as propriedades funcionais de subprodutos da jabuticabeira é o objetivo deste trabalho. Serão identificados resíduos mais produzidos em UAN´s por processo mínimo. Estes associados a resíduo de mix de vegetal e frutas gerado na produção de bebida isotônica e subproduto de jabuticabeira serão base na elaboração de mix balanceado(MB). Será feita a caracterização química e funcional do MB e o mesmo será utilizado como substrato para produção de biomassa.. ",
-      "coordenacao": "Edira Castello Branco de Andrade Gonçalves",
-      "concluido": "false",
-      "natureza": "pesquisa",
-      "alunos_graducacao": "1",
-      "alunos_mestrado_academico": "1",
-      "alunos_doutorado": "1",
-      "financiamento": "",
-      "financiadores": "Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do RJ",
-      "Número-producoes": "31",
-      "ano_inicial": "2018",
-      "ano_final": "2022",
-      "integrantes": [
-        "Roberta Melquiades Silva de Andrade",
-        "Pedro Paulo Saldanha Coimbra",
-        "Nathânia de Sá Mendes",
-        "Tamara Righetti Tupini Cavalheiro",
-        "Elisa Dávila Costa Cavalcanti"
-      ],
-      "palavras_chave": [
-        "química", 
-        "biotecnologia", 
-        "balanceamento vegetal", 
-        "lixo", 
-        "sólidos", 
-        "teste"
-      ]
-    }
-  ]
-}';
 
-class ListProjetos
-{
-  static function listAll($data)
-  {
-    $arr = json_decode($data);
-    $projetos = $arr->projetos;
-    // var_dump($projetos );
+require 'inc/config.php';
+require 'inc/functions.php';
+require 'inc/components/SList.php';
 
-    foreach ($projetos as $p) {
-      if (!empty($p->palavras_chave)) {
-        $tags = $p->palavras_chave;
-      }
+$result_post = Requests::postParser($_POST);
+$limit_records = 50;
+$page = $result_post['page'];
+$params = [];
+$params["index"] = $index_projetos;
+$params["body"] = $result_post['query'];
+$cursorTotal = $client->count($params);
+$total_records = $cursorTotal["count"];
+$result_post['query']["sort"]["nome_completo.keyword"]["unmapped_type"] = "long";
+$result_post['query']["sort"]["nome_completo.keyword"]["missing"] = "_last";
+$result_post['query']["sort"]["nome_completo.keyword"]["order"] = "asc";
+$params["body"] = $result_post['query'];
+$params["size"] = $limit_records;
+$params["from"] = $result_post['skip'];
+$cursor = $client->search($params);
 
-      $p->concluido === "true" ? $concluido = "Projeto Concluído" : $concluido = "";
-
-      SList::genericItem(
-        $type = 'ppg',
-        $itemName = $p->nome,
-        $itemNameLink = '',
-        $itemInfoA = '',
-        $itemInfoB = '',
-        $itemInfoD = '',
-        $itemInfoC = '<i>Coordenação:</i> ' . $p->coordenacao . '<i> | Integrantes:</i> ' . implode(', ', $p->integrantes),
-        $itemInfoE = '',
-        $authors = '',
-        $tags = $tags,
-        $yearStart = $p->ano_inicial,
-        $yearEnd = $p->ano_final
-      );
-      unset($tags);
-    }
-  }
-}
+/*pagination - start*/
+$get_data = $_GET;
+/*pagination - end*/
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <?php
-  require 'inc/config.php';
-  require 'inc/meta-header.php';
-  require 'inc/functions.php';
-  require 'inc/components/SList.php';
-  require 'inc/components/TagCloud.php';
-  require '_fakedata.php';
-  ?>
-    <meta charset="utf-8" />
-    <title><?php echo $branch; ?> - Projetos de pesquisa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Prodmais." />
-    <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+    include('inc/meta-header.php');
+    ?>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+  </script> -->
+
+    <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
+
+
+    <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
-<body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
-    <?php if (file_exists('inc/google_analytics.php')) {
-    include 'inc/google_analytics.php';
-  } ?>
+<body data-theme="<?php echo $theme; ?>">
 
+    <?php
+    if (file_exists('inc/google_analytics.php')) {
+        include 'inc/google_analytics.php';
+    }
+    ?>
+
+    <!-- NAV -->
     <?php require 'inc/navbar.php'; ?>
+    <!-- /NAV -->
 
-    <main class="c-wrapper-container">
-        <div class="c-wrapper-paper">
-            <div class="c-wrapper-inner">
-                <h1 class=" t t-h1 u-mb-20">Projetos de pesquisa</h1>
+    <div id="app-result" class="p-result-container">
 
-                <hr class="c-line u-mb-30" />
+        <nav class="p-result-nav">
 
-                <section class="p-projetos-container">
+            <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+                <summary class="c-filterlist__header">
+                    <h3 class="c-filterlist__title">Refinar resultados</h3>
+                </summary>
 
-                    <div class="p-projetos-inputs">
+                <div class="c-filterlist__content">
 
-                        <div class="c-searcher">
-                            <input class="" type="text" />
-                            <i class="i i-sm i-magnifying c-searcher-btn"></i>
+                    <?php
+                    $facets = new Facets();
+                    $facets->query = $result_post['query'];
+                    if (!isset($_POST["search"])) {
+                        $_POST["search"] = "";
+                    }
+                    echo ($facets->facet(basename(__FILE__), "NOME-INSTITUICAO", 100, "Instituição", null, "_term", $_POST, $index_projetos));
+                    echo ($facets->facet(basename(__FILE__), "DADOS-DO-PROJETO.@attributes.SITUACAO", 100, "Situação", null, "_term", $_POST, $index_projetos));
+                    ?>
+                </div>
+            </details>
+        </nav>
+
+        <main class="p-result-main">
+
+            <transition name="homeeffect">
+                <div class="c-tips" v-if="showTips">
+
+                    <h4>Refinar resultados</h4>
+                    <p>Use os filtros à esquerda para refinar os resultados da sua busca. São diversas opções, como
+                        Campus, Unidade, Departamento, Nome do PPG, e etc.
+                    </p>
+
+                    <p>Basta clicar sobre cada uma das opções e um menu de novas opções se abrirá. Ao lado direito de
+                        cada item listado é exibida a quantidade de resultados disponíceis.
+                    </p>
+                    <h4></h4>
+
+                    <button class="c-btn u-center" v-on:click="showTips = !showTips" title="Fechar dicas de pesquisa">
+                        Fechar
+                    </button>
+                </div>
+            </transition>
+
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
+
+            <div class="p-result-authors">
+                <ul class="c-authors-list">
+                    <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
+                    <?php
+                        if (empty($r["_source"]['datePublished'])) {
+                            $r["_source"]['datePublished'] = "";
+                        }
+                        ?>
+
+                    <li class="c-card-author t t-b t-md">
+                        <?php
+                            foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
+                                $integrantes_do_projeto_array[] = $integrantes['@attributes']['NOME-COMPLETO'];
+                            }
+                            $integrantes_do_projeto = implode(", ", $integrantes_do_projeto_array);
+                            ?>
+
+                    <li class='s-nobullet'>
+                        <div class='s-list'>
+                            <div class='s-list-bullet'>
+                                <i class='i i-ppg-logo s-list-ico'></i>
+                            </div>
+
+                            <div class='s-list-content'>
+                                <p class='t t-b'>
+                                    <a
+                                        href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?></a>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
+                            </div>
                         </div>
-                        <div class="c-switch-container">
-                            <input id="switch-projetos-concluidos" class="c-switch c-switch-shadow" type="checkbox" />
-                            <label for="switch-projetos-concluidos"></label>
-                            <span class="c-switch-text"> Concluídos </span>
-                        </div>
-                        <div class="c-switch-container">
-                            <input id="switch-projetos-andamento" class="c-switch c-switch-shadow" type="checkbox"
-                                checked />
-                            <label for="switch-projetos-andamento"></label>
-                            <span class="c-switch-text"> Em andamento </span>
-                        </div>
-                    </div>
-
-                    <div class="p-projetos-lista">
-                        <?php ListProjetos::listAll($arrProjetos); ?>
-                    </div>
-                </section>
-
+                    </li>
+                    <?php unset($integrantes_do_projeto_array); ?>
+                    <?php endforeach; ?>
+                </ul>
             </div>
-        </div>
-    </main>
+
+            <!-- Navegador de resultados - Início -->
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, 'result_autores'); ?>
+            <!-- Navegador de resultados - Fim -->
+
+        </main>
+
+    </div>
 
     <?php include('inc/footer.php'); ?>
-    <script>
-    let filterConcluido = document.getElementById('switch-projetos-concluidos')
-    let filterAndamento = document.getElementById('switch-projetos-andamento')
-
-    filterConcluido.addEventListener("click", function() {
-        if (filterAndamento.checked === true) filterAndamento.checked = false
-    })
-
-    filterAndamento.addEventListener("click", function() {
-        if (filterConcluido.checked === true) filterConcluido.checked = false
-    })
-    </script>
+    <script src="inc/js/pages/result.js"></script>
 </body>
 
 </html>

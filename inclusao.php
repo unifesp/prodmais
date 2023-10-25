@@ -11,10 +11,10 @@
 
 
 <head>
-    <?php    
+    <?php
     require 'inc/meta-header.php';
     require 'inc/functions.php';
-  ?>
+    ?>
     <title><?php echo $branch ?> - Inclusão</title>
 
 
@@ -25,9 +25,9 @@ require 'inc/config.php';
 
 $username = $login_user;
 $password = $login_password;
- 
-if(isset($_POST['submit'])){
-    if($_POST['username'] == $username && $_POST['password'] == $password){
+
+if (isset($_POST['submit'])) {
+    if ($_POST['username'] == $username && $_POST['password'] == $password) {
 ?>
 
 <body class="c-wrapper-body">
@@ -186,11 +186,11 @@ if(isset($_POST['submit'])){
 
 
 <?php
-        } else {
+    } else {
         echo "Usuário não encontrado";
-        }
+    }
 } else {
-    ?>
+?>
 
 <body>
     <div class="form-container">
@@ -203,5 +203,5 @@ if(isset($_POST['submit'])){
     </div>
 </body>
 <?php
-} 
+}
 ?>

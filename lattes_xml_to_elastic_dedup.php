@@ -60,7 +60,7 @@ function comparaprod_title($doc)
 
     $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
     $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
-    if (!is_null($doc["doc"]['author'][0]['person']['name'])){
+    if (!is_null($doc["doc"]['author'][0]['person']['name'])) {
         $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
     } else {
         $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
@@ -84,9 +84,9 @@ function comparaprod_title($doc)
     //echo 'Resultado total com Titulo: ' . $total . '';
 
     foreach ($cursor['hits']['hits'] as $r) {
-    //     echo '<br/>';
-    //     echo 'Score: ' . $r['_score'] . ' - ' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
-    //     echo '<br/>';
+        //     echo '<br/>';
+        //     echo 'Score: ' . $r['_score'] . ' - ' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
+        //     echo '<br/>';
     }
 
     if ($total >= 1) {
@@ -340,63 +340,61 @@ if (!isset($_GET['tag'])) {
 
 // Verifica se um arquivo foi enviado pelo formulário
 if (isset($_FILES['file'])) {
-  // Recebe o arquivo enviado pelo formulário
-  $arquivo = $_FILES['file'];
+    // Recebe o arquivo enviado pelo formulário
+    $arquivo = $_FILES['file'];
 
-  // Verifica se o arquivo é válido
-  if ($arquivo['error'] == 0) {
-    // Obtém o nome e a extensão do arquivo
-    $nome = $arquivo['name'];
-    $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+    // Verifica se o arquivo é válido
+    if ($arquivo['error'] == 0) {
+        // Obtém o nome e a extensão do arquivo
+        $nome = $arquivo['name'];
+        $extensao = pathinfo($nome, PATHINFO_EXTENSION);
 
-    // Verifica se o arquivo é zip ou xml
-    if ($extensao == 'zip') {
-      // Cria um objeto ZipArchive
-      $zip = new ZipArchive();
+        // Verifica se o arquivo é zip ou xml
+        if ($extensao == 'zip') {
+            // Cria um objeto ZipArchive
+            $zip = new ZipArchive();
 
-      // Abre o arquivo zip
-      if ($zip->open($arquivo['tmp_name']) === true) {
-        // Extrai o conteúdo do zip para um diretório temporário
-        $temp_dir = 'tmp/zip_' . uniqid();
-        $zip->extractTo($temp_dir);
-        $zip->close();
+            // Abre o arquivo zip
+            if ($zip->open($arquivo['tmp_name']) === true) {
+                // Extrai o conteúdo do zip para um diretório temporário
+                $temp_dir = 'tmp/zip_' . uniqid();
+                $zip->extractTo($temp_dir);
+                $zip->close();
 
-        // Procura pelo arquivo curriculo.xml no diretório temporário
-        $xml_file = $temp_dir . '/curriculo.xml';
-        if (file_exists($xml_file)) {
-            echo "arquivo existe";
-          // Lê o conteúdo do arquivo xml
-          $file_xml_lattes = file_get_contents($xml_file);
-             
+                // Procura pelo arquivo curriculo.xml no diretório temporário
+                $xml_file = $temp_dir . '/curriculo.xml';
+                if (file_exists($xml_file)) {
+                    echo "arquivo existe";
+                    // Lê o conteúdo do arquivo xml
+                    $file_xml_lattes = file_get_contents($xml_file);
 
-          // Remove o diretório temporário e seus arquivos
-          array_map('unlink', glob($temp_dir . '/*'));
-          rmdir($temp_dir);
+
+                    // Remove o diretório temporário e seus arquivos
+                    array_map('unlink', glob($temp_dir . '/*'));
+                    rmdir($temp_dir);
+                } else {
+                    // Não encontrou o arquivo curriculo.xml no zip
+                    echo 'O arquivo zip não contém o arquivo curriculo.xml';
+                }
+            } else {
+                // Não conseguiu abrir o arquivo zip
+                echo 'O arquivo zip é inválido ou está corrompido';
+            }
+        } elseif ($extensao == 'xml') {
+            // Lê o conteúdo do arquivo xmlquery
+            $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
         } else {
-          // Não encontrou o arquivo curriculo.xml no zip
-          echo 'O arquivo zip não contém o arquivo curriculo.xml';
+            // O arquivo não é zip nem xml
+            echo 'O arquivo não é zip nem xml';
         }
-      } else {
-        // Não conseguiu abrir o arquivo zip
-        echo 'O arquivo zip é inválido ou está corrompido';
-      }
-    } elseif ($extensao == 'xml') {
-      // Lê o conteúdo do arquivo xmlquery
-      $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
-
     } else {
-      // O arquivo não é zip nem xml
-      echo 'O arquivo não é zip nem xml';
+        // O arquivo não foi enviado corretamente
+        echo 'Ocorreu um erro ao enviar o arquivo';
     }
-  } else {
-    // O arquivo não foi enviado corretamente
-    echo 'Ocorreu um erro ao enviar o arquivo';
-  }
 
-  $curriculo = simplexml_load_string($file_xml_lattes);
-
+    $curriculo = simplexml_load_string($file_xml_lattes);
 } else {
-  // Nenhum arquivo foi enviado pelo formulário
+    // Nenhum arquivo foi enviado pelo formulário
     echo 'Nenhum arquivo foi enviado';
     if (isset($_REQUEST['instituicao'])) {
         $query["doc"]["instituicao"] = explode("|", rtrim($_REQUEST['instituicao']));
@@ -491,7 +489,7 @@ if ($result_get_curriculo["found"] == true) {
         if (isset($_REQUEST['area_concentracao'])) {
             $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
         }
-        if (!is_null($area_concentracao_array)){
+        if (!is_null($area_concentracao_array)) {
             $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
         }
     }
@@ -922,6 +920,27 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'}->{'LIVR
 // Projetos de pesquisa
 if (isset($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'})) {
     $doc_curriculo_array["doc"]["atuacoes_profissionais"] = $curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'};
+    $atuacoes_profissionais = json_decode(json_encode($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'}), true);
+    foreach ($atuacoes_profissionais as $atuacao_profissional) {
+        foreach ($atuacao_profissional as $key => $value) {
+            if (isset($value['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO'])) {
+                if (isset($value['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
+                    foreach ($value['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $participacao_projeto) {
+                        if (isset($participacao_projeto['PROJETO-DE-PESQUISA'])) {
+                            $doc_projetos['doc']['NOME-INSTITUICAO'] = $value['@attributes']['NOME-INSTITUICAO'];
+                            $doc_projetos['doc']['DADOS-DO-PROJETO'] = $participacao_projeto['PROJETO-DE-PESQUISA'];
+                            $doc_projetos["doc_as_upsert"] = true;
+                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
+                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
+                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
+                            $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
+                            $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
