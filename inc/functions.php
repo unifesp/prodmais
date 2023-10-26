@@ -2461,7 +2461,7 @@ class Facets
 {
     public $query;
 
-    public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
+    public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $page_target, $alternative_index = null)
     {
         global $url_base;
 
@@ -2500,11 +2500,7 @@ class Facets
 
             $facet_array[] = '<li class="c-filterdrop__item">';
 
-            if ($alternative_index == false) {
-                $facet_array[] = '<form action="result.php" method="post">';
-            } else {
-                $facet_array[] = '<form action="result_autores.php" method="post">';
-            }
+            $facet_array[] = '<form action="' . $page_target . '" method="post">';
             $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
 
             $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
@@ -2770,21 +2766,34 @@ class Facets
         return $facet_string;
     }
 
-    public function dataFacet($field, $size, $sort, $sort_type, $get_search)
+    public function dataFacetbyYear($field, $size, $sort, $sort_type, $get_search, $years)
     {
-        $query = $get_search;
-        $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-        if (!empty($_SESSION['oauthuserdata'])) {
-            $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
-        }
-        if (isset($sort)) {
-            $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
-        }
-        $query["aggs"]["counts"]["terms"]["size"] = $size;
 
-        $response = Elasticsearch::search(null, 0, $query, null);
+        // loop for last 5 years
+        for ($i_year = 0; $i_year < $years; $i_year++) {
+            $year = date('Y', strtotime("-$i_year year"));
+            $query = $get_search;
 
-        return $response;
+            $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
+            var_dump($query);
+            $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
+            if (!empty($_SESSION['oauthuserdata'])) {
+                $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
+            }
+            if (isset($sort)) {
+                $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
+            }
+            $query["aggs"]["counts"]["terms"]["size"] = $size;
+
+            $response = Elasticsearch::search(null, 0, $query, null);
+
+            $responses[] = $response["aggregations"]["counts"]["buckets"];
+        }
+        var_dump($responses);
+
+
+
+        //return $response;
     }
 }
 
