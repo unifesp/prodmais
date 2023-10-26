@@ -3,21 +3,12 @@
 
 <?php
 
-
-/* Exibir erros - Use somente durante os testes */
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 require 'inc/config.php';
 require 'inc/functions.php';
 require 'inc/meta-header.php';
 require 'inc/components/SList.php';
 require 'inc/components/TagCloud.php';
 require 'inc/components/Who.php';
-require '_fakedata.php';
-
 
 
 // get data from elasticsearch by id
@@ -87,6 +78,32 @@ $num_producoes = count($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJE
 
                     </section>
                     <hr class="c-line u-my-20" />
+                    <h4 class="t t-h4 u-mb-20">Produções do projeto</h4>
+                    <section class="dv d-md-h">
+                        <ul class="c-authors-list">
+                            <?php foreach ($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'] as $producao_do_projeto) : ?>
+                                <li class="c-card-author t t-b t-md">
+                                <li class='s-nobullet'>
+                                    <div class='s-list'>
+                                        <div class='s-list-bullet'>
+                                            <i class='i i-articlePublished s-list-ico'></i>
+                                        </div>
+
+                                        <div class='s-list-content'>
+                                            <p class='t t-b'>
+                                                <?php echo $producao_do_projeto['@attributes']['TITULO-DA-PRODUCAO-CT'] ?></a>
+                                            </p>
+                                            <p class='t t-gray'>Tipo de produção:
+                                                <?php echo $producao_do_projeto['@attributes']['TIPO-PRODUCAO-CT']; ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </section>
+                    <hr class="c-line u-my-20" />
                     <h4 class="t t-h4 u-mb-20">Integrantes</h4>
                     <section class="dv d-md-h">
                         <div class="dv">
@@ -106,44 +123,44 @@ $num_producoes = count($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJE
 
                         <div class="dv">
                             <?php if ($projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-GRADUACAO'] != '') : ?>
-                            <div class='d-icon-text'>
-                                <i class='i i-project-participant'></i>
-                                <p class="t">Alunos de graduação:
-                                    <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-GRADUACAO'] ?>
-                                </p>
-                            </div>
+                                <div class='d-icon-text'>
+                                    <i class='i i-project-participant'></i>
+                                    <p class="t">Alunos de graduação:
+                                        <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-GRADUACAO'] ?>
+                                    </p>
+                                </div>
                             <?php endif; ?>
                             <?php if ($projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-ESPECIALIZACAO'] != '') : ?>
-                            <div class='d-icon-text'>
-                                <i class='i i-project-participant'></i>
-                                <p class="t">Alunos de especialização:
-                                    <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-ESPECIALIZACAO'] ?>
-                                </p>
-                            </div>
+                                <div class='d-icon-text'>
+                                    <i class='i i-project-participant'></i>
+                                    <p class="t">Alunos de especialização:
+                                        <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-ESPECIALIZACAO'] ?>
+                                    </p>
+                                </div>
                             <?php endif; ?>
                             <?php if ($projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-ACADEMICO'] != '') : ?>
-                            <div class='d-icon-text'>
-                                <i class='i i-project-participant'></i>
-                                <p class="t">Alunos de mestrado acadêmico:
-                                    <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-ACADEMICO'] ?>
-                                </p>
-                            </div>
+                                <div class='d-icon-text'>
+                                    <i class='i i-project-participant'></i>
+                                    <p class="t">Alunos de mestrado acadêmico:
+                                        <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-ACADEMICO'] ?>
+                                    </p>
+                                </div>
                             <?php endif; ?>
                             <?php if ($projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-PROF'] != '') : ?>
-                            <div class='d-icon-text'>
-                                <i class='i i-project-participant'></i>
-                                <p class="t">Alunos de mestrado profissional:
-                                    <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-PROF'] ?>
-                                </p>
-                            </div>
+                                <div class='d-icon-text'>
+                                    <i class='i i-project-participant'></i>
+                                    <p class="t">Alunos de mestrado profissional:
+                                        <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-MESTRADO-PROF'] ?>
+                                    </p>
+                                </div>
                             <?php endif; ?>
                             <?php if ($projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-DOUTORADO'] != '') : ?>
-                            <div class='d-icon-text'>
-                                <i class='i i-project-participant'></i>
-                                <p class="t">Alunos de doutorado:
-                                    <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-DOUTORADO'] ?>
-                                </p>
-                            </div>
+                                <div class='d-icon-text'>
+                                    <i class='i i-project-participant'></i>
+                                    <p class="t">Alunos de doutorado:
+                                        <?php echo $projeto_array['DADOS-DO-PROJETO']['@attributes']['NUMERO-DOUTORADO'] ?>
+                                    </p>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </section>
@@ -153,7 +170,7 @@ $num_producoes = count($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJE
     </main>
 
     <?php include('inc/footer.php'); ?>
-    <?php //echo "<pre>" . print_r($projeto_array, true) . "</pre>"; 
+    <?php //echo "<pre>" . print_r($projeto_array, true) . "</pre>";
     ?>
 
 </body>
