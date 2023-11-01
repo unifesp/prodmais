@@ -26,11 +26,16 @@ if (!empty($projeto_array['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'])) {
     $period = 'Em andamento desde ' . $period;
 }
 
-if (is_array($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'])) {
-    $num_producoes = count($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO']);
+if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'])) {
+    if (is_array($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'])) {
+        $num_producoes = count($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO']);
+    } else {
+        $num_producoes = 0;
+    }
 } else {
     $num_producoes = 0;
 }
+
 
 ?>
 
