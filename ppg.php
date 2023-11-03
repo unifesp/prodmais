@@ -222,7 +222,7 @@ class PPG
                         $title = 'Produções por tipo',
                         $arrData = $infosToGraph,
                         $arrLegends,
-                        $lines = 30
+                        $lines = 20
                     );
                     ?>
                 </section>
