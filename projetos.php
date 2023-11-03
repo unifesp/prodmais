@@ -120,10 +120,15 @@ $get_data = $_GET;
 
                     <li class="c-card-author t t-b t-md">
                         <?php
-                            foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
-                                $integrantes_do_projeto_array[] = $integrantes['@attributes']['NOME-COMPLETO'];
+                            if (isset($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'])) {
+                                foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
+                                    $integrantes_do_projeto_array[] = $integrantes['@attributes']['NOME-COMPLETO'];
+                                }
+                                $integrantes_do_projeto = implode(", ", $integrantes_do_projeto_array);
+                            } else {
+                                $integrantes_do_projeto = "";
                             }
-                            $integrantes_do_projeto = implode(", ", $integrantes_do_projeto_array);
+
                             ?>
 
                     <li class='s-nobullet'>
