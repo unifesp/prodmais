@@ -28,7 +28,11 @@ class GraphBar
       $infoA = (int)$years[0];
       $infoB = (int)$years[1];
       $infoC = (int)$years[2];
-      $infoD = (int)$years[3];
+      if (isset($years[3])) {
+        $infoD = (int)$years[3];
+      } else {
+        $infoD = 0;
+      }
       $output = "$output
           <div class='c-gppg-slice'>
             <div class='c-gppg-bar' data-type='1' data-weight='$infoA'></div>
@@ -63,8 +67,10 @@ class GraphBar
     $renderLevels = implode('', $renderLevels);
 
     $renderLegendsArr = [];
+    $i_aux = 0;
     foreach ($arrLegends as $legend) {
-      $renderLegendsArr[] = '<div class="c-gppg-legend">' . $legend . '</div>';
+      $renderLegendsArr[] = '<div class="c-gppg-legend" data-number="' . $i_aux . '">' . $legend . '</div>';
+      $i_aux++;
     }
     $renderLegends = implode('', $renderLegendsArr);
 
