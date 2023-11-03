@@ -2775,7 +2775,7 @@ class Facets
             $query = $get_search;
 
             $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
-            var_dump($query);
+            //var_dump($query);
             $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
             if (!empty($_SESSION['oauthuserdata'])) {
                 $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
@@ -2787,13 +2787,11 @@ class Facets
 
             $response = Elasticsearch::search(null, 0, $query, null);
 
-            $responses[] = $response["aggregations"]["counts"]["buckets"];
+            $responses[$year] = $response["aggregations"]["counts"]["buckets"];
         }
-        var_dump($responses);
+        //echo "<pre>" . print_r($responses, true) . "</pre>";
 
-
-
-        //return $response;
+        return $responses;
     }
 }
 

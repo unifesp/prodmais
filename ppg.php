@@ -6,6 +6,7 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
+
 function lattesID10($lattesID16)
 {
     $url = 'https://lattes.cnpq.br/' . $lattesID16 . '';
@@ -30,19 +31,17 @@ if (!empty($_REQUEST["ID"])) {
     $cursor = $client->get($params);
     $ppg = $cursor["_source"];
 
-    echo "<br/><br/><br/><br/><pre>" . print_r($ppg, true) . "</pre>";
-
 
     // Get infos to graph
 
     $params = [];
     $params["index"] = $index;
-    $query["query"]["bool"]["filter"]["term"]["vinculo.ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $query["query"]["bool"]["filter"][0]["term"]["vinculo.ppg_nome.keyword"] = $ppg['NOME_PPG'];
     $params["body"] = $query;
     $cursorTotal = $client->count($params);
     $total_producoes = $cursorTotal["count"];
 
-    echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
+    //echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
 
     $ppgtags = new DataFacets();
     $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
@@ -55,6 +54,28 @@ if (!empty($_REQUEST["ID"])) {
     $params_orientadores["_source"] = ["nome_completo"];
     $params_orientadores["body"] = $query_orientadores;
     $cursor_orientadores = $client->search($params_orientadores);
+
+    // Quantidade de obras por ano e por tipo
+    $facets = new Facets();
+    $producoes_ano = $facets->dataFacetbyYear("tipo", 100, null, "_key", $query, 5);
+
+    $infosToGraph = [];
+    foreach ($producoes_ano as $ano => $producoes) {
+        $info = [
+            'year' => $ano,
+            //'data' => []
+        ];
+        $i_producao = 0;
+        foreach ($producoes as $producao) {
+            //echo "<pre>" . print_r($producao, true) . "</pre>";
+            $arrLegends_duplicated[] = $producao['key'];
+            $info[$i_producao] = $producao['doc_count'];
+            $i_producao++;
+        }
+        $arrLegends = array_unique($arrLegends_duplicated);
+
+        $infosToGraph[] = $info;
+    }
 } else {
     echo '<script>window.location.href = "index.php";</script>';
     die();
@@ -101,12 +122,12 @@ class PPG
     require 'inc/components/Who.php';
     require 'inc/components/PPGBadges.php';
     require 'inc/components/TagCloud.php';
-    require '_fakedata.php';
+    //require '_fakedata.php';
     ?>
     <meta charset="utf-8" />
     <title><?php echo $branch; ?> - PPG <?php echo $ppg["NOME_PPG"]; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Prodmais." />
+    <meta name="description" content="Prodmais" />
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 </head>
@@ -152,19 +173,21 @@ class PPG
                     </div>
 
                     <div class="p-ppg__badges">
+                        <!--
                         <div class="dh d-hc">
-                            <?php echo PPGBadges::students(
+                            < ?php echo PPGBadges::students(
                                 $rate = 20,
                                 $title = 'Em Curso',
                                 $ico = 'student2'
                             ); ?>
 
-                            <?php echo PPGBadges::students(
+                            < ?php echo PPGBadges::students(
                                 $rate = 100,
                                 $title = 'Formados',
                                 $ico = 'formado'
                             ); ?>
                         </div>
+                        -->
                         <div class="p-ppg__badges-capes">
                             <?php echo PPGBadges::capes(
                                 $rate = $ppg["CONCEITO_CAPES"],
@@ -180,41 +203,33 @@ class PPG
 
                 <section class="l-ppg">
                     <h3 class="t t-h3">Palavras chave recorrentes</h3>
-
                     <div>
                         <?php Tag::cloud($resultppgtags, $hasLink = false); ?>
 
-                    </div> <!-- end -->
-
-
+                    </div>
                 </section>
 
                 <hr class="c-line u-my-20" />
 
-                <p>Total de produções registradas no Prodmais por pesquisadores vinculados ao PPG:
-                    <?php echo $total_producoes; ?></p>
+                <p>
+                    Total de produções registradas no Prodmais por pesquisadores vinculados ao PPG:
+                    <?php echo $total_producoes; ?>
+                </p>
 
                 <section class="l-ppg">
                     <?php
-                    $legends = array(
-                        "Artigos publicados",
-                        "Textos em jornais e revistas",
-                        "Participação em eventos",
-                        "Outras produções"
-                    );
-
                     GraphBar::graph(
-                        $title = 'Produção nos últimos anos',
+                        $title = 'Produções por tipo',
                         $arrData = $infosToGraph,
-                        $arrLegends = $legends,
+                        $arrLegends,
                         $lines = 30
                     );
                     ?>
                 </section>
 
-
+                <!--
                 <section class="l-ppg u-my-3">
-                    <?php
+                    < ?php
                     $legends2 = array(
                         "Mestrado profissional",
                         "Mestrado acadêmico",
@@ -229,6 +244,7 @@ class PPG
                     );
                     ?>
                 </section>
+                -->
 
                 <hr class="c-line u-my-20" />
 
@@ -237,8 +253,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                            <li>
-                                <?php
+                        <li>
+                            <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -250,7 +266,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                            </li>
+                        </li>
                         <?php } ?>
                     </ul>
 
@@ -318,6 +334,8 @@ class PPG
 
 
     </div> <!-- end result-container -->
+
+    <?php echo "<pre>" . print_r($ppg, true) . "</pre>"; ?>
 
     <?php include('inc/footer.php'); ?>
     <script>
