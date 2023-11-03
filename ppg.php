@@ -335,7 +335,8 @@ class PPG
 
     </div> <!-- end result-container -->
 
-    <?php echo "<pre>" . print_r($ppg, true) . "</pre>"; ?>
+    <?php //echo "<pre>" . print_r($ppg, true) . "</pre>"; 
+    ?>
 
     <?php include('inc/footer.php'); ?>
     <script>
