@@ -142,9 +142,28 @@ $get_data = $_GET;
                             </div>
 
                             <div class='s-list-content'>
+
+
+                                <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
+                                <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
+                                        ?>
                                 <p class='t t-b'>
-                                    <a
-                                        href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?></a>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
+                                <?php else : ?>
+                                <p class='t t-b'>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
+                                    </a>
                                 </p>
                                 <p class='t t-gray'>
                                     Descrição do projeto:
@@ -156,6 +175,7 @@ $get_data = $_GET;
                                 <p class='t t-gray'>
                                     <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
                                     <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
+                                <?php endif ?>
                             </div>
                         </div>
                     </li>
