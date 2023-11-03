@@ -122,7 +122,11 @@ $get_data = $_GET;
                         <?php
                             if (isset($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'])) {
                                 foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
-                                    $integrantes_do_projeto_array[] = $integrantes['@attributes']['NOME-COMPLETO'];
+                                    if (isset($integrantes['@attributes'])) {
+                                        $integrantes_do_projeto_array[] = $integrantes['@attributes']['NOME-COMPLETO'];
+                                    } else {
+                                        $integrantes_do_projeto_array = [];
+                                    }
                                 }
                                 $integrantes_do_projeto = implode(", ", $integrantes_do_projeto_array);
                             } else {
