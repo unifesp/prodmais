@@ -2768,14 +2768,11 @@ class Facets
 
     public function dataFacetbyYear($field, $size, $sort, $sort_type, $get_search, $years)
     {
-
-        // loop for last 5 years
-        for ($i_year = 0; $i_year < $years; $i_year++) {
+        for ($i_year = $years - 1; $i_year >= 0; $i_year--) {
             $year = date('Y', strtotime("-$i_year year"));
             $query = $get_search;
 
             $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
-            //var_dump($query);
             $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
             if (!empty($_SESSION['oauthuserdata'])) {
                 $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
@@ -2784,13 +2781,9 @@ class Facets
                 $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
             }
             $query["aggs"]["counts"]["terms"]["size"] = $size;
-
             $response = Elasticsearch::search(null, 0, $query, null);
-
             $responses[$year] = $response["aggregations"]["counts"]["buckets"];
         }
-        //echo "<pre>" . print_r($responses, true) . "</pre>";
-
         return $responses;
     }
 }
