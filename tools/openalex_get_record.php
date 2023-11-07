@@ -24,23 +24,24 @@ $params["size"] = $_GET["size"];
 
 $cursor = $client->search($params);
 
-echo "Resultado: $total";
+echo "Resultado: $total<br/><br/>";
+echo "<a href='apis.php'>Retornar para a página de APIs</a><br/>";
 
 foreach ($cursor["hits"]["hits"] as $r) {
     // //print("<pre>".print_r($r, true)."</pre>");
     // //print("<pre>".print_r($r["_source"]["doi"], true)."</pre>");    
     $openalex_result = openalexAPI($r["_source"]["doi"], $client);
     unset($openalex_result['abstract_inverted_index']);
-    
+
     if (empty($openalex_result)) {
         $body["doc"]["openalex"]['empty'] = true;
     } else {
         $body["doc"]["openalex"] = $openalex_result;
     }
-    if (isset($openalex_result['referenced_works'])){
+    if (isset($openalex_result['referenced_works'])) {
         $body["doc"]["openalex_referenced_works"] = array();
         $i = 0;
-        foreach ($openalex_result['referenced_works'] as $referenced_work) {            
+        foreach ($openalex_result['referenced_works'] as $referenced_work) {
             $openalex_result_referenced = openalexAPIID(str_replace("https://openalex.org/", "", $referenced_work), $client);
             //var_dump($openalex_result_referenced);
             //print("<pre>".print_r($openalex_result_referenced, true)."</pre>");

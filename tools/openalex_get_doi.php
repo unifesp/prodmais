@@ -30,6 +30,7 @@ $params["size"] = $_GET["size"];
 $cursor = $client->search($params);
 
 echo "Resultado: $total<br/><br/>";
+echo "<a href='apis.php'>Retornar para a página de APIs</a><br/>";
 
 
 foreach ($cursor["hits"]["hits"] as $r) {
@@ -53,7 +54,7 @@ foreach ($cursor["hits"]["hits"] as $r) {
             if (!is_null($openalex_result["results"][0]["doi"])) {
                 $body["doc"]["doi"] = str_replace("https://doi.org/", "", $openalex_result["results"][0]["doi"]);;
             }
-            if (isset($openalex_result["results"][0]['referenced_works'])){
+            if (isset($openalex_result["results"][0]['referenced_works'])) {
                 $body["doc"]["openalex_referenced_works"] = array();
                 $i = 0;
                 foreach ($openalex_result["results"][0]['referenced_works'] as $referenced_work) {
