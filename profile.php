@@ -303,6 +303,10 @@ if (!empty($_REQUEST["lattesID"])) {
                     <h3 class="t t-h3">Nomes em citações bibliográficas</h3>
                     <p class="t-prof"><?php echo $profile["nome_em_citacoes_bibliograficas"] ?></p>
                     <hr class="c-line u-my-20" />
+                    <h3 class="t t-h3">Exportar dados</h3>
+                    <p><a href="tools/export_old.php?&format=bibtex&search=vinculo.lattes_id:<?php echo $profile["lattesID"]; ?>"
+                            target="_blank" rel="nofollow">Exportar produção no formato BIBTEX</a></p>
+                    <hr class="c-line u-my-20" />
                     <p class="t t-b">Perfis na web</p>
                     <div class="dh">
                         <?php if (!empty($profile['lattesID'])) : ?>
