@@ -186,7 +186,7 @@
       }
       ?>
 
-            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result.php", 'result'); ?>
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
             <br />
 
             <?php if ($total_records == 0) : ?>
