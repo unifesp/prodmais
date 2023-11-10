@@ -44,7 +44,7 @@ $number_of_pages = intdiv($number_of_results, $data['meta']['per_page']) + 1;
 
 for ($i_page = 1; $i_page <= $number_of_pages; $i_page++) {
 
-    $openalex_url = "https://api.openalex.org/works?&page=" . $i_page . "&filter=" . $query_arr['filter'] . "&sort=" . $query_arr['sort'];
+    $openalex_url = "https://api.openalex.org/works?&page=" . $i_page . "&filter=" . $query_arr['filter'];
 
     //echo "<pre>" . print_r($openalex_url, true) . "</pre><br/><br/>";
 
@@ -75,8 +75,19 @@ for ($i_page = 1; $i_page <= $number_of_pages; $i_page++) {
         }
         $doc["doc"]["language"] = $openalex_record['language'];
         $doc["doc"]["datePublished"] = $openalex_record['publication_year'];
-        $doc["doc"]["url"] = $openalex_record['primary_location']['landing_page_url'];
-        $doc["doc"]["doi"] = $openalex_record['doi'];
+        if (isset($openalex_record['primary_location']['landing_page_url'])) {
+            $doc["doc"]["url"] = $openalex_record['primary_location']['landing_page_url'];
+        }
+
+        if (filter_var($openalex_record['doi'], FILTER_VALIDATE_URL)) {
+            $doi_parsed = parse_url($openalex_record['doi']);
+            $doi = ltrim($doi_parsed['path'], '/');
+            $doc["doc"]["doi"] = $doi;
+        }
+
+
+
+
         if (isset($openalex_record['primary_location']['source']['display_name'])) {
             $doc["doc"]["isPartOf"]["name"] = $openalex_record['primary_location']['source']['display_name'];
         }
