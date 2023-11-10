@@ -2526,6 +2526,69 @@ class Facets
         return $facet_string;
     }
 
+    public function facet_author($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $page_target, $alternative_index = null)
+    {
+        global $url_base;
+
+        if (isset($get_search["page"])) {
+            unset($get_search["page"]);
+        }
+
+        $query = $this->query;
+        $query["aggs"]["authors"]["nested"]["path"] = "author.person";
+        $query["aggs"]["authors"]["aggs"]["raw_names"]["terms"]["field"] = "author.person.name.keyword";
+        //$query["aggs"]["authors"]["nested"]["size"] = 1000;
+
+
+        $response = Elasticsearch::search(null, 0, $query, $alternative_index);
+
+        $result_count = count($response["aggregations"]["authors"]["raw_names"]["buckets"]);
+
+        //echo "<pre>" . print_r($response, true) . "</pre><br/><br/>";
+
+        if ($result_count === 0) {
+            return;
+        }
+
+        if ($result_count === 1 && empty($response["aggregations"]["authors"]["raw_names"]["buckets"][0]['key'])) {
+            return;
+        }
+
+        $facet_array = array();
+        $facet_array[] = '<details class="c-filterdrop" open="true">';
+        $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
+        $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
+
+        foreach ($response["aggregations"]["authors"]["raw_names"]["buckets"] as $facets) {
+
+            $facet_array[] = '<li class="c-filterdrop__item">';
+
+            $facet_array[] = '<form action="' . $page_target . '" method="post">';
+            $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+
+            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
+
+            if (isset($get_search['filter'])) {
+                if (count($get_search['filter']) > 0) {
+                    foreach ($get_search['filter'] as $filter) {
+                        $facet_array[] = '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
+                    }
+                }
+            }
+            $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
+            $facet_array[] = '</form>';
+
+            $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+            $facet_array[] = '</li>';
+        }
+
+        $facet_array[] = '</ul>';
+        $facet_array[] = '</details>';
+        $facet_string = implode("", $facet_array);
+
+        return $facet_string;
+    }
+
     public function facetExistsField($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $alternative_index = null)
     {
         global $url_base;

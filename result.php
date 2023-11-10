@@ -108,7 +108,7 @@
             echo ($facets->facet(basename(__FILE__), "vinculo.area_concentracao", 100, "Área de concentração", null, "_key", $_POST, "result.php"));
           }
           echo ($facets->facet(basename(__FILE__), "tipo", 100, "Tipo de material", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet_author(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(basename(__FILE__), "vinculo.nome", 100, "Nome do autor vinculado à instituição", null, "_key", $_POST, "result.php"));
           //echo ($facets->facet(basename(__FILE__), "vinculo.lattes_id", 100, "ID do Lattes", null, "_key", $_POST, "result.php"));
 
