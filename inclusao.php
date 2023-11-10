@@ -127,6 +127,20 @@ if (isset($_POST['submit'])) {
                         <button class="c-btn" type="submit">Incluir</button>
                     </div>
                 </form>
+
+                <h2 class="t t-h3 ">Coletar registros do OpenAlex</h2>
+
+                <form class="p-inclusao-form" action="tools/openalex_api_import.php" method="post"
+                    accept-charset="utf-8" enctype="multipart/form-data"
+                    title="Formulário de importação de registros do OpenAlex">
+                    <div class="input-group">
+                        <textarea class="c-input" id="openalex_expression" rows="3" type="text"
+                            placeholder="Colar API do OpenAlex" name="openalex_expression"></textarea>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Incluir</button>
+                    </div>
+                </form>
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
                 <div class="alert alert-danger" role="alert">

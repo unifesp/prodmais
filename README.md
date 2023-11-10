@@ -21,8 +21,7 @@ O Prodmais é uma ferramenta que agrega informações sobre produções acadêmi
 **Fontes possíveis**
 
 - Base Lattes
-- Web of Science
-- CrossRef (DOI)
+- OpenAlex (https://openalex.org/)
 
 **Dependências**
 
