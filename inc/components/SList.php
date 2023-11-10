@@ -38,10 +38,22 @@ class SList
       case "Artigo publicado":
         $img = 'articlePublished';
         break;
+      case "article":
+        $img = 'articlePublished';
+        break;
+      case "editorial":
+        $img = 'articlePublished';
+        break;
       case "Capítulo de livro publicado":
         $img = 'chapter';
         break;
+      case "book-chapter":
+        $img = 'chapter';
+        break;
       case "Livro publicado ou organizado":
+        $img = 'book';
+        break;
+      case "book":
         $img = 'book';
         break;
       case "Patente":
@@ -59,6 +71,9 @@ class SList
       case "Tradução":
         $img = 'book';
         break;
+      case "dissertation":
+        $img = 'book';
+        break;
       default:
         $img = 'defaultProduction';
     }
@@ -67,7 +82,7 @@ class SList
 
 
   // === Only for Slist::IntelectualProduction === //
-  static function doiRendered($url) 
+  static function doiRendered($url)
   {
     return "
         <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'>
@@ -76,43 +91,43 @@ class SList
   }
 
   // === Only for Slist::IntelectualProduction === //
-  static function doiCleaned($doi) 
+  static function doiCleaned($doi)
   {
-    if(!isset($url)) {
+    if (!isset($url)) {
       $url = "";
     }
-    if (substr($doi, 0, 3 ) === "10.") {
+    if (substr($doi, 0, 3) === "10.") {
       return $doi;
-    } elseif (substr($url, 0, 5 ) === "[doi:") {
+    } elseif (substr($url, 0, 5) === "[doi:") {
       $cleandoi = str_replace(['[doi:', ']'], '', $url);
       return $cleandoi;
-    } 
+    }
   }
 
   // === Only for Slist::IntelectualProduction === //
   static function urlRendered($url)
   {
-    if (substr($url, 0, 3 ) === "10.") {
+    if (substr($url, 0, 3) === "10.") {
       return "
       <a class='t t-a d-icon-text' href='https://doi.org/$url' target='blank'> 
         <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
         Conteúdo completo
       </a>";
-    } elseif (substr($url, 0, 5 ) === "[doi:") {      
+    } elseif (substr($url, 0, 5) === "[doi:") {
       $cleandoi = str_replace(['[doi:', ']'], '', $url);
-      $doi = 'https://doi.org/'.$cleandoi.'';
+      $doi = 'https://doi.org/' . $cleandoi . '';
       return "
       <a class='t t-a d-icon-text' href='$doi' target='blank'> 
         <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
         Conteúdo completo
       </a>";
-    } elseif (substr($url, 0, 5 ) === "[http") {     
+    } elseif (substr($url, 0, 5) === "[http") {
       $cleanurl = str_replace(['[', ']'], '', $url);
       return "
       <a class='t t-a d-icon-text' href='$cleanurl' target='blank'> 
         <i class='i i-link i-link u-ml-05' title='Conteúdo completo' alt='Conteúdo completo'></i>
         Conteúdo completo
-      </a>";    
+      </a>";
     } else {
       return "
       <a class='t t-a d-icon-text' href='$url' target='blank'> 
@@ -120,7 +135,6 @@ class SList
         Conteúdo completo
       </a>";
     }
-
   }
   // === Only for Slist::IntelectualProduction === //
   static function issnRendered($url)
@@ -144,8 +158,7 @@ class SList
       return "
         <p class='t t-light'>
           Fonte: $refName $refVol $refFascicle $refPage
-        </p>"
-        ;
+        </p>";
     }
   }
 
@@ -182,7 +195,6 @@ class SList
       <p class='t t-light'>
         Quantidade de citações obtidas no OpenAlex: $cited_by_count
       </p>";
-
   }
 
   static function genericItem(
@@ -258,7 +270,7 @@ class SList
     $authorsRendered = implode('; ', $authors);
 
     !empty($doi) ? $doiCleaned = SList::doiCleaned($doi) : $doiCleaned = '';
-    !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';    
+    !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
     $fonteRendered = SList::fonteRendered($refName, $refVol, $refFascicle, $refPage);
