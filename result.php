@@ -157,6 +157,7 @@
           }
 
           if ($mostrar_openalex) {
+            echo ($facets->facet(basename(__FILE__), "openalex.sustainable_development_goals.display_name", 100, "Sustainable Development Goals", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex.open_access.oa_status", 100, "Status de acesso aberto segundo o OpenAlex?", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex.authorships.institutions.display_name", 100, "Instituição normalizada - OpenAlex", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.name", 50, "Trabalhos mais citados - OpenAlex", null, "_key", $_POST, "result.php"));
