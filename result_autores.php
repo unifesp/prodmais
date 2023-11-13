@@ -20,9 +20,14 @@ if (isset($_POST["search"]) & !empty($_POST["search"])) {
     $_POST["search"] = '';
 }
 
+if (isset($_POST["resumocv"])) {
+    $_POST["search"] = 'resumo_cv.texto_resumo_cv_rh:' . $_POST["resumocv"] . '';
+}
+
 if (isset($fields)) {
     $_POST["fields"] = $fields;
 }
+
 $result_post = Requests::postParser($_POST);
 $limit_records = 50;
 $page = $result_post['page'];
@@ -148,6 +153,16 @@ $get_data = $_GET;
                     <div class="c-searcher">
                         <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador" aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
+                            <i class="i i-lupa c-searcher__btn-ico"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="resumocv">
+
+                    <div class="c-searcher">
+                        <input class="" type="text" name="resumocv" placeholder="Digite um termo para pesquisar no resumo" aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
+                        <button class="c-searcher__btn" type="submit" form="resumocv" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
                     </div>
