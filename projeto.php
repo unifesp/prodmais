@@ -18,6 +18,12 @@ $params['id'] = $_GET['ID'];
 $result = $client->get($params);
 $projeto_array = $result['_source'];
 
+
+
+if (isset($projeto_array['DADOS-DO-PROJETO'][0])) {
+    $projeto_array['DADOS-DO-PROJETO'] = $projeto_array['DADOS-DO-PROJETO'][0];
+}
+
 $period = $projeto_array['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO'];
 
 if (!empty($projeto_array['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'])) {
@@ -35,6 +41,8 @@ if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCA
 } else {
     $num_producoes = 0;
 }
+//echo "<pre>" . print_r($projeto_array, true) . "</pre>";
+
 
 
 ?>
@@ -90,6 +98,7 @@ if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCA
                     <h4 class="t t-h4 u-mb-20">Produções do projeto</h4>
                     <section class="dv d-md-h">
                         <ul class="c-authors-list">
+                            <?php if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'])) : ?>
                             <?php foreach ($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCAO-CT-DO-PROJETO'] as $producao_do_projeto) : ?>
                             <li class="c-card-author t t-b t-md">
                             <li class='s-nobullet'>
@@ -99,17 +108,29 @@ if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCA
                                     </div>
 
                                     <div class='s-list-content'>
+                                        <?php if (isset($producao_do_projeto['@attributes'])) : ?>
                                         <p class='t t-b'>
                                             <?php echo $producao_do_projeto['@attributes']['TITULO-DA-PRODUCAO-CT'] ?></a>
                                         </p>
                                         <p class='t t-gray'>Tipo de produção:
                                             <?php echo $producao_do_projeto['@attributes']['TIPO-PRODUCAO-CT']; ?>
                                         </p>
+                                        <?php else : ?>
+                                        <p class='t t-b'>
+                                            <?php echo $producao_do_projeto['TITULO-DA-PRODUCAO-CT'] ?></a>
+                                        </p>
+                                        <p class='t t-gray'>Tipo de produção:
+                                            <?php echo $producao_do_projeto['TIPO-PRODUCAO-CT']; ?>
+                                        </p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </li>
                             </li>
                             <?php endforeach; ?>
+                            <?php else : ?>
+                            <p class="t t-justify">Não há produções cadastradas para este projeto.</p>
+                            <?php endif; ?>
                         </ul>
                     </section>
                     <hr class="c-line u-my-20" />
@@ -119,12 +140,22 @@ if (isset($projeto_array['DADOS-DO-PROJETO']['PRODUCOES-CT-DO-PROJETO']['PRODUCA
                             <ul class='p-projeto-integrantes'>
                                 <?php
                                 foreach ($projeto_array['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrante) {
-                                    $nome_integrante = $integrante['@attributes']['NOME-COMPLETO'];
-                                    echo ("<div class='d-icon-text'>
-                                        <i class='i i-project-participant'></i>
-                                        <li class=''>$nome_integrante</li>
-                                        </div>"
-                                    );
+                                    if (isset($integrante['@attributes']['NOME-COMPLETO'])) {
+                                        $nome_integrante = $integrante['@attributes']['NOME-COMPLETO'];
+                                        echo ("<div class='d-icon-text'>
+                                            <i class='i i-project-participant'></i>
+                                            <li class=''>$nome_integrante</li>
+                                            </div>"
+                                        );
+                                    } elseif (isset($integrante['NOME-COMPLETO'])) {
+                                        $nome_integrante = $integrante['NOME-COMPLETO'];
+                                        echo ("<div class='d-icon-text'>
+                                            <i class='i i-project-participant'></i>
+                                            <li class=''>$nome_integrante</li>
+                                            </div>"
+                                        );
+                                    } else {
+                                    }
                                 }
                                 ?>
                             </ul>
