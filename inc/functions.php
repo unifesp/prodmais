@@ -2407,10 +2407,13 @@ class Requests
         $i_filter = 0;
         if (!empty($post['filter'])) {
             foreach ($post['filter'] as $filter) {
+
                 if (!empty($filter)) {
                     $filter_array = explode(":", $filter);
-                    $filter_array_term = str_replace('"', "", (string) $filter_array[1]);
-                    $query["query"]["bool"]["filter"][$i_filter]["term"][(string) $filter_array[0] . ".keyword"] = $filter_array_term;
+                    if (isset($filter_array[2])) {
+                        $filter_array[1] = $filter_array[1] . ":" . $filter_array[2];
+                    }
+                    $query["query"]["bool"]["filter"][$i_filter]["term"][(string) $filter_array[0] . ".keyword"] = $filter_array[1];
                     $i_filter++;
                 }
             }
@@ -2498,12 +2501,23 @@ class Facets
 
         foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
 
+            $facets['keys_filtered'] = $facets['key'];
+
+            // filter special characters
+            $special_chars = ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '"', '~', '*', '?', '\\', '/', ':'];
+
+            foreach ($special_chars as $char) {
+                if (strpos($facets['key'], $char) !== false) {
+                    $facets['keys_filtered'] = str_replace($char,  '\\\\' . $char, $facets['key']);
+                }
+            }
+
             $facet_array[] = '<li class="c-filterdrop__item">';
 
             $facet_array[] = '<form action="' . $page_target . '" method="post">';
             $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
 
-            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . str_replace('&', '%26', $facets['key']) . '">';
+            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['keys_filtered'] . '">';
 
             if (isset($get_search['filter'])) {
                 if (count($get_search['filter']) > 0) {
@@ -2517,6 +2531,8 @@ class Facets
 
             $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
             $facet_array[] = '</li>';
+
+            unset($facets);
         }
 
         $facet_array[] = '</ul>';
