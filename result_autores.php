@@ -4,14 +4,6 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
-if (isset($_POST["filter"])) {
-    if (!in_array("type:\"Curriculum\"", $_POST["filter"])) {
-        $_POST["filter"][] = "type:\"Curriculum\"";
-    }
-} else {
-    $_POST["filter"][] = "type:\"Curriculum\"";
-}
-
 if (isset($_POST["search"]) & !empty($_POST["search"])) {
     if (!str_contains($_POST['search'], 'nome_completo')) {
         $_POST["search"] = 'nome_completo:' . $_POST['search'] . '';
@@ -43,6 +35,8 @@ $params["body"] = $result_post['query'];
 $params["size"] = $limit_records;
 $params["from"] = $result_post['skip'];
 $cursor = $client->search($params);
+
+//echo "<br/><br/><br/><br/><br/><br/><br/><pre>" . print_r($cursor["hits"], true) . "</pre>";
 
 /*pagination - start*/
 $get_data = $_GET;
@@ -148,20 +142,25 @@ $get_data = $_GET;
 
             <div class="p-result-search-ctn">
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="searchresearchers">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="searchresearchers">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador" aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
+                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
                     </div>
                 </form>
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="resumocv">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="resumocv">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="resumocv" placeholder="Digite um termo para pesquisar no resumo" aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="resumocv"
+                            placeholder="Digite um termo para pesquisar no resumo"
+                            aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="resumocv" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
@@ -199,17 +198,17 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                        <?php
+                    <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                        <li class="c-card-author t t-b t-md">
-                            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                                <?php echo $r["_source"]['nome_completo']; ?>
-                            </a>
-                        </li>
+                    <li class="c-card-author t t-b t-md">
+                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                            <?php echo $r["_source"]['nome_completo']; ?>
+                        </a>
+                    </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
