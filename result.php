@@ -183,7 +183,10 @@
             <?php endif ?>
             <?php
       if (isset($_REQUEST['filter'])) {
-        echo '<div class="c-term">Filtro: ' . $_REQUEST['filter'][0] . '</div>';
+        foreach ($_REQUEST['filter'] as $filter) {
+          $filter_array[] = '<div class="c-term">' . $filter . '</div>';
+        }
+        echo '<div class="c-term">Filtro: ' . implode('', $filter_array) . '</div>';
       }
       ?>
 
