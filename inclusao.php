@@ -31,6 +31,9 @@ if (isset($_POST['submit'])) {
 ?>
 
 <body class="c-wrapper-body">
+    <!-- NAV -->
+    <?php require_once 'inc/navbar.php'; ?>
+    <!-- /NAV -->
     <main class="c-wrapper-container">
         <div class="c-wrapper-paper">
             <div class="c-wrapper-inner">
