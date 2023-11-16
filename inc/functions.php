@@ -2407,14 +2407,19 @@ class Requests
         $i_filter = 0;
         if (!empty($post['filter'])) {
             foreach ($post['filter'] as $filter) {
-
                 if (!empty($filter)) {
                     $filter_array = explode(":", $filter);
-                    if (isset($filter_array[2])) {
-                        $filter_array[1] = $filter_array[1] . ":" . $filter_array[2];
+                    if ($filter_array[0] == "author.person.name") {
+                        $query["query"]["bool"]["filter"][$i_filter]["nested"]["path"] = "author.person";
+                        $query["query"]["bool"]["filter"][$i_filter]["nested"]["query"]["bool"]["must"]["match"]["author.person.name"] = $filter_array[1];
+                    } else {
+                        if (isset($filter_array[2])) {
+                            $filter_array[1] = $filter_array[1] . ":" . $filter_array[2];
+                        }
+                        $query["query"]["bool"]["filter"][$i_filter]["term"][(string) $filter_array[0] . ".keyword"] = $filter_array[1];
                     }
-                    $query["query"]["bool"]["filter"][$i_filter]["term"][(string) $filter_array[0] . ".keyword"] = $filter_array[1];
                     $i_filter++;
+                    unset($filter_array);
                 }
             }
         }

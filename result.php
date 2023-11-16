@@ -23,7 +23,6 @@
     $_POST['search'] = "";
   }
 
-
   $result_post = Requests::postParser($_POST);
   if (!empty($_POST)) {
     $limit_records = $result_post['limit'];
