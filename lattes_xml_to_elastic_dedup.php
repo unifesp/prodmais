@@ -22,7 +22,7 @@ function get_curriculum($identificador)
 
         return $response;
     } catch (\Exception $e) {
-        echo $e->getMessage();
+        //echo $e->getMessage();
     }
 }
 
@@ -39,12 +39,6 @@ function comparaprod_doi($doi)
     $params['body'] = $query;
     $cursor = $client->search($params);
     $total = $cursor['hits']['total']['value'];
-    //echo 'Resultado total com DOI: ' . $total . '';
-    // foreach ($cursor['hits']['hits'] as $r) {
-    //     echo '<br/>';
-    //     echo '' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
-    //     echo '<br/>';
-    // }
 
     if ($total >= 1) {
         return $r;
@@ -81,12 +75,8 @@ function comparaprod_title($doc)
     $params['body'] = $query;
     $cursor = $client->search($params);
     $total = $cursor['hits']['total']['value'];
-    //echo 'Resultado total com Titulo: ' . $total . '';
 
     foreach ($cursor['hits']['hits'] as $r) {
-        //     echo '<br/>';
-        //     echo 'Score: ' . $r['_score'] . ' - ' . $r['_id'] . ' - ' . $r['_source']['name'] . ' - ' . $r['_source']['datePublished'] . ' - ' . $r['_source']['tipo'] . '';
-        //     echo '<br/>';
     }
 
     if ($total >= 1) {
@@ -562,10 +552,8 @@ if (isset($_REQUEST['researcherid'])) {
 if (isset($_REQUEST['lattes10'])) {
     $doc_curriculo_array['doc']['lattes10'] = $_REQUEST['lattes10'];
 }
-//print_r($curriculo->attributes()->{'DATA-ATUALIZACAO'});
+
 $doc_curriculo_array["doc"]["data_atualizacao"] = substr((string) $curriculo->attributes()->{'DATA-ATUALIZACAO'}, 4, 4) . "-" . substr((string) $curriculo->attributes()->{'DATA-ATUALIZACAO'}, 2, 2);
-//echo "<br/>";
-//print_r($doc_curriculo_array["doc"]["data_atualizacao"]);
 $doc_curriculo_array["doc"]["nome_completo"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
 $doc_curriculo_array["doc"]["nome_em_citacoes_bibliograficas"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-EM-CITACOES-BIBLIOGRAFICAS'};
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'NACIONALIDADE'})) {
@@ -993,7 +981,6 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'})) {
 // Orientações em andamento
 
 if (isset($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'})) {
-    // echo "<pre>".print_r($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'},true)."</pre>";
     // Mestrado
     $i_orientacao = 0;
 
@@ -1202,9 +1189,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        //echo "<br/>";
-        //print_r($resultado);
-        //echo "<br/><br/>";
 
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
@@ -1306,9 +1290,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        //echo "<br/>";
-        //print_r($resultado);
-        //echo "<br/><br/>";
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1411,10 +1392,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
-
 
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
@@ -1511,10 +1488,6 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
-
 
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
@@ -1617,9 +1590,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
 
         // Comparador
         $resultado = upsert($doc, $sha256);
-        //echo "<br/>";
-        //print_r($resultado);
-        //echo "<br/><br/>";
+
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1717,9 +1688,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1816,9 +1785,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1918,9 +1885,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -2007,9 +1972,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
 
             // Comparador
             $resultado = upsert($doc, $sha256);
-            //echo "<br/>";
-            //print_r($resultado);
-            //echo "<br/><br/>";
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -2116,9 +2079,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
                 // Comparador
                 $resultado = upsert($doc, $sha256);
-                //echo "<br/>";
-                //print_r($resultado);
-                //echo "<br/><br/>";
+
                 unset($dadosBasicosDoTrabalho);
                 unset($detalhamentoDoTrabalho);
                 unset($obra);
