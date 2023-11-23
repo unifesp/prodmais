@@ -918,9 +918,15 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'})) {
                             $doc_projetos['doc']['NOME-INSTITUICAO'] = $value['@attributes']['NOME-INSTITUICAO'];
                             $doc_projetos['doc']['DADOS-DO-PROJETO'] = $participacao_projeto['PROJETO-DE-PESQUISA'];
                             $doc_projetos["doc_as_upsert"] = true;
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
+                            if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'])) {
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
+                            }
+                            if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'])) {
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
+                            }
+                            if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'])) {
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
+                            }
                             $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
                             $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
                         }
@@ -1095,7 +1101,7 @@ $doc_curriculo_array["doc"]["dataDeColeta"] = date('Y-m-d');
 $doc_curriculo_array["doc_as_upsert"] = true;
 
 $resultado_curriculo = Elasticsearch::update($identificador, $doc_curriculo_array, $index_cv);
-var_dump($resultado_curriculo);
+//var_dump($resultado_curriculo);
 
 //Parser de Trabalhos-em-Eventos
 
