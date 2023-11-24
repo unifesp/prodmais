@@ -63,7 +63,6 @@ if (isset($_POST['submit'])) {
 
         // Total records with DOI without OpenAlex
 
-
         $paramsDOIWithoutOpenAlex = [];
         $paramsDOIWithoutOpenAlex["index"] = $index;
         $queryDOIWithoutOpenAlex["query"]["query_string"]["query"] = '_exists_:doi doi:1* -_exists_:openalex';
@@ -80,6 +79,13 @@ if (isset($_POST['submit'])) {
         $cursorTotalOpenAlexWithoutDOI = $client->count($paramsOpenAlexWithoutDOI);
         $total_records_with_OpenAlex_without_DOI = $cursorTotalOpenAlexWithoutDOI["count"];
 
+        // Total records with Aurora SDG
+
+        $query["query"]["exists"]["field"] = "aurorasdg";
+        $params["body"] = $query;
+        $cursorTotalAuroraSDG = $client->count($params);
+        $total_records_with_AuroraSDG = $cursorTotalAuroraSDG["count"];
+
         ?>
 
 <body class="c-wrapper-body">
@@ -93,6 +99,8 @@ if (isset($_POST['submit'])) {
                 <h2 class='t t-h3'>Total de registros no banco de dados com DOI: <?php echo $total_records_with_DOI; ?>
                 </h2>
 
+                <h1 class="t t-h1">OpenAlex</h1>
+
                 <h2 class='t t-h3'>Total de registros no banco de dados com DOI e OpenAlex:
                     <?php echo $total_records_with_OpenAlex; ?>, faltando
                     <?php echo $total_records_with_DOI - $total_records_with_OpenAlex; ?>
@@ -102,7 +110,7 @@ if (isset($_POST['submit'])) {
                     <?php echo $total_records_with_OpenAlex_without_DOI; ?></h2>
                 <hr />
 
-                <h2 class="t t-h3">Enriquecimento de registros</h2>
+                <h2 class="t t-h3">Enriquecimento de registros com OpenAlex</h2>
                 <ul>
                     <li><a href="openalex_get_record.php?size=10">Coletar 10 registros no Openalex com DOI (É
                             necessário
@@ -113,6 +121,20 @@ if (isset($_POST['submit'])) {
                             (É necessário repetir este procedimento até zerar a quantidade de registros, mas esse é
                             um
                             procedimento demorado, que deve ser realizado com poucos registros de cada vez)</a></li>
+                </ul>
+
+                <h1 class="t t-h1">Aurora SDG</h1>
+
+                <h2 class='t t-h3'>Total de registros no banco de dados com Aurora SDG:
+                    <?php echo $total_records_with_AuroraSDG; ?>
+                </h2>
+                <h2 class="t t-h3">Enriquecimento de registros com Aurora SDG</h2>
+                <ul>
+                    <li>
+                        <a href="aurorasdg_get.php?size=10">Coletar 10 registros no Aurora SDG (É
+                            necessário repetir este procedimento até zerar a quantidade de registros)
+                        </a>
+                    </li>
                 </ul>
 
 

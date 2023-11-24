@@ -156,7 +156,6 @@
           }
 
           if ($mostrar_openalex) {
-            echo ($facets->facet(basename(__FILE__), "openalex.sustainable_development_goals.display_name", 100, "Sustainable Development Goals", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex.open_access.oa_status", 100, "Status de acesso aberto segundo o OpenAlex?", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex.authorships.institutions.display_name", 100, "Instituição normalizada - OpenAlex", null, "_key", $_POST, "result.php"));
             echo ($facets->facet(basename(__FILE__), "openalex_referenced_works.name", 50, "Trabalhos mais citados - OpenAlex", null, "_key", $_POST, "result.php"));
@@ -167,6 +166,9 @@
             //echo ($facets->facetcited(basename(__FILE__), "openalex.referenced_works", 5, "5 trabalhos mais citados - OpenAlex", null, "_key", $_POST, "result.php"));
             echo ($facets->facet_range(basename(__FILE__), "openalex.cited_by_count", 100, "Número de citações obtidas - OpenAlex", null, "_key", $_POST, "result.php"));
           }
+
+          echo ($facets->facet(basename(__FILE__), "openalex.sustainable_development_goals.display_name", 100, "Sustainable Development Goals - OpenAlex", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(basename(__FILE__), "aurorasdg.most_probable_sdg", 100, "Sustainable Development Goals - Aurora", null, "_key", $_POST, "result.php"));
 
           ?>
 
