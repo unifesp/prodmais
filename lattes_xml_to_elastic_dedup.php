@@ -484,26 +484,28 @@ $result_get_curriculo = get_curriculum($identificador);
 
 $doc_curriculo_array = [];
 
-if ($result_get_curriculo["found"] == true) {
-    $ppg_array = $result_get_curriculo["_source"]["ppg_nome"];
-    if (isset($_REQUEST['ppg_nome'])) {
-        $ppg_array[] = rtrim($_REQUEST['ppg_nome']);
-    }
-    $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
-
-    $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
-    if (isset($_REQUEST['instituicao'])) {
-        $instituicao_array[] = rtrim($_REQUEST['instituicao']);
-    }
-    $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
-
-    if (isset($result_get_curriculo["_source"]["area_concentracao"])) {
-        $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
-        if (isset($_REQUEST['area_concentracao'])) {
-            $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+if (isset($result_get_curriculo["found"])) {
+    if ($result_get_curriculo["found"] == true) {
+        $ppg_array = $result_get_curriculo["_source"]["ppg_nome"];
+        if (isset($_REQUEST['ppg_nome'])) {
+            $ppg_array[] = rtrim($_REQUEST['ppg_nome']);
         }
-        if (!is_null($area_concentracao_array)) {
-            $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+        $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
+
+        $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
+        if (isset($_REQUEST['instituicao'])) {
+            $instituicao_array[] = rtrim($_REQUEST['instituicao']);
+        }
+        $doc_curriculo_array['doc']['instituicao'] = array_unique($instituicao_array);
+
+        if (isset($result_get_curriculo["_source"]["area_concentracao"])) {
+            $area_concentracao_array = $result_get_curriculo["_source"]["area_concentracao"];
+            if (isset($_REQUEST['area_concentracao'])) {
+                $area_concentracao_array[] = rtrim($_REQUEST['area_concentracao']);
+            }
+            if (!is_null($area_concentracao_array)) {
+                $doc_curriculo_array['doc']['area_concentracao'] = array_unique($area_concentracao_array);
+            }
         }
     }
 } else {
