@@ -304,6 +304,11 @@ class SList
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
 					</p>
+
+          <p class='mt-3'>
+            <div class='sdg-wheel' data-wheel-height='100' data-model='elsevier-sdg-multi' data-text='$name'></div>
+					</p>
+
 				</div>
       </li>
     ");

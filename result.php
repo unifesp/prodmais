@@ -68,7 +68,6 @@
     <meta name="description" content="Prodmais" />
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
-
 </head>
 
 <body id="app-result" data-theme="<?php echo $theme; ?>">
@@ -269,6 +268,9 @@
 
     <!-- PlumX Script -->
     <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+
+    <!-- Aurora Widget -->
+    <script type="text/javascript" src="https://aurora-sdg.labs.vu.nl/resources/widget.js"></script>
 
 
 </body>
