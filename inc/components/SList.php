@@ -292,8 +292,8 @@ class SList
 					
 					<div class='d-linewrap t-gray'>
             $doiRendered
-            $urlRendered	
-            $issnRendered					
+            $urlRendered
+            $issnRendered
 					</div>
           $datePublished
 

@@ -272,7 +272,6 @@
     <!-- Aurora Widget -->
     <script type="text/javascript" src="https://aurora-sdg.labs.vu.nl/resources/widget.js"></script>
 
-
 </body>
 
 </html>
