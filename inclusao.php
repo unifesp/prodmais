@@ -37,12 +37,8 @@ if (isset($_POST['submit'])) {
     <main class="c-wrapper-container">
         <div class="c-wrapper-paper">
             <div class="c-wrapper-inner">
-
-
-
                 <h1 class="t t-h1"><?php echo $branch; ?> - Inclusão</h1>
                 <p><?php echo $branch_description; ?></p>
-
                 <?php isset($error_connection_message) ? print_r($error_connection_message) : "" ?>
 
                 <h2 class="t t-h3 ">Inserir um XML do Lattes</h2>
@@ -50,7 +46,6 @@ if (isset($_POST['submit'])) {
                 <form class="p-inclusao-form" action="lattes_xml_to_elastic_dedup.php" method="post"
                     accept-charset="utf-8" enctype="multipart/form-data"
                     title="Formulário de Inserção de XML do Lattes">
-
                     <div class="input-group">
                         <div class="custom-file">
                             <input class="c-input--sm" type="file" id="fileXML" aria-describedby="Arquivo XML"
@@ -64,7 +59,6 @@ if (isset($_POST['submit'])) {
                         <input class="c-input--sm" type="text" placeholder="Unidade" name="unidade">
                         <input class="c-input--sm" type="text" placeholder="E-mail" name="email">
                     </div>
-
                     <div class="input-group">
                         <input class="c-input--sm" type="text" placeholder="Departamento" name="departamento">
                         <input class="c-input--sm" type="text" placeholder="Divisão" name="divisao">
@@ -72,7 +66,6 @@ if (isset($_POST['submit'])) {
                         <input class="c-input--sm" type="text" placeholder="Nome do PPG" name="ppg_nome">
                         <input class="c-input--sm" type="text" placeholder="Área de concentração"
                             name="area_concentracao">
-
                     </div>
                     <div class="input-group">
                         <input class="c-input--sm" type="text" placeholder="Tipo de vínculo" name="tipvin">
