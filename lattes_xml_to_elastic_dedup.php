@@ -393,6 +393,19 @@ if (isset($_FILES['file'])) {
         unlink($xml_file);
         rmdir($temp_dir);
     }
+} elseif (isset($_REQUEST['lattes_id'])) {
+    $lattes_id = $_REQUEST['lattes_id'];
+    $zip = new ZipArchive();
+    $zip->open('data/' . $lattes_id . '.zip');
+    $temp_dir = 'tmp/zip_' . uniqid();
+    $zip->extractTo($temp_dir);
+    $zip->close();
+    // Procura pelo arquivo curriculo.xml no diretório temporário
+    $xml_file = $temp_dir . '/curriculo.xml';
+    $curriculo = simplexml_load_string(file_get_contents($xml_file));
+    // Remove o diretório temporário e seus arquivos
+    unlink($xml_file);
+    rmdir($temp_dir);
 } else {
     // Nenhum arquivo foi enviado pelo formulário
     echo 'Nenhum arquivo foi enviado';
@@ -510,13 +523,18 @@ if ($result_get_curriculo["found"] == true) {
 
 $doc_curriculo_array["doc"]["source"] = "Base Lattes";
 $doc_curriculo_array["doc"]["type"] = "Curriculum";
-$doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
-
-//var_dump($_REQUEST);
-
-$doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
-$doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);
-$doc_curriculo_array["doc"]["numfuncional"] = $_REQUEST['numfuncional'];
+if (isset($_REQUEST['tag'])) {
+    $doc_curriculo_array["doc"]["tag"] = $_REQUEST['tag'];
+}
+if (isset($_REQUEST['unidade'])) {
+    $doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
+}
+if (isset($_REQUEST['departamento'])) {
+    $doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);
+}
+if (isset($_REQUEST['numfuncional'])) {
+    $doc_curriculo_array["doc"]["numfuncional"] = $_REQUEST['numfuncional'];
+}
 if (isset($_REQUEST['tipvin'])) {
     $doc_curriculo_array["doc"]["tipvin"] = explode("|", $_REQUEST['tipvin']);
 }
@@ -1111,7 +1129,6 @@ $doc_curriculo_array["doc"]["dataDeColeta"] = date('Y-m-d');
 $doc_curriculo_array["doc_as_upsert"] = true;
 
 $resultado_curriculo = Elasticsearch::update($identificador, $doc_curriculo_array, $index_cv);
-//var_dump($resultado_curriculo);
 
 //Parser de Trabalhos-em-Eventos
 

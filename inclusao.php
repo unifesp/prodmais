@@ -38,8 +38,6 @@ if (isset($_POST['submit'])) {
         <div class="c-wrapper-paper">
             <div class="c-wrapper-inner">
                 <h1 class="t t-h1"><?php echo $branch; ?> - Inclusão</h1>
-                <p><?php echo $branch_description; ?></p>
-                <?php isset($error_connection_message) ? print_r($error_connection_message) : "" ?>
 
                 <h2 class="t t-h3 ">Inserir um XML do Lattes</h2>
 
@@ -153,6 +151,8 @@ if (isset($_POST['submit'])) {
                     <div class="input-group-append">
                         <button class="c-btn" type="submit">Incluir</button>
                     </div>
+                    <p>Para utilizar esta funcionalidade, é necessário utilizar o modelo abaixo do arquivo CSV e colocar
+                        os arquivos zip baixados do Lattes na pasta /data</p>
                     <p>Baixar <a href="tools/modelo.csv">Modelo CSV</a></p>
                 </form>
 

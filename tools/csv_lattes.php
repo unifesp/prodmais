@@ -52,13 +52,8 @@ if (isset($_FILES['file'])) {
         } else {
             $queryParams[] = '&genero=';
         }
-        $queryParams[] = '&lattesID=' . $IDLattes . '';
+        curlLattes($url_base, $IDLattes, $queryParams);
 
-        echo "<pre>" . print_r($queryParams, true) . "</pre>";
-
-        if (isset($IDLattes)) {
-            //curlLattes($url_base, $IDLattes, $queryParams);
-        }
         unset($queryParams);
         unset($row);
     }
@@ -69,7 +64,7 @@ function curlLattes($url_base, $IDLattes, $queryParams)
 {
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattesID=' . $IDLattes . '');
+    curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/lattes_xml_to_elastic_dedup.php?lattes_id=' . $IDLattes . '');
     curl_setopt($ch, CURLOPT_POSTFIELDS, implode('', $queryParams));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch);
