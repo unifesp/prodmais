@@ -103,6 +103,7 @@
             echo ($facets->facet(basename(__FILE__), "vinculo.instituicao", 100, "Instituição", null, "_key", $_POST, "result.php"));
           }
           echo ($facets->facet(basename(__FILE__), "vinculo.ppg_nome", 100, "Nome do PPG", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(basename(__FILE__), "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
           if ($mostrar_area_concentracao) {
             echo ($facets->facet(basename(__FILE__), "vinculo.area_concentracao", 100, "Área de concentração", null, "_key", $_POST, "result.php"));
           }
@@ -146,7 +147,7 @@
           echo ($facets->facet(basename(__FILE__), "vinculo.departamento", 100, "Departamento", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(basename(__FILE__), "vinculo.divisao", 100, "Divisão", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(basename(__FILE__), "vinculo.secao", 100, "Seção", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(basename(__FILE__), "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
+
           echo ($facets->facet(basename(__FILE__), "vinculo.genero", 100, "Gênero", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(basename(__FILE__), "vinculo.desc_nivel", 100, "Nível", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(basename(__FILE__), "vinculo.desc_curso", 100, "Curso", null, "_key", $_POST, "result.php"));

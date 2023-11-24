@@ -60,6 +60,7 @@ if (isset($_POST['submit'])) {
                         <input class="c-input--sm" type="text" placeholder="Instituição" name="instituicao">
                         <input class="c-input--sm" type="text" placeholder="TAG" name="tag">
                         <input class="c-input--sm" type="text" placeholder="Núm. funcional" name="numfuncional">
+                        <input class="c-input--sm" type="text" placeholder="Lattes ID" name="lattes_id">
                         <input class="c-input--sm" type="text" placeholder="Unidade" name="unidade">
                         <input class="c-input--sm" type="text" placeholder="E-mail" name="email">
                     </div>
@@ -134,8 +135,7 @@ if (isset($_POST['submit'])) {
                 <h2 class="t t-h3 ">Coletar registros do OpenAlex</h2>
 
                 <form class="p-inclusao-form" action="tools/openalex_api_import.php" method="post"
-                    accept-charset="utf-8" enctype="multipart/form-data"
-                    title="Formulário de importação de registros do OpenAlex">
+                    accept-charset="utf-8" enctype="multipart/form-data" title="Envio de CSV">
                     <div class="input-group">
                         <textarea class="c-input" id="openalex_expression" rows="3" type="text"
                             placeholder="Colar API do OpenAlex" name="openalex_expression"></textarea>
@@ -144,6 +144,26 @@ if (isset($_POST['submit'])) {
                         <button class="c-btn" type="submit">Incluir</button>
                     </div>
                 </form>
+
+
+                <h2 class="t t-h3 ">Enviar CSV</h2>
+
+                <form class="p-inclusao-form" action="tools/csv_lattes.php" method="post" accept-charset="utf-8"
+                    enctype="multipart/form-data" title="Formulário de importação de registros do OpenAlex">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input class="c-input--sm" type="file" id="fileCSV" aria-describedby="Arquivo CSV"
+                                name="file">
+                            <label class="custom-file-label" for="fileCSV">Escolha o arquivo CSV</label>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Incluir</button>
+                    </div>
+                    <p>Baixar <a href="tools/modelo.csv">Modelo CSV</a></p>
+                </form>
+
+
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
                 <div class="alert alert-danger" role="alert">

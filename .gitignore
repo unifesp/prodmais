@@ -10,6 +10,7 @@ tools/lattes/curriculo.xml
 tools/lattes/zip.zip
 tools/reindex.sh
 data/
+tmp/
 backup/
 tools/data/
 _rascunhos/

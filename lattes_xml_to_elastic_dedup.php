@@ -3,9 +3,6 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 function get_curriculum($identificador)
 {
     try {
@@ -330,59 +327,72 @@ if (!isset($_GET['tag'])) {
 
 // Verifica se um arquivo foi enviado pelo formulário
 if (isset($_FILES['file'])) {
-    // Recebe o arquivo enviado pelo formulário
-    $arquivo = $_FILES['file'];
+    if ($_FILES['file']['name'] != "") {
+        // Recebe o arquivo enviado pelo formulário
+        $arquivo = $_FILES['file'];
+        // Verifica se o arquivo é válido
+        if ($arquivo['error'] == 0) {
+            // Obtém o nome e a extensão do arquivo
+            $nome = $arquivo['name'];
+            $extensao = pathinfo($nome, PATHINFO_EXTENSION);
 
-    // Verifica se o arquivo é válido
-    if ($arquivo['error'] == 0) {
-        // Obtém o nome e a extensão do arquivo
-        $nome = $arquivo['name'];
-        $extensao = pathinfo($nome, PATHINFO_EXTENSION);
+            // Verifica se o arquivo é zip ou xml
+            if ($extensao == 'zip') {
+                // Cria um objeto ZipArchive
+                $zip = new ZipArchive();
 
-        // Verifica se o arquivo é zip ou xml
-        if ($extensao == 'zip') {
-            // Cria um objeto ZipArchive
-            $zip = new ZipArchive();
+                // Abre o arquivo zip
+                if ($zip->open($arquivo['tmp_name']) === true) {
+                    // Extrai o conteúdo do zip para um diretório temporário
+                    $temp_dir = 'tmp/zip_' . uniqid();
+                    $zip->extractTo($temp_dir);
+                    $zip->close();
 
-            // Abre o arquivo zip
-            if ($zip->open($arquivo['tmp_name']) === true) {
-                // Extrai o conteúdo do zip para um diretório temporário
-                $temp_dir = 'tmp/zip_' . uniqid();
-                $zip->extractTo($temp_dir);
-                $zip->close();
-
-                // Procura pelo arquivo curriculo.xml no diretório temporário
-                $xml_file = $temp_dir . '/curriculo.xml';
-                if (file_exists($xml_file)) {
-                    echo "arquivo existe";
-                    // Lê o conteúdo do arquivo xml
-                    $file_xml_lattes = file_get_contents($xml_file);
+                    // Procura pelo arquivo curriculo.xml no diretório temporário
+                    $xml_file = $temp_dir . '/curriculo.xml';
+                    if (file_exists($xml_file)) {
+                        echo "arquivo existe";
+                        // Lê o conteúdo do arquivo xml
+                        $file_xml_lattes = file_get_contents($xml_file);
 
 
-                    // Remove o diretório temporário e seus arquivos
-                    array_map('unlink', glob($temp_dir . '/*'));
-                    rmdir($temp_dir);
+                        // Remove o diretório temporário e seus arquivos
+                        array_map('unlink', glob($temp_dir . '/*'));
+                        rmdir($temp_dir);
+                    } else {
+                        // Não encontrou o arquivo curriculo.xml no zip
+                        echo 'O arquivo zip não contém o arquivo curriculo.xml';
+                    }
                 } else {
-                    // Não encontrou o arquivo curriculo.xml no zip
-                    echo 'O arquivo zip não contém o arquivo curriculo.xml';
+                    // Não conseguiu abrir o arquivo zip
+                    echo 'O arquivo zip é inválido ou está corrompido';
                 }
+            } elseif ($extensao == 'xml') {
+                // Lê o conteúdo do arquivo xmlquery
+                $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
             } else {
-                // Não conseguiu abrir o arquivo zip
-                echo 'O arquivo zip é inválido ou está corrompido';
+                // O arquivo não é zip nem xml
+                echo 'O arquivo não é zip nem xml';
             }
-        } elseif ($extensao == 'xml') {
-            // Lê o conteúdo do arquivo xmlquery
-            $file_xml_lattes = file_get_contents($arquivo['tmp_name']);
         } else {
-            // O arquivo não é zip nem xml
-            echo 'O arquivo não é zip nem xml';
+            // O arquivo não foi enviado corretamente
+            echo 'Ocorreu um erro ao enviar o arquivo';
         }
-    } else {
-        // O arquivo não foi enviado corretamente
-        echo 'Ocorreu um erro ao enviar o arquivo';
+        $curriculo = simplexml_load_string($file_xml_lattes);
+    } elseif (isset($_REQUEST['lattes_id'])) {
+        $lattes_id = $_REQUEST['lattes_id'];
+        $zip = new ZipArchive();
+        $zip->open('data/' . $lattes_id . '.zip');
+        $temp_dir = 'tmp/zip_' . uniqid();
+        $zip->extractTo($temp_dir);
+        $zip->close();
+        // Procura pelo arquivo curriculo.xml no diretório temporário
+        $xml_file = $temp_dir . '/curriculo.xml';
+        $curriculo = simplexml_load_string(file_get_contents($xml_file));
+        // Remove o diretório temporário e seus arquivos
+        unlink($xml_file);
+        rmdir($temp_dir);
     }
-
-    $curriculo = simplexml_load_string($file_xml_lattes);
 } else {
     // Nenhum arquivo foi enviado pelo formulário
     echo 'Nenhum arquivo foi enviado';
