@@ -235,6 +235,7 @@
         !empty($r['_source']['isPartOf']['name']) ? $refName = $r['_source']['isPartOf']['name'] : $refName = '';
         !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
         isset($r['_source']['openalex']['cited_by_count']) ? $cited_by_count = strval($r['_source']['openalex']['cited_by_count']) : $cited_by_count = '';
+        isset($r['_source']['aurorasdg']) ? $aurorasdg = $r['_source']['aurorasdg'] : $aurorasdg = '';
 
         SList::IntelectualProduction(
           $type = $r['_source']['tipo'],
@@ -250,7 +251,8 @@
           $evento = '',
           $datePublished = $published,
           $id = '',
-          $cited_by_count
+          $cited_by_count,
+          $aurorasdg
         );
         unset($authors);
       }
