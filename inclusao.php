@@ -156,6 +156,25 @@ if (isset($_POST['submit'])) {
                     <p>Baixar <a href="tools/modelo.csv">Modelo CSV</a></p>
                 </form>
 
+                <h2 class="t t-h3 ">Classificador SDG a partir de um TSV, usando a API Aurora SDG</h2>
+
+                <form class="p-inclusao-form" action="tools/classificadorSDGAurora.php" method="post"
+                    accept-charset="utf-8" enctype="multipart/form-data" title="Classificador SDG">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input class="c-input--sm" type="file" id="fileCSV" aria-describedby="Arquivo CSV"
+                                name="file">
+                            <label class="custom-file-label" for="fileCSV">Escolha o arquivo CSV</label>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Incluir</button>
+                    </div>
+                    <p>Para utilizar esta funcionalidade, é necessário utilizar o modelo abaixo do arquivo CSV e colocar
+                        os arquivos zip baixados do Lattes na pasta /data</p>
+                    <p>Baixar <a href="tools/modelo_sdg.csv">Modelo TSV SDG</a></p>
+                </form>
+
 
                 <hr />
                 <h2 class="t t-h3">Excluir índices</h2>
