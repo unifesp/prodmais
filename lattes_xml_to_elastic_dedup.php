@@ -38,6 +38,8 @@ function comparaprod_doi($doi)
     $total = $cursor['hits']['total']['value'];
 
     if ($total >= 1) {
+        foreach ($cursor['hits']['hits'] as $r) {
+        }
         return $r;
     } else {
         return 'Não encontrado';
@@ -492,7 +494,11 @@ if (isset($result_get_curriculo["found"])) {
         }
         $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
 
-        $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
+        if (isset($result_get_curriculo["_source"]["instituicao"])) {
+            $instituicao_array[] = $result_get_curriculo["_source"]["instituicao"];
+        } else {
+            $instituicao_array = [];
+        }
         if (isset($_REQUEST['instituicao'])) {
             $instituicao_array[] = rtrim($_REQUEST['instituicao']);
         }
