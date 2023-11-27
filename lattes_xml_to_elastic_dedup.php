@@ -957,8 +957,10 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'})) {
                             if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'])) {
                                 $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
                             }
-                            $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
-                            $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
+                            if (isset($sha_projeto_array)) {
+                                $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
+                                $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
+                            }
                         }
                     }
                 }

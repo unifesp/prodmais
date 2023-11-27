@@ -278,21 +278,23 @@ class SList
     !empty($cited_by_count) ? $cited_by_countRendered = SList::cited_by_countRendered($cited_by_count) : $cited_by_countRendered = '';
     !empty($aurorasdg) ? $aurorasdg = $aurorasdg : $aurorasdg = '';
 
-    // (!empty($datePublished) && !empty($id)) ? $query = DadosInternos::queryProdmais($name, $datePublished, $id) : $query = '';
-
-    //echo "<pre>" . print_r($aurorasdg, true) . "</pre>";
-
-    foreach ($aurorasdg['predictions'] as $prediction) {
-      if ($prediction['prediction'] > 0.5) {
-        $sdg = $prediction['sdg']['name'];
-        $score = $prediction['prediction'];
-        $sdgRendered = '<p class="t t-light">SDG: ' . $sdg . ' - Probabilidade: ' . $score . '</p>';
-      } else {
-        if (empty($sdgRendered)) {
-          $sdgRendered = '';
+    if (!empty($aurorasdg['predictions'])) {
+      foreach ($aurorasdg['predictions'] as $prediction) {
+        if ($prediction['prediction'] > 0.5) {
+          $sdg = $prediction['sdg']['name'];
+          $score = $prediction['prediction'];
+          $sdgRendered = '<p class="t t-light">SDG: ' . $sdg . ' - Probabilidade: ' . $score . '</p>';
+        } else {
+          if (empty($sdgRendered)) {
+            $sdgRendered = '';
+          }
         }
       }
+    } else {
+      $sdgRendered = '';
     }
+
+
 
     echo ("
 			<li class='s-list-2'>
