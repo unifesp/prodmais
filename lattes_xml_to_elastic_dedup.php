@@ -53,11 +53,16 @@ function comparaprod_title($doc)
 
     $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
     $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
-    if (!is_null($doc["doc"]['author'][0]['person']['name'])) {
-        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
+    if (isset($doc["doc"]['author'][0]['person']['name'])) {
+        if (!is_null($doc["doc"]['author'][0]['person']['name'])) {
+            $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
+        } else {
+            $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
+        }
     } else {
         $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
     }
+
     if (!empty($doc['doc']['isPartOf']['name'])) {
         $query['query']['bool']['filter'][]["term"]["isPartOf.name.keyword"] = $doc['doc']['isPartOf']['name'];
     }
