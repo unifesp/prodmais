@@ -9,7 +9,7 @@ $file = "export_sdg_aurora.tsv";
 header('Content-type: text/tab-separated-values; charset=utf-8');
 header("Content-Disposition: attachment; filename=$file");
 
-$content[] = "título\tSDG\tProbabilidade";
+$content[] = "título\tODS\tProbabilidade";
 
 if (isset($_FILES['file'])) {
     //echo "<pre>" . print_r($_FILES['file'], true) . "</pre>";

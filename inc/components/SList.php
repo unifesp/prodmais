@@ -283,7 +283,7 @@ class SList
         if ($prediction['prediction'] > 0.5) {
           $sdg = $prediction['sdg']['name'];
           $score = $prediction['prediction'];
-          $sdgRendered = '<p class="t t-light">SDG: ' . $sdg . ' - Probabilidade: ' . $score . '</p>';
+          $sdgRendered = '<p class="t t-light">ODS: ' . $sdg . ' - Probabilidade: ' . $score . '</p>';
         } else {
           if (empty($sdgRendered)) {
             $sdgRendered = '';
