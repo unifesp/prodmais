@@ -13,7 +13,6 @@
 <head>
     <?php
     require 'inc/meta-header.php';
-    require 'inc/functions.php';
     ?>
     <title><?php echo $branch ?> - Inclusão</title>
 
