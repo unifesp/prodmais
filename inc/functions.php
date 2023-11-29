@@ -6,6 +6,15 @@
 include('config.php');
 include('components/Categories.php');
 
+/* Load Elasticsearch Client */
+//$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+
+use Elastic\Elasticsearch\ClientBuilder;
+
+$client = ClientBuilder::create()
+    ->setHosts(['localhost:9200'])
+    ->build();
+
 /* Connect to Elasticsearch - Index */
 try {
     //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
