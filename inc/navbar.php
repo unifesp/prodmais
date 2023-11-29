@@ -1,23 +1,23 @@
 <?php
-if (file_exists('../inc/config.php')) {
-    require '../inc/config.php';
-} elseif (file_exists('../../inc/config.php')) {
-    require '../../inc/config.php';
-} elseif (file_exists('inc/config.php')) {
-    require 'inc/config.php';
-} else {
-    die('No config file found');
-}
+// if (file_exists('../inc/config.php')) {
+//     require '../inc/config.php';
+// } elseif (file_exists('../../inc/config.php')) {
+//     require '../../inc/config.php';
+// } elseif (file_exists('inc/config.php')) {
+//     require 'inc/config.php';
+// } else {
+//     die('No config file found');
+// }
 
-if (file_exists('../inc/functions.php')) {
-    require '../inc/functions.php';
-} elseif (file_exists('../../inc/functions.php')) {
-    require '../../inc/functions.php';
-} elseif (file_exists('inc/functions.php')) {
-    require 'inc/functions.php';
-} else {
-    die('No config file found');
-}
+// if (file_exists('../inc/functions.php')) {
+//     require '../inc/functions.php';
+// } elseif (file_exists('../../inc/functions.php')) {
+//     require '../../inc/functions.php';
+// } elseif (file_exists('inc/functions.php')) {
+//     require 'inc/functions.php';
+// } else {
+//     die('No config file found');
+// }
 
 
 $limit = 500;

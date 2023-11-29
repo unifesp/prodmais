@@ -12,6 +12,8 @@
 
 <head>
     <?php
+    require 'inc/config.php';
+    require 'inc/functions.php';
     require 'inc/meta-header.php';
     ?>
     <title><?php echo $branch ?> - Inclusão</title>
@@ -20,7 +22,7 @@
 </head>
 
 <?php
-require 'inc/config.php';
+
 
 $username = $login_user;
 $password = $login_password;
