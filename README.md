@@ -38,6 +38,10 @@ O Prodmais é uma ferramenta que agrega informações sobre produções acadêmi
 - Alexsandro Cardoso Carvalho
 - Ricardo Ireno
 
+# Apoio
+
+O software Prodmais recebeu o Apoio do EDITAL N° 72/2023 – Projeto "Instituto Serrapilheira – Sou Ciência"
+
 # Licença livre
 
 \*\*
