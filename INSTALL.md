@@ -11,7 +11,46 @@ O primeiro passo é instalar o Elasticsearch:
     echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
     sudo apt-get update && sudo apt-get install elasticsearch
 
-Por padrão, o elasticseach não exige senha na instalação.
+Na versão 8 do Elasticsearch, ele vem com a segurança habilitada por padrão. É preciso anotar a senha gerada na instalação.
+
+Em ambientes de testes, é possível desabilitar a senha:
+
+    nano /etc/elasticsearch/elasticsearch.yml
+
+E alterar para false: xpack.security.enabled: false
+
+Em ambientes de produção, é necessário utizar a senha gerada na instalação e alterar o arquivo inc/functions.php
+
+    nano inc/functions.php
+
+Na linha 17, alterar de:
+
+    $client = ClientBuilder::create()
+        ->setHosts(['localhost:9200'])
+        ->build();
+
+Para:
+
+    $client = ClientBuilder::create()
+        ->setHosts(['https://localhost:9200'])
+        ->setBasicAuthentication('elastic','SENHA')
+        ->setCABundle('/var/www/prodmais/inc/http_ca.crt')
+        ->build();
+
+Caso queira testar se o Elasticseach está funcionando
+
+    export ELASTIC_PASSWORD="SENHA"
+    curl --cacert /etc/elasticsearch/certs/http_ca.crt -u elastic:$ELASTIC_PASSWORD https://localhost:9200
+
+Comandos para iniciar o Elasticsearch:
+
+    sudo systemctl start elasticsearch.service
+    sudo systemctl stop elasticsearch.service
+
+Comandos para iniciar o Elasticsearch ao inicializar o sistema:
+
+    sudo /bin/systemctl daemon-reload
+    sudo /bin/systemctl enable elasticsearch.service
 
 ### Instalação do PHP 8.2
 
