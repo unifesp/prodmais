@@ -21,12 +21,6 @@ $index_cv = "prodmaiscv";
 $index_ppg = "prodmaisppg";
 $index_projetos = "prodmaisprojetos";
 
-/* Load libraries for PHP composer */
-require(__DIR__ . '/../vendor/autoload.php');
-
-/* Load Elasticsearch Client */
-$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
-
 /* Login */
 $login_user = "admin";
 $login_password = "admin";

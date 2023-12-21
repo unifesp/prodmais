@@ -1,5 +1,8 @@
 <?php
 
+/* Load libraries for PHP composer */
+require(__DIR__ . '/../vendor/autoload.php');
+
 /**
  * Arquivo de classes e funções do ColetaProd
  */
