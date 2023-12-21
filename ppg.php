@@ -115,6 +115,7 @@ class PPG
 
 <head>
     <?php
+    require 'inc/meta-header.php';
     require 'inc/components/GraphBar.php';
     require 'inc/components/SList.php';
     require 'inc/components/Who.php';
