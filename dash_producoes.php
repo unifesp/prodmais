@@ -3,8 +3,10 @@
 
 <head>
     <?php
+    require 'inc/functions.php';
     require 'inc/config.php';
     require 'inc/meta-header.php';
+
     ?>
     <meta charset="utf-8" />
     <title>Produções</title>
@@ -25,9 +27,7 @@
             <div class="c-wrapper-inner">
                 <h2>Produções</h2>
                 <div class="md-container">
-                    <iframe
-                        src="https://unifesp.br/prodmais/kibana/app/dashboards#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?embed=true&_g=(refreshInterval:(pause:!t,value:10000),time:(from:now-15m,to:now))&_a=()"
-                        height="600" width="800"></iframe>
+                    <iframe src="https://unifesp.br/prodmais/kibana/app/dashboards#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?embed=true&_g=(refreshInterval:(pause:!t,value:10000),time:(from:now-15m,to:now))&_a=()" height="600" width="800"></iframe>
                 </div>
             </div>
 
