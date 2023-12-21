@@ -20,13 +20,13 @@
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Manual do Dashboard do Prodmais" />
     <script type="application/ld+json">
-    {
-        "@type": "WebPage",
-        "description": "Manual do Dashboard do Prodmais",
-        "url": "https://unifesp.br/prodmais/predash.php",
-        "headline": "Manual do Dashboard do Prodmais",
-        "@context": "https://schema.org"
-    }
+        {
+            "@type": "WebPage",
+            "description": "Manual do Dashboard do Prodmais",
+            "url": "https://unifesp.br/prodmais/predash.php",
+            "headline": "Manual do Dashboard do Prodmais",
+            "@context": "https://schema.org"
+        }
     </script>
     <!-- End Jekyll SEO tag -->
 
@@ -57,14 +57,12 @@
 
         <div class="dh d-hc u-my-20">
             <p>
-                <a class="c-btn"
-                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
+                <a class="c-btn" href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
                     Produção Acadêmica
                 </a>
             </p>
             <p>
-                <a class="c-btn"
-                    href="https://unifesp.br/kibana/app/kibana#/dashboard/568e12f0-618c-11ec-9863-4f7d48084ff8?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))">
+                <a class="c-btn" href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/1a485b50-9fe9-11ee-a0e5-9b601263f818?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
                     Perfil dos Pesquisadores
                 </a>
             </p>
