@@ -33,7 +33,7 @@ Por padrão, o elasticseach não exige senha na instalação.
 
     E adicionar ao apache conf:
 
-        <Directory /var/www/html/prodmais>
+        <Directory /var/www/html>
             Options Indexes FollowSymLinks
             AllowOverride All
             Require all granted
@@ -41,9 +41,9 @@ Por padrão, o elasticseach não exige senha na instalação.
 
 ### Clonagem do repositório do Prodmais
 
-Você pode clonar em qualquer pasta, mas é recomendável clonar na pasta pública do apache (ex. /var/www/html):
+Você pode clonar em qualquer pasta, mas é recomendável clonar na pasta pública do apache (ex. /var/www):
 
-    git clone https://github.com/unifesp/prodmais.git
+    git clone https://github.com/unifesp/prodmais.git html
 
 Na pasta do repositório, rodar:
 
@@ -62,10 +62,12 @@ Criar o diretório tmp
 
     mkdir tmp
     chown -R www-data:www-data tmp
+    mkdir data
+    chown -R www-data:www-data data
 
 Editar no arquivo config.php as variáveis: $branch, $branch_description, $url_base, $facebook_image (opcional) e $instituicao.
 
-Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usando o endereço htttp://localhost/NOMEDODIRETÓRIO
+Após editar o arquivo config.php, rodar ele pela primeira vez num browser, usando o endereço http://localhost/NOMEDODIRETÓRIO
 
 Ao rodar pela primeira vez, o sistema irá criar os índices no elasticsearch.
 
@@ -79,7 +81,7 @@ Copie o código do Google Analytics no arquivo inc/google_analytics.php
 
 ### Inclusão automática
 
-Parâmetros aceitos no import_lattes_to_elastic_dedup.php
+Enviar dados por POST no arquivo import_lattes_to_elastic_dedup.php. Parâmetros aceitos:
 
     tag
     unidade
