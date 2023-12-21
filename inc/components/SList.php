@@ -260,9 +260,7 @@ class SList
     $refVol,
     $refFascicle,
     $refPage,
-    $evento,
     $datePublished,
-    $id,
     $cited_by_count,
     $aurorasdg
   ) {
@@ -293,8 +291,6 @@ class SList
     } else {
       $sdgRendered = '';
     }
-
-
 
     echo ("
 			<li class='s-list-2'>
@@ -329,7 +325,7 @@ class SList
             $sdgRendered
           </p>
 
-				</div>
+        </div>
       </li>
     ");
   }
