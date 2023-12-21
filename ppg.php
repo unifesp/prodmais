@@ -115,8 +115,6 @@ class PPG
 
 <head>
     <?php
-    require 'inc/config.php';
-    require 'inc/meta-header.php';
     require 'inc/components/GraphBar.php';
     require 'inc/components/SList.php';
     require 'inc/components/Who.php';
@@ -253,8 +251,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                        <li>
-                            <?php
+                            <li>
+                                <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -266,7 +264,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                        </li>
+                            </li>
                         <?php } ?>
                     </ul>
 
