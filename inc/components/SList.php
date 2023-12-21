@@ -145,25 +145,6 @@ class SList
       </a>";
   }
 
-  // === Only for Slist::IntelectualProduction === //
-  static function fonteRendered($refName, $refVol, $refFascicle, $refPage)
-  {
-    if (empty($refName) && empty($refVol) && empty($refFascicle) && empty($refPage)) {
-      return "";
-    } else {
-      !empty($refName) ? $refName = $refName : '';
-      !empty($refVol) ? $refVol = ", v. $refVol" : '';
-      !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
-      !empty($refPage) ? $refPage = ", p. $refPage" : '';
-      return "
-        <p class='t t-light'>
-          Fonte: $refName $refVol $refFascicle $refPage
-        </p>";
-    }
-  }
-
-
-
 
   static function date($start, $end)
   {
@@ -272,9 +253,12 @@ class SList
     !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
-    $fonteRendered = SList::fonteRendered($refName, $refVol, $refFascicle, $refPage);
     !empty($cited_by_count) ? $cited_by_countRendered = SList::cited_by_countRendered($cited_by_count) : $cited_by_countRendered = '';
     !empty($aurorasdg) ? $aurorasdg = $aurorasdg : $aurorasdg = '';
+    !empty($refName) ? $refName = $refName : '';
+    !empty($refVol) ? $refVol = ", v. $refVol" : '';
+    !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
+    !empty($refPage) ? $refPage = ", p. $refPage" : '';
 
     if (!empty($aurorasdg['predictions'])) {
       foreach ($aurorasdg['predictions'] as $prediction) {
@@ -303,14 +287,16 @@ class SList
 					<p class='t t-b t-md'><i>$type</i></p>
 					<p class='t-gray'><b class='t-subItem'>Autores: </b> $authorsRendered </p>
 					
-					<div class='d-linewrap t-gray'>
+					<p class='d-linewrap t-gray'>
             $doiRendered
             $urlRendered
             $issnRendered
-					</div>
+					</p>
           $datePublished
 
-          $fonteRendered
+          <p class='t t-light'>
+          Fonte: $refName $refVol $refFascicle $refPage
+          </p>
           
           $cited_by_countRendered
 
