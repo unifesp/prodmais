@@ -170,14 +170,6 @@ class SList
     return $buf;
   }
 
-  static function cited_by_countRendered($cited_by_count)
-  {
-    return "
-      <p class='t t-light'>
-        Quantidade de citações obtidas no OpenAlex: $cited_by_count
-      </p>";
-  }
-
   static function genericItem(
     $type,
     $itemName,
@@ -253,7 +245,7 @@ class SList
     !empty($doiCleaned) ? $doiRendered = SList::doiRendered($doiCleaned) : $doiRendered = '';
     !empty($url) ? $urlRendered = SList::urlRendered($url) : $urlRendered = '';
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
-    !empty($cited_by_count) ? $cited_by_countRendered = SList::cited_by_countRendered($cited_by_count) : $cited_by_countRendered = '';
+    !empty($cited_by_count) ? $cited_by_count : $cited_by_count = 0;
     !empty($aurorasdg) ? $aurorasdg = $aurorasdg : $aurorasdg = '';
     !empty($refName) ? $refName = $refName : '';
     !empty($refVol) ? $refVol = ", v. $refVol" : '';
@@ -301,9 +293,12 @@ class SList
           <p class='t t-light'>
           Fonte: $refName $refVol $refFascicle $refPage
           </p>
-          
-          $cited_by_countRendered
 
+          ");
+    if ($cited_by_count > 0) {
+      echo "<p class='t t-light'>Quantidade de citações obtidas no OpenAlex: $cited_by_count</p>";
+    }
+    echo ("
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
           </p>
