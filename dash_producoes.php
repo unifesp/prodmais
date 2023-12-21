@@ -3,9 +3,9 @@
 
 <head>
     <?php
-    require 'inc/functions.php';
-    require 'inc/config.php';
-    require 'inc/meta-header.php';
+    // require 'inc/functions.php';
+    // require 'inc/config.php';
+    // require 'inc/meta-header.php';
 
     ?>
     <meta charset="utf-8" />
@@ -16,9 +16,9 @@
 
 </head>
 
-<body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
+<body data-theme="Prodmais" class="c-wrapper-body">
     <?php if (file_exists('inc/google_analytics.php')) {
-        include 'inc/google_analytics.php';
+        // include 'inc/google_analytics.php';
     } ?>
 
     <?php require 'inc/navbar.php'; ?>
