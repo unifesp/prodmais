@@ -38,9 +38,9 @@
     <?php require 'inc/navbar.php'; ?>
     <!-- /NAV -->
 
-    <main class="p-predash-main">
+    <br /><br /><br />
 
-        <h1 class="t t-alert"> O Dashboard está em manutenção! </h1>
+    <main class="p-predash-main">
 
         <h2 class="t t-center">Para entrar no dashboard:</h2><br>
 
