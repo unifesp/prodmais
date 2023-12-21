@@ -1781,7 +1781,7 @@ a {
 @media (min-width: 1299px) {
   .sitemenu-list {
     display: flex;
-    max-width: 800px;
+    max-width: 1200px;
   }
 }
 
