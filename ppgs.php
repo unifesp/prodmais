@@ -5,6 +5,7 @@
 
 
 require 'inc/config.php';
+require 'inc/functions.php';
 
 $limit = 500;
 $params = [];
@@ -82,9 +83,7 @@ class ListPPGs
 
 <head>
     <?php
-    require 'inc/config.php';
     require 'inc/meta-header.php';
-    require 'inc/functions.php';
     require 'inc/components/SList.php';
     require 'inc/components/TagCloud.php';
     require '_fakedata.php';
