@@ -259,6 +259,8 @@ class SList
     !empty($refVol) ? $refVol = ", v. $refVol" : '';
     !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
     !empty($refPage) ? $refPage = ", p. $refPage" : '';
+    !empty($datePublished) ? $datePublished = $datePublished : '';
+    $name_cleaned = htmlspecialchars($name, ENT_QUOTES);
 
     if (!empty($aurorasdg['predictions'])) {
       foreach ($aurorasdg['predictions'] as $prediction) {
@@ -292,7 +294,9 @@ class SList
             $urlRendered
             $issnRendered
 					</p>
+          <p class='mt-3'>
           $datePublished
+          </p>
 
           <p class='t t-light'>
           Fonte: $refName $refVol $refFascicle $refPage
@@ -302,11 +306,8 @@ class SList
 
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
-					</p>
-
-          <p class='mt-3'>
-            <div class='sdg-wheel' data-wheel-height='100' data-model='elsevier-sdg-multi' data-text='$name'></div>
-					</p>
+          </p>
+          <div class='sdg-wheel' data-wheel-height='100' data-model='elsevier-sdg-multi' data-text='$name_cleaned'></div>
           <p class='mt-3'>
             $sdgRendered
           </p>
