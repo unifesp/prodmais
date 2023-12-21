@@ -20,13 +20,13 @@
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Manual do Dashboard do Prodmais" />
     <script type="application/ld+json">
-        {
-            "@type": "WebPage",
-            "description": "Manual do Dashboard do Prodmais",
-            "url": "https://unifesp.br/prodmais/predash.php",
-            "headline": "Manual do Dashboard do Prodmais",
-            "@context": "https://schema.org"
-        }
+    {
+        "@type": "WebPage",
+        "description": "Manual do Dashboard do Prodmais",
+        "url": "https://unifesp.br/prodmais/predash.php",
+        "headline": "Manual do Dashboard do Prodmais",
+        "@context": "https://schema.org"
+    }
     </script>
     <!-- End Jekyll SEO tag -->
 
@@ -44,11 +44,11 @@
 
         <h2 class="t t-center">Para entrar no dashboard:</h2><br>
 
-        <p class="t t-gray t-center">Username: <i>dashboard</i></p><br>
+        <!-- <p class="t t-gray t-center">Username: <i>dashboard</i></p><br>
 
         <p class="t t-gray t-center">Password: <i>dashboard</i></p><br>
 
-        <img class="p-predash-img" src="inc/images/login.jpg" />
+        <img class="p-predash-img" src="inc/images/login.jpg" /> -->
 
         <p class="t t-center">O Prodmais utiliza a ferramenta Elastic Search para oferecer um poderoso dashboard com
             dados
@@ -57,12 +57,14 @@
 
         <div class="dh d-hc u-my-20">
             <p>
-                <a class="c-btn" href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
+                <a class="c-btn"
+                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
                     Produção Acadêmica
                 </a>
             </p>
             <p>
-                <a class="c-btn" href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/1a485b50-9fe9-11ee-a0e5-9b601263f818?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
+                <a class="c-btn"
+                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/1a485b50-9fe9-11ee-a0e5-9b601263f818?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
                     Perfil dos Pesquisadores
                 </a>
             </p>
