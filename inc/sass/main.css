@@ -990,7 +990,7 @@ h5 a {
   font-size: clamp(1rem, 2vw + 1rem, 1.1rem);
 }
 
-:root {
+/* :root {
   --c-mn-0: hsl(0, 0%, 0%);
   --c-mn-10: hsl(0, 0%, 10%);
   --c-mn-20: hsl(0, 0%, 20%);
@@ -1009,7 +1009,7 @@ h5 a {
   --c-fg-2: var(--c-mn-20);
   --c-fg-3: var(--c-mn-30);
   --c-paper: var(--c-mn-99);
-}
+} */
 
 :root,
 [data-theme=Prodmais] {
