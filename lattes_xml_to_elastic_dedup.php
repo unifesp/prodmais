@@ -388,6 +388,31 @@ if (isset($_FILES['file'])) {
         $curriculo = simplexml_load_string($file_xml_lattes);
     } elseif (isset($_REQUEST['lattes_id'])) {
         $lattes_id = $_REQUEST['lattes_id'];
+        if (file_exists('data/' . $lattes_id . '.xml')) {
+            $xml_file = 'data/' . $lattes_id . '.xml';
+            $curriculo = simplexml_load_string(file_get_contents($xml_file));
+        } elseif (file_exists('data/' . $lattes_id . '.zip')) {
+            $zip = new ZipArchive();
+            $zip->open('data/' . $lattes_id . '.zip');
+            $temp_dir = 'tmp/zip_' . uniqid();
+            $zip->extractTo($temp_dir);
+            $zip->close();
+            // Procura pelo arquivo curriculo.xml no diretório temporário
+            $xml_file = $temp_dir . '/curriculo.xml';
+            $curriculo = simplexml_load_string(file_get_contents($xml_file));
+            // Remove o diretório temporário e seus arquivos
+            unlink($xml_file);
+            rmdir($temp_dir);
+        } else {
+            echo "Arquivo não encontrado";
+        }
+    }
+} elseif (isset($_REQUEST['lattes_id'])) {
+    $lattes_id = $_REQUEST['lattes_id'];
+    if (file_exists('data/' . $lattes_id . '.xml')) {
+        $xml_file = 'data/' . $lattes_id . '.xml';
+        $curriculo = simplexml_load_string(file_get_contents($xml_file));
+    } elseif (file_exists('data/' . $lattes_id . '.zip')) {
         $zip = new ZipArchive();
         $zip->open('data/' . $lattes_id . '.zip');
         $temp_dir = 'tmp/zip_' . uniqid();
@@ -399,20 +424,9 @@ if (isset($_FILES['file'])) {
         // Remove o diretório temporário e seus arquivos
         unlink($xml_file);
         rmdir($temp_dir);
+    } else {
+        echo "Arquivo não encontrado";
     }
-} elseif (isset($_REQUEST['lattes_id'])) {
-    $lattes_id = $_REQUEST['lattes_id'];
-    $zip = new ZipArchive();
-    $zip->open('data/' . $lattes_id . '.zip');
-    $temp_dir = 'tmp/zip_' . uniqid();
-    $zip->extractTo($temp_dir);
-    $zip->close();
-    // Procura pelo arquivo curriculo.xml no diretório temporário
-    $xml_file = $temp_dir . '/curriculo.xml';
-    $curriculo = simplexml_load_string(file_get_contents($xml_file));
-    // Remove o diretório temporário e seus arquivos
-    unlink($xml_file);
-    rmdir($temp_dir);
 } else {
     // Nenhum arquivo foi enviado pelo formulário
     echo 'Nenhum arquivo foi enviado';

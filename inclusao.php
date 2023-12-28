@@ -157,6 +157,30 @@ if (isset($_POST['submit'])) {
                     <p>Baixar <a href="tools/modelo.csv">Modelo CSV</a></p>
                 </form>
 
+
+
+                <?php if ($instituicao == "UNIFESP" | $instituicao == "Sou Ciência") : ?>
+
+                <h2 class="t t-h3 ">Downlod de curriculo Lattes para a pasta /data utilizando um arquivo CSV</h2>
+
+                <form class="p-inclusao-form" action="tools/unifesp/download_lattes_by_id.php" method="post"
+                    accept-charset="utf-8" enctype="multipart/form-data" title="Baixar Lattes por uma Lista de IDs">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input class="c-input--sm" type="file" id="file" aria-describedby="Arquivo CSV" name="file">
+                            <label class="custom-file-label" for="file">Escolha o arquivo CSV</label>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Baixar Lattes</button>
+                    </div>
+                    <p>Para utilizar esta funcionalidade, é necessário enviar um arquivo CSV sem cabeçalho com um ID
+                        Lattes por linha e enter na última linha</p>
+                </form>
+
+                <?php endif ?>
+
+
                 <h2 class="t t-h3 ">Classificador ODS a partir de um TSV, usando a API Aurora SDG</h2>
 
                 <form class="p-inclusao-form" action="tools/classificadorSDGAurora.php" method="post"
