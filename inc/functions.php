@@ -3658,7 +3658,7 @@ class TrabalhosEmEventosLattes extends LattesWork
     }
 }
 
-function openalexAPI($doi, $client)
+function openalexAPICitations($doi, $client)
 {
 
     $query['query']['match']['doi_edited'] = "$doi";
@@ -3710,6 +3710,28 @@ function openalexAPI($doi, $client)
         // Close request to clear up some resources
         curl_close($curl);
     }
+}
+
+function openalexAPIGetDOI($doi)
+{
+    // Get cURL resource
+    $curl = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array(
+        $curl,
+        array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://api.openalex.org/works/https://doi.org/' . $doi . '',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
+        )
+    );
+    // Send the request & save response to $resp
+    $resp = curl_exec($curl);
+    $data = json_decode($resp, true);
+
+    return $data;
+    // Close request to clear up some resources
+    curl_close($curl);
 }
 
 function openalexAPIID($ID, $client)
@@ -3799,8 +3821,8 @@ function openalexGetDOI($title)
 
     // Setup headers - I used the same headers from Firefox version 2.0.0.6
     // below was split up because php.net said the line was too long. :/
-    $header[0] = "Accept: text/xml,application/xml,application/xhtml+xml,";
-    $header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+    //$header[0] = "Accept: text/xml,application/xml,application/xhtml+xml,";
+    //$header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
     $header[] = "Cache-Control: max-age=0";
     $header[] = "Connection: keep-alive";
     $header[] = "Keep-Alive: 300";
