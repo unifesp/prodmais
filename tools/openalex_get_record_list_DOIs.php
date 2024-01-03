@@ -20,28 +20,35 @@ $params["body"] = $query;
 $cursorTotal = $client->count($params);
 $total = $cursorTotal["count"];
 
-$params["size"] = $_GET["size"];
+$params["size"] = 30;
 
 $cursor = $client->search($params);
 
 echo "Resultado: $total<br/><br/>";
 echo "<a href='apis.php'>Retornar para a página de APIs</a><br/>";
 
-foreach ($cursor["hits"]["hits"] as $r) {
-    // //print("<pre>".print_r($r, true)."</pre>");
-    // //print("<pre>".print_r($r["_source"]["doi"], true)."</pre>");
-    $openalex_result = openalexAPIGetDOIFullCURL($r["_source"]["doi"]);
-    unset($openalex_result['abstract_inverted_index']);
 
-    if (empty($openalex_result)) {
-        $body["doc"]["openalex"]['empty'] = true;
-    } else {
-        $body["doc"]["openalex"] = $openalex_result;
-    }
-    if (isset($openalex_result['referenced_works'])) {
+$listofdois = [];
+foreach ($cursor["hits"]["hits"] as $r) {
+    $listofdois[] =  'https://doi.org/' . $r["_source"]["doi"];
+    $ids[$r["_source"]["doi"]] = $r["_id"];
+}
+$complete_list_dois = implode('|', $listofdois);
+
+print("<pre>" . print_r($ids, true) . "</pre>");
+
+$openalex_result = openalexAPIGetListOfDOIs($complete_list_dois);
+
+foreach ($openalex_result["results"] as $result) {
+    unset($result['abstract_inverted_index']);
+    //print("<pre>" . print_r($result, true) . "</pre>");
+    $doi = str_replace('https://doi.org/', '', $result["doi"]);
+    $body["doc"]["openalex"] = $result;
+
+    if (isset($result['referenced_works'])) {
         $body["doc"]["openalex_referenced_works"] = array();
         $i = 0;
-        foreach ($openalex_result['referenced_works'] as $referenced_work) {
+        foreach ($result['referenced_works'] as $referenced_work) {
             $openalex_result_referenced = openalexAPIID(str_replace("https://openalex.org/", "", $referenced_work), $client);
             //var_dump($openalex_result_referenced);
             //print("<pre>".print_r($openalex_result_referenced, true)."</pre>");
@@ -54,9 +61,10 @@ foreach ($cursor["hits"]["hits"] as $r) {
         }
     }
     $body["doc_as_upsert"] = true;
-    //print("<pre>".print_r($body, true)."</pre>");
-    $upsert_openalex = Elasticsearch::update($r["_id"], $body);
+    //print("<pre>" . print_r($body, true) . "</pre>");
+    $upsert_openalex = Elasticsearch::update($ids[$doi], $body);
     //print("<pre>" . print_r($upsert_openalex, true) . "</pre>");
     ob_flush();
     flush();
 }
+unset($listofdois);

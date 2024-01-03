@@ -3734,6 +3734,80 @@ function openalexAPIGetDOI($doi)
     curl_close($curl);
 }
 
+function openalexAPIGetListOfDOIs($listofdois)
+{
+    // Get cURL resource
+    $curl = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array(
+        $curl,
+        array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://api.openalex.org/works?filter=doi:' . $listofdois . '',
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
+        )
+    );
+    // Send the request & save response to $resp
+    $resp = curl_exec($curl);
+    $data = json_decode($resp, true);
+    return $data;
+    // Close request to clear up some resources
+    curl_close($curl);
+}
+
+function openalexAPIGetDOIFullCURL($doi)
+{
+    // Set API endpoint URL
+    $url = 'https://api.openalex.org/works/https://doi.org/';
+
+    // Set search query
+    $search_query = $doi;
+
+    // Setup headers - I used the same headers from Firefox version 2.0.0.6
+    // below was split up because php.net said the line was too long. :/
+    //$header[0] = "Accept: text/xml,application/xml,application/xhtml+xml,";
+    //$header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+    $header[] = "Cache-Control: max-age=0";
+    $header[] = "Connection: keep-alive";
+    $header[] = "Keep-Alive: 300";
+    $header[] = "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+    $header[] = "Accept-Language: en-us,en;q=0.5";
+    // browsers keep this blank. 
+
+    $browsers = array("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092510 Ubuntu/8.04 (hardy) Firefox/3.0.3", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1) Gecko/20060918 Firefox/2.0", "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.0.04506)");
+    $choice2 = array_rand($browsers);
+    $browser = $browsers[$choice2];
+
+    $referers = array("google.com", "yahoo.com", "msn.com", "ask.com", "live.com");
+    $choice = array_rand($referers);
+    $referer = "http://" . $referers[$choice] . "";
+
+    // Initialize cURL session
+    $ch = curl_init();
+
+    // Set cURL options
+    curl_setopt($ch, CURLOPT_USERAGENT, $browser);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_REFERER, $referer);
+    curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+    curl_setopt($ch, CURLOPT_URL, $url . $search_query);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    // Execute cURL request and get response
+    $response = curl_exec($ch);
+
+    // Check for errors
+    if (curl_errno($ch)) {
+        echo 'Error: ' . curl_error($ch);
+    }
+
+    // Close cURL session
+    curl_close($ch);
+
+    $data = json_decode($response, true);
+    return $data;
+}
+
 function openalexAPIID($ID, $client)
 {
 
