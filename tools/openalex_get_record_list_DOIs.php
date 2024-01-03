@@ -20,7 +20,7 @@ $params["body"] = $query;
 $cursorTotal = $client->count($params);
 $total = $cursorTotal["count"];
 
-$params["size"] = 30;
+$params["size"] = 10;
 
 $cursor = $client->search($params);
 

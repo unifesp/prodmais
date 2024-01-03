@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
 
                 <h2 class="t t-h3">Enriquecimento de registros com OpenAlex</h2>
                 <ul>
-                    <li><a href="openalex_get_record_list_DOIs.php">Coletar 30 registros no Openalex com DOI (É
+                    <li><a href="openalex_get_record_list_DOIs.php">Coletar 10 registros no Openalex com DOI (É
                             necessário repetir este procedimento até zerar a quantidade de registros)</a></li>
                     <li><a href="openalex_get_record_with_citations.php?size=10">Coletar 10 registros no Openalex com
                             DOI e coletar as citações (É
