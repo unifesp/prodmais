@@ -15,9 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="<?php echo $url_base; ?>/inc/images/favicon-64x.png" type="image/x-icon">
     <link rel="stylesheet" href="../inc/sass/main.css" />
-
     <?php
     require '../inc/config.php';
     require '../inc/functions.php';
@@ -28,8 +26,9 @@
     if (isset($_POST['submit'])) {
         if ($_POST['username'] == $username && $_POST['password'] == $password) {
     ?>
-    <title><?php echo $branch ?> - Status de APIs</title>
+    <link rel="shortcut icon" href="<?php echo $url_base; ?>/inc/images/favicon-64x.png" type="image/x-icon">
 
+    <title><?php echo $branch ?> - Status de APIs</title>
 
 </head>
 
