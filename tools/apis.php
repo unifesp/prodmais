@@ -10,80 +10,82 @@
 </style>
 
 
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?php echo $url_base; ?>/inc/images/favicon-64x.png" type="image/x-icon">
     <link rel="stylesheet" href="../inc/sass/main.css" />
+
+    <?php
+    require '../inc/config.php';
+    require '../inc/functions.php';
+
+    $username = $login_user;
+    $password = $login_password;
+
+    if (isset($_POST['submit'])) {
+        if ($_POST['username'] == $username && $_POST['password'] == $password) {
+    ?>
     <title><?php echo $branch ?> - Status de APIs</title>
 
 
 </head>
 
 <?php
-require '../inc/config.php';
-require '../inc/functions.php';
 
-$username = $login_user;
-$password = $login_password;
+            // Get status of APIs
 
-if (isset($_POST['submit'])) {
-    if ($_POST['username'] == $username && $_POST['password'] == $password) {
+            // Total records in database
+
+            $params = [];
+            $params["index"] = $index;
+            //$params["body"] = $query;
+            $cursorTotal = $client->count($params);
+            $total_records = $cursorTotal["count"];
+
+
+            // Total records with DOI
+
+            $query["query"]["exists"]["field"] = "doi.keyword";
+            $params["body"] = $query;
+            $cursorTotalDOI = $client->count($params);
+            $total_records_with_DOI = $cursorTotalDOI["count"];
+
+            // Total records with OpenAlex
+
+            $query["query"]["exists"]["field"] = "openalex";
+            $params["body"] = $query;
+            $cursorTotalOpenAlex = $client->count($params);
+            $total_records_with_OpenAlex = $cursorTotalOpenAlex["count"];
+
+            // Total records with DOI without OpenAlex
+
+            $paramsDOIWithoutOpenAlex = [];
+            $paramsDOIWithoutOpenAlex["index"] = $index;
+            $queryDOIWithoutOpenAlex["query"]["query_string"]["query"] = '_exists_:doi doi:1* -_exists_:openalex';
+            $paramsDOIWithoutOpenAlex["body"] = $queryDOIWithoutOpenAlex;
+            $cursorTotalDOIWithoutOpenAlex = $client->count($paramsDOIWithoutOpenAlex);
+            $total_records_with_DOI_without_OpenAlex = $cursorTotalDOIWithoutOpenAlex["count"];
+
+            // Total records without DOI with OpenAlex
+
+            $paramsOpenAlexWithoutDOI = [];
+            $paramsOpenAlexWithoutDOI["index"] = $index;
+            $queryOpenAlexWithoutDOI["query"]["query_string"]["query"] = '-_exists_:doi -_exists_:openalex_doi';
+            $paramsOpenAlexWithoutDOI["body"] = $queryOpenAlexWithoutDOI;
+            $cursorTotalOpenAlexWithoutDOI = $client->count($paramsOpenAlexWithoutDOI);
+            $total_records_with_OpenAlex_without_DOI = $cursorTotalOpenAlexWithoutDOI["count"];
+
+            // Total records with Aurora SDG
+
+            $query["query"]["exists"]["field"] = "aurorasdg";
+            $params["body"] = $query;
+            $cursorTotalAuroraSDG = $client->count($params);
+            $total_records_with_AuroraSDG = $cursorTotalAuroraSDG["count"];
+
 ?>
-
-<?php
-
-        // Get status of APIs
-
-        // Total records in database
-
-        $params = [];
-        $params["index"] = $index;
-        //$params["body"] = $query;
-        $cursorTotal = $client->count($params);
-        $total_records = $cursorTotal["count"];
-
-
-        // Total records with DOI
-
-        $query["query"]["exists"]["field"] = "doi.keyword";
-        $params["body"] = $query;
-        $cursorTotalDOI = $client->count($params);
-        $total_records_with_DOI = $cursorTotalDOI["count"];
-
-        // Total records with OpenAlex
-
-        $query["query"]["exists"]["field"] = "openalex";
-        $params["body"] = $query;
-        $cursorTotalOpenAlex = $client->count($params);
-        $total_records_with_OpenAlex = $cursorTotalOpenAlex["count"];
-
-        // Total records with DOI without OpenAlex
-
-        $paramsDOIWithoutOpenAlex = [];
-        $paramsDOIWithoutOpenAlex["index"] = $index;
-        $queryDOIWithoutOpenAlex["query"]["query_string"]["query"] = '_exists_:doi doi:1* -_exists_:openalex';
-        $paramsDOIWithoutOpenAlex["body"] = $queryDOIWithoutOpenAlex;
-        $cursorTotalDOIWithoutOpenAlex = $client->count($paramsDOIWithoutOpenAlex);
-        $total_records_with_DOI_without_OpenAlex = $cursorTotalDOIWithoutOpenAlex["count"];
-
-        // Total records without DOI with OpenAlex
-
-        $paramsOpenAlexWithoutDOI = [];
-        $paramsOpenAlexWithoutDOI["index"] = $index;
-        $queryOpenAlexWithoutDOI["query"]["query_string"]["query"] = '-_exists_:doi -_exists_:openalex_doi';
-        $paramsOpenAlexWithoutDOI["body"] = $queryOpenAlexWithoutDOI;
-        $cursorTotalOpenAlexWithoutDOI = $client->count($paramsOpenAlexWithoutDOI);
-        $total_records_with_OpenAlex_without_DOI = $cursorTotalOpenAlexWithoutDOI["count"];
-
-        // Total records with Aurora SDG
-
-        $query["query"]["exists"]["field"] = "aurorasdg";
-        $params["body"] = $query;
-        $cursorTotalAuroraSDG = $client->count($params);
-        $total_records_with_AuroraSDG = $cursorTotalAuroraSDG["count"];
-
-        ?>
 
 <body class="c-wrapper-body">
     <main class="c-wrapper-container">
@@ -148,10 +150,10 @@ if (isset($_POST['submit'])) {
 
 
 <?php
+        } else {
+            echo "Usuário não encontrado";
+        }
     } else {
-        echo "Usuário não encontrado";
-    }
-} else {
 ?>
 
 <body>
@@ -165,5 +167,5 @@ if (isset($_POST['submit'])) {
     </div>
 </body>
 <?php
-}
+    }
 ?>
