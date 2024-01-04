@@ -10,6 +10,8 @@ error_reporting(E_ALL);
 
 /* Endereço do server, sem http:// */
 $hosts = ['localhost'];
+//$elasticsearch_user = "elastic";
+//$elasticsearch_password = "";
 
 /* Endereço base */
 $url_base = "http://localhost/prodmais";

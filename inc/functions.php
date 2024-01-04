@@ -14,9 +14,20 @@ include('components/Categories.php');
 
 use Elastic\Elasticsearch\ClientBuilder;
 
-$client = ClientBuilder::create()
-    ->setHosts(['localhost:9200'])
-    ->build();
+if (isset($elasticsearch_user)) {
+
+    $client = ClientBuilder::create()
+        ->setHosts($hosts)
+        ->setBasicAuthentication($elasticsearch_user, $elasticsearch_password)
+        ->setCABundle('/var/www/prodmais/inc/http_ca.crt')
+        ->build();
+} else {
+    $client = ClientBuilder::create()
+        ->setHosts($hosts)
+        ->build();
+}
+
+
 
 /* Connect to Elasticsearch - Index */
 try {
