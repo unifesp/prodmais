@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 // ============== CONFIGURAÇÕES ============== //
 
 /* Endereço do server, sem http:// */
-$hosts = ['localhost'];
+$hosts = ['localhost:9200'];
 //$elasticsearch_user = "elastic";
 //$elasticsearch_password = "";
 
@@ -31,8 +31,8 @@ $login_password = "admin";
 // ============== CUSTOMIZAÇÃO ============== //
 
 // Definir Instituição
-$instituicao = "Universidade Federal de São Paulo";
-$branch = "Prodmais";
+$instituicao = "Instituição";
+$branch = "Prodmais Instituição";
 $branch_description = "Descrição";
 $facebook_image = "";
 $slogan = 'Slogan';
