@@ -173,7 +173,9 @@ if (!empty($_REQUEST["lattesID"])) {
 
                         <!-- <div class="u-mb-20  "></div> -->
                         <?php if (!empty($profile["instituicao"][0])) : ?>
-                        <h3 class="t t-prof"><?php echo $profile["instituicao"][0] ?></h3>
+                        <?php foreach ($profile["ppg_nome"] as $key_instituicao => $instituicao) : ?>
+                        <h3 class="t t-prof"><?php echo $instituicao ?></h3>
+                        <?php endforeach; ?>
                         <?php else : ?>
                         <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
                         <?php endif; ?>
