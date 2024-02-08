@@ -165,6 +165,29 @@ if (isset($_POST['submit'])) {
 
                 <?php endif ?>
 
+                <?php if ($instituicao == "UNIFESP" | $instituicao == "Sou Ciência") : ?>
+
+                <h2 class="t t-h3 ">Enviar arquivo CSV para popular URL externa</h2>
+
+                <form class="p-inclusao-form" action="tools/unifesp/csv_externo.php" method="post"
+                    accept-charset="utf-8" enctype="multipart/form-data"
+                    title="Enviar arquivo CSV para popular URL externa">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input class="c-input" type="file" id="file" aria-describedby="Arquivo CSV" name="file">
+                            <label class="custom-file-label" for="file">Escolha o arquivo CSV</label>
+                        </div>
+                    </div>
+                    <input class="c-input--sm" type="text" placeholder="URL externa" name="url">
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Popular URL externa</button>
+                    </div>
+                    <p>Para utilizar esta funcionalidade, é necessário enviar um arquivo CSV sem cabeçalho com um ID
+                        Lattes por linha e enter na última linha</p>
+                </form>
+
+                <?php endif ?>
+
 
                 <h2 class="t t-h3 ">Classificador ODS a partir de um TSV, usando a API Aurora SDG</h2>
 
