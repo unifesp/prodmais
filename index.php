@@ -34,6 +34,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
 <head>
     <script src="inc/js/axios.min.js"></script>
+    <script src="/prodmais/inc/js/axios.min.js"></script>
     <?php
     require_once 'inc/config.php';
     require_once 'inc/meta-header.php';
