@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="<?php echo $url_base; ?>/inc/images/favicon-64x.png" type="image/x-icon">
 <link rel="stylesheet" href="inc/sass/main.css" />
-<link rel="stylesheet" href="/inc/sass/main.css" />
+<link rel="stylesheet" href="/prodmais/inc/sass/main.css" />
 
 <?php if (file_exists('inc/js/vue.js')) : ?>
 <!-- Development -->
