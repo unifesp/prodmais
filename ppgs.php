@@ -97,9 +97,13 @@ class ListPPGs
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
-    <?php if (file_exists('inc/google_analytics.php')) {
+    <?php
+    if (file_exists('inc/google_analytics.php')) {
         include 'inc/google_analytics.php';
-    } ?>
+    } elseif (file_exists('../inc/google_analytics.php')) {
+        include '../inc/google_analytics.php';
+    }
+    ?>
 
     <?php require 'inc/navbar.php'; ?>
 

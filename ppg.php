@@ -132,9 +132,13 @@ class PPG
 </head>
 
 <body data-theme="<?php echo $theme; ?>" class="c-wrapper-body">
-    <?php if (file_exists('inc/google_analytics.php')) {
+    <?php
+    if (file_exists('inc/google_analytics.php')) {
         include 'inc/google_analytics.php';
-    } ?>
+    } elseif (file_exists('../inc/google_analytics.php')) {
+        include '../inc/google_analytics.php';
+    }
+    ?>
 
     <?php require 'inc/navbar.php'; ?>
     <main class="c-wrapper-container">
@@ -252,8 +256,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                            <li>
-                                <?php
+                        <li>
+                            <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -265,7 +269,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                            </li>
+                        </li>
                         <?php } ?>
                     </ul>
 
