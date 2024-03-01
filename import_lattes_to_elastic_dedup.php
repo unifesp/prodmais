@@ -387,8 +387,8 @@ if (isset($_REQUEST['tag'])) {
 } else {
     $doc_curriculo_array["doc"]["tag"] = "";
 }
-$doc_curriculo_array["doc"]["unidade"] = explode("|", $_REQUEST['unidade']);
-$doc_curriculo_array["doc"]["departamento"] = explode("|", $_REQUEST['departamento']);
+$doc_curriculo_array["doc"]["unidade"] = explode(',', '' . $_REQUEST['unidade']);
+$doc_curriculo_array["doc"]["departamento"] = explode(',', '' . $_REQUEST['departamento']);
 if (isset($_REQUEST['numfuncional'])) {
     $doc_curriculo_array["doc"]["numfuncional"] = $_REQUEST['numfuncional'];
 }
@@ -887,7 +887,7 @@ if (isset($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'})) {
         foreach ($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'}->{'ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO'} as $orientacao) {
             $orientacao = get_object_vars($orientacao);
             $dadosBasicosDaOrientacao = get_object_vars($orientacao["DADOS-BASICOS-DA-ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO"]);
-            if ($orientacao["DETALHAMENTO-DA-ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO"] != NULL) {
+            if ($orientacao["DETALHAMENTO-DA-ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO"]) {
                 $detalhamentoDaOrientacao = get_object_vars($orientacao["DETALHAMENTO-DA-ORIENTACAO-EM-ANDAMENTO-DE-MESTRADO"]);
                 $doc_curriculo_array["doc"]["orientacoes"][$i_orientacao]["natureza"] = $dadosBasicosDaOrientacao['@attributes']["NATUREZA"];
                 $doc_curriculo_array["doc"]["orientacoes"][$i_orientacao]["titulo"] = $dadosBasicosDaOrientacao['@attributes']["TITULO-DO-TRABALHO"];
@@ -993,10 +993,8 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'}->{'ORIENTACOES-CONCLUIDAS'})) {
 $doc_curriculo_array["doc"]["lattesID"] = $identificador;
 $doc_curriculo_array["doc"]["dataDeColeta"] = date('Y-m-d');
 $doc_curriculo_array["doc_as_upsert"] = true;
-var_dump($doc_curriculo_array);
 
 $resultado_curriculo = Elasticsearch::update($identificador, $doc_curriculo_array, $index_cv);
-var_dump($resultado_curriculo);
 
 //Parser de Trabalhos-em-Eventos
 
