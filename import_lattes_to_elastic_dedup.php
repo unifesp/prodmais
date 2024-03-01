@@ -19,6 +19,7 @@ function get_curriculum($identificador)
 
         return $response;
     } catch (\Exception $e) {
+        echo "Registro anterior não encontrado na base";
         echo $e->getMessage();
     }
 }
