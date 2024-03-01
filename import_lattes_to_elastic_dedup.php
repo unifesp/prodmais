@@ -936,7 +936,7 @@ if (isset($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'})) {
     if (isset($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'}->{'ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO'})) {
         foreach ($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'}->{'ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO'} as $orientacao) {
             $orientacao = get_object_vars($orientacao);
-            if (isset()) {
+            if (isset($orientacao["DETALHAMENTO-DA-ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO"])) {
                 $dadosBasicosDaOrientacao = get_object_vars($orientacao["DADOS-BASICOS-DA-ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO"]);
                 $detalhamentoDaOrientacao = get_object_vars($orientacao["DETALHAMENTO-DA-ORIENTACAO-EM-ANDAMENTO-DE-DOUTORADO"]);
                 $doc_curriculo_array["doc"]["orientacoes"][$i_orientacao]["natureza"] = $dadosBasicosDaOrientacao['@attributes']["NATUREZA"];
