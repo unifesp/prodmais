@@ -392,8 +392,6 @@ if (is_array($result_get_curriculo)) {
     }
 };
 
-
-
 $doc_curriculo_array["doc"]["source"] = "Base Lattes";
 $doc_curriculo_array["doc"]["type"] = "Curriculum";
 if (isset($_REQUEST['tag'])) {
@@ -401,8 +399,12 @@ if (isset($_REQUEST['tag'])) {
 } else {
     $doc_curriculo_array["doc"]["tag"] = "";
 }
-$doc_curriculo_array["doc"]["unidade"] = explode(',', '' . $_REQUEST['unidade']);
-$doc_curriculo_array["doc"]["departamento"] = explode(',', '' . $_REQUEST['departamento']);
+if (isset($_REQUEST['unidade'])) {
+    $doc_curriculo_array["doc"]["unidade"] = explode(',', '' . $_REQUEST['unidade']);
+}
+if (isset($_REQUEST['departamento'])) {
+    $doc_curriculo_array["doc"]["departamento"] = explode(',', '' . $_REQUEST['departamento']);
+}
 if (isset($_REQUEST['numfuncional'])) {
     $doc_curriculo_array["doc"]["numfuncional"] = $_REQUEST['numfuncional'];
 }
