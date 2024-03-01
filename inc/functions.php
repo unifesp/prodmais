@@ -2145,6 +2145,13 @@ class Elasticsearch
                                 'filter' => 'lowercase'
                             ]
                         ]
+                    ],
+                    'index' => [
+                        'mapping' => [
+                            'total_fields' => [
+                                'limit' => 1500
+                            ]
+                        ]
                     ]
                 ]
             ]
