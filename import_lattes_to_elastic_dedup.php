@@ -336,7 +336,13 @@ if (!isset($_GET['tag'])) {
 }
 
 if (isset($_REQUEST['lattesID'])) {
+
+
     $file = file_get_contents('http://200.133.208.25/api/proxy/' . $_REQUEST['lattesID'] . '');
+    if ($file === false) {
+        echo "Erro ao baixar o XML do Lattes";
+        exit;
+    }
     $curriculo = simplexml_load_string($file);
 }
 
