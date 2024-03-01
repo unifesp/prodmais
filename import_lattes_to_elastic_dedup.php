@@ -57,8 +57,11 @@ function comparaprod_title($doc)
 
     $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
     $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
-    $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
-
+    if (isset($doc["doc"]['author'][0])) {
+        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
+    } else {
+        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . strip_tags($doc["doc"]["name"]) . '"^5)';
+    }
     if (!empty($doc['doc']['isPartOf']['name'])) {
         $query['query']['bool']['filter'][]["term"]["isPartOf.name.keyword"] = $doc['doc']['isPartOf']['name'];
     }
@@ -832,11 +835,13 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'})) {
                             $doc_projetos['doc']['NOME-INSTITUICAO'] = $value['@attributes']['NOME-INSTITUICAO'];
                             $doc_projetos['doc']['DADOS-DO-PROJETO'] = $participacao_projeto['PROJETO-DE-PESQUISA'];
                             $doc_projetos["doc_as_upsert"] = true;
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
-                            $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
-                            $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
-                            $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
+                            if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes'])) {
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
+                                $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
+                                $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');
+                                $resultado_projeto = Elasticsearch::update($sha256_projeto, $doc_projetos, $index_projetos);
+                            }
                         }
                     }
                 }
