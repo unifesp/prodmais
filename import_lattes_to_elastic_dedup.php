@@ -3,329 +3,6 @@
 require 'inc/config.php';
 require 'inc/functions.php';
 
-function get_curriculum($identificador)
-{
-    try {
-        global $index_cv;
-        global $client;
-
-        $params = [
-            'index' => $index_cv,
-            'id'    => $identificador
-        ];
-
-        // Get doc at /my_index/_doc/my_id
-        $response = $client->get($params);
-
-        return $response;
-    } catch (\Exception $e) {
-        echo "Registro anterior não encontrado na base<br/>";
-        echo $e->getMessage();
-    }
-}
-
-function comparaprod_doi($doi)
-{
-    global $index;
-    global $type;
-    global $client;
-    $query['query']['query_string']['query'] = "doi:\"$doi\"";
-    $params = [];
-    $params['index'] = $index;
-    $params['type'] = $type;
-    $params['size'] = 100;
-    $params['body'] = $query;
-    $cursor = $client->search($params);
-    $total = $cursor['hits']['total']['value'];
-    // echo 'Resultado total com DOI: '.$total.'';
-    foreach ($cursor['hits']['hits'] as $r) {
-        // echo '<br/>';
-        // echo ''.$r['_id'].' - '.$r['_source']['name'].' - '.$r['_source']['datePublished'].' - '.$r['_source']['tipo'].'';
-        // echo '<br/>';
-    }
-
-    if ($total >= 1) {
-        return $r;
-    } else {
-        return 'Não encontrado';
-    }
-}
-
-function comparaprod_title($doc)
-{
-    global $index;
-    global $client;
-
-    $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
-    $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
-    if (isset($doc["doc"]['author'][0])) {
-        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
-    } else {
-        $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . strip_tags($doc["doc"]["name"]) . '"^5)';
-    }
-    if (!empty($doc['doc']['isPartOf']['name'])) {
-        $query['query']['bool']['filter'][]["term"]["isPartOf.name.keyword"] = $doc['doc']['isPartOf']['name'];
-    }
-    if (!empty($doc['doc']['publisher']['organization']['name'])) {
-        $query['query']['bool']['filter'][]["term"]["publisher.organization.name.keyword"] = $doc['doc']['publisher']['organization']['name'];
-    }
-    if (!empty($doc['doc']['isbn'])) {
-        $query['query']['bool']['filter'][]["term"]["isbn.keyword"] = $doc['doc']['isbn'];
-    }
-
-    $params = [];
-    $params['index'] = $index;
-    $params['size'] = 10;
-    $params['body'] = $query;
-    $cursor = $client->search($params);
-    $total = $cursor['hits']['total']['value'];
-    // echo 'Resultado total com Titulo: '.$total.'';
-
-    foreach ($cursor['hits']['hits'] as $r) {
-        // echo '<br/>';
-        // echo 'Score: '.$r['_score'].' - '.$r['_id'].' - '.$r['_source']['name'].' - '.$r['_source']['datePublished'].' - '.$r['_source']['tipo'].'';
-        // echo '<br/>';
-    }
-
-    if ($total >= 1) {
-        return $r;
-    } else {
-        return 'Não encontrado';
-    }
-}
-
-function processaAutoresLattes($autores_array)
-{
-    $i = 0;
-    if (is_array($autores_array)) {
-        foreach ($autores_array as $autor) {
-            $autor = get_object_vars($autor);
-            $array_result['doc']['author'][$i]['person']['name'] = $autor['@attributes']['NOME-COMPLETO-DO-AUTOR'];
-            $array_result['doc']['author'][$i]['nomeParaCitacao'] = $autor['@attributes']['NOME-PARA-CITACAO'];
-            $array_result['doc']['author'][$i]['ordemDeAutoria'] = $autor['@attributes']['ORDEM-DE-AUTORIA'];
-            if (isset($autor['@attributes']['NRO-ID-CNPQ'])) {
-                $array_result['doc']['author'][$i]['nroIdCnpq'] = $autor['@attributes']['NRO-ID-CNPQ'];
-            }
-
-            $i++;
-        }
-    } else {
-        $autor = get_object_vars($autores_array);
-        $array_result['doc']['author'][$i]['person']['name'] = $autor['@attributes']['NOME-COMPLETO-DO-AUTOR'];
-        $array_result['doc']['author'][$i]['nomeParaCitacao'] = $autor['@attributes']['NOME-PARA-CITACAO'];
-        $array_result['doc']['author'][$i]['ordemDeAutoria'] = $autor['@attributes']['ORDEM-DE-AUTORIA'];
-        if (isset($autor['@attributes']['NRO-ID-CNPQ'])) {
-            $array_result['doc']['author'][$i]['nroIdCnpq'] = $autor['@attributes']['NRO-ID-CNPQ'];
-        }
-    }
-
-    if (!empty($array_result)) {
-        return $array_result;
-    } else {
-        $array_empty = [];
-        return $array_empty;
-    }
-    unset($array_result);
-}
-
-function processaPalavrasChaveLattes($palavras_chave)
-{
-    $palavras_chave = get_object_vars($palavras_chave);
-    foreach (range(1, 6) as $number) {
-        if (!empty($palavras_chave['@attributes']["PALAVRA-CHAVE-$number"])) {
-            $array_result['doc']['about'][] = $palavras_chave['@attributes']["PALAVRA-CHAVE-$number"];
-        }
-    }
-    if (isset($array_result)) {
-        return $array_result;
-    }
-    unset($array_result);
-}
-
-function processaPalavrasChaveFormacaoLattes($palavras_chave)
-{
-    $palavras_chave = get_object_vars($palavras_chave);
-    foreach (range(1, 6) as $number) {
-        if (!empty($palavras_chave['@attributes']["PALAVRA-CHAVE-$number"])) {
-            $array_result["palavras_chave"][] = $palavras_chave["@attributes"]["PALAVRA-CHAVE-$number"];
-        }
-    }
-    if (isset($array_result)) {
-        return $array_result;
-    }
-    unset($array_result);
-}
-
-function processaAreaDoConhecimentoLattes($areas_do_conhecimento)
-{
-    $i = 0;
-    foreach ($areas_do_conhecimento as $ac) {
-        $ac = get_object_vars($ac);
-        foreach ($ac as $ac_record) {
-            $array_result["doc"]["area_do_conhecimento"][$i]["nomeGrandeAreaDoConhecimento"] = $ac_record["NOME-GRANDE-AREA-DO-CONHECIMENTO"];
-            $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaAreaDoConhecimento"] = $ac_record["NOME-DA-AREA-DO-CONHECIMENTO"];
-            $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaSubAreaDoConhecimento"] = $ac_record["NOME-DA-SUB-AREA-DO-CONHECIMENTO"];
-            $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaEspecialidade"] = $ac_record["NOME-DA-ESPECIALIDADE"];
-        }
-        $i++;
-    }
-    if (!empty($array_result)) {
-        return $array_result;
-    } else {
-        $array_empty = [];
-        return $array_empty;
-    }
-    unset($array_result);
-}
-
-function processaAreaDoConhecimentoFormacaoLattes($areas_do_conhecimento)
-{
-    $i = 0;
-    foreach ($areas_do_conhecimento as $ac) {
-        $ac = get_object_vars($ac);
-        foreach ($ac as $ac_record) {
-            $array_result["area_do_conhecimento"][$i]["nomeGrandeAreaDoConhecimento"] = $ac_record["NOME-GRANDE-AREA-DO-CONHECIMENTO"];
-            $array_result["area_do_conhecimento"][$i]["nomeDaAreaDoConhecimento"] = $ac_record["NOME-DA-AREA-DO-CONHECIMENTO"];
-            $array_result["area_do_conhecimento"][$i]["nomeDaSubAreaDoConhecimento"] = $ac_record["NOME-DA-SUB-AREA-DO-CONHECIMENTO"];
-            $array_result["area_do_conhecimento"][$i]["nomeDaEspecialidade"] = $ac_record["NOME-DA-ESPECIALIDADE"];
-        }
-        $i++;
-    }
-    return $array_result;
-    unset($array_result);
-}
-
-function construct_vinculo($request, $curriculo)
-{
-    // Vinculo
-    if (isset($doc["doc"]["vinculo"])) {
-        $i_vinculo = count($doc["doc"]["vinculo"]);
-        $i_vinculo++;
-    } else {
-        $i_vinculo = 0;
-    }
-    $doc["doc"]["vinculo"][$i_vinculo]["nome"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
-    $doc["doc"]["vinculo"][$i_vinculo]["lattes_id"] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
-    if (isset($request['instituicao'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["instituicao"] = explode("|", rtrim($request['instituicao']));
-    }
-    if (isset($request['unidade'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["unidade"] = explode("|", $request['unidade']);
-    }
-    if (isset($request['departamento'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["departamento"] = explode("|", $request['departamento']);
-    }
-    if (isset($request['numfuncional'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["numfuncional"] = $request['numfuncional'];
-    }
-    if (isset($request['tipvin'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["tipvin"] = explode("|", $request['tipvin']);
-    }
-    if (isset($request['divisao'])) {
-        $doc["doc"]["vinculo"][$i_vinculo]["divisao"] = explode("|", $request['divisao']);
-    }
-    if (isset($request['secao'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['secao'] = explode("|", $request['secao']);
-    }
-    if (isset($request['ppg_nome'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['ppg_nome'] = explode("|", $request['ppg_nome']);
-    }
-    if (isset($request['area_concentracao'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['area_concentracao'] = explode("|", rtrim($request['area_concentracao']));
-    }
-    if (isset($request['ppg_capes'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['ppg_capes'] = explode("|", $request['ppg_capes']);
-    }
-    if (isset($request['genero'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['genero'] = $request['genero'];
-    }
-    if (isset($request['etnia'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['etnia'] = $request['etnia'];
-    }
-    if (isset($request['ano_ingresso'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['ano_ingresso'] = substr($request['ano_ingresso'], -4);
-    }
-    if (isset($request['desc_nivel'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['desc_nivel'] = explode("|", $request['desc_nivel']);
-    }
-    if (isset($request['desc_curso'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['desc_curso'] = explode("|", $request['desc_curso']);
-    }
-    if (isset($request['campus'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['campus'] = explode("|", $request['campus']);
-    }
-    if (isset($request['desc_gestora'])) {
-        $doc['doc']["vinculo"][$i_vinculo]['desc_gestora'] = explode("|", $request['desc_gestora']);
-    }
-
-    return $doc['doc']["vinculo"];
-}
-
-function my_array_unique($array, $keep_key_assoc = false)
-{
-    $duplicate_keys = array();
-    $tmp = array();
-
-    foreach ($array as $key => $val) {
-        // convert objects to arrays, in_array() does not support objects
-        if (is_object($val))
-            $val = (array)$val;
-
-        if (!in_array($val, $tmp))
-            $tmp[] = $val;
-        else
-            $duplicate_keys[] = $key;
-    }
-
-    foreach ($duplicate_keys as $key)
-        unset($array[$key]);
-
-    return $keep_key_assoc ? $array : array_values($array);
-}
-
-function upsert($doc, $sha256)
-{
-    // Comparador
-    if (!empty($doc['doc']['doi'])) {
-        $result_comparaprod = comparaprod_doi($doc['doc']['doi']);
-        if (is_array($result_comparaprod)) {
-            $result_comparaprod['_source']['vinculo'] = array_merge($result_comparaprod['_source']['vinculo'], $doc['doc']["vinculo"]);
-            $result_comparaprod['_source']['vinculo'] = my_array_unique($result_comparaprod['_source']['vinculo']);
-            $doc_existing['doc'] = $result_comparaprod['_source'];
-            $doc_existing["doc"]["concluido"] = "Não";
-            $doc_existing["doc_as_upsert"] = true;
-            $resultado = Elasticsearch::update($result_comparaprod['_id'], $doc_existing);
-        } else {
-            if (isset($doc['doc']['instituicao']['ano_ingresso'])) {
-                if (intval($doc["doc"]["datePublished"]) >= intval($doc['doc']["instituicao"]['ano_ingresso'])) {
-                    $resultado = Elasticsearch::update($sha256, $doc);
-                }
-            } else {
-                $resultado = Elasticsearch::update($sha256, $doc);
-            }
-        }
-    } else {
-        $result_comparaprod = comparaprod_title($doc);
-        if (is_array($result_comparaprod)) {
-            $result_comparaprod['_source']['vinculo'] = array_merge($result_comparaprod['_source']['vinculo'], $doc['doc']["vinculo"]);
-            $result_comparaprod['_source']['vinculo'] = my_array_unique($result_comparaprod['_source']['vinculo']);
-            $doc_existing['doc'] = $result_comparaprod['_source'];
-            $doc_existing["doc"]["concluido"] = "Não";
-            $doc_existing["doc_as_upsert"] = true;
-            $resultado = Elasticsearch::update($result_comparaprod['_id'], $doc_existing);
-        } else {
-            if (isset($doc['doc']['instituicao']['ano_ingresso'])) {
-                if (intval($doc["doc"]["datePublished"]) >= intval($doc['doc']["instituicao"]['ano_ingresso'])) {
-                    $resultado = Elasticsearch::update($sha256, $doc);
-                }
-            } else {
-                $resultado = Elasticsearch::update($sha256, $doc);
-            }
-        }
-    }
-    return $resultado;
-}
-
 if (!isset($_POST['numfuncional'])) {
     $_POST['numfuncional'] = null;
 }
@@ -354,9 +31,9 @@ if (isset($_REQUEST['lattesIDBackup'])) {
 
 // Inicio Currículo
 
-$identificador = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+$identificador = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
 
-$result_get_curriculo = get_curriculum($identificador);
+$result_get_curriculo = ImportLattes::get_curriculum($identificador);
 
 $doc_curriculo_array = [];
 
@@ -475,25 +152,25 @@ if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'NACIONALIDADE'})) {
     $doc_curriculo_array["doc"]["nacionalidade"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'NACIONALIDADE'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NASCIMENTO'})) {
-    $doc_curriculo_array["doc"]["pais_de_nascimento"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NASCIMENTO'};
+    $doc_curriculo_array["doc"]["pais_de_nascimento"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NASCIMENTO'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'SIGLA-PAIS-NACIONALIDADE'})) {
-    $doc_curriculo_array["doc"]["sigla_pais_nacionalidade"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'SIGLA-PAIS-NACIONALIDADE'};
+    $doc_curriculo_array["doc"]["sigla_pais_nacionalidade"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'SIGLA-PAIS-NACIONALIDADE'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NACIONALIDADE'})) {
-    $doc_curriculo_array["doc"]["pais_de_nacionalidade"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NACIONALIDADE'};
+    $doc_curriculo_array["doc"]["pais_de_nacionalidade"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'PAIS-DE-NACIONALIDADE'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'UF-NASCIMENTO'})) {
-    $doc_curriculo_array["doc"]["uf_nascimento"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'UF-NASCIMENTO'};
+    $doc_curriculo_array["doc"]["uf_nascimento"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'UF-NASCIMENTO'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'CIDADE-NASCIMENTO'})) {
-    $doc_curriculo_array["doc"]["cidade_nascimento"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'CIDADE-NASCIMENTO'};
+    $doc_curriculo_array["doc"]["cidade_nascimento"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'CIDADE-NASCIMENTO'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'DATA-FALECIMENTO'})) {
-    $doc_curriculo_array["doc"]["data_falecimento"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'DATA-FALECIMENTO'};
+    $doc_curriculo_array["doc"]["data_falecimento"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'DATA-FALECIMENTO'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->attributes()->{'ORCID-ID'})) {
-    $doc_curriculo_array["doc"]["orcid_id"] = (string)$curriculo->{'DADOS-GERAIS'}->attributes()->{'ORCID-ID'};
+    $doc_curriculo_array["doc"]["orcid_id"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'ORCID-ID'};
 }
 if (isset($curriculo->{'DADOS-GERAIS'}->{'RESUMO-CV'})) {
     $doc_curriculo_array["doc"]["resumo_cv"]["texto_resumo_cv_rh"] = str_replace('"', '\"', (string)$curriculo->{'DADOS-GERAIS'}->{'RESUMO-CV'}->attributes()->{'TEXTO-RESUMO-CV-RH'});
@@ -513,7 +190,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'RESUMO-CV'})) {
 
 // Endereço profissional atual
 if (isset($curriculo->{'DADOS-GERAIS'}->{'ENDERECO'})) {
-    $doc_curriculo_array["doc"]["endereco"]["flagDePreferencia"] = (string)$curriculo->{'DADOS-GERAIS'}->{'ENDERECO'}->attributes()->{'FLAG-DE-PREFERENCIA'};
+    $doc_curriculo_array["doc"]["endereco"]["flagDePreferencia"] = (string) $curriculo->{'DADOS-GERAIS'}->{'ENDERECO'}->attributes()->{'FLAG-DE-PREFERENCIA'};
     if (isset($curriculo->{'DADOS-GERAIS'}->{'ENDERECO'}->{'ENDERECO-PROFISSIONAL'})) {
         $enderecoProfissionalArray = get_object_vars($curriculo->{'DADOS-GERAIS'}->{'ENDERECO'}->{'ENDERECO-PROFISSIONAL'});
         foreach (["CODIGO-INSTITUICAO-EMPRESA", "NOME-INSTITUICAO-EMPRESA", "CODIGO-ORGAO", "NOME-ORGAO", "CODIGO-UNIDADE", "NOME-UNIDADE", "LOGRADOURO-COMPLEMENTO", "PAIS", "UF", "CEP", "CIDADE", "BAIRRO", "HOME-PAGE"] as $endprof_campos) {
@@ -620,7 +297,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
             $formacao_array["anoDeObtencaoDoTitulo"] = $mestrado['@attributes']["ANO-DE-OBTENCAO-DO-TITULO"];
 
             if (isset($mestrado["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveFormacaoLattes($mestrado["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveFormacaoLattes($mestrado["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $formacao_array = array_merge_recursive($formacao_array, $array_result_pc);
                 }
@@ -628,7 +305,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 
             if (isset($mestrado["AREAS-DO-CONHECIMENTO"])) {
                 if (!empty($mestrado["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoFormacaoLattes($mestrado["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoFormacaoLattes($mestrado["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $formacao_array = array_merge_recursive($formacao_array, $array_result_ac);
                     }
@@ -662,7 +339,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
             $formacao_array["nomeDoCoOrientador"] = $mestradoProf['@attributes']["NOME-DO-CO-ORIENTADOR"];
 
             if (isset($mestradoProf["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveFormacaoLattes($mestradoProf["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveFormacaoLattes($mestradoProf["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $formacao_array = array_merge_recursive($formacao_array, $array_result_pc);
                 }
@@ -670,7 +347,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 
             if (isset($mestradoProf["AREAS-DO-CONHECIMENTO"])) {
                 if (!empty($mestradoProf["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoFormacaoLattes($mestradoProf["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoFormacaoLattes($mestradoProf["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $formacao_array = array_merge_recursive($formacao_array, $array_result_ac);
                     }
@@ -718,7 +395,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
             }
 
             if (isset($doutorado["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveFormacaoLattes($doutorado["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveFormacaoLattes($doutorado["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $formacao_array = array_merge_recursive($formacao_array, $array_result_pc);
                 }
@@ -726,7 +403,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 
             if (isset($doutorado["AREAS-DO-CONHECIMENTO"])) {
                 if (!empty($doutorado["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoFormacaoLattes($doutorado["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoFormacaoLattes($doutorado["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $formacao_array = array_merge_recursive($formacao_array, $array_result_ac);
                     }
@@ -756,7 +433,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
             $formacao_array["tituloDoTrabalho"] = $posDoutorado['@attributes']["TITULO-DO-TRABALHO"];
 
             if (isset($posDoutorado["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveFormacaoLattes($posDoutorado["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveFormacaoLattes($posDoutorado["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $formacao_array = array_merge_recursive($formacao_array, $array_result_pc);
                 }
@@ -764,7 +441,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 
             if (isset($posDoutorado["AREAS-DO-CONHECIMENTO"])) {
                 if (!empty($posDoutorado["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoFormacaoLattes($posDoutorado["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoFormacaoLattes($posDoutorado["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $formacao_array = array_merge_recursive($formacao_array, $array_result_ac);
                     }
@@ -787,7 +464,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
             $formacao_array["tituloDoTrabalho"] = $livreDocencia['@attributes']["TITULO-DO-TRABALHO"];
 
             if (isset($livreDocencia["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveFormacaoLattes($livreDocencia["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveFormacaoLattes($livreDocencia["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $formacao_array = array_merge_recursive($formacao_array, $array_result_pc);
                 }
@@ -795,7 +472,7 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 
             if (isset($livreDocencia["AREAS-DO-CONHECIMENTO"])) {
                 if (!empty($livreDocencia["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoFormacaoLattes($livreDocencia["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoFormacaoLattes($livreDocencia["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $formacao_array = array_merge_recursive($formacao_array, $array_result_ac);
                     }
@@ -1038,7 +715,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         $doc["doc"]["type"] = "Work";
         $doc["doc"]["tipo"] = "Trabalhos em eventos";
         $doc["doc"]["source"] = "Base Lattes";
-        $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+        $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
         if (isset($_REQUEST['tag'])) {
             $doc["doc"]["tag"][] = $_REQUEST['tag'];
         } else {
@@ -1074,12 +751,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         $doc["doc"]["detalhamentoDoTrabalho"]["serieDosAnais"] = $detalhamentoDoTrabalho['@attributes']["SERIE"];
 
         if (!empty($obra["AUTORES"])) {
-            $array_result = processaAutoresLattes($obra["AUTORES"]);
+            $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
             $doc = array_merge_recursive($doc, $array_result);
         }
 
         if (isset($obra["PALAVRAS-CHAVE"])) {
-            $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+            $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
             if (isset($array_result_pc)) {
                 $doc = array_merge_recursive($doc, $array_result_pc);
             }
@@ -1087,7 +764,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         }
 
         if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-            $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+            $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
             if (isset($array_result_ac)) {
                 $doc = array_merge_recursive($doc, $array_result_ac);
             }
@@ -1095,7 +772,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         }
 
         // Vinculo
-        $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+        $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
         // Constroi sha256
         if (!empty($doc['doc']['doi'])) {
@@ -1118,10 +795,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TRABALHOS-EM-EVENTOS'})) {
         $doc["doc_as_upsert"] = true;
 
         // Comparador
-        $resultado = upsert($doc, $sha256);
-        // echo "<br/>";
-        // print_r($resultado);
-        // echo "<br/><br/>";
+        $resultado = ImportLattes::upsert($doc, $sha256);
 
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
@@ -1146,7 +820,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         $doc["doc"]["type"] = "Work";
         $doc["doc"]["tipo"] = "Artigo publicado";
         $doc["doc"]["source"] = "Base Lattes";
-        $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+        $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
         if (isset($_REQUEST['tag'])) {
             $doc["doc"]["tag"][] = $_REQUEST['tag'];
         } else {
@@ -1178,12 +852,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         $doc["doc"]["isPartOf"]["serie"] = $detalhamentoDoTrabalho['@attributes']["SERIE"];
 
         if (!empty($obra["AUTORES"])) {
-            $array_result = processaAutoresLattes($obra["AUTORES"]);
+            $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
             $doc = array_merge_recursive($doc, $array_result);
         }
 
         if (isset($obra["PALAVRAS-CHAVE"])) {
-            $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+            $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
             if (isset($array_result_pc)) {
                 $doc = array_merge_recursive($doc, $array_result_pc);
             }
@@ -1191,7 +865,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         }
 
         if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-            $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+            $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
             if (isset($array_result_ac)) {
                 $doc = array_merge_recursive($doc, $array_result_ac);
             }
@@ -1199,7 +873,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         }
 
         // Vinculo
-        $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+        $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
         // Constroi sha256
 
@@ -1223,10 +897,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
         $doc["doc_as_upsert"] = true;
 
         // Comparador
-        $resultado = upsert($doc, $sha256);
-        // echo "<br/>";
-        // print_r($resultado);
-        // echo "<br/><br/>";
+        $resultado = ImportLattes::upsert($doc, $sha256);
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1252,7 +923,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Livro publicado ou organizado";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1284,12 +955,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc"]["publisher"]["organization"]["name"] = $detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"];
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1297,7 +968,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1305,7 +976,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
             if (!empty($doc["doc"]["doi"])) {
@@ -1329,11 +1000,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
-
+            $resultado = ImportLattes::upsert($doc, $sha256);
 
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
@@ -1356,7 +1023,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Capítulo de livro publicado";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1389,12 +1056,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc"]["publisher"]["organization"]["name"] = $detalhamentoDoTrabalho['@attributes']["NOME-DA-EDITORA"];
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1402,7 +1069,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1410,7 +1077,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
             if (!empty($doc["doc"]["doi"])) {
@@ -1429,11 +1096,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'LIVROS-E-CAPITULOS'})) {
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
-
+            $resultado = ImportLattes::upsert($doc, $sha256);
 
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
@@ -1459,7 +1122,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         $doc["doc"]["type"] = "Work";
         $doc["doc"]["tipo"] = "Textos em jornais de notícias/revistas";
         $doc["doc"]["source"] = "Base Lattes";
-        $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+        $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
         if (isset($_REQUEST['tag'])) {
             $doc["doc"]["tag"][] = $_REQUEST['tag'];
         } else {
@@ -1491,12 +1154,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         $doc["doc"]["publisher"]["organization"]["location"] = $detalhamentoDoTrabalho['@attributes']["LOCAL-DE-PUBLICACAO"];
 
         if (!empty($obra["AUTORES"])) {
-            $array_result = processaAutoresLattes($obra["AUTORES"]);
+            $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
             $doc = array_merge_recursive($doc, $array_result);
         }
 
         if (isset($obra["PALAVRAS-CHAVE"])) {
-            $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+            $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
             if (isset($array_result_pc)) {
                 $doc = array_merge_recursive($doc, $array_result_pc);
             }
@@ -1504,7 +1167,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         }
 
         if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-            $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+            $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
             if (isset($array_result_ac)) {
                 $doc = array_merge_recursive($doc, $array_result_ac);
             }
@@ -1512,7 +1175,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         }
 
         // Vinculo
-        $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+        $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
         // Constroi sha256
 
@@ -1536,10 +1199,8 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'TEXTOS-EM-JORNAIS-OU-REVISTA
         $doc["doc_as_upsert"] = true;
 
         // Comparador
-        $resultado = upsert($doc, $sha256);
-        // echo "<br/>";
-        // print_r($resultado);
-        // echo "<br/><br/>";
+        $resultado = ImportLattes::upsert($doc, $sha256);
+
         unset($dadosBasicosDoTrabalho);
         unset($detalhamentoDoTrabalho);
         unset($obra);
@@ -1566,7 +1227,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Partitura musical";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1594,12 +1255,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1607,7 +1268,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1615,7 +1276,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
 
@@ -1636,10 +1297,8 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
+            $resultado = ImportLattes::upsert($doc, $sha256);
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1661,7 +1320,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Tradução";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1694,12 +1353,12 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
 
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1707,7 +1366,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1715,7 +1374,7 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
             if (!empty($doc["doc"]["doi"])) {
@@ -1735,10 +1394,8 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'DEMAIS-TIPOS-DE-PRODUCAO-BIB
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
+            $resultado = ImportLattes::upsert($doc, $sha256);
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1765,7 +1422,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Software";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1794,12 +1451,12 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             $doc["doc"]["lattes"]["instituicaoFinanciadora"] = $detalhamentoDoTrabalho['@attributes']["INSTITUICAO-FINANCIADORA"];
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1807,7 +1464,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1815,7 +1472,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
 
@@ -1837,10 +1494,8 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
+            $resultado = ImportLattes::upsert($doc, $sha256);
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1862,7 +1517,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             $doc["doc"]["type"] = "Work";
             $doc["doc"]["tipo"] = "Patente";
             $doc["doc"]["source"] = "Base Lattes";
-            $doc["doc"]["lattes_ids"][] = (string)$curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+            $doc["doc"]["lattes_ids"][] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
             if (isset($_REQUEST['tag'])) {
                 $doc["doc"]["tag"][] = $_REQUEST['tag'];
             } else {
@@ -1883,12 +1538,12 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
 
 
             if (!empty($obra["AUTORES"])) {
-                $array_result = processaAutoresLattes($obra["AUTORES"]);
+                $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                 $doc = array_merge_recursive($doc, $array_result);
             }
 
             if (isset($obra["PALAVRAS-CHAVE"])) {
-                $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                 if (isset($array_result_pc)) {
                     $doc = array_merge_recursive($doc, $array_result_pc);
                 }
@@ -1896,7 +1551,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
             if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                 if (isset($array_result_ac)) {
                     $doc = array_merge_recursive($doc, $array_result_ac);
                 }
@@ -1904,7 +1559,7 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             }
 
             // Vinculo
-            $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+            $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
             // Constroi sha256
 
@@ -1926,10 +1581,8 @@ if (isset($curriculo->{'PRODUCAO-TECNICA'})) {
             $doc["doc_as_upsert"] = true;
 
             // Comparador
-            $resultado = upsert($doc, $sha256);
-            // echo "<br/>";
-            // print_r($resultado);
-            // echo "<br/><br/>";
+            $resultado = ImportLattes::upsert($doc, $sha256);
+
             unset($dadosBasicosDoTrabalho);
             unset($detalhamentoDoTrabalho);
             unset($obra);
@@ -1992,12 +1645,12 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
 
 
                 if (!empty($obra["AUTORES"])) {
-                    $array_result = processaAutoresLattes($obra["AUTORES"]);
+                    $array_result = ImportLattes::processaAutoresLattes($obra["AUTORES"]);
                     $doc = array_merge_recursive($doc, $array_result);
                 }
 
                 if (isset($obra["PALAVRAS-CHAVE"])) {
-                    $array_result_pc = processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
+                    $array_result_pc = ImportLattes::processaPalavrasChaveLattes($obra["PALAVRAS-CHAVE"]);
                     if (isset($array_result_pc)) {
                         $doc = array_merge_recursive($doc, $array_result_pc);
                     }
@@ -2005,7 +1658,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
                 }
 
                 if (isset($obra["AREAS-DO-CONHECIMENTO"])) {
-                    $array_result_ac = processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
+                    $array_result_ac = ImportLattes::processaAreaDoConhecimentoLattes($obra["AREAS-DO-CONHECIMENTO"]);
                     if (isset($array_result_ac)) {
                         $doc = array_merge_recursive($doc, $array_result_ac);
                     }
@@ -2013,7 +1666,7 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
                 }
 
                 // Vinculo
-                $doc["doc"]["vinculo"] = construct_vinculo($_REQUEST, $curriculo);
+                $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 
                 // Constroi sha256
 
@@ -2035,10 +1688,8 @@ if (isset($curriculo->{'OUTRA-PRODUCAO'})) {
                 $doc["doc_as_upsert"] = true;
 
                 // Comparador
-                $resultado = upsert($doc, $sha256);
-                // echo "<br/>";
-                // print_r($resultado);
-                // echo "<br/><br/>";
+                $resultado = ImportLattes::upsert($doc, $sha256);
+
                 unset($dadosBasicosDoTrabalho);
                 unset($detalhamentoDoTrabalho);
                 unset($obra);

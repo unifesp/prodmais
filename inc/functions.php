@@ -3955,3 +3955,320 @@ function openalexGetDOI($title)
     $data = json_decode($response, true);
     return $data;
 }
+
+class ImportLattes
+{
+    static function get_curriculum($identificador)
+    {
+        try {
+            global $index_cv;
+            global $client;
+
+            $params = [
+                'index' => $index_cv,
+                'id' => $identificador
+            ];
+
+            // Get doc at /my_index/_doc/my_id
+            $response = $client->get($params);
+
+            return $response;
+        } catch (\Exception $e) {
+            echo "Registro anterior não encontrado na base<br/>";
+            echo $e->getMessage();
+        }
+    }
+
+    static function comparaprod_doi($doi)
+    {
+        global $index;
+        global $type;
+        global $client;
+        $query['query']['query_string']['query'] = "doi:\"$doi\"";
+        $params = [];
+        $params['index'] = $index;
+        $params['type'] = $type;
+        $params['size'] = 100;
+        $params['body'] = $query;
+        $cursor = $client->search($params);
+        $total = $cursor['hits']['total']['value'];
+        if ($total >= 1) {
+            return $cursor['hits']['hits'][0];
+        } else {
+            return 'Não encontrado';
+        }
+    }
+
+    static function comparaprod_title($doc)
+    {
+        global $index;
+        global $client;
+
+        $query['query']['bool']['filter'][]["term"]["tipo.keyword"] = $doc["doc"]["tipo"];
+        $query['query']['bool']['filter'][]["term"]["datePublished.keyword"] = $doc["doc"]["datePublished"];
+        if (isset($doc["doc"]['author'][0]['person']['name'])) {
+            if (!is_null($doc["doc"]['author'][0]['person']['name'])) {
+                $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5) AND (author:' . $doc["doc"]['author'][0]['person']['name'] . ')';
+            } else {
+                $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
+            }
+        } else {
+            $query["query"]["bool"]["must"]["query_string"]["query"] = '(name:"' . $doc["doc"]["name"] . '"^5)';
+        }
+
+        if (!empty($doc['doc']['isPartOf']['name'])) {
+            $query['query']['bool']['filter'][]["term"]["isPartOf.name.keyword"] = $doc['doc']['isPartOf']['name'];
+        }
+        if (!empty($doc['doc']['publisher']['organization']['name'])) {
+            $query['query']['bool']['filter'][]["term"]["publisher.organization.name.keyword"] = $doc['doc']['publisher']['organization']['name'];
+        }
+        if (!empty($doc['doc']['isbn'])) {
+            $query['query']['bool']['filter'][]["term"]["isbn.keyword"] = $doc['doc']['isbn'];
+        }
+
+        $params = [];
+        $params['index'] = $index;
+        $params['size'] = 10;
+        $params['body'] = $query;
+        $cursor = $client->search($params);
+        $total = $cursor['hits']['total']['value'];
+
+        if ($total >= 1) {
+            return $cursor['hits']['hits'][0];
+        } else {
+            return 'Não encontrado';
+        }
+    }
+
+    static function processaAutoresLattes($autores_array)
+    {
+        $i = 0;
+        if (is_array($autores_array)) {
+            foreach ($autores_array as $autor) {
+                $autor = get_object_vars($autor);
+                $array_result['doc']['author'][$i]['person']['name'] = $autor['@attributes']['NOME-COMPLETO-DO-AUTOR'];
+                $array_result['doc']['author'][$i]['nomeParaCitacao'] = $autor['@attributes']['NOME-PARA-CITACAO'];
+                $array_result['doc']['author'][$i]['ordemDeAutoria'] = $autor['@attributes']['ORDEM-DE-AUTORIA'];
+                if (isset($autor['@attributes']['NRO-ID-CNPQ'])) {
+                    $array_result['doc']['author'][$i]['nroIdCnpq'] = $autor['@attributes']['NRO-ID-CNPQ'];
+                }
+
+                $i++;
+            }
+        } else {
+            $autor = get_object_vars($autores_array);
+            $array_result['doc']['author'][$i]['person']['name'] = $autor['@attributes']['NOME-COMPLETO-DO-AUTOR'];
+            $array_result['doc']['author'][$i]['nomeParaCitacao'] = $autor['@attributes']['NOME-PARA-CITACAO'];
+            $array_result['doc']['author'][$i]['ordemDeAutoria'] = $autor['@attributes']['ORDEM-DE-AUTORIA'];
+            if (isset($autor['@attributes']['NRO-ID-CNPQ'])) {
+                $array_result['doc']['author'][$i]['nroIdCnpq'] = $autor['@attributes']['NRO-ID-CNPQ'];
+            }
+        }
+
+        if (!empty($array_result)) {
+            return $array_result;
+        } else {
+            $array_empty = [];
+            return $array_empty;
+        }
+        unset($array_result);
+    }
+
+    static function processaPalavrasChaveLattes($palavras_chave)
+    {
+        $palavras_chave = get_object_vars($palavras_chave);
+        foreach (range(1, 6) as $number) {
+            if (!empty($palavras_chave['@attributes']["PALAVRA-CHAVE-$number"])) {
+                $array_result['doc']['about'][] = $palavras_chave['@attributes']["PALAVRA-CHAVE-$number"];
+            }
+        }
+        if (isset($array_result)) {
+            return $array_result;
+        }
+        unset($array_result);
+    }
+
+    static function processaPalavrasChaveFormacaoLattes($palavras_chave)
+    {
+        $palavras_chave = get_object_vars($palavras_chave);
+        foreach (range(1, 6) as $number) {
+            if (!empty($palavras_chave['@attributes']["PALAVRA-CHAVE-$number"])) {
+                $array_result["palavras_chave"][] = $palavras_chave["@attributes"]["PALAVRA-CHAVE-$number"];
+            }
+        }
+        if (isset($array_result)) {
+            return $array_result;
+        }
+        unset($array_result);
+    }
+
+    static function processaAreaDoConhecimentoLattes($areas_do_conhecimento)
+    {
+        $i = 0;
+        foreach ($areas_do_conhecimento as $ac) {
+            $ac = get_object_vars($ac);
+            foreach ($ac as $ac_record) {
+                $array_result["doc"]["area_do_conhecimento"][$i]["nomeGrandeAreaDoConhecimento"] = $ac_record["NOME-GRANDE-AREA-DO-CONHECIMENTO"];
+                $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaAreaDoConhecimento"] = $ac_record["NOME-DA-AREA-DO-CONHECIMENTO"];
+                $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaSubAreaDoConhecimento"] = $ac_record["NOME-DA-SUB-AREA-DO-CONHECIMENTO"];
+                $array_result["doc"]["area_do_conhecimento"][$i]["nomeDaEspecialidade"] = $ac_record["NOME-DA-ESPECIALIDADE"];
+            }
+            $i++;
+        }
+        if (!empty($array_result)) {
+            return $array_result;
+        } else {
+            $array_empty = [];
+            return $array_empty;
+        }
+        unset($array_result);
+    }
+
+    static function processaAreaDoConhecimentoFormacaoLattes($areas_do_conhecimento)
+    {
+        $i = 0;
+        foreach ($areas_do_conhecimento as $ac) {
+            $ac = get_object_vars($ac);
+            foreach ($ac as $ac_record) {
+                $array_result["area_do_conhecimento"][$i]["nomeGrandeAreaDoConhecimento"] = $ac_record["NOME-GRANDE-AREA-DO-CONHECIMENTO"];
+                $array_result["area_do_conhecimento"][$i]["nomeDaAreaDoConhecimento"] = $ac_record["NOME-DA-AREA-DO-CONHECIMENTO"];
+                $array_result["area_do_conhecimento"][$i]["nomeDaSubAreaDoConhecimento"] = $ac_record["NOME-DA-SUB-AREA-DO-CONHECIMENTO"];
+                $array_result["area_do_conhecimento"][$i]["nomeDaEspecialidade"] = $ac_record["NOME-DA-ESPECIALIDADE"];
+            }
+            $i++;
+        }
+        return $array_result;
+        unset($array_result);
+    }
+
+    static function construct_vinculo($request, $curriculo)
+    {
+        // Vinculo
+        if (isset($doc["doc"]["vinculo"])) {
+            $i_vinculo = count($doc["doc"]["vinculo"]);
+            $i_vinculo++;
+        } else {
+            $i_vinculo = 0;
+        }
+        $doc["doc"]["vinculo"][$i_vinculo]["nome"] = (string) $curriculo->{'DADOS-GERAIS'}->attributes()->{'NOME-COMPLETO'};
+        $doc["doc"]["vinculo"][$i_vinculo]["lattes_id"] = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
+        if (isset($request['instituicao'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["instituicao"] = explode("|", rtrim($request['instituicao']));
+        }
+        if (isset($request['unidade'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["unidade"] = explode("|", $request['unidade']);
+        }
+        if (isset($request['departamento'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["departamento"] = explode("|", $request['departamento']);
+        }
+        if (isset($request['numfuncional'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["numfuncional"] = $request['numfuncional'];
+        }
+        if (isset($request['tipvin'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["tipvin"] = explode("|", $request['tipvin']);
+        }
+        if (isset($request['divisao'])) {
+            $doc["doc"]["vinculo"][$i_vinculo]["divisao"] = explode("|", $request['divisao']);
+        }
+        if (isset($request['secao'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['secao'] = explode("|", $request['secao']);
+        }
+        if (isset($request['ppg_nome'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['ppg_nome'] = explode("|", $request['ppg_nome']);
+        }
+        if (isset($request['area_concentracao'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['area_concentracao'] = explode("|", rtrim($request['area_concentracao']));
+        }
+        if (isset($request['ppg_capes'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['ppg_capes'] = explode("|", $request['ppg_capes']);
+        }
+        if (isset($request['genero'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['genero'] = $request['genero'];
+        }
+        if (isset($request['etnia'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['etnia'] = $request['etnia'];
+        }
+        if (isset($request['ano_ingresso'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['ano_ingresso'] = substr($request['ano_ingresso'], -4);
+        }
+        if (isset($request['desc_nivel'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['desc_nivel'] = explode("|", $request['desc_nivel']);
+        }
+        if (isset($request['desc_curso'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['desc_curso'] = explode("|", $request['desc_curso']);
+        }
+        if (isset($request['campus'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['campus'] = explode("|", $request['campus']);
+        }
+        if (isset($request['desc_gestora'])) {
+            $doc['doc']["vinculo"][$i_vinculo]['desc_gestora'] = explode("|", $request['desc_gestora']);
+        }
+
+        return $doc['doc']["vinculo"];
+    }
+
+    static function my_array_unique($array, $keep_key_assoc = false)
+    {
+        $duplicate_keys = array();
+        $tmp = array();
+
+        foreach ($array as $key => $val) {
+            // convert objects to arrays, in_array() does not support objects
+            if (is_object($val))
+                $val = (array) $val;
+
+            if (!in_array($val, $tmp))
+                $tmp[] = $val;
+            else
+                $duplicate_keys[] = $key;
+        }
+
+        foreach ($duplicate_keys as $key)
+            unset($array[$key]);
+
+        return $keep_key_assoc ? $array : array_values($array);
+    }
+
+    static function upsert($doc, $sha256)
+    {
+        // Comparador
+        if (!empty($doc['doc']['doi'])) {
+            $result_comparaprod = ImportLattes::comparaprod_doi($doc['doc']['doi']);
+            if (is_array($result_comparaprod)) {
+                $result_comparaprod['_source']['vinculo'] = array_merge($result_comparaprod['_source']['vinculo'], $doc['doc']["vinculo"]);
+                $result_comparaprod['_source']['vinculo'] = ImportLattes::my_array_unique($result_comparaprod['_source']['vinculo']);
+                $doc_existing['doc'] = $result_comparaprod['_source'];
+                $doc_existing["doc"]["concluido"] = "Não";
+                $doc_existing["doc_as_upsert"] = true;
+                $resultado = Elasticsearch::update($result_comparaprod['_id'], $doc_existing);
+            } else {
+                if (isset($doc['doc']['instituicao']['ano_ingresso'])) {
+                    if (intval($doc["doc"]["datePublished"]) >= intval($doc['doc']["instituicao"]['ano_ingresso'])) {
+                        $resultado = Elasticsearch::update($sha256, $doc);
+                    }
+                } else {
+                    $resultado = Elasticsearch::update($sha256, $doc);
+                }
+            }
+        } else {
+            $result_comparaprod = ImportLattes::comparaprod_title($doc);
+            if (is_array($result_comparaprod)) {
+                $result_comparaprod['_source']['vinculo'] = array_merge($result_comparaprod['_source']['vinculo'], $doc['doc']["vinculo"]);
+                $result_comparaprod['_source']['vinculo'] = ImportLattes::my_array_unique($result_comparaprod['_source']['vinculo']);
+                $doc_existing['doc'] = $result_comparaprod['_source'];
+                $doc_existing["doc"]["concluido"] = "Não";
+                $doc_existing["doc_as_upsert"] = true;
+                $resultado = Elasticsearch::update($result_comparaprod['_id'], $doc_existing);
+            } else {
+                if (isset($doc['doc']['instituicao']['ano_ingresso'])) {
+                    if (intval($doc["doc"]["datePublished"]) >= intval($doc['doc']["instituicao"]['ano_ingresso'])) {
+                        $resultado = Elasticsearch::update($sha256, $doc);
+                    }
+                } else {
+                    $resultado = Elasticsearch::update($sha256, $doc);
+                }
+            }
+        }
+        return $resultado;
+    }
+}
