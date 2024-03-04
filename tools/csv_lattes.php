@@ -72,7 +72,7 @@ function curlLattes($url_base, $IDLattes, $queryParams)
 {
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/lattes_xml_to_elastic_dedup.php?lattes_id=' . $IDLattes . '');
+    curl_setopt($ch, CURLOPT_URL, '' . $url_base . '/import_lattes_to_elastic_dedup.php?lattes_id=' . $IDLattes . '');
     curl_setopt($ch, CURLOPT_POSTFIELDS, implode('', $queryParams));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch);

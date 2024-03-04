@@ -23,7 +23,6 @@
 
 <?php
 
-
 $username = $login_user;
 $password = $login_password;
 
@@ -42,7 +41,7 @@ if (isset($_POST['submit'])) {
 
                 <h2 class="t t-h3 ">Inserir um XML do Lattes</h2>
 
-                <form class="p-inclusao-form" action="lattes_xml_to_elastic_dedup.php" method="post"
+                <form class="p-inclusao-form" action="import_lattes_to_elastic_dedup.php" method="post"
                     accept-charset="utf-8" enctype="multipart/form-data"
                     title="Formulário de Inserção de XML do Lattes">
                     <div class="input-group">
