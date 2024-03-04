@@ -584,7 +584,6 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'LICENCAS'})) {
 // Orientações em andamento
 
 if (isset($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'})) {
-    // echo "<pre>".print_r($curriculo->{'DADOS-COMPLEMENTARES'}->{'ORIENTACOES-EM-ANDAMENTO'},true)."</pre>";
     // Mestrado
     $i_orientacao = 0;
 
