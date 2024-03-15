@@ -694,8 +694,8 @@ if (!empty($_REQUEST["lattesID"])) {
                             ?>
 
                             <?php
-                            array_multisort(array_column($profile['orientacoesconcluidas'], 'ano'), SORT_DESC, $profile['orientacoesconcluidas']);
                             if (!empty($profile['orientacoesconcluidas'])) {
+                                array_multisort(array_column($profile['orientacoesconcluidas'], 'ano'), SORT_DESC, $profile['orientacoesconcluidas']);
                                 $orientacoes_concluidas_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
                                 foreach ($orientacoes_concluidas_labels as $orientacao_concluidas_label) {
                                     $i_orientacao_concluidas = 0;
