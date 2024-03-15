@@ -790,10 +790,12 @@ if (!empty($_REQUEST["lattesID"])) {
                             <h3 class="t t-h3 u-mb-20">Pesquisa</h3>
 
                             <?php
+
                             foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
                                 foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
                                     if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
                                         echo '<h4 class="t t-subtitle u-my-20">' . $atuacao_profissional_1['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                                        array_multisort(array_column($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'], '@attributes'), SORT_DESC, $atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO']);
                                         foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
                                             if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
                                                 foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
