@@ -654,8 +654,8 @@ if (!empty($_REQUEST["lattesID"])) {
                             <h3 class="t t-h3 u-mb-20">Orientações e supervisões</h3>
 
                             <?php
-                            array_multisort(array_column($profile['orientacoes'], 'ano'), SORT_DESC, $profile['orientacoes']);
                             if (!empty($profile['orientacoes'])) {
+                                array_multisort(array_column($profile['orientacoes'], 'ano'), SORT_DESC, $profile['orientacoes']);
                                 $orientacoes_andamento_labels = ['Supervisão de pós-doutorado', 'Tese de doutorado', 'Dissertação de mestrado'];
                                 foreach ($orientacoes_andamento_labels as $orientacao_andamento_label) {
                                     $i_orientacao_andamento = 0;
