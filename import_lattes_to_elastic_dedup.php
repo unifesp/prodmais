@@ -657,8 +657,6 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'})) {
 // Formação máxima
 if (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'}->{'LIVRE-DOCENCIA'})) {
     $doc_curriculo_array["doc"]["formacao_maxima"] = "Livre Docência";
-} elseif (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'}->{'POS-DOUTORADO'})) {
-    $doc_curriculo_array["doc"]["formacao_maxima"] = "Pós Doutorado";
 } elseif (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'}->{'DOUTORADO'})) {
     $doc_curriculo_array["doc"]["formacao_maxima"] = "Doutorado";
 } elseif (isset($curriculo->{'DADOS-GERAIS'}->{'FORMACAO-ACADEMICA-TITULACAO'}->{'MESTRADO-PROFISSIONALIZANTE'})) {
