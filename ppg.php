@@ -52,6 +52,7 @@ if (!empty($_REQUEST["ID"])) {
     $params_orientadores = [];
     $params_orientadores["index"] = $index_cv;
     $params_orientadores["_source"] = ["nome_completo"];
+    $params_orientadores["size"] = 500;
     $params_orientadores["body"] = $query_orientadores;
     $cursor_orientadores = $client->search($params_orientadores);
 
