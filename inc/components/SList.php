@@ -1,8 +1,19 @@
 <?php
-// require 'inc/functions.php';
 
 class SList
 {
+
+  static function RemoveSpecialChar($str)
+  {
+
+    // Using preg_replace() function 
+    // to replace the word 
+    $res = preg_replace('/[^a-zA-Z0-9_ -]/s', ' ', $str);
+
+    // Returning the result 
+    return $res;
+  }
+
   static function bulletGeneric($tipo)
   {
     $img = '';
@@ -190,8 +201,10 @@ class SList
 
     if (!empty($itemNameLink)) {
       $header = "<p class='t t-b'><a class='t-a' href='$itemNameLink'> $itemName </a></p>";
+      $header = htmlspecialchars($header, ENT_QUOTES);
     } else {
       $header = "<p class='t t-b'> $itemName </a></p>";
+      $header = htmlspecialchars($header, ENT_QUOTES);
     }
 
     !empty($itemInfoB) && !empty($itemInfoC) ? $sepataror = ', ' : $sepataror = '';
@@ -252,7 +265,7 @@ class SList
     !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
     !empty($refPage) ? $refPage = ", p. $refPage" : '';
     !empty($datePublished) ? $datePublished = $datePublished : '';
-    $name_cleaned = htmlspecialchars($name, ENT_QUOTES);
+    $name_cleaned = SList::RemoveSpecialChar($name);
 
     if (!empty($aurorasdg['predictions'])) {
       foreach ($aurorasdg['predictions'] as $prediction) {
@@ -277,7 +290,7 @@ class SList
 				</div>
 
 				<div class='s-list-content'>
-					<p class='t t-b t-md'>$name</p>
+					<p class='t t-b t-md'>$name_cleaned</p>
 					<p class='t t-b t-md'><i>$type</i></p>
 					<p class='t-gray'><b class='t-subItem'>Autores: </b> $authorsRendered </p>
 					
