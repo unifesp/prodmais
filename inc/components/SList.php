@@ -202,9 +202,11 @@ class SList
     if (!empty($itemNameLink)) {
       $header = "<p class='t t-b'><a class='t-a' href='$itemNameLink'> $itemName </a></p>";
       $header = htmlspecialchars($header, ENT_QUOTES);
+      $header = html_entity_decode($header);
     } else {
       $header = "<p class='t t-b'> $itemName </a></p>";
       $header = htmlspecialchars($header, ENT_QUOTES);
+      $header = html_entity_decode($header);
     }
 
     !empty($itemInfoB) && !empty($itemInfoC) ? $sepataror = ', ' : $sepataror = '';
