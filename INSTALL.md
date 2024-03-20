@@ -141,6 +141,3 @@ Enviar dados por POST no arquivo import_lattes_to_elastic_dedup.php. Parâmetros
 
 Exemplo de código para a inclusão automática: tools/automatic_index.php
 
-## Usando Docker
-
-[Baixe estes arquivos](https://github.com/RicardoIreno/prodmais-docker)
