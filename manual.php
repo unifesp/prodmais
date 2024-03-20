@@ -24,7 +24,7 @@
         <div class="c-wrapper-paper">
             <div class="c-wrapper-inner">
                 <h2>Manual do Prodmais</h2>
-                <div class="md-container">
+                <div>
 
                 </div>
                 <p>O Prodmais é uma ferramenta que agrega informação de diversas fontes, mas não realiza processamento
