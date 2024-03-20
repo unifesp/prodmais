@@ -1,4 +1,4 @@
-.d-grid,
+
 .d-container {
 	display: flex;
 	margin-left: auto;
@@ -7,30 +7,10 @@
 	padding: 0.5rem;
 }
 
-.d-grid {
-	display: flex;
-	width: 100%;
-}
-
 .d-container {
 	min-height: 50vh;
 }
 
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	@include grid-system("all");
-}
-
-@each $k,
-$v in $breakpointsUp {
-	@include up-to("#{$k}") {
-		.row {
-			@include grid-system("#{$k}");
-		}
-	}
-}
 
 // === CONTAINERS === //
 

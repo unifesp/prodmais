@@ -3,20 +3,6 @@
 /// === FUNCTIONS === ///
 /// 
 /// 
-@function grid-generic-class-name($bk) {
-	@if $bk == "all" {
-		@return "";
-	}
-	@return "-" + $bk;
-}
-
-@function grid-class-name($bk, $size) {
-	@if $bk == "all" {
-		@return "-" + $size;
-	}
-	@return "-" + $bk + "-" + $size;
-}
-
 
 
 /// 
@@ -27,18 +13,6 @@
 	@if map-has-key($breakpointsUp, $breakpoint) {
 		@media #{inspect(map-get($breakpointsUp, $breakpoint))} {
 			@content;
-		}
-	}
-}
-
-@mixin grid-system($bk) {
-	.col#{grid-generic-class-name($bk)} {
-		flex: 1;
-	}
-
-	@for $size from 1 through $total_columns {
-		.col#{grid-class-name($bk, $size)} {
-			width: calc($size / $total_columns * 100%);
 		}
 	}
 }
