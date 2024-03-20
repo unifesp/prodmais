@@ -1,70 +1,59 @@
 /// === DON'T FORGET THE VARS! === ///
-@import "00-vars/vars";
-@import "00-vars/svg";
-
-/// === FUNCTIONS === ///
-@import "01-functions/functions";
-
-/// === MIXINS === ///
-@import "02-mixins/breakpoint";
-@import "02-mixins/grid-system";
-@import "02-mixins/theme-system";
-@import "02-mixins/mixins";
+@import "vars";
+@import "svg";
 
 /// === BASE === ///
-@import "03-base/normalize";
-@import "03-base/divs";
-@import "03-base/transitions";
-@import "03-base/acessibility";
-@import "03-base/typography";
-
-/// === SITE === ///
-@import "04-site/theme";
-@import "04-site/icons";
-@import "04-site/header";
-@import "04-site/menu";
-@import "04-site/footer";
+@import "abstractions";
+@import "grid-system";
+@import "normalize";
+@import "typography";
+@import "icons";
+@import "containers";
+@import "transitions";
+@import "utils";
 
 /// === PAGES === ///
-@import "05-pages/p_about";
-@import "05-pages/p_home";
-@import "05-pages/p_categorias";
-@import "05-pages/p_departamento";
-@import "05-pages/p_inclusao";
-@import "05-pages/p_manual";
-@import "05-pages/p_manual-home";
-@import "05-pages/p_ppg";
-@import "05-pages/p_ppgs";
-@import "05-pages/p_predash";
-@import "05-pages/p_profile";
-@import "05-pages/p_projeto";
-@import "05-pages/p_projetos";
-@import "05-pages/p_result";
+@import "pages/about";
+@import "pages/home";
+@import "pages/categorias";
+@import "pages/departamento";
+@import "pages/inclusao";
+@import "pages/manual";
+@import "pages/manual-home";
+@import "pages/ppg";
+@import "pages/ppgs";
+@import "pages/predash";
+@import "pages/profile";
+@import "pages/projeto";
+@import "pages/projetos";
+@import "pages/result";
 
 /// === COMPONENTS === ///
-@import "06-components/c-back-to-top";
-@import "06-components/c-badge";
-@import "06-components/c-btn";
-@import "06-components/c-categories";
-@import "06-components/c-collapse";
-@import "06-components/c-filterlist";
-@import "06-components/c-filterdrop";
-@import "06-components/c-input";
-@import "06-components/c-infotag";
-@import "06-components/c-line";
-@import "06-components/c-graph";
-@import "06-components/c-gppg";
-@import "06-components/c-manual";
-@import "06-components/c-navigator";
-@import "06-components/c-switch";
-@import "06-components/c-profmenu";
-@import "06-components/c-tables";
-@import "06-components/c-tips";
-@import "06-components/c-wrapper";
-@import "06-components/c-who";
-@import "06-components/tag";
-@import "06-components/s-list";
+@import "components/siteheader";
+@import "components/sitemenu";
+@import "components/sitefooter";
+@import "components/back-to-top";
+@import "components/badge";
+@import "components/btn";
+@import "components/categories";
+@import "components/collapse";
+@import "components/filterlist";
+@import "components/filterdrop";
+@import "components/input";
+@import "components/infotag";
+@import "components/line";
+@import "components/graph";
+@import "components/gppg";
+@import "components/manual";
+@import "components/navigator";
+@import "components/switch";
+@import "components/profmenu";
+@import "components/tables";
+@import "components/tips";
+@import "components/wrapper";
+@import "components/who";
+@import "components/tag";
+@import "components/s-list";
 
-/// === UTILS === ///
-@import "03-base/margin";
-@import "03-base/utils";
+
+

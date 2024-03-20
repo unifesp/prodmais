@@ -5,3 +5,13 @@
 	max-width: $container_width;
 	padding-top: $siteheader_height;
 }
+
+
+.grid-categorias {
+	@include up-to('md') {
+		display: grid;
+			grid-template-columns: 50% 50%;
+
+	}
+
+}
