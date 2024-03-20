@@ -140,3 +140,7 @@ details > *:not(summary) {
 details[open] > *:not(summary) {
 	color: inherit;
 }
+
+form {
+	margin-inline: 0.2rem;
+}
