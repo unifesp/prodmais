@@ -1,16 +1,4 @@
 
-.d-container {
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: $container_width;
-	padding: 0.5rem;
-}
-
-.d-container {
-	min-height: 50vh;
-}
-
 
 // === CONTAINERS === //
 
@@ -114,14 +102,6 @@ $al_value in $alignaments {
 }
 
 // MORE
-
-.d-wrap {
-	flex-wrap: wrap;
-}
-
-.d-nowrap {
-	flex-wrap: nowrap;
-}
 
 .d-icon-text {
 	align-items: center;

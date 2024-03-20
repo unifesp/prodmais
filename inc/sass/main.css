@@ -935,18 +935,6 @@ h5 a {
   width: 24px;
 }
 
-.d-container {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1400px;
-  padding: 0.5rem;
-}
-
-.d-container {
-  min-height: 50vh;
-}
-
 .dh, .s-list-2-tags,
 .s-list-tags, .p-projetos-inputs, .p-projetos-search, .p-profile-header-numbers, .p-departamento-orientadores,
 .dv,
@@ -1263,15 +1251,6 @@ h5 a {
   .d-lg-vb {
     align-items: flex-end;
   }
-}
-
-.d-wrap, .s-list-2-tags,
-.s-list-tags, .p-departamento-orientadores {
-  flex-wrap: wrap;
-}
-
-.d-nowrap, .p-projetos-search {
-  flex-wrap: nowrap;
 }
 
 .d-icon-text {
@@ -1725,6 +1704,7 @@ h5 a {
   margin-right: 0.7rem;
 }
 .p-departamento-orientadores {
+  flex-wrap: wrap;
   list-style: none;
 }
 .p-departamento-plataforms {
@@ -2114,6 +2094,7 @@ h5 a {
   }
 }
 .p-projetos-search {
+  flex-wrap: nowrap;
   max-width: 400px;
 }
 .p-projetos-search-btn {
@@ -3683,6 +3664,7 @@ th {
 }
 .s-list-2-tags,
 .s-list-tags {
+  flex-wrap: wrap;
   list-style: none;
 }
 .s-list-2-tag,

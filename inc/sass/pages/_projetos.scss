@@ -21,7 +21,8 @@
 	}
 
 	&-search {
-		@extend .dh, .d-hc, .d-nowrap;
+		@extend .dh, .d-hc;
+		flex-wrap: nowrap;
 		max-width: 400px;
 
 		&-btn {

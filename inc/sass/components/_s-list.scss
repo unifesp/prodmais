@@ -56,7 +56,8 @@
 	}
 
 	&-tags {
-		@extend .dh, .d-wrap;
+		@extend .dh;
+		flex-wrap: wrap;
 		list-style: none;
 	}
 

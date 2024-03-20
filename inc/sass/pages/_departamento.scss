@@ -36,7 +36,8 @@
 	}
 
 	&-orientadores {
-		@extend .dh, .d-hc, .d-wrap;
+		@extend .dh, .d-hc;
+		flex-wrap: wrap;
 		list-style: none;
 	}
 
