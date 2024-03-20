@@ -25,33 +25,25 @@
     <!-- /NAV -->
     <main class="p-categorias" id="home">
         <h3 class="t t-h3 u-mb-20">Busca por categorias</h3>
-        <div class="d-grid">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <h4 class="t t-h4">Programa de Pós-Graduação</h4>
-                    <ul class="p-categorias-list">
-                        <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
-                    </ul>
-                    <?php if($mostrar_instituicao): ?>
+        <div class="grid-categorias">
+            <div class="grid-categorias__a">
+                <h4 class="t t-h4">Programa de Pós-Graduação</h4>
+                <ul class="p-categorias-list">
+                    <?php paginaInicial::unidade_inicio("vinculo.ppg_nome"); ?>
+                </ul>
+                <?php if($mostrar_instituicao): ?>
                     <h4 class="t t-h4">Instituição</h4>
                     <ul class="p-categorias-list">
                         <?php paginaInicial::unidade_inicio("vinculo.instituicao"); ?>
                     </ul>
-                    <?php endif; ?>
-
-                </div>
-                <div class="col-12 col-md-6">
-                    <h4 class="t t-h4">Tipo de produção</h4>
-                    <?php paginaInicial::tipo_inicio(); ?>
-                </div>
+                <?php endif; ?>
             </div>
-        </div>
-        <div class="d-container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <h4 class="t t-h4">Tipo de vínculo</h4>
-                    <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
-                </div>
+            <div class="grid-categorias__b">
+                <h4 class="t t-h4">Tipo de produção</h4>
+                <?php paginaInicial::tipo_inicio(); ?>
+
+                <h4 class="t t-h4">Tipo de vínculo</h4>
+                <?php paginaInicial::unidade_inicio("vinculo.tipvin"); ?>
             </div>
         </div>
     </main>
