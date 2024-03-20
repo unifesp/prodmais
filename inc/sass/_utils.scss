@@ -1,3 +1,8 @@
+
+///
+/// === ACESSIBILITY === ///
+///
+/// 
 .u-sr-only {
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
@@ -22,4 +27,22 @@
 	height: auto;
 	position: static;
 	width: auto;
+}
+
+/// === OTHERS === ///
+
+@include make-margin($margins, $spacing_graduation);
+
+.u-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.u-grayscale {
+	filter: grayscale(100%);
+}
+
+.u-100 {
+	width: 100%;
 }
