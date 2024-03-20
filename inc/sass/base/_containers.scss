@@ -1,36 +1,4 @@
-.d-grid,
-.d-container {
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: $container_width;
-	padding: 0.5rem;
-}
 
-.d-grid {
-	display: flex;
-	width: 100%;
-}
-
-.d-container {
-	min-height: 50vh;
-}
-
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	@include grid-system("all");
-}
-
-@each $k,
-$v in $breakpointsUp {
-	@include up-to("#{$k}") {
-		.row {
-			@include grid-system("#{$k}");
-		}
-	}
-}
 
 // === CONTAINERS === //
 
@@ -134,14 +102,6 @@ $al_value in $alignaments {
 }
 
 // MORE
-
-.d-wrap {
-	flex-wrap: wrap;
-}
-
-.d-nowrap {
-	flex-wrap: nowrap;
-}
 
 .d-icon-text {
 	align-items: center;

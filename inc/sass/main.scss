@@ -1,16 +1,15 @@
 /// === DON'T FORGET THE VARS! === ///
-@import "vars";
-@import "svg";
 
 /// === BASE === ///
-@import "abstractions";
-@import "grid-system";
-@import "normalize";
-@import "typography";
-@import "icons";
-@import "containers";
-@import "transitions";
-@import "utils";
+@import "base/vars";
+@import "base/svg";
+@import "base/abstractions";
+@import "base/normalize";
+@import "base/typography";
+@import "base/icons";
+@import "base/containers";
+@import "base/transitions";
+@import "base/utils";
 
 /// === PAGES === ///
 @import "pages/about";
