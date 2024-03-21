@@ -229,8 +229,8 @@ class SList
 					<p class='t t-gray'>$itemInfoD</p>
 					<p class='t t-gray'>$itemInfoE</p>
           $tagsRender
-					<p class='t t-gray'>$aut</p>		
-					<p class='t t-gray'>$date</p>			
+					<p class='t t-gray'>$aut</p>
+					<p class='t t-gray'>$date</p>
 				</div>
 			</div>
     </li>
@@ -267,7 +267,7 @@ class SList
     !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
     !empty($refPage) ? $refPage = ", p. $refPage" : '';
     !empty($datePublished) ? $datePublished = $datePublished : '';
-    $name_cleaned = SList::RemoveSpecialChar($name);
+    $name_cleaned  = $name;
 
     if (!empty($aurorasdg['predictions'])) {
       foreach ($aurorasdg['predictions'] as $prediction) {
