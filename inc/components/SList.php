@@ -5,12 +5,7 @@ class SList
 
   static function RemoveSpecialChar($str)
   {
-
-    // Using preg_replace() function 
-    // to replace the word 
-    $res = preg_replace('/[^a-zA-Z0-9_ -]/s', ' ', $str);
-
-    // Returning the result 
+    $res = str_replace('{', '', $str);
     return $res;
   }
 
@@ -267,7 +262,7 @@ class SList
     !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
     !empty($refPage) ? $refPage = ", p. $refPage" : '';
     !empty($datePublished) ? $datePublished = $datePublished : '';
-    $name_cleaned  = $name;
+    $name_cleaned  = SList::RemoveSpecialChar($name);
 
     if (!empty($aurorasdg['predictions'])) {
       foreach ($aurorasdg['predictions'] as $prediction) {
