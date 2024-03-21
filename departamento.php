@@ -41,7 +41,7 @@ class Departamento {
   require 'inc/components/Who.php';
   require 'inc/components/PPGBadges.php';
   require 'inc/components/TagCloud.php';
-  require '_fakedata.php';
+
   ?>
     <meta charset="utf-8" />
     <title><?php echo $branch; ?> - Departamento Letras</title>
