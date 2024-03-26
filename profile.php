@@ -4,7 +4,6 @@ require 'inc/config.php';
 require 'inc/functions.php';
 require 'inc/components/SList.php';
 require 'inc/components/TagCloud.php';
-include_once '_fakedata.php';
 
 function lattesID10($lattesID16)
 {
