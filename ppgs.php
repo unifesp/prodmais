@@ -86,7 +86,6 @@ class ListPPGs
     require 'inc/meta-header.php';
     require 'inc/components/SList.php';
     require 'inc/components/TagCloud.php';
-    require '_fakedata.php';
     ?>
     <meta charset="utf-8" />
     <title><?php echo $branch; ?> Programas de Pós-Graduação </title>
