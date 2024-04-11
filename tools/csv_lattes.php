@@ -43,6 +43,30 @@ if (isset($_FILES['file'])) {
         if ($value == "SECAO") {
             define("SECAO", $key);
         }
+        if ($value == "UNIDADE") {
+            define("UNIDADE", $key);
+        }
+        if ($value == "DEPARTAMENTO") {
+            define("DEPARTAMENTO", $key);
+        }
+        if ($value == "NUMFUNCIONAL") {
+            define("NUMFUNCIONAL", $key);
+        }
+        if ($value == "TAG") {
+            define("TAG", $key);
+        }
+        if ($value == "NIVEL") {
+            define("NIVEL", $key);
+        }
+        if ($value == "CURSO") {
+            define("CURSO", $key);
+        }
+        if ($value == "ANO_INGRESSO") {
+            define("ANO_INGRESSO", $key);
+        }
+        if ($value == "CAMPUS") {
+            define("CAMPUS", $key);
+        }
     }
 
     while (($row = fgetcsv($fh, 108192, "\t")) !== false) {
@@ -91,6 +115,46 @@ if (isset($_FILES['file'])) {
             $queryParams[] = '&secao=' . $row[SECAO] . '';
         } else {
             $queryParams[] = '&secao=';
+        }
+        if (!empty($row[UNIDADE])) {
+            $queryParams[] = '&unidade=' . $row[UNIDADE] . '';
+        } else {
+            $queryParams[] = '&unidade=';
+        }
+        if (!empty($row[DEPARTAMENTO])) {
+            $queryParams[] = '&departamento=' . $row[DEPARTAMENTO] . '';
+        } else {
+            $queryParams[] = '&departamento=';
+        }
+        if (!empty($row[NUMFUNCIONAL])) {
+            $queryParams[] = '&numfuncional=' . $row[NUMFUNCIONAL] . '';
+        } else {
+            $queryParams[] = '&numfuncional=';
+        }
+        if (!empty($row[TAG])) {
+            $queryParams[] = '&tag=' . $row[TAG] . '';
+        } else {
+            $queryParams[] = '&tag=';
+        }
+        if (!empty($row[NIVEL])) {
+            $queryParams[] = '&desc_nivel=' . $row[NIVEL] . '';
+        } else {
+            $queryParams[] = '&desc_nivel=';
+        }
+        if (!empty($row[CURSO])) {
+            $queryParams[] = '&desc_curso=' . $row[CURSO] . '';
+        } else {
+            $queryParams[] = '&desc_curso=';
+        }
+        if (!empty($row[ANO_INGRESSO])) {
+            $queryParams[] = '&ano_ingresso=' . $row[ANO_INGRESSO] . '';
+        } else {
+            $queryParams[] = '&ano_ingresso=';
+        }
+        if (!empty($row[CAMPUS])) {
+            $queryParams[] = '&campus=' . $row[CAMPUS] . '';
+        } else {
+            $queryParams[] = '&campus=';
         }
         curlLattes($url_base, $IDLattes, $queryParams);
 
