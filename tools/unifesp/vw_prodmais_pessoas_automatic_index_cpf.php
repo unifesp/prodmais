@@ -17,7 +17,7 @@ $alter = "
 
 
 $sql = "
-    SELECT * FROM CONS_OLAP.VW_PRODMAIS_PESSOAS
+    SELECT * FROM CONS_OLAP.VW_PRODMAIS_PESSOAS WHERE ppg_nome = 'Física'
 ";
 
 $stidalter = oci_parse($conexao, $alter) or die("erro");
@@ -52,8 +52,8 @@ while (($row = oci_fetch_array($stid)) != false) {
         }
         if (isset($row["ORIENT_RESEARCHER"])) {
             $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
-        }        
-        
+        }
+
         $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         //$queryParams[] = '&departamento=' . $row["DESC_DEPTO"] . '';
@@ -72,7 +72,6 @@ while (($row = oci_fetch_array($stid)) != false) {
         $output = curl_exec($ch);
 
         unset($queryParams);
-        
     } elseif ($row["ORIENT_LATTES16"] != null) {
         $DataAtualizacaoLattes = file_get_contents('http://200.133.208.25/api/proxy_data_atualizacao/' . $row["ORIENT_LATTES16"] . '');
         $DataAtualizacaoLattes_formatted = '' . substr($DataAtualizacaoLattes, 6, 4) . '-' . substr($DataAtualizacaoLattes, 3, 2) . '';
@@ -94,7 +93,7 @@ while (($row = oci_fetch_array($stid)) != false) {
         }
         if (isset($row["ORIENT_RESEARCHER"])) {
             $queryParams[] = '&researcherid=' . $row["ORIENT_RESEARCHER"] . '';
-        }      
+        }
         $queryParams[] = '&lattes10=' . $row["ORIENT_LATTES10"] . '';
 
         $ch = curl_init();

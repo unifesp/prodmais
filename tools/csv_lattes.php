@@ -31,6 +31,18 @@ if (isset($_FILES['file'])) {
         if ($value == "INSTITUICAO") {
             define("INSTITUICAO", $key);
         }
+        if ($value == "EMAIL") {
+            define("EMAIL", $key);
+        }
+        if ($value == "ETNIA") {
+            define("ETNIA", $key);
+        }
+        if ($value == "DIVISAO") {
+            define("DIVISAO", $key);
+        }
+        if ($value == "SECAO") {
+            define("SECAO", $key);
+        }
     }
 
     while (($row = fgetcsv($fh, 108192, "\t")) !== false) {
@@ -59,6 +71,26 @@ if (isset($_FILES['file'])) {
             $queryParams[] = '&instituicao=' . $row[INSTITUICAO] . '';
         } else {
             $queryParams[] = '&instituicao=';
+        }
+        if (!empty($row[EMAIL])) {
+            $queryParams[] = '&email=' . $row[EMAIL] . '';
+        } else {
+            $queryParams[] = '&email=';
+        }
+        if (!empty($row[ETNIA])) {
+            $queryParams[] = '&etnia=' . $row[ETNIA] . '';
+        } else {
+            $queryParams[] = '&etnia=';
+        }
+        if (!empty($row[DIVISAO])) {
+            $queryParams[] = '&divisao=' . $row[DIVISAO] . '';
+        } else {
+            $queryParams[] = '&divisao=';
+        }
+        if (!empty($row[SECAO])) {
+            $queryParams[] = '&secao=' . $row[SECAO] . '';
+        } else {
+            $queryParams[] = '&secao=';
         }
         curlLattes($url_base, $IDLattes, $queryParams);
 
