@@ -49,7 +49,9 @@ if (!empty($_REQUEST["ID"])) {
 
 
     $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
-    $query_orientadores['query']['sort']['nome_completo.keyword']['order'] = "asc";
+    $query_orientadores['query']["sort"]["nome_completo.keyword"]["unmapped_type"] = "long";
+    $query_orientadores['query']["sort"]["nome_completo.keyword"]["missing"] = "_last";
+    $query_orientadores['query']["sort"]["nome_completo.keyword"]["order"] = "asc";
     $params_orientadores = [];
     $params_orientadores["index"] = $index_cv;
     $params_orientadores["_source"] = ["nome_completo"];
