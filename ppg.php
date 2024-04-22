@@ -49,6 +49,7 @@ if (!empty($_REQUEST["ID"])) {
 
 
     $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $query_orientadores['query']['sort']['nome_completo.keyword']['order'] = "asc";
     $params_orientadores = [];
     $params_orientadores["index"] = $index_cv;
     $params_orientadores["_source"] = ["nome_completo"];
@@ -256,8 +257,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                        <li>
-                            <?php
+                            <li>
+                                <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -269,7 +270,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                        </li>
+                            </li>
                         <?php } ?>
                     </ul>
 
