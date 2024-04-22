@@ -47,9 +47,6 @@ if (!empty($_REQUEST["ID"])) {
     $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
     shuffle($resultppgtags);
 
-    $query_orientadores['query']["sort"]["nome_completo.keyword"]["unmapped_type"] = "long";
-    $query_orientadores['query']["sort"]["nome_completo.keyword"]["missing"] = "_last";
-    $query_orientadores['query']["sort"]["nome_completo.keyword"]["order"] = "asc";
     $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
     $params_orientadores = [];
     $params_orientadores["index"] = $index_cv;
