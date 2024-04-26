@@ -133,7 +133,7 @@ $get_data = $_GET;
 
                             ?>
 
-                    <li class='s-nobullet'>
+
                         <div class='s-list'>
                             <div class='s-list-bullet'>
                                 <i class='i i-ppg-logo s-list-ico'></i>
@@ -177,6 +177,7 @@ $get_data = $_GET;
                             </div>
                         </div>
                     </li>
+
                     <?php unset($integrantes_do_projeto_array); ?>
                     <?php endforeach; ?>
                 </ul>
