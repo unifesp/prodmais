@@ -102,7 +102,7 @@ $get_data = $_GET;
                     echo ($facets->facet(basename(__FILE__), "departamento", 100, "Departamento", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(basename(__FILE__), "divisao", 100, "Divisão", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(basename(__FILE__), "secao", 100, "Seção", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    echo ($facets->facet(basename(__FILE__), "ppg_nome", 100, "Nome do PPG", "asc", "_key", $_POST, "result_autores.php", $index_cv));
                     if ($mostrar_area_concentracao) {
                         echo ($facets->facet(basename(__FILE__), "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, "result_autores.php", $index_cv));
                     }
@@ -142,25 +142,20 @@ $get_data = $_GET;
 
             <div class="p-result-search-ctn">
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
-                    enctype="multipart/form-data" id="searchresearchers">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="searchresearchers">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
-                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador" aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
                     </div>
                 </form>
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
-                    enctype="multipart/form-data" id="resumocv">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="resumocv">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="resumocv"
-                            placeholder="Digite um termo para pesquisar no resumo"
-                            aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="resumocv" placeholder="Digite um termo para pesquisar no resumo" aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="resumocv" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
@@ -198,17 +193,17 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                    <?php
+                        <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                    <li class="c-card-author t t-b t-md">
-                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                            <?php echo $r["_source"]['nome_completo']; ?>
-                        </a>
-                    </li>
+                        <li class="c-card-author t t-b t-md">
+                            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                                <?php echo $r["_source"]['nome_completo']; ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
