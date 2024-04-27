@@ -139,9 +139,9 @@ if (!empty($_REQUEST["lattesID"])) {
                             }
                         }
                         if (count($years_array_values) == 0) {
-                            $years_array_max = 1;
+                            $years_array_max_projetos = 1;
                         } else {
-                            $years_array_max = max($years_array_values);
+                            $years_array_max_projetos = max($years_array_values);
                         }
                         unset($years_ok);
                         unset($years_array_values);
@@ -196,7 +196,8 @@ if (!empty($_REQUEST["lattesID"])) {
                     <div class="p-profile-header-one">
 
                         <div class="c-who-s">
-                            <img class="c-who-s-pic" src="https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=<?php echo $lattesID10; ?>" />
+                            <img class="c-who-s-pic"
+                                src="https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=<?php echo $lattesID10; ?>" />
                         </div>
 
                     </div>
@@ -206,43 +207,44 @@ if (!empty($_REQUEST["lattesID"])) {
                             <?php echo $profile["nome_completo"] ?>
 
                             <?php if ($profile["nacionalidade"] == "B") : ?>
-                                <img class="country-flag" src="<?php echo $url_base; ?>/inc/images/country_flags/br.svg" alt="nacionalidade brasileira" title="nacionalidade brasileira" />
+                            <img class="country-flag" src="<?php echo $url_base; ?>/inc/images/country_flags/br.svg"
+                                alt="nacionalidade brasileira" title="nacionalidade brasileira" />
                             <?php endif; ?>
                         </h1>
 
                         <!-- <div class="u-mb-20  "></div> -->
                         <?php if (!empty($profile["instituicao"][0])) : ?>
-                            <?php foreach ($profile["instituicao"] as $key_instituicao => $instituicao) : ?>
-                                <?php if (is_array($instituicao)) : ?>
-                                    <h3 class="t t-prof"><?php echo implode(" ", $instituicao) ?></h3>
-                                <?php else : ?>
-                                    <h3 class="t t-prof"><?php echo $instituicao ?></h3>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                        <?php foreach ($profile["instituicao"] as $key_instituicao => $instituicao) : ?>
+                        <?php if (is_array($instituicao)) : ?>
+                        <h3 class="t t-prof"><?php echo implode(" ", $instituicao) ?></h3>
                         <?php else : ?>
-                            <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
+                        <h3 class="t t-prof"><?php echo $instituicao ?></h3>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php else : ?>
+                        <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
                         <?php endif; ?>
                         <?php if (!empty($profile["unidade"][0])) : ?>
-                            <p class="t t-prof">
-                                <?php echo $profile["unidade"][0] ?>
-                            </p>
+                        <p class="t t-prof">
+                            <?php echo $profile["unidade"][0] ?>
+                        </p>
                         <?php endif; ?>
                         <?php if (!empty($profile["departamento"][0])) : ?>
-                            <p class="t t-prof">
-                                <?php echo $profile["departamento"][0] ?>
-                            </p>
+                        <p class="t t-prof">
+                            <?php echo $profile["departamento"][0] ?>
+                        </p>
                         <?php endif; ?>
                         <?php if (!empty($profile["ppg_nome"][0])) : ?>
-                            <?php foreach ($profile["ppg_nome"] as $key => $ppg_nome) : ?>
-                                <p class="t t-prof">Programa de Pós-Graduação:
-                                    <?php echo $ppg_nome ?>
-                                </p>
-                            <?php endforeach; ?>
+                        <?php foreach ($profile["ppg_nome"] as $key => $ppg_nome) : ?>
+                        <p class="t t-prof">Programa de Pós-Graduação:
+                            <?php echo $ppg_nome ?>
+                        </p>
+                        <?php endforeach; ?>
                         <?php endif; ?>
                         <?php if (!empty($profile["email"])) : ?>
-                            <p class="t t-prof">E-Mail:
-                                <?php echo $profile["email"] ?>
-                            </p>
+                        <p class="t t-prof">E-Mail:
+                            <?php echo $profile["email"] ?>
+                        </p>
                         <?php endif; ?>
 
                         <hr class="c-line" />
@@ -250,7 +252,8 @@ if (!empty($_REQUEST["lattesID"])) {
                         <div class="p-profile-header-numbers">
 
                             <div class="d-icon-text u-mx-10">
-                                <i class="i i-sm i-articlePublished" title="Trabalhos publicados" alt="Trabalhos publicados"></i>
+                                <i class="i i-sm i-articlePublished" title="Trabalhos publicados"
+                                    alt="Trabalhos publicados"></i>
                                 <span class="t">
                                     <?php echo $totalWorks; ?>
                                 </span>
@@ -300,13 +303,13 @@ if (!empty($_REQUEST["lattesID"])) {
                             <div class="c-graph-line">
                                 <?php
                                 foreach ($participacoes_projetos as $i => $j) {
-                                    if ($j['total'] / $years_array_max <= 1 && $j['total'] / $years_array_max > 0.8) {
+                                    if ($j['total'] / $years_array_max_projetos <= 1 && $j['total'] / $years_array_max_projetos > 0.8) {
                                         $weight = 4;
-                                    } elseif ($j['total'] / $years_array_max <= 0.8 && $j['total'] / $years_array_max > 0.6) {
+                                    } elseif ($j['total'] / $years_array_max_projetos <= 0.8 && $j['total'] / $years_array_max_projetos > 0.6) {
                                         $weight = 3;
-                                    } elseif ($j['total'] / $years_array_max <= 0.6 && $j['total'] / $years_array_max > 0.4) {
+                                    } elseif ($j['total'] / $years_array_max_projetos <= 0.6 && $j['total'] / $years_array_max_projetos > 0.4) {
                                         $weight = 2;
-                                    } elseif ($j['total'] / $years_array_max <= 0.4 && $j['total'] / $years_array_max > 0.2) {
+                                    } elseif ($j['total'] / $years_array_max_projetos <= 0.4 && $j['total'] / $years_array_max_projetos > 0.2) {
                                         $weight = 1;
                                     } else {
                                         $weight = 0;
@@ -326,26 +329,30 @@ if (!empty($_REQUEST["lattesID"])) {
                 </div>
                 <div class="profile-tabs" onload="changeTab('1')">
                     <div class="c-profmenu">
-                        <button id="tab-btn-1" class="c-profmenu-btn" v-on:click="changeTab('1')" title="Sobre" alt="Sobre">
+                        <button id="tab-btn-1" class="c-profmenu-btn" v-on:click="changeTab('1')" title="Sobre"
+                            alt="Sobre">
                             <i class="i i-sm i-aboutme c-profmenu-ico"></i>
                             <span class="c-profmenu-text">Sobre</span>
                         </button>
 
-                        <button id=" tab-btn-2" class="c-profmenu-btn" v-on:click="changeTab('2')" title="Produção" alt="Produção">
+                        <button id=" tab-btn-2" class="c-profmenu-btn" v-on:click="changeTab('2')" title="Produção"
+                            alt="Produção">
                             <i class="i i-sm i-prodsymbol c-profmenu-ico"></i>
                             <span class="c-profmenu-text">Produção</span>
                         </button>
 
-                        <button id="tab-btn-3" class="c-profmenu-btn" v-on:click="changeTab('3')" title="Atuação" alt="Atuação">
+                        <button id="tab-btn-3" class="c-profmenu-btn" v-on:click="changeTab('3')" title="Atuação"
+                            alt="Atuação">
                             <i class="i i-sm i-working c-profmenu-ico"></i>
                             <span class="c-profmenu-text">Atuação</span>
                         </button>
 
                         <?php if ($totalOrientacoes != 0) : ?>
-                            <button id="tab-btn-4" class="c-profmenu-btn" v-on:click="changeTab('4')" title="Ensino" alt="Ensino">
-                                <i class="i i-sm i-teaching c-profmenu-ico"></i>
-                                <span class="c-profmenu-text">Ensino</span>
-                            </button>
+                        <button id="tab-btn-4" class="c-profmenu-btn" v-on:click="changeTab('4')" title="Ensino"
+                            alt="Ensino">
+                            <i class="i i-sm i-teaching c-profmenu-ico"></i>
+                            <span class="c-profmenu-text">Ensino</span>
+                        </button>
                         <?php endif; ?>
 
                         <?php
@@ -359,10 +366,11 @@ if (!empty($_REQUEST["lattesID"])) {
                         }
                         ?>
                         <?php if ($show_gestao) : ?>
-                            <button id="tab-btn-5" class="c-profmenu-btn" v-on:click="changeTab('5')" title="Gestão" alt="Gestão">
-                                <div class="i i-sm i-managment c-profmenu-ico"></div>
-                                <span class="c-profmenu-text">Gestão</span>
-                            </button>
+                        <button id="tab-btn-5" class="c-profmenu-btn" v-on:click="changeTab('5')" title="Gestão"
+                            alt="Gestão">
+                            <div class="i i-sm i-managment c-profmenu-ico"></div>
+                            <span class="c-profmenu-text">Gestão</span>
+                        </button>
                         <?php endif; ?>
 
                         <?php
@@ -376,10 +384,11 @@ if (!empty($_REQUEST["lattesID"])) {
                         }
                         ?>
                         <?php if ($show_pesquisa) : ?>
-                            <button id="tab-btn-6" class="c-profmenu-btn" v-on:click="changeTab('6')" title="Pesquisa" alt="Pesquisa">
-                                <div class="i i-sm i-research c-profmenu-ico"></div>
-                                <span class="c-profmenu-text">Pesquisa</span>
-                            </button>
+                        <button id="tab-btn-6" class="c-profmenu-btn" v-on:click="changeTab('6')" title="Pesquisa"
+                            alt="Pesquisa">
+                            <div class="i i-sm i-research c-profmenu-ico"></div>
+                            <span class="c-profmenu-text">Pesquisa</span>
+                        </button>
                         <?php endif; ?>
                     </div><!-- end c-profmenu  -->
                 </div> <!-- end profile-tabs -->
@@ -397,19 +406,25 @@ if (!empty($_REQUEST["lattesID"])) {
                             <p class="t-prof"><?php echo $profile["nome_em_citacoes_bibliograficas"] ?></p>
                             <hr class="c-line u-my-20" />
                             <h3 class="t t-h3">Exportar dados</h3>
-                            <p><a href="tools/export_old.php?&format=bibtex&search=vinculo.lattes_id:<?php echo $profile["lattesID"]; ?>" target="_blank" rel="nofollow">Exportar produção no formato BIBTEX</a></p>
+                            <p><a href="tools/export_old.php?&format=bibtex&search=vinculo.lattes_id:<?php echo $profile["lattesID"]; ?>"
+                                    target="_blank" rel="nofollow">Exportar produção no formato BIBTEX</a></p>
                             <hr class="c-line u-my-20" />
                             <p class="t t-b">Perfis na web</p>
                             <div class="dh">
                                 <?php if (!empty($profile['lattesID'])) : ?>
-                                    <a href="https://lattes.cnpq.br/<?php echo $profile['lattesID']; ?>" target="_blank" rel="external">
-                                        <img class="c-socialicon" src="<?php echo $url_base; ?>/inc/images/logos/academic/logo_lattes.svg" alt="Lattes" title="Lattes" />
-                                    </a>
+                                <a href="https://lattes.cnpq.br/<?php echo $profile['lattesID']; ?>" target="_blank"
+                                    rel="external">
+                                    <img class="c-socialicon"
+                                        src="<?php echo $url_base; ?>/inc/images/logos/academic/logo_lattes.svg"
+                                        alt="Lattes" title="Lattes" />
+                                </a>
                                 <?php endif; ?>
                                 <?php if (!empty($profile['orcid_id'])) : ?>
-                                    <a href="<?php echo $profile['orcid_id']; ?>" target="_blank" rel="external">
-                                        <img class="c-socialicon" src="<?php echo $url_base; ?>/inc/images/logos/academic/logo_research_id.svg" alt="ORCID" title="ORCID" />
-                                    </a>
+                                <a href="<?php echo $profile['orcid_id']; ?>" target="_blank" rel="external">
+                                    <img class="c-socialicon"
+                                        src="<?php echo $url_base; ?>/inc/images/logos/academic/logo_research_id.svg"
+                                        alt="ORCID" title="ORCID" />
+                                </a>
                                 <?php endif; ?>
 
                             </div>
@@ -431,13 +446,13 @@ if (!empty($_REQUEST["lattesID"])) {
                             ?>
                             <hr class="c-line u-my-20" />
                             <?php if (isset($profile["idiomas"])) : ?>
-                                <div>
-                                    <h3 class="t t-h3">Idiomas</h3>
-                                    <?php foreach ($profile["idiomas"] as $key => $idioma) : ?>
+                            <div>
+                                <h3 class="t t-h3">Idiomas</h3>
+                                <?php foreach ($profile["idiomas"] as $key => $idioma) : ?>
 
-                                        <div class="s-list">
-                                            <div class="s-list-bullet">
-                                                <?php
+                                <div class="s-list">
+                                    <div class="s-list-bullet">
+                                        <?php
                                                 switch ($idioma["descricaoDoIdioma"]) {
                                                     case "Inglês":
                                                         $lang = 'en';
@@ -471,20 +486,20 @@ if (!empty($_REQUEST["lattesID"])) {
 
                                                 echo "<i class='i i-lang-$lang i-lang' title='$idi' alt='$idi'></i>"
                                                 ?>
-                                            </div>
+                                    </div>
 
-                                            <div class="s-list-content">
-                                                <p class="t t-b"><?php echo $idioma["descricaoDoIdioma"] ?></p>
-                                                <p class="t u-mb-05">
-                                                    Compreende <?php echo strtolower($idioma["proficienciaDeCompreensao"]) ?>,
-                                                    Fala <?php echo strtolower($idioma["proficienciaDeFala"]) ?>,
-                                                    Lê <?php echo strtolower($idioma["proficienciaDeLeitura"]) ?>,
-                                                    Escreve <?php echo strtolower($idioma["proficienciaDeEscrita"]) ?>
-                                                </p>
-                                            </div>
-                                        </div> <!-- end s-list -->
-                                    <?php endforeach; ?>
-                                </div> <!-- end u-left -->
+                                    <div class="s-list-content">
+                                        <p class="t t-b"><?php echo $idioma["descricaoDoIdioma"] ?></p>
+                                        <p class="t u-mb-05">
+                                            Compreende <?php echo strtolower($idioma["proficienciaDeCompreensao"]) ?>,
+                                            Fala <?php echo strtolower($idioma["proficienciaDeFala"]) ?>,
+                                            Lê <?php echo strtolower($idioma["proficienciaDeLeitura"]) ?>,
+                                            Escreve <?php echo strtolower($idioma["proficienciaDeEscrita"]) ?>
+                                        </p>
+                                    </div>
+                                </div> <!-- end s-list -->
+                                <?php endforeach; ?>
+                            </div> <!-- end u-left -->
                             <?php endif; ?>
 
                             <hr class="c-line u-my-20" />
@@ -962,28 +977,28 @@ if (!empty($_REQUEST["lattesID"])) {
     <?php include('inc/footer.php'); ?>
 
     <script>
-        var app = new Vue({
-            el: '#profile',
-            data: {
-                tabOpened: '2',
-                isActive: false
+    var app = new Vue({
+        el: '#profile',
+        data: {
+            tabOpened: '2',
+            isActive: false
 
-            },
-            methods: {
-                changeTab(tab) {
-                    this.tabOpened = tab
-                    var tabs = document.getElementsByClassName("c-profmenu-btn")
+        },
+        methods: {
+            changeTab(tab) {
+                this.tabOpened = tab
+                var tabs = document.getElementsByClassName("c-profmenu-btn")
 
-                    for (i = 0; i < tabs.length; i++)
-                        tabs[i].className = tabs[i].className.replace("c-profmenu-active", "")
+                for (i = 0; i < tabs.length; i++)
+                    tabs[i].className = tabs[i].className.replace("c-profmenu-active", "")
 
-                    tabs[Number(tab) - 1].className += " c-profmenu-active"
-                }
-            },
-            mounted: function() {
-                this.changeTab(1)
-            },
-        })
+                tabs[Number(tab) - 1].className += " c-profmenu-active"
+            }
+        },
+        mounted: function() {
+            this.changeTab(1)
+        },
+    })
     </script>
 
 </body>
