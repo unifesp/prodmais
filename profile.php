@@ -308,11 +308,24 @@ if (!empty($_REQUEST["lattesID"])) {
                             <span class="c-profmenu-text">Gestão</span>
                         </button>
                         <?php endif; ?>
+
+                        <?php
+                        $show_pesquisa = false;
+                        foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+                            foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
+                                if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
+                                    $show_pesquisa = true;
+                                }
+                            }
+                        }
+                        ?>
+                        <?php if ($show_pesquisa) : ?>
                         <button id="tab-btn-6" class="c-profmenu-btn" v-on:click="changeTab('6')" title="Pesquisa"
                             alt="Pesquisa">
                             <div class="i i-sm i-research c-profmenu-ico"></div>
                             <span class="c-profmenu-text">Pesquisa</span>
                         </button>
+                        <?php endif; ?>
                     </div><!-- end c-profmenu  -->
                 </div> <!-- end profile-tabs -->
                 <div class="c-wrapper-inner u-m-20">
