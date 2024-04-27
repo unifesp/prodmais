@@ -97,6 +97,8 @@ if (!empty($_REQUEST["lattesID"])) {
         } else {
             $years_array_max = max($years_array_values);
         }
+        unset($years_ok);
+        unset($years_array_values);
     }
 
     $lattesID10 = lattesID10($_GET["lattesID"]);
@@ -107,6 +109,46 @@ if (!empty($_REQUEST["lattesID"])) {
     }
     if (isset($profile['orientacoesconcluidas'])) {
         $totalOrientacoes = $totalOrientacoes + count($profile['orientacoesconcluidas']);
+    }
+
+    foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+        foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
+            if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
+                foreach ($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'] as $key => $participacao_em_projeto) {
+                    if (isset($participacao_em_projeto['PROJETO-DE-PESQUISA'])) {
+                        foreach ($participacao_em_projeto['PROJETO-DE-PESQUISA'] as $key => $projeto_de_pesquisa) {
+                            //print("<pre>" . print_r($projeto_de_pesquisa, true) . "</pre>");
+                            if (isset($projeto_de_pesquisa['ANO-INICIO'])) {
+                                $projetospesquisatotal[$projeto_de_pesquisa['ANO-INICIO']][] = $projeto_de_pesquisa;
+                            }
+                        }
+                        $years_array_values = [];
+                        for ($i = date("Y"); $i >= date("Y", strtotime("-9 year")); $i--) {
+                            if (isset($projetospesquisatotal[$i])) {
+                                $participacoes_projetos[$i] = [
+                                    "year" => $i,
+                                    "total" => count($projetospesquisatotal[$i])
+                                ];
+                                $years_array_values[] = count($projetospesquisatotal[$i]);
+                            } else {
+                                $participacoes_projetos[$i] = [
+                                    "year" => $i,
+                                    "total" => 0
+                                ];
+                                $years_array_values[] = 0;
+                            }
+                        }
+                        if (count($years_array_values) == 0) {
+                            $years_array_max = 1;
+                        } else {
+                            $years_array_max = max($years_array_values);
+                        }
+                        unset($years_ok);
+                        unset($years_array_values);
+                    }
+                }
+            }
+        }
     }
 } else {
     echo '<script>window.location.href = "index.php";</script>';
@@ -254,6 +296,28 @@ if (!empty($_REQUEST["lattesID"])) {
                                 unset($weight);
                                 ?>
                                 <span class="c-graph-label">Trabalhos publicados</span>
+                            </div>
+                            <div class="c-graph-line">
+                                <?php
+                                foreach ($participacoes_projetos as $i => $j) {
+                                    if ($j['total'] / $years_array_max <= 1 && $j['total'] / $years_array_max > 0.8) {
+                                        $weight = 4;
+                                    } elseif ($j['total'] / $years_array_max <= 0.8 && $j['total'] / $years_array_max > 0.6) {
+                                        $weight = 3;
+                                    } elseif ($j['total'] / $years_array_max <= 0.6 && $j['total'] / $years_array_max > 0.4) {
+                                        $weight = 2;
+                                    } elseif ($j['total'] / $years_array_max <= 0.4 && $j['total'] / $years_array_max > 0.2) {
+                                        $weight = 1;
+                                    } else {
+                                        $weight = 0;
+                                    }
+                                    echo "<div class='c-graph-unit' data-weight='{$weight}' title='{$j['year']} — total: {$j['total']}'></div>";
+                                }
+                                unset($i);
+                                unset($j);
+                                unset($weight);
+                                ?>
+                                <span class="c-graph-label">Participações em projetos</span>
                             </div>
 
                         </div>
