@@ -78,8 +78,6 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
             <div class="c-tips" v-if="showTips">
                 <a class="u-skip" href="#aftertips">Pular dicas de pesquisa</a>
 
-
-
                 <h4>Dicas de como pesquisar</h4>
                 <p>Use _ para busca por radical. Exemplo: biblio_.</p>
                 <p>Para buscas exatas, coloque entre "". Exemplo: "Direito civil"</p>
@@ -87,24 +85,10 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                     utilize
                     o operador AND (em maiúscula).</p>
 
-                <h4>Busca avançada</h4>
-                <p>O botão <img class="c-manual-img__in-text"
-                        src="<?php echo $url_base ?>/inc/images/manual/btn_busca_avancada.png"
-                        alt="botão alternar para busca avançada" height="28px" />, que se
-                    parece com uma seta apontando para baixo, permite fazer pesquisas com mais critérios, sendo eles,
-                    programa de pós-graduação, ID lattes do pesquisador, e período.</p>
-
-                <h4>Consultando as categorias disponíveis</h4>
-                <p>O botão <img class="c-manual-img__in-text"
-                        src="<?php echo $url_base ?>/inc/images/manual/btn_mostrar_pesquisa_categoria.png"
-                        alt="botão mostrar persquisa por categoria" height="28px" /> lista as produções classificados
-                    por Programa de Pós-graduação, tipo de produção, tipo de vínculo e base de dados, entre outras.</p>
 
                 <h4>Buscando o perfil de um pesquisador</h4>
                 <p>É possível também obter perfis detalhados dos pesquisadores. Esta opção está na opção "Pesquisadores"
-                    <img class="c-manual-img__in-text"
-                        src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png" alt="botão pesquisadores"
-                        height="28px" />, no menu principal, no cabeçalho do Prodmais.
+                    <img class="c-manual-img__in-text" src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png" alt="botão pesquisadores" height="28px" />, no menu principal, no cabeçalho do Prodmais.
                 </p>
 
 
@@ -119,9 +103,9 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         <!-- <h3 class="p-home-instituicao">< ?php echo ($instituicao); ?></h3> -->
 
         <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
-        <div class="alert alert-warning" role="alert">
-            O Prod+ está em manutenção!
-        </div>
+            <div class="alert alert-warning" role="alert">
+                O Prod+ está em manutenção!
+            </div>
         <?php endif; ?>
 
         <div class="p-home-search">
@@ -129,58 +113,17 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
             <form class="p-home-form" class="" action="result.php" title="Pesquisa simples" method="post">
 
                 <div class="c-searcher">
-                    <input id="mainseach" name="search" type="search" placeholder="Pesquise por palavra chave"
-                        aria-label="Pesquisar">
+                    <input id="mainseach" name="search" type="search" placeholder="Pesquise por palavra chave" aria-label="Pesquisar">
                     <button class="c-searcher__btn" type="submit" title="Buscar">
                         <i class="i i-lupa c-searcher__btn-ico"></i>
                     </button>
                 </div>
 
-                <button type="button" v-on:click="changeSearchMode()" class="c-btn p-home-form-btn"
-                    title="Alternar modo de pesquisa">
-                    <i class="i i-btn i-arrow-down" v-if="searchPage == 'simple'"></i>
-                    <i class="i i-btn i-arrow-up" v-if="searchPage == 'advanced'"></i>
-                </button>
-
-                <transition name="homeeffect">
-                    <div class="dv" v-if="searchPage == 'advanced'">
-
-                        <label class="p-home-info u-my-10">Mais opções de pesquisa:</label>
-
-                        <?php paginaInicial::filter_select("vinculo.ppg_nome"); ?>
-
-                        <input class="c-input" list="datalistOptions" id="authorsDataList"
-                            placeholder="Filtrar por nome ou ID Lattes do autor" name="filter[]" v-model="query"
-                            @input="searchCV()">
-
-                        <datalist class="c-input" id="datalistOptions">
-                            <option v-for="author in authors" :key="author._id"
-                                :value="'vinculo.lattes_id:' + author._id">
-                                {{author._source.nome_completo}}
-                            </option>
-                        </datalist>
-
-                        <label class="p-home-info u-my-10">Filtrar por ano:</label>
-                        <div class="dh d-hc">
-                            <input type="text" class="c-input--date" id="initialYear" name="initialYear" pattern="\d{4}"
-                                placeholder="Ano inicial" />
-
-                            <input type="text" class="c-input--date" id="finalYear" name="finalYear" pattern="\d{4}"
-                                placeholder="Ano final" />
-                        </div>
-
-                        <button type="submit" class="c-btn--search" title="Buscar">
-                            <i class="i i-btn i-lupa i-lg"></i>
-                        </button>
-
-                    </div> <!-- end advanced -->
-                </transition>
             </form>
         </div><!-- end p-home-search -->
 
 
-        <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false"
-            title="Mostrar dicas de pesquisa">
+        <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false" title="Mostrar dicas de pesquisa">
             <i class="i i-btn i-sm i-help"></i>
         </button>
         <a class="u-skip" href="#mainseach">Voltar à barra de pesquisa principal</a>
@@ -188,60 +131,60 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     <?php include('inc/footer.php'); ?>
 
     <script>
-    var app = new Vue({
-        el: '#home',
+        var app = new Vue({
+            el: '#home',
 
-        data: {
-            searchPage: 'simple',
-            query: "",
-            message: "Teste",
-            authors: [],
-            showCategories: false,
-            showTips: false,
-            accOpened: '0'
+            data: {
+                searchPage: 'simple',
+                query: "",
+                message: "Teste",
+                authors: [],
+                showCategories: false,
+                showTips: false,
+                accOpened: '0'
 
-        },
-        mounted() {
-            this.searchCV();
-        },
-        methods: {
-            searchCV() {
-                axios.get(
-                        'tools/proxy_autocomplete_cv.php?query=' + this.query
-                    ).then((response) => {
-                        this.authors = response.data.hits.hits;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        console.error(error);
-                        this.errored = true;
-                    })
-                    .finally(() => (this.loading = false));
             },
-            changeSearchMode() {
-                this.searchPage == 'simple' ? this.searchPage = 'advanced' : this.searchPage = 'simple'
+            mounted() {
+                this.searchCV();
             },
-            openAccordion(acc) {
-                this.accOpened == acc ? this.accOpened = '0' : this.accOpened = acc
+            methods: {
+                searchCV() {
+                    axios.get(
+                            'tools/proxy_autocomplete_cv.php?query=' + this.query
+                        ).then((response) => {
+                            this.authors = response.data.hits.hits;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            console.error(error);
+                            this.errored = true;
+                        })
+                        .finally(() => (this.loading = false));
+                },
+                changeSearchMode() {
+                    this.searchPage == 'simple' ? this.searchPage = 'advanced' : this.searchPage = 'simple'
+                },
+                openAccordion(acc) {
+                    this.accOpened == acc ? this.accOpened = '0' : this.accOpened = acc
+                }
+
+
             }
+        })
 
-
+        let acc = document.getElementsByClassName("c-accordion");
+        let i
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // this.classList.toggle("opened");
+                var body = this.nextElementSibling;
+                if (body.style.display === "block") {
+                    body.style.display = "none";
+                } else {
+                    body.style.display = "block";
+                }
+            });
         }
-    })
-
-    let acc = document.getElementsByClassName("c-accordion");
-    let i
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            // this.classList.toggle("opened");
-            var body = this.nextElementSibling;
-            if (body.style.display === "block") {
-                body.style.display = "none";
-            } else {
-                body.style.display = "block";
-            }
-        });
-    }
     </script>
 
 
