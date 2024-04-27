@@ -288,7 +288,7 @@ class SList
 				</div>
 
 				<div class='s-list-content'>
-					<p class='t t-b t-md'>$name_cleaned</p>
+					<p class='t t-b t-md'>$name_cleaned ($datePublished)</p>
 					<p class='t t-b t-md'><i>$type</i></p>
 					<p class='t-gray'><b class='t-subItem'>Autores: </b> $authorsRendered </p>
 					
@@ -297,14 +297,9 @@ class SList
             $urlRendered
             $issnRendered
 					</p>
-          <p class='mt-3'>
-          $datePublished
-          </p>
-
           <p class='t t-light'>
           Fonte: $refName $refVol $refFascicle $refPage
           </p>
-
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
           </p>
