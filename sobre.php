@@ -89,6 +89,12 @@
 
         <section class="p-about-section2">
 
+            <h3 class="t t-h3 u-my-10">
+                Apoio
+            </h3>
+            <p class="p-about-text">O software Prodmais recebeu o Apoio do EDITAL N° 72/2023 - Projeto "Instituto
+                Serrapilheira - Sou Ciência"</p>
+
             <h3 id="créditos" class="t t-h3 u-my-10">Realização</h3>
 
             <p class="t t-md">Universidade Federal de São Paulo</p>
