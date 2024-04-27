@@ -3976,6 +3976,7 @@ class ImportLattes
         } catch (\Exception $e) {
             echo "Registro anterior não encontrado na base<br/>";
             echo $e->getMessage();
+            return "";
         }
     }
 
