@@ -6,6 +6,7 @@ class SList
   static function RemoveSpecialChar($str)
   {
     $res = str_replace('{', '', $str);
+    $res = str_replace('\'', '', $str);
     return $res;
   }
 
@@ -304,11 +305,6 @@ class SList
           Fonte: $refName $refVol $refFascicle $refPage
           </p>
 
-          ");
-    if ($cited_by_count > 0) {
-      echo "<p class='t t-light'>Quantidade de citações obtidas no OpenAlex: $cited_by_count</p>";
-    }
-    echo ("
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
           </p>

@@ -291,11 +291,23 @@ if (!empty($_REQUEST["lattesID"])) {
                         </button>
                         <?php endif; ?>
 
+                        <?php
+                        $show_gestao = false;
+                        foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+                            foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
+                                if (isset($atuacao_profissional['ATIVIDADES-DE-DIRECAO-E-ADMINISTRACAO'])) {
+                                    $show_gestao = true;
+                                }
+                            }
+                        }
+                        ?>
+                        <?php if ($show_gestao) : ?>
                         <button id="tab-btn-5" class="c-profmenu-btn" v-on:click="changeTab('5')" title="Gestão"
                             alt="Gestão">
                             <div class="i i-sm i-managment c-profmenu-ico"></div>
                             <span class="c-profmenu-text">Gestão</span>
                         </button>
+                        <?php endif; ?>
                         <button id="tab-btn-6" class="c-profmenu-btn" v-on:click="changeTab('6')" title="Pesquisa"
                             alt="Pesquisa">
                             <div class="i i-sm i-research c-profmenu-ico"></div>
@@ -526,8 +538,6 @@ if (!empty($_REQUEST["lattesID"])) {
                             }
                             ?>
                         </div>
-                    </transition>
-                    <transition name="tabeffect">
                         <div id="tab-two" class="c-tab-content" v-if="tabOpened == '2'">
                             <div class="profile-pi">
                                 <h3 class="t t-h3 u-mb-20">Produção</h3>
@@ -574,7 +584,7 @@ if (!empty($_REQUEST["lattesID"])) {
 
                                             SList::IntelectualProduction(
                                                 $type = $work['_source']['tipo'],
-                                                $name = $work['_source']['name'],
+                                                $name = strip_tags($work['_source']['name']),
                                                 $authors = $authors,
                                                 $url = $url,
                                                 $doi = $doi,
@@ -595,59 +605,57 @@ if (!empty($_REQUEST["lattesID"])) {
                                 ?>
                             </div>
                         </div>
-                    </transition>
-                    <transition name="tabeffect">
                         <div id="tab-three" class="c-tab-content" v-if="tabOpened == '3'">
-                            <h3 class="t t-h3 u-mb-20">Atuações</h3>
-                            <?php
-                            foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
-                                foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
-                                    echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
-                                    if (isset($atuacao_profissional['VINCULOS'])) {
-                                        if (count($atuacao_profissional['VINCULOS']) == 1) {
-                                            echo '<ul>';
-                                            SList::genericItem(
-                                                $type = "professional",
-                                                $itemName = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
-                                                $itemNameLink = '',
-                                                $itemInfoA = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'],
-                                                $itemInfoB = '',
-                                                $itemInfoC = '',
-                                                $itemInfoD = '',
-                                                $itemInfoE = '',
-                                                $authors = '',
-                                                $tags = '',
-                                                $yearStart = $atuacao_profissional['VINCULOS']['@attributes']['ANO-INICIO'],
-                                                $yearEnd = $atuacao_profissional['VINCULOS']['@attributes']['ANO-FIM']
-                                            );
-                                            echo '</ul>';
-                                        } else {
-                                            echo '<ul>';
-                                            for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
+                            <div class="profile-pi">
+                                <h3 class="t t-h3 u-mb-20">Atuações</h3>
+                                <?php
+                                foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
+                                    foreach ($atuacoes_profissionais as $key => $atuacao_profissional) {
+                                        echo '<h4 class="t t-subtitle">' . $atuacao_profissional['@attributes']['NOME-INSTITUICAO'] . '</h4>';
+                                        if (isset($atuacao_profissional['VINCULOS'])) {
+                                            if (count($atuacao_profissional['VINCULOS']) == 1) {
+                                                echo '<ul>';
                                                 SList::genericItem(
                                                     $type = "professional",
-                                                    $itemName = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
+                                                    $itemName = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
                                                     $itemNameLink = '',
-                                                    $itemInfoA = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-VINCULO-INFORMADO'],
+                                                    $itemInfoA = $atuacao_profissional['VINCULOS']['@attributes']['OUTRO-VINCULO-INFORMADO'],
                                                     $itemInfoB = '',
                                                     $itemInfoC = '',
                                                     $itemInfoD = '',
                                                     $itemInfoE = '',
                                                     $authors = '',
                                                     $tags = '',
-                                                    $yearStart = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-INICIO'],
-                                                    $yearEnd = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-FIM']
+                                                    $yearStart = $atuacao_profissional['VINCULOS']['@attributes']['ANO-INICIO'],
+                                                    $yearEnd = $atuacao_profissional['VINCULOS']['@attributes']['ANO-FIM']
                                                 );
+                                                echo '</ul>';
+                                            } else {
+                                                echo '<ul>';
+                                                for ($i_atuacao_profissional = 0; $i_atuacao_profissional <= (count($atuacao_profissional['VINCULOS']) - 1); $i_atuacao_profissional++) {
+                                                    SList::genericItem(
+                                                        $type = "professional",
+                                                        $itemName = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-ENQUADRAMENTO-FUNCIONAL-INFORMADO'],
+                                                        $itemNameLink = '',
+                                                        $itemInfoA = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['OUTRO-VINCULO-INFORMADO'],
+                                                        $itemInfoB = '',
+                                                        $itemInfoC = '',
+                                                        $itemInfoD = '',
+                                                        $itemInfoE = '',
+                                                        $authors = '',
+                                                        $tags = '',
+                                                        $yearStart = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-INICIO'],
+                                                        $yearEnd = $atuacao_profissional['VINCULOS'][$i_atuacao_profissional]['@attributes']['ANO-FIM']
+                                                    );
+                                                }
+                                                echo '</ul>';
                                             }
-                                            echo '</ul>';
                                         }
                                     }
                                 }
-                            }
-                            ?>
+                                ?>
+                            </div>
                         </div> <!-- end tab-three -->
-                    </transition>
-                    <transition name="tabeffect">
                         <div id="tab-four" class="c-tab-content" v-if="tabOpened == '4'">
                             <h3 class="t t-h3 u-mb-20">Ensino</h3>
                             <h3 class="t t-h3 u-mb-20">Orientações e supervisões</h3>
@@ -733,8 +741,6 @@ if (!empty($_REQUEST["lattesID"])) {
                             ?>
 
                         </div> <!-- end tab-four -->
-                    </transition>
-                    <transition name="tabeffect">
                         <div id="tab-five" class="c-tab-content" v-if="tabOpened == '5'">
                             <h3 class="t t-h3 u-mb-20">Gestão</h3>
 
@@ -782,9 +788,7 @@ if (!empty($_REQUEST["lattesID"])) {
                                 }
                             }
                             ?>
-                        </div>
-                    </transition>
-                    <transition name="tabeffect">
+                        </div><!-- end tab-five -->
                         <div id="tab-six" class="c-tab-content" v-if="tabOpened == '6'">
                             <h3 class="t t-h3 u-mb-20">Pesquisa</h3>
 
@@ -865,16 +869,16 @@ if (!empty($_REQUEST["lattesID"])) {
                             }
                             ?>
 
-                            <h3 class="t t-h3 u-mb-20">Outras atividades técnico científicas</h3>
+                        </div><!-- end tab-six -->
 
-                        </div>
+
                     </transition>
-
+                    <p class="t t-lastUpdate t-right">Atualização Lattes em
+                        <?php echo $profile['data_atualizacao']; ?></p>
+                    <p class="t t-lastUpdate t-right">Processado em <?php echo $profile['dataDeColeta']; ?></p>
 
                 </div> <!-- end profile-inner -->
-                <p class="t t-lastUpdate t-right">Atualização Lattes em
-                    <?php echo $profile['data_atualizacao']; ?></p>
-                <p class="t t-lastUpdate t-right">Processado em <?php echo $profile['dataDeColeta']; ?></p>
+
             </div>
 
 
