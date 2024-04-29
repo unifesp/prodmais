@@ -2,7 +2,7 @@
 <html lang="pt-br" dir="ltr">
 
 <head>
-  <?php
+    <?php
 
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Credentials: true");
@@ -60,37 +60,64 @@
   /*pagination - end*/
 
   ?>
-  <meta charset="utf-8" />
-  <title>
-    <?php echo $branch; ?> - Resultado da busca
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <meta name="description" content="Prodmais" />
-  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+    <meta charset="utf-8" />
+    <title>
+        <?php echo $branch; ?> - Resultado da busca
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Prodmais" />
+    <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 </head>
 
 <body id="app-result" data-theme="<?php echo $theme; ?>">
-  <?php
+    <?php
   if (file_exists('inc/google_analytics.php')) {
     include 'inc/google_analytics.php';
   }
   ?>
-  <!-- NAV -->
-  <?php require 'inc/navbar.php'; ?>
-  <!-- /NAV -->
+    <!-- NAV -->
+    <?php require 'inc/navbar.php'; ?>
+    <!-- /NAV -->
 
-  <div class="p-result-container">
+    <div class="p-result-container">
 
-    <nav class="p-result-nav">
-      <details id="filterlist" class="c-filterlist" onload="resizeMenu" open="">
-        <summary class="c-filterlist__header">
-          <h3 class="c-filterlist__title">Refinar resultados</h3>
-        </summary>
+        <nav class="p-result-nav">
+            <details id="filterlist" class="c-filterlist" onload="resizeMenu" open="">
+                <?php if (!empty($_REQUEST['search'])) : ?>
+                <div class="c-term">Termo pesquisado:
+                    <?php print_r($_REQUEST['search']); ?>
+                </div>
+                <?php endif ?>
+                <?php
+        if (isset($_REQUEST['filter'])) {
+          $filter_aplicado_array =  $_REQUEST['filter'];
+          //var_dump($filter_aplicado_array);
+          echo '<div class="c-term">';
+          echo '<p>Filtros aplicados:</p>';
+          foreach ($_REQUEST['filter'] as $filter) {
+            echo '<div class="c-term">';
+            echo '<form action="result.php" method="post">';
+            echo '<input type="hidden" name="search" value="' . $_REQUEST["search"] . '">';
+            $array_sem_filtro = array_diff($filter_aplicado_array, [$filter]);
+            foreach ($array_sem_filtro as $filtro_aplicado) {
+              echo '<input type="hidden" name="filter[]" value="' . $filtro_aplicado . '">';
+            }
+            echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $filter . ' (Remover)" />';
+            echo '</form>';
+            echo '</div>';
+          }
+          echo '</div>';
+          //echo '<div class="c-term">Filtro aplicado: ' . implode('', $filter_array) . '</div>';
+        }
+        ?>
+                <summary class="c-filterlist__header">
+                    <h3 class="c-filterlist__title">Refinar resultados</h3>
+                </summary>
 
-        <div class="c-filterlist__content">
+                <div class="c-filterlist__content">
 
-          <?php
+                    <?php
           $facets = new Facets();
           $facets->query = $result_post['query'];
 
@@ -172,51 +199,40 @@
 
           ?>
 
-        </div>
-      </details>
-    </nav>
+                </div>
+            </details>
+        </nav>
 
-    <main class="p-result-main">
-      <?php if (!empty($_REQUEST['search'])) : ?>
-        <div class="c-term">Termo pesquisado:
-          <?php print_r($_REQUEST['search']); ?>
-        </div>
-      <?php endif ?>
-      <?php
-      if (isset($_REQUEST['filter'])) {
-        foreach ($_REQUEST['filter'] as $filter) {
-          $filter_array[] = '<div class="c-term">' . $filter . '</div>';
-        }
-        echo '<div class="c-term">Filtro: ' . implode('', $filter_array) . '</div>';
-      }
-      ?>
+        <main class="p-result-main">
 
-      <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
-      <br />
 
-      <?php if ($total_records == 0) : ?>
-        <br />
-        <div class="alert alert-info" role="alert">
-          Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
-          <form action="result.php">
-            <div class="form-group">
-              <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="Pesquise por termo ou autor">
-              <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
-                biblio*.</small>
-              <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
-                ""</small>
-              <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
-                booleanos:
-                AND, OR</small>
+            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
+            <br />
+
+            <?php if ($total_records == 0) : ?>
+            <br />
+            <div class="alert alert-info" role="alert">
+                Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
+                <form action="result.php">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" id="searchQuery"
+                            aria-describedby="searchHelp" placeholder="Pesquise por termo ou autor">
+                        <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
+                            biblio*.</small>
+                        <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
+                            ""</small>
+                        <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
+                            booleanos:
+                            AND, OR</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+            <br /><br />
+            <?php endif; ?>
 
-          </form>
-        </div>
-        <br /><br />
-      <?php endif; ?>
-
-      <?php
+            <?php
 
       foreach ($cursor["hits"]["hits"] as $r) {
         if (isset($r["_source"]["author"])) {
@@ -260,18 +276,18 @@
       ui::newpagination($page, $total_records, $limit_records, $_POST, 'result');
       ?>
 
-    </main>
+        </main>
 
-  </div> <!-- end result-container -->
+    </div> <!-- end result-container -->
 
-  <?php include('inc/footer.php'); ?>
-  <script src="inc/js/pages/result.js"></script>
+    <?php include('inc/footer.php'); ?>
+    <script src="inc/js/pages/result.js"></script>
 
-  <!-- PlumX Script -->
-  <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+    <!-- PlumX Script -->
+    <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
 
-  <!-- Aurora Widget -->
-  <script type="text/javascript" src="https://aurora-sdg.labs.vu.nl/resources/widget.js"></script>
+    <!-- Aurora Widget -->
+    <script type="text/javascript" src="https://aurora-sdg.labs.vu.nl/resources/widget.js"></script>
 
 </body>
 
