@@ -14,9 +14,9 @@ tmp/
 backup/
 tools/data/
 _rascunhos/
-start.sh
-Dockerfile
-docker-compose.yml
-docker-entrypoint.sh
 .vscode/settings.json
 inc/google_analytics.php
+inc/sass/base/
+inc/sass/components/
+inc/sass/pages/
+inc/sass/main.css.map
