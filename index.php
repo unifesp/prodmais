@@ -88,7 +88,9 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
 
                 <h4>Buscando o perfil de um pesquisador</h4>
                 <p>É possível também obter perfis detalhados dos pesquisadores. Esta opção está na opção "Pesquisadores"
-                    <img class="c-manual-img__in-text" src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png" alt="botão pesquisadores" height="28px" />, no menu principal, no cabeçalho do Prodmais.
+                    <img class="c-manual-img__in-text"
+                        src="<?php echo $url_base ?>/inc/images/manual/btn_pesquisadores.png" alt="botão pesquisadores"
+                        height="28px" />, no menu principal, no cabeçalho do Prodmais.
                 </p>
 
 
@@ -103,9 +105,9 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         <!-- <h3 class="p-home-instituicao">< ?php echo ($instituicao); ?></h3> -->
 
         <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
-            <div class="alert alert-warning" role="alert">
-                O Prod+ está em manutenção!
-            </div>
+        <div class="alert alert-warning" role="alert">
+            O Prod+ está em manutenção!
+        </div>
         <?php endif; ?>
 
         <div class="p-home-search">
@@ -113,7 +115,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
             <form class="p-home-form" class="" action="result.php" title="Pesquisa simples" method="post">
 
                 <div class="c-searcher">
-                    <input id="mainseach" name="search" type="search" placeholder="Pesquise por palavra chave" aria-label="Pesquisar">
+                    <input id="mainseach" name="search" type="search"
+                        placeholder="Pesquise por palavras chave ou nomes de autores" aria-label="Pesquisar">
                     <button class="c-searcher__btn" type="submit" title="Buscar">
                         <i class="i i-lupa c-searcher__btn-ico"></i>
                     </button>
@@ -123,7 +126,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         </div><!-- end p-home-search -->
 
 
-        <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false" title="Mostrar dicas de pesquisa">
+        <button class="c-btn--tip p-home__tips-btn" @mouseover="showTips = true" @mouseleave="showTips = false"
+            title="Mostrar dicas de pesquisa">
             <i class="i i-btn i-sm i-help"></i>
         </button>
         <a class="u-skip" href="#mainseach">Voltar à barra de pesquisa principal</a>
@@ -131,60 +135,60 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     <?php include('inc/footer.php'); ?>
 
     <script>
-        var app = new Vue({
-            el: '#home',
+    var app = new Vue({
+        el: '#home',
 
-            data: {
-                searchPage: 'simple',
-                query: "",
-                message: "Teste",
-                authors: [],
-                showCategories: false,
-                showTips: false,
-                accOpened: '0'
+        data: {
+            searchPage: 'simple',
+            query: "",
+            message: "Teste",
+            authors: [],
+            showCategories: false,
+            showTips: false,
+            accOpened: '0'
 
+        },
+        mounted() {
+            this.searchCV();
+        },
+        methods: {
+            searchCV() {
+                axios.get(
+                        'tools/proxy_autocomplete_cv.php?query=' + this.query
+                    ).then((response) => {
+                        this.authors = response.data.hits.hits;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        console.error(error);
+                        this.errored = true;
+                    })
+                    .finally(() => (this.loading = false));
             },
-            mounted() {
-                this.searchCV();
+            changeSearchMode() {
+                this.searchPage == 'simple' ? this.searchPage = 'advanced' : this.searchPage = 'simple'
             },
-            methods: {
-                searchCV() {
-                    axios.get(
-                            'tools/proxy_autocomplete_cv.php?query=' + this.query
-                        ).then((response) => {
-                            this.authors = response.data.hits.hits;
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            console.error(error);
-                            this.errored = true;
-                        })
-                        .finally(() => (this.loading = false));
-                },
-                changeSearchMode() {
-                    this.searchPage == 'simple' ? this.searchPage = 'advanced' : this.searchPage = 'simple'
-                },
-                openAccordion(acc) {
-                    this.accOpened == acc ? this.accOpened = '0' : this.accOpened = acc
-                }
-
-
+            openAccordion(acc) {
+                this.accOpened == acc ? this.accOpened = '0' : this.accOpened = acc
             }
-        })
 
-        let acc = document.getElementsByClassName("c-accordion");
-        let i
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                // this.classList.toggle("opened");
-                var body = this.nextElementSibling;
-                if (body.style.display === "block") {
-                    body.style.display = "none";
-                } else {
-                    body.style.display = "block";
-                }
-            });
+
         }
+    })
+
+    let acc = document.getElementsByClassName("c-accordion");
+    let i
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            // this.classList.toggle("opened");
+            var body = this.nextElementSibling;
+            if (body.style.display === "block") {
+                body.style.display = "none";
+            } else {
+                body.style.display = "block";
+            }
+        });
+    }
     </script>
 
 
