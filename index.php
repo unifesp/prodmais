@@ -79,7 +79,7 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
                 <a class="u-skip" href="#aftertips">Pular dicas de pesquisa</a>
 
                 <h4>Dicas de como pesquisar</h4>
-                <p>Use _ para busca por radical. Exemplo: biblio_.</p>
+                <p>Use * para busca por radical. Exemplo: biblio*.</p>
                 <p>Para buscas exatas, coloque entre "". Exemplo: "Direito civil"</p>
                 <p>Por padrão, o sistema utiliza o operador booleano OR. Caso necessite deixar a busca mais específica,
                     utilize
