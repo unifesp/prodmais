@@ -205,6 +205,24 @@
 
         <main class="p-result-main">
 
+            <div class="p-result-search-ctn">
+
+                <form class="u-100" action="result.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="search">
+
+                    <div class="c-searcher">
+                        <input class="" type="text" name="search"
+                            placeholder="Pesquise por palavras chave ou nomes de autores"
+                            aria-label="Pesquise por palavras chave ou nomes de autores"
+                            aria-describedby="button-addon2" />
+                        <button class="c-searcher__btn" type="submit" form="search" value="Submit">
+                            <i class="i i-lupa c-searcher__btn-ico"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
 
             <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
             <br />
