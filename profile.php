@@ -301,18 +301,22 @@ if (!empty($_REQUEST["lattesID"])) {
                                 <?php
                                 if (!empty($participacoes_projetos)) {
                                     foreach ($participacoes_projetos as $i => $j) {
-                                        if ($j['total'] / $years_array_max_projetos <= 1 && $j['total'] / $years_array_max_projetos > 0.8) {
-                                            $weight = 4;
-                                        } elseif ($j['total'] / $years_array_max_projetos <= 0.8 && $j['total'] / $years_array_max_projetos > 0.6) {
-                                            $weight = 3;
-                                        } elseif ($j['total'] / $years_array_max_projetos <= 0.6 && $j['total'] / $years_array_max_projetos > 0.4) {
-                                            $weight = 2;
-                                        } elseif ($j['total'] / $years_array_max_projetos <= 0.4 && $j['total'] / $years_array_max_projetos > 0.2) {
-                                            $weight = 1;
+                                        if ($years_array_max_projetos > 0) {
+                                            if ($j['total'] / $years_array_max_projetos <= 1 && $j['total'] / $years_array_max_projetos > 0.8) {
+                                                $weight = 4;
+                                            } elseif ($j['total'] / $years_array_max_projetos <= 0.8 && $j['total'] / $years_array_max_projetos > 0.6) {
+                                                $weight = 3;
+                                            } elseif ($j['total'] / $years_array_max_projetos <= 0.6 && $j['total'] / $years_array_max_projetos > 0.4) {
+                                                $weight = 2;
+                                            } elseif ($j['total'] / $years_array_max_projetos <= 0.4 && $j['total'] / $years_array_max_projetos > 0.2) {
+                                                $weight = 1;
+                                            } else {
+                                                $weight = 0;
+                                            }
+                                            echo "<div class='c-graph-unit' data-weight='{$weight}' title='{$j['year']} — total: {$j['total']}'></div>";
                                         } else {
-                                            $weight = 0;
+                                            echo "<div class='c-graph-unit' data-weight='0' title='{$j['year']} — total: 0'></div>";
                                         }
-                                        echo "<div class='c-graph-unit' data-weight='{$weight}' title='{$j['year']} — total: {$j['total']}'></div>";
                                     }
                                     echo '<span class="c-graph-label">Participações em projetos</span>';
                                     unset($i);
