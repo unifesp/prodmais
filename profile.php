@@ -219,8 +219,6 @@ if (!empty($_REQUEST["lattesID"])) {
                                     <h3 class="t t-prof"><?php echo $instituicao ?></h3>
                                 <?php endif; ?>
                             <?php endforeach; ?>
-                        <?php else : ?>
-                            <h3 class="t t-prof">Universidade Federal de São Paulo</h3>
                         <?php endif; ?>
                         <?php if (!empty($profile["unidade"][0])) : ?>
                             <p class="t t-prof">
