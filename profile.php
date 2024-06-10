@@ -205,7 +205,7 @@ if (!empty($_REQUEST["lattesID"])) {
                         <h1 class="t-h1">
                             <?php echo $profile["nome_completo"] ?>
 
-                            <?php if ($profile["nacionalidade"] == "B") : ?>
+                            <?php if (isset($profile["nacionalidade"]) && $profile["nacionalidade"] == "B") : ?>
                                 <img class="country-flag" src="<?php echo $url_base; ?>/inc/images/country_flags/br.svg" alt="nacionalidade brasileira" title="nacionalidade brasileira" />
                             <?php endif; ?>
                         </h1>
