@@ -2532,7 +2532,7 @@ class Facets
         }
 
         $facet_array = array();
-        $facet_array[] = '<details class="c-filterdrop" open="true">';
+        $facet_array[] = '<details class="c-filterdrop">';
         $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
         $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
@@ -2608,7 +2608,7 @@ class Facets
         }
 
         $facet_array = array();
-        $facet_array[] = '<details class="c-filterdrop" open="true">';
+        $facet_array[] = '<details class="c-filterdrop">';
         $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
         $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
@@ -2658,7 +2658,7 @@ class Facets
 
 
         $facet_array = array();
-        $facet_array[] = '<details class="c-filterdrop" open="true">';
+        $facet_array[] = '<details class="c-filterdrop">';
         $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
         $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
@@ -2769,7 +2769,7 @@ class Facets
         if ($result_count > 0) {
 
             $facet_array = array();
-            $facet_array[] = '<details class="c-filterdrop" open="true">';
+            $facet_array[] = '<details class="c-filterdrop">';
             $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
             $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
@@ -2842,7 +2842,7 @@ class Facets
         }
 
         $facet_array = array();
-        $facet_array[] = '<details class="c-filterdrop" open="true">';
+        $facet_array[] = '<details class="c-filterdrop">';
         $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
         $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
