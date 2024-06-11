@@ -1,0 +1,53 @@
+.description {
+  font-size: large;
+  text-align:center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: left;
+}
+
+.centered {
+  text-align: center;
+}
+
+.results-heading {
+  color: #00E9BC!important;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sdg-wheel {
+  position: relative;
+}
+
+.sdg-wheel:hover + .sdg-legend {
+  opacity: 1;
+  background-color: white;
+  color: black;
+}
+
+.sdg-description {
+  display: none;
+  width: 200px;
+  height: 100px;
+}
+
+.sdg-legend {
+  border-radius: 20px;
+  position: absolute;
+  left: 100px;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.8); /* Black see-through */
+  width: 400px;
+  transition: .5s ease;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+}
