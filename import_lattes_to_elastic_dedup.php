@@ -195,12 +195,6 @@ $identificador = (string) $curriculo->attributes()->{'NUMERO-IDENTIFICADOR'};
 $result_get_curriculo = ImportLattes::get_curriculum($identificador);
 
 $doc_curriculo_array = [];
-if (isset($result_get_curriculo["_source"])) {
-    echo "Tem";
-    //echo "<pre>" . print_r($result_get_curriculo["_source"], true) . "</pre>";
-} else {
-    echo "Nào tem";
-}
 
 if (isset($result_get_curriculo["_source"])) {
 
@@ -211,7 +205,7 @@ if (isset($result_get_curriculo["_source"])) {
     $doc_curriculo_array['doc']['ppg_nome'] = array_unique($ppg_array);
 
     if (isset($result_get_curriculo["_source"]["instituicao"])) {
-        $instituicao_array[] = $result_get_curriculo["_source"]["instituicao"];
+        $instituicao_array = $result_get_curriculo["_source"]["instituicao"];
     } else {
         $instituicao_array = [];
     }
