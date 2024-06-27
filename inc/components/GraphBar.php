@@ -25,9 +25,21 @@ class GraphBar
 
     foreach ($arr as $years) {
       $year = (int)$years['year'];
-      $infoA = (int)$years[0];
-      $infoB = (int)$years[1];
-      $infoC = (int)$years[2];
+      if (isset($years[0])) {
+        $infoA = (int)$years[0];
+      } else {
+        $infoA = 0;
+      }
+      if (isset($years[1])) {
+        $infoB = (int)$years[1];
+      } else {
+        $infoB = 0;
+      }
+      if (isset($years[2])) {
+        $infoC = (int)$years[2];
+      } else {
+        $infoC = 0;
+      }
       if (isset($years[3])) {
         $infoD = (int)$years[3];
       } else {

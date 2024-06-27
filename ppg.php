@@ -61,6 +61,7 @@ if (!empty($_REQUEST["ID"])) {
     $producoes_ano = $facets->dataFacetbyYear("tipo", 100, null, "_key", $query, 5);
 
     $infosToGraph = [];
+    $arrLegends_duplicated = [];
     foreach ($producoes_ano as $ano => $producoes) {
         $info = [
             'year' => $ano,
@@ -256,8 +257,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                            <li>
-                                <?php
+                        <li>
+                            <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -269,7 +270,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                            </li>
+                        </li>
                         <?php } ?>
                     </ul>
 
