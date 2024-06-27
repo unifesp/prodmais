@@ -2538,23 +2538,12 @@ class Facets
 
         foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
 
-            $facets['keys_filtered'] = $facets['key'];
-
-            // filter special characters
-            $special_chars = ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '"', '~', '*', '?', '\\', '/', ':'];
-
-            foreach ($special_chars as $char) {
-                if (strpos($facets['key'], $char) !== false) {
-                    $facets['keys_filtered'] = str_replace($char,  '\\\\' . $char, $facets['key']);
-                }
-            }
-
             $facet_array[] = '<li class="c-filterdrop__item">';
 
             $facet_array[] = '<form action="' . $page_target . '" method="post">';
             $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
 
-            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['keys_filtered'] . '">';
+            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
 
             if (isset($get_search['filter'])) {
                 if (count($get_search['filter']) > 0) {
