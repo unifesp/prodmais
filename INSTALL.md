@@ -141,3 +141,10 @@ Enviar dados por POST no arquivo import_lattes_to_elastic_dedup.php. Parâmetros
 
 Exemplo de código para a inclusão automática: tools/automatic_index.php
 
+### Dashboard
+
+Não é possível deixar o Dashboard disponível na instalação. Para criar um Dashboard, é necessário:
+
+- Instalar o software Kibana: https://www.elastic.co/guide/en/kibana/current/deb.html
+- Criar um dashboard no Kibana.
+- Alterar o link da página predash.php para os links do Kibana instalado.
