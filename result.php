@@ -2,7 +2,7 @@
 <html lang="pt-br" dir="ltr">
 
 <head>
-    <?php
+  <?php
 
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Credentials: true");
@@ -60,36 +60,36 @@
   /*pagination - end*/
 
   ?>
-    <meta charset="utf-8" />
-    <title>
-        <?php echo $branch; ?> - Resultado da busca
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Prodmais" />
-    <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+  <meta charset="utf-8" />
+  <title>
+    <?php echo $branch; ?> - Resultado da busca
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="Prodmais" />
+  <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
 
 </head>
 
 <body id="app-result" data-theme="<?php echo $theme; ?>">
-    <?php
+  <?php
   if (file_exists('inc/google_analytics.php')) {
     include 'inc/google_analytics.php';
   }
   ?>
-    <!-- NAV -->
-    <?php require 'inc/navbar.php'; ?>
-    <!-- /NAV -->
+  <!-- NAV -->
+  <?php require 'inc/navbar.php'; ?>
+  <!-- /NAV -->
 
-    <div class="p-result-container">
+  <div class="p-result-container">
 
-        <nav class="p-result-nav">
-            <details id="filterlist" class="c-filterlist" onload="resizeMenu" open="">
-                <?php if (!empty($_REQUEST['search'])) : ?>
-                <div class="c-term">Termo pesquisado:
-                    <?php print_r($_REQUEST['search']); ?>
-                </div>
-                <?php endif ?>
-                <?php
+    <nav class="p-result-nav">
+      <details id="filterlist" class="c-filterlist" onload="resizeMenu" open="">
+        <?php if (!empty($_REQUEST['search'])) : ?>
+          <div class="c-term">Termo pesquisado:
+            <?php print_r($_REQUEST['search']); ?>
+          </div>
+        <?php endif ?>
+        <?php
         if (isset($_REQUEST['filter'])) {
           $filter_aplicado_array =  $_REQUEST['filter'];
           //var_dump($filter_aplicado_array);
@@ -119,13 +119,13 @@
           //echo '<div class="c-term">Filtro aplicado: ' . implode('', $filter_array) . '</div>';
         }
         ?>
-                <summary class="c-filterlist__header">
-                    <h3 class="c-filterlist__title">Refinar resultados</h3>
-                </summary>
+        <summary class="c-filterlist__header">
+          <h3 class="c-filterlist__title">Refinar resultados</h3>
+        </summary>
 
-                <div class="c-filterlist__content">
+        <div class="c-filterlist__content">
 
-                    <?php
+          <?php
           $facets = new Facets();
           $facets->query = $result_post['query'];
 
@@ -168,6 +168,8 @@
           //echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.cidadeDaEditora", 100, "Cidade da editora", null, "_key", $_POST, "result.php"));
 
           echo ($facets->facet(basename(__FILE__), "isPartOf.name", 100, "Título do periódico", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(basename(__FILE__), "qualis.extrato", 100, "Extrato QUALIS", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(basename(__FILE__), "qualis.area", 100, "Área QUALIS", null, "_key", $_POST, "result.php"));
 
           // echo($facets->facetExistsField(basename(__FILE__), "ExternalData.crossref.message.title", 100, "Dados coletados da Crossref?", null, "_key", $_POST, "result.php"));
           // echo($facets->facet(basename(__FILE__), "ExternalData.crossref.message.author.affiliation.name", 100, "Crossref - Afiliação", null, "_key", $_POST, "result.php"));
@@ -207,58 +209,53 @@
 
           ?>
 
-                </div>
-            </details>
-        </nav>
+        </div>
+      </details>
+    </nav>
 
-        <main class="p-result-main">
+    <main class="p-result-main">
 
-            <div class="p-result-search-ctn">
+      <div class="p-result-search-ctn">
 
-                <form class="u-100" action="result.php" method="POST" accept-charset="utf-8"
-                    enctype="multipart/form-data" id="search">
+        <form class="u-100" action="result.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="search">
 
-                    <div class="c-searcher">
-                        <input class="" type="text" name="search"
-                            placeholder="Pesquise por palavras chave ou nomes de autores"
-                            aria-label="Pesquise por palavras chave ou nomes de autores"
-                            aria-describedby="button-addon2" />
-                        <button class="c-searcher__btn" type="submit" form="search" value="Submit">
-                            <i class="i i-lupa c-searcher__btn-ico"></i>
-                        </button>
-                    </div>
-                </form>
+          <div class="c-searcher">
+            <input class="" type="text" name="search" placeholder="Pesquise por palavras chave ou nomes de autores" aria-label="Pesquise por palavras chave ou nomes de autores" aria-describedby="button-addon2" />
+            <button class="c-searcher__btn" type="submit" form="search" value="Submit">
+              <i class="i i-lupa c-searcher__btn-ico"></i>
+            </button>
+          </div>
+        </form>
 
+      </div>
+
+
+      <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
+      <br />
+
+      <?php if ($total_records == 0) : ?>
+        <br />
+        <div class="alert alert-info" role="alert">
+          Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
+          <form action="result.php">
+            <div class="form-group">
+              <input type="text" name="search" class="form-control" id="searchQuery" aria-describedby="searchHelp" placeholder="Pesquise por termo ou autor">
+              <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
+                biblio*.</small>
+              <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
+                ""</small>
+              <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
+                booleanos:
+                AND, OR</small>
             </div>
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
 
+          </form>
+        </div>
+        <br /><br />
+      <?php endif; ?>
 
-            <?php ui::newpagination($page, $total_records, $limit_records, $_POST, "result", 'result'); ?>
-            <br />
-
-            <?php if ($total_records == 0) : ?>
-            <br />
-            <div class="alert alert-info" role="alert">
-                Sua busca não obteve resultado. Você pode refazer sua busca abaixo:<br /><br />
-                <form action="result.php">
-                    <div class="form-group">
-                        <input type="text" name="search" class="form-control" id="searchQuery"
-                            aria-describedby="searchHelp" placeholder="Pesquise por termo ou autor">
-                        <small id="searchHelp" class="form-text text-muted">Dica: Use * para busca por radical. Ex:
-                            biblio*.</small>
-                        <small id="searchHelp" class="form-text text-muted">Dica 2: Para buscas exatas, coloque entre
-                            ""</small>
-                        <small id="searchHelp" class="form-text text-muted">Dica 3: Você também pode usar operadores
-                            booleanos:
-                            AND, OR</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Pesquisar</button>
-
-                </form>
-            </div>
-            <br /><br />
-            <?php endif; ?>
-
-            <?php
+      <?php
 
       foreach ($cursor["hits"]["hits"] as $r) {
         if (isset($r["_source"]["author"])) {
@@ -277,6 +274,7 @@
         !empty($r['_source']['datePublished']) ? $published = $r['_source']['datePublished'] : $published = '';
         isset($r['_source']['openalex']['cited_by_count']) ? $cited_by_count = strval($r['_source']['openalex']['cited_by_count']) : $cited_by_count = '';
         isset($r['_source']['aurorasdg']) ? $aurorasdg = $r['_source']['aurorasdg'] : $aurorasdg = '';
+        isset($r['_source']['qualis']['extrato']) ? $qualis = $r['_source']['qualis']['extrato'] : $qualis = '';
 
         SList::IntelectualProduction(
           $type = $r['_source']['tipo'],
@@ -291,7 +289,8 @@
           $refPage = '',
           $datePublished = $published,
           $cited_by_count,
-          $aurorasdg
+          $aurorasdg,
+          $qualis
         );
         unset($authors);
       }
@@ -302,18 +301,18 @@
       ui::newpagination($page, $total_records, $limit_records, $_POST, 'result');
       ?>
 
-        </main>
+    </main>
 
-    </div> <!-- end result-container -->
+  </div> <!-- end result-container -->
 
-    <?php include('inc/footer.php'); ?>
-    <script src="inc/js/pages/result.js"></script>
+  <?php include('inc/footer.php'); ?>
+  <script src="inc/js/pages/result.js"></script>
 
-    <!-- PlumX Script -->
-    <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
+  <!-- PlumX Script -->
+  <script type="text/javascript" src="//cdn.plu.mx/widget-details.js"></script>
 
-    <!-- Aurora Widget -->
-    <script type="text/javascript" src="assets/js/widget.js"></script>
+  <!-- Aurora Widget -->
+  <script type="text/javascript" src="assets/js/widget.js"></script>
 
 </body>
 

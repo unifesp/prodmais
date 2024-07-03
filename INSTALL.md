@@ -141,6 +141,12 @@ Enviar dados por POST no arquivo import_lattes_to_elastic_dedup.php. Parâmetros
 
 Exemplo de código para a inclusão automática: tools/automatic_index.php
 
+### Qualis
+
+Caso queira indexar as produções pelo Qualis 2017-2020, é necessário rodar o script:
+
+php tools/qualis/index_qualis.php
+
 ### Dashboard
 
 Não é possível deixar o Dashboard disponível na instalação. Para criar um Dashboard, é necessário:

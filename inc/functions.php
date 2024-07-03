@@ -83,6 +83,16 @@ try {
     $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de PPG no Elasticsearch não foi encontrado.</div>';
 }
 
+/* Connect to Elasticsearch | Index Cited Works */
+try {
+    //$client = \Elastic\Elasticsearch\ClientBuilder::create()->setHosts($hosts)->build();
+    $indexParams['index'] = 'qualis';
+    $testIndexCitedworks = $client->indices()->exists($indexParams);
+    Elasticsearch::createIndex('qualis', $client);
+} catch (Exception $e) {
+    $error_connection_message = '<div class="alert alert-danger" role="alert">Índice de Qualis no Elasticsearch não foi encontrado.</div>';
+}
+
 /* Definição de idioma */
 
 setlocale(LC_ALL, 'pt_BR');
@@ -692,6 +702,27 @@ class DadosInternos
             }
         }
         return $data;
+    }
+
+    static function qualis($issn)
+    {
+        global $client;
+        $params = [];
+        $params["index"] = 'qualis';
+        $params["id"] = $issn;
+        try {
+            $response = $client->get($params);
+            if ($response['found']) {
+                //echo "O documento com ID {$params['id']} existe.";
+                //echo "<pre>" . print_r($response, true) . "</pre>";
+                return $response;
+            } else {
+                //echo "O documento com ID {$params['id']} não foi encontrado.";
+                return $response;
+            }
+        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+            echo "O documento com ID {$params['id']} não foi encontrado.";
+        }
     }
 }
 

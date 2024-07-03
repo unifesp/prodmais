@@ -1037,6 +1037,14 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
             unset($array_result_ac);
         }
 
+        //Qualis
+
+        $qualis = DadosInternos::qualis($detalhamentoDoTrabalho['@attributes']["ISSN"]);
+        //echo "<pre>" . print_r($qualis, true) . "</pre>";
+        $doc["doc"]['qualis'] = $qualis["_source"];
+        //echo "<pre>" . print_r($doc["doc"]['qualis'], true) . "</pre>";
+
+
         // Vinculo
         $doc["doc"]["vinculo"] = ImportLattes::construct_vinculo($_REQUEST, $curriculo);
 

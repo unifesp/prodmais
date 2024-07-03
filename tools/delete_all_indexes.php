@@ -17,5 +17,4 @@ $response = $client->indices()->delete($params);
 $params = ['index' => $index_projetos];
 $response = $client->indices()->delete($params);
 
-
 header("Location: $url_base");

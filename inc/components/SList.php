@@ -246,7 +246,8 @@ class SList
     $refPage,
     $datePublished,
     $cited_by_count,
-    $aurorasdg
+    $aurorasdg,
+    $qualis
   ) {
 
     $bullet = SList::bulletIntelectualProduction($type);
@@ -258,6 +259,7 @@ class SList
     !empty($issn) ? $issnRendered = SList::issnRendered($issn) : $issnRendered = '';
     !empty($cited_by_count) ? $cited_by_count : $cited_by_count = 0;
     !empty($aurorasdg) ? $aurorasdg = $aurorasdg : $aurorasdg = '';
+    !empty($qualis) ? $qualis = ' - Extrato QUALIS: ' . $qualis : $qualis = '';
     !empty($refName) ? $refName = $refName : '';
     !empty($refVol) ? $refVol = ", v. $refVol" : '';
     !empty($refFascicle) ? $refFascicle = ", n. $refFascicle" : '';
@@ -298,7 +300,7 @@ class SList
             $issnRendered
 					</p>
           <p class='t t-light'>
-          Fonte: $refName $refVol $refFascicle $refPage
+          Fonte: $refName $refVol $refFascicle $refPage $qualis
           </p>
           <p class='mt-3'>
             <a href='https://plu.mx/plum/a/?doi=$doiCleaned' class='plumx-details'></a>
