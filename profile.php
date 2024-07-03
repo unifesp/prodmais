@@ -649,6 +649,9 @@ if (!empty($_REQUEST["lattesID"])) {
                                             !empty($work['_source']['datePublished']) ?
                                                 $datePublished = $work['_source']['datePublished'] : $datePublished = '';
 
+                                            !empty($work['_source']['qualis']['extrato']) ?
+                                                $qualis = $work['_source']['qualis']['extrato'] : $qualis = '';
+
                                             SList::IntelectualProduction(
                                                 $type = $work['_source']['tipo'],
                                                 $name = strip_tags($work['_source']['name']),
@@ -662,7 +665,8 @@ if (!empty($_REQUEST["lattesID"])) {
                                                 $refPage = $pageStart,
                                                 $datePublished = $datePublished,
                                                 $cited_by_count = '',
-                                                $aurorasdg = ''
+                                                $aurorasdg = '',
+                                                $qualis = $qualis
                                             );
                                         }
                                         unset($authors);
