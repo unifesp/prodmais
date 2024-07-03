@@ -33,13 +33,8 @@ $get_data = $_GET;
     <?php
     include('inc/meta-header.php');
     ?>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
-  </script> -->
 
-    <title><?php echo $branch; ?> - Resultado da busca por perfil profissional</title>
+    <title><?php echo $branch; ?> - Projetos de pesquisa</title>
 
 
     <link rel="stylesheet" href="inc/css/style.css" />
@@ -110,14 +105,14 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                    <?php
+                        <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                    <li class="c-card-author t t-b t-md">
-                        <?php
+                        <li class="c-card-author t t-b t-md">
+                            <?php
                             if (isset($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'])) {
                                 foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
                                     if (isset($integrantes['@attributes'])) {
@@ -134,51 +129,51 @@ $get_data = $_GET;
                             ?>
 
 
-                        <div class='s-list'>
-                            <div class='s-list-bullet'>
-                                <i class='i i-ppg-logo s-list-ico'></i>
-                            </div>
+                            <div class='s-list'>
+                                <div class='s-list-bullet'>
+                                    <i class='i i-ppg-logo s-list-ico'></i>
+                                </div>
 
-                            <div class='s-list-content'>
+                                <div class='s-list-content'>
 
 
-                                <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
-                                <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
+                                    <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
+                                        <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
                                         ?>
-                                <p class='t t-b'>
-                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
-                                </p>
-                                <p class='t t-gray'>
-                                    Descrição do projeto:
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                </p>
-                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                <p class='t t-gray'>Situação:
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
-                                <p class='t t-gray'>
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
-                                <?php else : ?>
-                                <p class='t t-b'>
-                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
-                                    </a>
-                                </p>
-                                <p class='t t-gray'>
-                                    Descrição do projeto:
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                </p>
-                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                <p class='t t-gray'>Situação:
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
-                                <p class='t t-gray'>
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
-                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
-                                <?php endif ?>
+                                        <p class='t t-b'>
+                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
+                                        </p>
+                                        <p class='t t-gray'>
+                                            Descrição do projeto:
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                        </p>
+                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                        <p class='t t-gray'>Situação:
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
+                                        <p class='t t-gray'>
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
+                                    <?php else : ?>
+                                        <p class='t t-b'>
+                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
+                                            </a>
+                                        </p>
+                                        <p class='t t-gray'>
+                                            Descrição do projeto:
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                        </p>
+                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                        <p class='t t-gray'>Situação:
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
+                                        <p class='t t-gray'>
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
+                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
+                                    <?php endif ?>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
-                    <?php unset($integrantes_do_projeto_array); ?>
+                        <?php unset($integrantes_do_projeto_array); ?>
                     <?php endforeach; ?>
                 </ul>
             </div>
