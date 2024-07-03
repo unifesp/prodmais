@@ -707,9 +707,10 @@ class DadosInternos
     static function qualis($issn)
     {
         global $client;
-        $params = [];
-        $params["index"] = 'qualis';
-        $params["id"] = $issn;
+        $params = [
+            'index' => 'qualis',
+            'id'    => $issn
+        ];
         try {
             $response = $client->get($params);
             if ($response['found']) {
@@ -718,10 +719,10 @@ class DadosInternos
                 return $response;
             } else {
                 //echo "O documento com ID {$params['id']} não foi encontrado.";
-                return $response;
+                return "";
             }
-        } catch (\Elasticsearch\Common\Exceptions\Missing404Exception $e) {
-            echo "O documento com ID {$params['id']} não foi encontrado.";
+        } catch (Exception $e) {
+            //echo "O documento com ID {$params['id']} não foi encontrado.";
         }
     }
 }
@@ -3994,7 +3995,7 @@ class ImportLattes
 
             return $response;
         } catch (\Exception $e) {
-            //echo $e->getMessage();
+            echo $e->getMessage();
             return "";
         }
     }

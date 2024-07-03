@@ -1041,8 +1041,9 @@ if (isset($curriculo->{'PRODUCAO-BIBLIOGRAFICA'}->{'ARTIGOS-PUBLICADOS'})) {
 
         $qualis = DadosInternos::qualis($detalhamentoDoTrabalho['@attributes']["ISSN"]);
         //echo "<pre>" . print_r($qualis, true) . "</pre>";
-        $doc["doc"]['qualis'] = $qualis["_source"];
-        //echo "<pre>" . print_r($doc["doc"]['qualis'], true) . "</pre>";
+        if (isset($qualis["_source"])) {
+            $doc["doc"]['qualis'] = $qualis["_source"];
+        }
 
 
         // Vinculo
