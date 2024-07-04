@@ -673,12 +673,14 @@ if (isset($curriculo->{'DADOS-GERAIS'}->{'ATUACOES-PROFISSIONAIS'})) {
                             $doc_projetos["doc_as_upsert"] = true;
                             if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'])) {
                                 $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
+                                $doc_projetos['doc']['name'] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'];
                             }
                             if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'])) {
                                 $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['ANO-FIM'];
                             }
                             if (isset($doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'])) {
                                 $sha_projeto_array[] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
+                                $doc_projetos['doc']['description'] = $doc_projetos['doc']['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO'];
                             }
                             if (isset($sha_projeto_array)) {
                                 $sha256_projeto = hash('sha256', '' . implode("", $sha_projeto_array) . '');

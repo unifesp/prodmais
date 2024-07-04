@@ -79,6 +79,24 @@ $get_data = $_GET;
 
         <main class="p-result-main">
 
+            <div class="p-result-search-ctn">
+
+                <form class="u-100" action="projetos.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="search">
+
+                    <div class="c-searcher">
+                        <input class="" type="text" name="search"
+                            placeholder="Pesquise por palavras chave ou termos em projetos"
+                            aria-label="Pesquise por palavras chave ou termos em projetos"
+                            aria-describedby="button-addon2" />
+                        <button class="c-searcher__btn" type="submit" form="search" value="Submit">
+                            <i class="i i-lupa c-searcher__btn-ico"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
             <transition name="homeeffect">
                 <div class="c-tips" v-if="showTips">
 
@@ -105,14 +123,14 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                        <?php
+                    <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                        <li class="c-card-author t t-b t-md">
-                            <?php
+                    <li class="c-card-author t t-b t-md">
+                        <?php
                             if (isset($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'])) {
                                 foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
                                     if (isset($integrantes['@attributes'])) {
@@ -129,51 +147,51 @@ $get_data = $_GET;
                             ?>
 
 
-                            <div class='s-list'>
-                                <div class='s-list-bullet'>
-                                    <i class='i i-ppg-logo s-list-ico'></i>
-                                </div>
-
-                                <div class='s-list-content'>
-
-
-                                    <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
-                                        <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
-                                        ?>
-                                        <p class='t t-b'>
-                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
-                                        </p>
-                                        <p class='t t-gray'>
-                                            Descrição do projeto:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                        </p>
-                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                        <p class='t t-gray'>Situação:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
-                                        <p class='t t-gray'>
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
-                                    <?php else : ?>
-                                        <p class='t t-b'>
-                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
-                                            </a>
-                                        </p>
-                                        <p class='t t-gray'>
-                                            Descrição do projeto:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                        </p>
-                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                        <p class='t t-gray'>Situação:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
-                                        <p class='t t-gray'>
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
-                                    <?php endif ?>
-                                </div>
+                        <div class='s-list'>
+                            <div class='s-list-bullet'>
+                                <i class='i i-ppg-logo s-list-ico'></i>
                             </div>
-                        </li>
 
-                        <?php unset($integrantes_do_projeto_array); ?>
+                            <div class='s-list-content'>
+
+
+                                <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
+                                <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
+                                        ?>
+                                <p class='t t-b'>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
+                                <?php else : ?>
+                                <p class='t t-b'>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
+                                    </a>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </li>
+
+                    <?php unset($integrantes_do_projeto_array); ?>
                     <?php endforeach; ?>
                 </ul>
             </div>
