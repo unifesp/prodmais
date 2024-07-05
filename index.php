@@ -147,32 +147,6 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
             showTips: false,
             accOpened: '0'
 
-        },
-        mounted() {
-            this.searchCV();
-        },
-        methods: {
-            searchCV() {
-                axios.get(
-                        'tools/proxy_autocomplete_cv.php?query=' + this.query
-                    ).then((response) => {
-                        this.authors = response.data.hits.hits;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        console.error(error);
-                        this.errored = true;
-                    })
-                    .finally(() => (this.loading = false));
-            },
-            changeSearchMode() {
-                this.searchPage == 'simple' ? this.searchPage = 'advanced' : this.searchPage = 'simple'
-            },
-            openAccordion(acc) {
-                this.accOpened == acc ? this.accOpened = '0' : this.accOpened = acc
-            }
-
-
         }
     })
 
