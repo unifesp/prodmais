@@ -243,44 +243,6 @@ class paginaInicial
         $response = $client->search($params);
         Categories::list($response, $field);
     }
-
-    static function possui_lattes()
-    {
-        global $index_cv;
-        global $client;
-        $body["index"] = $index_cv;
-        $cursor = $client->count($body);
-        $total = $cursor["count"];
-
-        $body["body"]["query"]["bool"]["must_not"]["exists"]["field"] = "lattesID";
-        $cursorTotal = $client->count($body);
-        $total_dont_have_lattes = $cursorTotal["count"];
-
-        return number_format((float) ($total_dont_have_lattes / $total) * 100, 2, '.', '');
-    }
-
-    static function filter_select($field)
-    {
-        global $client;
-        global $index;
-        $query['aggs']['group_by_state']['terms']['field'] = "$field.keyword";
-        $query['aggs']['group_by_state']['terms']['size'] = 200;
-        $query["aggs"]['group_by_state']["terms"]["order"]['_key'] = "asc";
-        $params = [
-            'index' => $index,
-            'size' => 0,
-            'body' => $query
-        ];
-        $response = $client->search($params);
-        if (count($response["aggregations"]["group_by_state"]["buckets"]) > 0) {
-            echo '<select class="c-input" name="filter[]" aria-label="Filtro">
-            <option value="" selected>Escolha o nome do programa de pós-graduação</option>';
-            foreach ($response["aggregations"]["group_by_state"]["buckets"] as $facets) {
-                echo '<option value="' . $field . ':' . $facets['key'] . '">' . $facets['key'] . '</option>';
-            }
-            echo '</select>';
-        }
-    }
 }
 
 class DadosInternos
