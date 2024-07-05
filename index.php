@@ -139,14 +139,8 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         el: '#home',
 
         data: {
-            searchPage: 'simple',
-            query: "",
-            message: "Teste",
-            authors: [],
-            showCategories: false,
             showTips: false,
             accOpened: '0'
-
         }
     })
 
