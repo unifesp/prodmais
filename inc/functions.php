@@ -732,65 +732,6 @@ class DadosInternos
  */
 class DadosExternos
 {
-
-    static function querySource($query_title, $query_year, $sha256)
-    {
-
-        global $client;
-        global $index_source;
-
-        $query_title = str_replace('"', '', $query_title);
-        $query["min_score"] = 50;
-        $query["query"]["bool"]["should"][0]["multi_match"]["query"] = $query_title;
-        $query["query"]["bool"]["should"][0]["multi_match"]["type"] = "cross_fields";
-        $query["query"]["bool"]["should"][0]["multi_match"]["fields"][] = "name";
-        $query["query"]["bool"]["should"][0]["multi_match"]["minimum_should_match"] = "95%";
-        $query["query"]["bool"]["should"][1]["multi_match"]["query"] = $query_year;
-        $query["query"]["bool"]["should"][1]["multi_match"]["type"] = "best_fields";
-        $query["query"]["bool"]["should"][1]["multi_match"]["fields"][] = "datePublished";
-        $query["query"]["bool"]["should"][1]["multi_match"]["operator"] = "and";
-        $query["query"]["bool"]["should"][1]["multi_match"]["minimum_should_match"] = "100%";
-        $query["query"]["bool"]["minimum_should_match"] = 2;
-
-        $params = [];
-
-        $params["index"] = $index_source;
-        //$params["_source"] = $fields;
-        //$params["size"] = $size;
-        $params["body"] = $query;
-
-        $data = $client->search($params);
-
-        if ($data["hits"]["total"]["value"] > 0) {
-            echo '<div class="alert alert-warning" role="alert">';
-            echo '<h5>Registros similares na FONTE</h5>';
-            foreach ($data["hits"]["hits"] as $match) {
-                echo '<p>Nota de proximidade: ' . $match["_score"] . ' - <a href="http://localhost/coletaprod/item/' . $match["_id"] . '" target="_blank">' . $match["_source"]["tipo"] . ' - ' . $match["_source"]["name"] . ' (' . $match["_source"]["datePublished"] . ')</a><br/> Autores: ';
-                foreach ($match["_source"]['author'] as $autores) {
-                    $autArray[] = $autores['person']['name'];
-                }
-                echo implode("; ", $autArray);
-                if (isset($match["_source"]["doi"])) {
-                    echo '<p>DOI: <a href="https://doi.org/' . $match["_source"]["doi"] . '">' . $match["_source"]["doi"] . '</a></p>';
-                    $doc["doc"]["bdpi"]["doi_bdpi"] = $match["_source"]["doi"];
-                }
-                echo '</p>';
-                unset($autArray);
-            }
-            echo '</div>';
-
-            $doc["doc"]["bdpi"]["existe"] = "Sim";
-            $doc["doc_as_upsert"] = true;
-            //print_r($doc);
-            $result_elastic = Elasticsearch::update($sha256, $doc);
-        } else {
-            $doc["doc"]["bdpi"]["existe"] = "Não";
-            $doc["doc_as_upsert"] = true;
-            $result_elastic = Elasticsearch::update($sha256, $doc);
-        }
-        return $data;
-    }
-
     static function query_bdpi($query_title, $query_year, $sha256)
     {
 
