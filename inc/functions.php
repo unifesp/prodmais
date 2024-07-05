@@ -2362,7 +2362,9 @@ class Requests
 
         if (!empty($get['search'])) {
             $cleanQuery = strip_tags($get['search']);
-            $queryArray["query_string"]["query"] = str_replace('and', 'AND', $cleanQuery);
+            $queryArray["query_string"]["query"] = $cleanQuery;
+            $queryArray["query_string"]["analyze_wildcard"] = true;
+            $queryArray["query_string"]["default_operator"] = "AND";
             $queryArray["query_string"]["fields"] = ["name", "alternateName", "author.person.name", "author.organization.name", "about", "source", "description", "vinculo.lattes_id", "vinculo.nome"];
         } else {
             $queryArray["query_string"]["query"] = "*";
@@ -2441,7 +2443,9 @@ class Requests
 
         if (!empty($post['search'])) {
             $cleanQuery = strip_tags($post['search']);
-            $queryArray["query_string"]["query"] = str_replace('and', 'AND', $cleanQuery);
+            $queryArray["query_string"]["query"] = $cleanQuery;
+            $queryArray["query_string"]["analyze_wildcard"] = true;
+            $queryArray["query_string"]["default_operator"] = "AND";
             $queryArray["query_string"]["fields"] = ["name", "alternateName", "author.person.name", "author.organization.name", "about", "source", "description", "vinculo.lattes_id", "vinculo.nome"];
         } else {
             $queryArray["query_string"]["query"] = "*";
