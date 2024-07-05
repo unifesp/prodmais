@@ -445,45 +445,6 @@ class DadosExternos
         return $facet_bdpi;
     }
 
-    static function coleta_json_lattes($id_lattes)
-    {
-
-        $ch = curl_init();
-        $method = "GET";
-        $url = "http://buscacv.cnpq.br/buscacv/rest/espelhocurriculo/$id_lattes";
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
-        $tentativas = 0;
-        while ($tentativas < 3) {
-            $result = curl_exec($ch);
-            $info = curl_getinfo($ch);
-            if ($info["http_code"] == 200) {
-                var_dump($info);
-                $data = json_decode($result, TRUE);
-                curl_close($ch);
-                return $data;
-            } else {
-                $tentativas++;
-            }
-        }
-
-
-        echo '<br/><br/><br/><h2>Erro ' . $info["http_code"] . ' ao obter o arquivo da Base do Lattes, favor tentar novamente. <a href="index.php">Clique aqui para voltar a página inicial</a></h2>';
-        //var_dump($info);
-        curl_close($ch);
-    }
-
-
-
-    static function coleta_json_download_lattes($id_lattes)
-    {
-
-        $result = file_get_contents($id_lattes);
-        $data = json_decode($result, TRUE);
-        return $data;
-    }
-
     static function query_openlibrary($isbn)
     {
         $isbn = trim($isbn);
