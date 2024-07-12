@@ -1482,6 +1482,7 @@ class DataFacets
         $query["aggs"]["counts"]["terms"]["field"] = "about.keyword";
         $query["aggs"]["counts"]["terms"]["size"] = 50;
         $response = Elasticsearch::search(null, 0, $query, $index);
+        $response_array = [];
         $i = 0;
         foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
             $response_array[$i]["category"] = $facets['key'];
