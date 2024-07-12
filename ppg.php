@@ -45,7 +45,9 @@ if (!empty($_REQUEST["ID"])) {
 
     $ppgtags = new DataFacets();
     $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
-    shuffle($resultppgtags);
+    if (!is_null($resultppgtags)) {
+        shuffle($resultppgtags);
+    }
 
     $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
     $query_orientadores["sort"] = ["nome_completo.keyword" => ["order" => "asc"]];
