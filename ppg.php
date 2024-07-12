@@ -49,7 +49,7 @@ if (!empty($_REQUEST["ID"])) {
         shuffle($resultppgtags);
     }
 
-    $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = trim($ppg['NOME_PPG']);
     $query_orientadores["sort"] = ["nome_completo.keyword" => ["order" => "asc"]];
     $params_orientadores = [];
     $params_orientadores["index"] = $index_cv;
