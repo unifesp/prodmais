@@ -36,7 +36,7 @@ if (!empty($_REQUEST["ID"])) {
 
     $params = [];
     $params["index"] = $index;
-    $query["query"]["bool"]["filter"][0]["term"]["vinculo.ppg_nome.keyword"] = $ppg['NOME_PPG'];
+    $query["query"]["bool"]["filter"][0]["term"]["vinculo.ppg_nome.keyword"] = trim($ppg['NOME_PPG']);
     $params["body"] = $query;
     $cursorTotal = $client->count($params);
     $total_producoes = $cursorTotal["count"];
