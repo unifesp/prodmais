@@ -44,7 +44,7 @@ if (!empty($_REQUEST["ID"])) {
     //echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
 
     $ppgtags = new DataFacets();
-    $resultppgtags = json_decode($ppgtags->PPGTags($ppg['NOME_PPG']), true);
+    $resultppgtags = json_decode($ppgtags->PPGTags(trim($ppg['NOME_PPG'])), true);
     if (!is_null($resultppgtags)) {
         shuffle($resultppgtags);
     }
