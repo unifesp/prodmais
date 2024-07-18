@@ -80,6 +80,35 @@ $get_data = $_GET;
         <nav class="p-result-nav">
 
             <details id="filterlist" class="c-filterlist" onload="resizeMenu">
+
+                <?php
+                if (isset($_REQUEST['filter'])) {
+                    $filter_aplicado_array =  $_REQUEST['filter'];
+                    //var_dump($filter_aplicado_array);
+                    echo '<div class="c-term">';
+                    echo '<p>Filtros aplicados:</p>';
+                    foreach ($_REQUEST['filter'] as $filter) {
+                        echo '<div class="c-term">';
+                        echo '<form action="result_autores.php" method="post">';
+                        echo '<input type="hidden" name="search" value="' . $_REQUEST["search"] . '">';
+                        $array_sem_filtro = array_diff($filter_aplicado_array, [$filter]);
+                        foreach ($array_sem_filtro as $filtro_aplicado) {
+                            echo '<input type="hidden" name="filter[]" value="' . $filtro_aplicado . '">';
+                        }
+                        $filter_name = str_replace('formacao_maxima:', 'Maior formação: ', $filter);
+                        $filter_name = str_replace('vinculo.ppg_nome:', 'Programa de Pós-Graduação: ', $filter_name);
+                        $filter_name = str_replace('formacao_academica_titulacao_mestrado.nomeInstituicao:', 'Instituição: ', $filter_name);
+                        $filter_name = str_replace('formacao_academica_titulacao_doutorado.nomeInstituicao:', 'Instituição: ', $filter_name);
+                        $filter_name = str_replace('pais_de_nascimento:', 'País: ', $filter_name);
+
+                        echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $filter_name . ' (Remover)" />';
+                        echo '</form>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                    //echo '<div class="c-term">Filtro aplicado: ' . implode('', $filter_array) . '</div>';
+                }
+                ?>
                 <summary class="c-filterlist__header">
                     <h3 class="c-filterlist__title">Refinar resultados</h3>
                 </summary>
@@ -142,20 +171,25 @@ $get_data = $_GET;
 
             <div class="p-result-search-ctn">
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="searchresearchers">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="searchresearchers">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador" aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="search" placeholder="Digite parte do nome do pesquisador"
+                            aria-label="Digite parte do nome do pesquisador" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="searchresearchers" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
                     </div>
                 </form>
 
-                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="resumocv">
+                <form class="u-100" action="result_autores.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="resumocv">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="resumocv" placeholder="Digite um termo para pesquisar no resumo" aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="resumocv"
+                            placeholder="Digite um termo para pesquisar no resumo"
+                            aria-label="Digite um termo para pesquisar no resumo" aria-describedby="button-addon2" />
                         <button class="c-searcher__btn" type="submit" form="resumocv" value="Submit">
                             <i class="i i-lupa c-searcher__btn-ico"></i>
                         </button>
@@ -193,17 +227,17 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                        <?php
+                    <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                        <li class="c-card-author t t-b t-md">
-                            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                                <?php echo $r["_source"]['nome_completo']; ?>
-                            </a>
-                        </li>
+                    <li class="c-card-author t t-b t-md">
+                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                            <?php echo $r["_source"]['nome_completo']; ?>
+                        </a>
+                    </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
