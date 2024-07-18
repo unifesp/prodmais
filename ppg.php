@@ -292,15 +292,21 @@ class PPG
                         $type = 'Sucupira',
                         $link = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/programa/viewPrograma.xhtml?popup=false&cd_programa=' . $ppg["COD_CAPES"]
                     ); ?>
-                    <?php echo PPG::externos(
-                        $type = 'Repositório de dados de pesquisa',
-                        $link = $ppg["PRODMAIS_DATAVERSE"]
-                    ); ?>
+                    <?php
+                    if ($instituicao == "UNIFESP") {
+                        echo PPG::externos(
+                            $type = 'Repositório de dados de pesquisa',
+                            $link = $ppg["PRODMAIS_DATAVERSE"]
+                        );
+                    } ?>
 
-                    <?php echo PPG::externos(
-                        $type = 'Repositório institucional',
-                        $link = $ppg["PRODMAIS_DSPACE"]
-                    ); ?>
+                    <?php
+                    if ($instituicao == "UNIFESP") {
+                        echo PPG::externos(
+                            $type = 'Repositório institucional',
+                            $link = $ppg["PRODMAIS_DSPACE"]
+                        );
+                    } ?>
                 </section>
 
 
