@@ -17,11 +17,14 @@ class GraphBar
   {
 
     $year = 0;
-    $infoA = '';
-    $infoB = '';
-    $infoC = '';
-    $infoD = '';
-    $output = '';
+    $infoA = 0;
+    $infoB = 0;
+    $infoC = 0;
+    $infoD = 0;
+    $output = [];
+    $data_height_sum = 0;
+    $data_height_sum_max = 0;
+    $output_array = [];
 
     foreach ($arr as $years) {
       $year = (int)$years['year'];
@@ -59,24 +62,27 @@ class GraphBar
         $output_array[] = "<div class='c-gppg-bar' data-type='4' data-weight='$infoD'></div>";
       }
       $output_array[] = "<span class='c-gppg-year'>$year</span></div>";
-      $output = implode(' ', $output_array);
+      $output[0] = implode(' ', $output_array);
+      $data_height_sum = $infoA + $infoB + $infoC + $infoD;
+      if ($data_height_sum > $data_height_sum_max) {
+        $data_height_sum_max = $data_height_sum;
+      }
     }
+    $output[1] = $data_height_sum_max;
     return $output;
-
-    unset($output_array);
-    unset($year);
-    unset($infoA);
-    unset($infoB);
-    unset($infoC);
-    unset($infoD);
   }
 
-  static function graph($title, $arrData, $arrLegends, $lines)
+  static function graph($title, $arrData, $arrLegends)
   {
     //echo "<pre>" . print_r($arrData, true) . "</pre>";
-    $renderSlices = GraphBar::slices($arrData);
+    $renderSlicesArray = GraphBar::slices($arrData);
+    $renderSlices = $renderSlicesArray[0];
 
-    for ($i_lines = 1; $i_lines <= $lines; $i_lines++) {
+    //var_dump($renderSlicesArray);
+
+    $lines = $renderSlicesArray[1];
+
+    for ($i_lines = 0; $i_lines <= $lines; $i_lines++) {
       $renderLines[] =  "<hr class='c-gppg-grid-line' />";
     }
     $renderLines = implode('', $renderLines);

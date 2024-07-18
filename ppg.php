@@ -227,8 +227,7 @@ class PPG
                     GraphBar::graph(
                         $title = 'Produções por tipo',
                         $arrData = $infosToGraph,
-                        $arrLegends,
-                        $lines = 25
+                        $arrLegends
                     );
                     ?>
                 </section>
