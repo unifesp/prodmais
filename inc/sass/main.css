@@ -3586,6 +3586,8 @@ th {
   font-size: calc(var(--size) * 0.5rem + 0.5rem);
   margin: 0.1rem;
   opacity: calc((15 - (3 - var(--size))) / 15);
+  border:0;
+  background-color: transparent;
 }
 @media (prefers-color-scheme: light) {
   .tag {

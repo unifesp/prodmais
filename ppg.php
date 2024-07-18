@@ -210,7 +210,7 @@ class PPG
                 <section class="l-ppg">
                     <h3 class="t t-h3">Palavras chave recorrentes</h3>
                     <div>
-                        <?php Tag::cloud($resultppgtags, $hasLink = false); ?>
+                        <?php Tag::cloud($resultppgtags, $ppg["NOME_PPG"]); ?>
 
                     </div>
                 </section>
@@ -259,8 +259,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                        <li>
-                            <?php
+                            <li>
+                                <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -272,7 +272,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                        </li>
+                            </li>
                         <?php } ?>
                     </ul>
 
