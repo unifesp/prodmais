@@ -230,7 +230,6 @@ class PPG
                         $arrLegends,
                         $lines = 25
                     );
-                    echo "<pre>" . print_r($infosToGraph, true) . "</pre>";
                     ?>
                 </section>
 
