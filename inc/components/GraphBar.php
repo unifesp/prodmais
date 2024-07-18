@@ -45,17 +45,25 @@ class GraphBar
       } else {
         $infoD = 0;
       }
-      $output = "$output
-          <div class='c-gppg-slice'>
-            <div class='c-gppg-bar' data-type='1' data-weight='$infoA'></div>
-            <div class='c-gppg-bar' data-type='2' data-weight='$infoB'></div>
-            <div class='c-gppg-bar' data-type='3' data-weight='$infoC'></div>
-            <div class='c-gppg-bar' data-type='4' data-weight='$infoD'></div>
-            <span class='c-gppg-year'>$year</span> 
-          </div>";
+      $output_array[] = "<div class='c-gppg-slice'>";
+      if ($infoA != 0) {
+        $output_array[] = "<div class='c-gppg-bar' data-type='1' data-weight='$infoA'></div>";
+      }
+      if ($infoB != 0) {
+        $output_array[] = "<div class='c-gppg-bar' data-type='2' data-weight='$infoB'></div>";
+      }
+      if ($infoC != 0) {
+        $output_array[] = "<div class='c-gppg-bar' data-type='3' data-weight='$infoC'></div>";
+      }
+      if ($infoD != 0) {
+        $output_array[] = "<div class='c-gppg-bar' data-type='4' data-weight='$infoD'></div>";
+      }
+      $output_array[] = "<span class='c-gppg-year'>$year</span></div>";
+      $output = implode(' ', $output_array);
     }
     return $output;
 
+    unset($output_array);
     unset($year);
     unset($infoA);
     unset($infoB);
@@ -79,7 +87,7 @@ class GraphBar
     $renderLevels = implode('', $renderLevels);
 
     $renderLegendsArr = [];
-    $i_aux = 0;
+    $i_aux = 1;
     foreach ($arrLegends as $legend) {
       $renderLegendsArr[] = '<div class="c-gppg-legend" data-number="' . $i_aux . '">' . $legend . '</div>';
       $i_aux++;

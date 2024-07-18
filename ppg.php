@@ -228,8 +228,9 @@ class PPG
                         $title = 'Produções por tipo',
                         $arrData = $infosToGraph,
                         $arrLegends,
-                        $lines = 30
+                        $lines = 25
                     );
+                    echo "<pre>" . print_r($infosToGraph, true) . "</pre>";
                     ?>
                 </section>
 
