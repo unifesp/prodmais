@@ -224,11 +224,11 @@ class PPG
 
                 <section class="l-ppg">
                     <?php
-                    GraphBar::graph(
-                        $title = 'Produções por tipo',
-                        $arrData = $infosToGraph,
-                        $arrLegends
-                    );
+                    // GraphBar::graph(
+                    //     $title = 'Produções por tipo',
+                    //     $arrData = $infosToGraph,
+                    //     $arrLegends
+                    // );
                     ?>
                 </section>
 
@@ -258,8 +258,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                            <li>
-                                <?php
+                        <li>
+                            <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -271,7 +271,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                            </li>
+                        </li>
                         <?php } ?>
                     </ul>
 
