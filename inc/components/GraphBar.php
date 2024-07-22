@@ -13,7 +13,7 @@ class GraphBar
     }
   }
 
-  static function slices($arr)
+  static function slices($arr, $division = 1)
   {
 
     $year = 0;
@@ -21,6 +21,7 @@ class GraphBar
     $infoB = 0;
     $infoC = 0;
     $infoD = 0;
+    $infoE = 0;
     $output = [];
     $data_height_sum = 0;
     $data_height_sum_max = 0;
@@ -29,24 +30,29 @@ class GraphBar
     foreach ($arr as $years) {
       $year = (int)$years['year'];
       if (isset($years[0])) {
-        $infoA = (int)$years[0];
+        $infoA = intdiv((int)$years[0], $division);
       } else {
         $infoA = 0;
       }
       if (isset($years[1])) {
-        $infoB = (int)$years[1];
+        $infoB = intdiv((int)$years[1], $division);
       } else {
         $infoB = 0;
       }
       if (isset($years[2])) {
-        $infoC = (int)$years[2];
+        $infoC = intdiv((int)$years[2], $division);
       } else {
         $infoC = 0;
       }
       if (isset($years[3])) {
-        $infoD = (int)$years[3];
+        $infoD = intdiv((int)$years[3], $division);
       } else {
         $infoD = 0;
+      }
+      if (isset($years[4])) {
+        $infoE = intdiv((int)$years[4], $division);
+      } else {
+        $infoE = 0;
       }
       $output_array[] = "<div class='c-gppg-slice'>";
       if ($infoA != 0) {
@@ -61,12 +67,22 @@ class GraphBar
       if ($infoD != 0) {
         $output_array[] = "<div class='c-gppg-bar' data-type='4' data-weight='$infoD'></div>";
       }
+      if ($infoE != 0) {
+        $output_array[] = "<div class='c-gppg-bar' data-type='4' data-weight='$infoE'></div>";
+      }
       $output_array[] = "<span class='c-gppg-year'>$year</span></div>";
       $output[0] = implode(' ', $output_array);
-      $data_height_sum = $infoA + $infoB + $infoC + $infoD;
+      $data_height_sum = $infoA + $infoB + $infoC + $infoD + $infoE;
       if ($data_height_sum > $data_height_sum_max) {
         $data_height_sum_max = $data_height_sum;
+        if ($data_height_sum_max > 50) {
+          if ($data_height_sum_max > 100) {
+            return (GraphBar::slices($arr, 3));
+          }
+          return (GraphBar::slices($arr, 2));
+        }
       }
+      $data_height_sum = 0;
     }
     $output[1] = $data_height_sum_max;
     return $output;
