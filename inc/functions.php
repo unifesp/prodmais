@@ -1480,7 +1480,8 @@ class DataFacets
         global $index;
         $query["query"]["bool"]["filter"]["term"]["vinculo.ppg_nome.keyword"] = $ppgname;
         $query["aggs"]["counts"]["terms"]["field"] = "about.keyword";
-        $query["aggs"]["counts"]["terms"]["size"] = 50;
+        $query["aggs"]["counts"]["terms"]["size"] = 30;
+        $query["aggs"]["counts"]["terms"]["order"]["_count"] = "desc";
         $response = Elasticsearch::search(null, 0, $query, $index);
         $response_array = [];
         $i = 0;
@@ -2423,7 +2424,7 @@ class Facets
         return $facet_string;
     }
 
-    public function dataFacetbyYear($field, $size, $sort, $sort_type, $get_search, $years)
+    public function dataFacetbyYear($field, $size, $get_search, $years)
     {
         for ($i_year = $years - 1; $i_year >= 0; $i_year--) {
             $year = date('Y', strtotime("-$i_year year"));
@@ -2431,12 +2432,6 @@ class Facets
 
             $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
             $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-            if (!empty($_SESSION['oauthuserdata'])) {
-                $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
-            }
-            if (isset($sort)) {
-                $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
-            }
             $query["aggs"]["counts"]["terms"]["size"] = $size;
             $response = Elasticsearch::search(null, 0, $query, null);
             $responses[$year] = $response["aggregations"]["counts"]["buckets"];
