@@ -224,7 +224,7 @@ class PPG
 
                 <section class="l-ppg">
                     <?php
-                    if ($total_producoes < 500) {
+                    if ($total_producoes < 1000) {
                         GraphBar::graph(
                             $title = 'Produções por tipo',
                             $arrData = $infosToGraph,
