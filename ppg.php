@@ -60,7 +60,7 @@ if (!empty($_REQUEST["ID"])) {
 
     // Quantidade de obras por ano e por tipo
     $facets = new Facets();
-    $producoes_ano = $facets->dataFacetbyYear("tipo", 5, $query, 10);
+    $producoes_ano = $facets->dataFacetbyYear("tipo", 50, $query, 10);
 
     $infosToGraph = [];
     $arrLegends_duplicated = [];
@@ -224,11 +224,13 @@ class PPG
 
                 <section class="l-ppg">
                     <?php
-                    GraphBar::graph(
-                        $title = 'Produções por tipo',
-                        $arrData = $infosToGraph,
-                        $arrLegends
-                    );
+                    if ($total_producoes < 500) {
+                        GraphBar::graph(
+                            $title = 'Produções por tipo',
+                            $arrData = $infosToGraph,
+                            $arrLegends
+                        );
+                    }
                     ?>
                 </section>
 
