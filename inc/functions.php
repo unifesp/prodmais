@@ -2424,19 +2424,32 @@ class Facets
         return $facet_string;
     }
 
+    // public function dataFacetbyYear($field, $size, $get_search, $years)
+    // {
+    //     for ($i_year = $years - 1; $i_year >= 0; $i_year--) {
+    //         $year = date('Y', strtotime("-$i_year year"));
+    //         $query = $get_search;
+
+    //         $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
+    //         $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
+    //         $query["aggs"]["counts"]["terms"]["size"] = $size;
+    //         $response = Elasticsearch::search(null, 0, $query, null);
+    //         $responses[$year] = $response["aggregations"]["counts"]["buckets"];
+    //     }
+    //     return $responses;
+    // }
+
     public function dataFacetbyYear($field, $size, $get_search, $years)
     {
-        for ($i_year = $years - 1; $i_year >= 0; $i_year--) {
-            $year = date('Y', strtotime("-$i_year year"));
-            $query = $get_search;
-
-            $query["query"]["bool"]["filter"][1]["term"]["datePublished"] = $year;
-            $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-            $query["aggs"]["counts"]["terms"]["size"] = $size;
-            $response = Elasticsearch::search(null, 0, $query, null);
-            $responses[$year] = $response["aggregations"]["counts"]["buckets"];
-        }
-        return $responses;
+        $query = $get_search;
+        $query["size"] = 0;
+        $query["aggs"]["by_year"]["terms"]["field"] = "datePublished.keyword";
+        $query["aggs"]["by_year"]["aggs"]["by_type"]["terms"]["field"] = "$field.keyword";
+        $query["aggs"]["by_year"]["terms"]["order"]["_key"] = "desc";
+        $query["aggs"]["by_year"]["terms"]["size"] = $years;
+        $response = Elasticsearch::search(null, 0, $query, null);
+        return $response["aggregations"];
+        //print("<br/><br/><br/><br/><br/><pre>" . print_r($response["aggregations"], true) . "</pre>");
     }
 }
 

@@ -64,13 +64,14 @@ if (!empty($_REQUEST["ID"])) {
 
     $infosToGraph = [];
     $arrLegends_duplicated = [];
-    foreach ($producoes_ano as $ano => $producoes) {
+    foreach ($producoes_ano["by_year"]["buckets"] as $producoes) {
+        //print("<pre>" . print_r($producoes, true) . "</pre>");
         $info = [
-            'year' => $ano,
+            'year' => $producoes['key'],
             //'data' => []
         ];
         $i_producao = 0;
-        foreach ($producoes as $producao) {
+        foreach ($producoes["by_type"]["buckets"] as $producao) {
             //echo "<pre>" . print_r($producao, true) . "</pre>";
             $arrLegends_duplicated[] = $producao['key'];
             $info[$i_producao] = $producao['doc_count'];
@@ -224,13 +225,13 @@ class PPG
 
                 <section class="l-ppg">
                     <?php
-                    if ($total_producoes < 1000) {
-                        GraphBar::graph(
-                            $title = 'Produções por tipo',
-                            $arrData = $infosToGraph,
-                            $arrLegends
-                        );
-                    }
+                    //if ($total_producoes < 1000) {
+                    GraphBar::graph(
+                        $title = 'Produções por ano e por tipo',
+                        $arrData = $infosToGraph,
+                        $arrLegends
+                    );
+                    //}
                     ?>
                 </section>
 
@@ -260,8 +261,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                            <li>
-                                <?php
+                        <li>
+                            <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -273,7 +274,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                            </li>
+                        </li>
                         <?php } ?>
                     </ul>
 
