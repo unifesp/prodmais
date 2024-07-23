@@ -60,7 +60,7 @@ if (!empty($_REQUEST["ID"])) {
 
     // Quantidade de obras por ano e por tipo
     $facets = new Facets();
-    $producoes_ano = $facets->dataFacetbyYear("tipo", 50, $query, 10);
+    $producoes_ano = $facets->dataFacetbyYear("tipo", 50, $query, 5);
 
     $infosToGraph = [];
     $arrLegends_duplicated = [];
