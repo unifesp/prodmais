@@ -22,7 +22,7 @@ $params["body"] = $query;
 $cursor = $client->search($params);
 
 foreach ($cursor["hits"]["hits"] as $r) {
-    $record_blob[] = '' . $url_base . ' /profile/ ' . $r['_id'] . '|';
+    $record_blob[] = '' . $url_base . '/profile/' . $r['_id'] . '|';
 }
 foreach ($record_blob as $record) {
     $record_array = explode('|', $record);
