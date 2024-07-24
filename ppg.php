@@ -211,7 +211,7 @@ class PPG
                 <section class="l-ppg">
                     <h3 class="t t-h3">Palavras chave recorrentes</h3>
                     <div>
-                        <?php Tag::cloud($resultppgtags, $ppg["NOME_PPG"]); ?>
+                        <?php Tag::cloud($resultppgtags, $ppg["NOME_PPG"], null); ?>
 
                     </div>
                 </section>
