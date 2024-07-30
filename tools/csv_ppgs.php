@@ -33,10 +33,10 @@ if (isset($_FILES['file'])) {
         if ($value == "CONCEITO_CAPES") {
             define("CONCEITO_CAPES", $key);
         }
-        if ($value == "Faculdade") {
+        if ($value == "NOME_CAMPUS") {
             define("NOME_CAMPUS", $key);
         }
-        if ($value == "e-mail") {
+        if ($value == "PPG_EMAIL") {
             define("PPG_EMAIL", $key);
         }
         if ($value == "NOME_COORDENADOR") {
