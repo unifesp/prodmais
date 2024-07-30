@@ -159,7 +159,7 @@ class PPG
                         <h1 class="t t-h1">Programa de Pós Graduação: <?php echo $ppg["NOME_PPG"]; ?></h1>
                         <p class="t t-b ty-light-a">
                             <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
-                            <span><?php echo $ppg["NOME_CAMARA"]; ?></span>
+                            <span><?php echo (isset($ppg["NOME_CAMARA"])) ? $ppg["NOME_CAMARA"] : ''; ?></span>
                         </p>
 
                         <div class="d-icon-text">
@@ -225,12 +225,14 @@ class PPG
 
                 <section class="l-ppg">
                     <?php
-                    if ($total_producoes < 1000) {
-                        GraphBar::graph(
-                            $title = 'Produções por ano e por tipo',
-                            $arrData = $infosToGraph,
-                            $arrLegends
-                        );
+                    if (isset($arrLegends)) {
+                        if ($total_producoes < 1000) {
+                            GraphBar::graph(
+                                $title = 'Produções por ano e por tipo',
+                                $arrData = $infosToGraph,
+                                $arrLegends
+                            );
+                        }
                     }
                     ?>
                 </section>

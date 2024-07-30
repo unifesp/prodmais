@@ -141,6 +141,24 @@ if (isset($_POST['submit'])) {
                     <p>Baixar <a href="tools/modelo.csv">Modelo CSV</a></p>
                 </form>
 
+                <h2 class="t t-h3 ">Enviar CSV de PPGs</h2>
+
+                <form class="p-inclusao-form" action="tools/csv_ppgs.php" method="post" accept-charset="utf-8"
+                    enctype="multipart/form-data" title="Formulário de importação de registros do OpenAlex">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input class="c-input" type="file" id="file" aria-describedby="Arquivo CSV" name="file">
+                            <label class="custom-file-label" for="file">Escolha o arquivo CSV</label>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="c-btn" type="submit">Incluir</button>
+                    </div>
+                    <p>Para utilizar esta funcionalidade, é necessário utilizar o modelo abaixo do arquivo CSV e colocar
+                        os dados do PPG</p>
+                    <p>Baixar <a href="tools/modelo.csv">Modelo CSV PPG</a></p>
+                </form>
+
 
 
                 <?php if ($instituicao == "UNIFESP" | $instituicao == "Sou Ciência") : ?>
