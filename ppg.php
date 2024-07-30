@@ -39,9 +39,9 @@ if (!empty($_REQUEST["ID"])) {
     $query["query"]["bool"]["filter"][0]["term"]["vinculo.ppg_nome.keyword"] = trim($ppg['NOME_PPG']);
     $params["body"] = $query;
     $cursorTotal = $client->count($params);
-    $total_producoes = $cursorTotal["count"];
+    $totalProducoes = $cursorTotal["count"];
 
-    //echo "<br/><br/><br/><br/><pre>" . print_r($total_producoes, true) . "</pre>";
+    //echo "<br/><br/><br/><br/><pre>" . print_r($totalProducoes, true) . "</pre>";
 
     $ppgtags = new DataFacets();
     $resultppgtags = json_decode($ppgtags->PPGTags(trim($ppg['NOME_PPG'])), true);
@@ -220,13 +220,13 @@ class PPG
 
                 <p>
                     Total de produções registradas no Prodmais por pesquisadores vinculados ao PPG:
-                    <?php echo $total_producoes; ?>
+                    <?php echo $totalProducoes; ?>
                 </p>
 
                 <section class="l-ppg">
                     <?php
                     if (isset($arrLegends)) {
-                        if ($total_producoes < 1000) {
+                        if ($totalProducoes < 1000) {
                             GraphBar::graph(
                                 $title = 'Produções por ano e por tipo',
                                 $arrData = $infosToGraph,
