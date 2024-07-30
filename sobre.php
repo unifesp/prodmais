@@ -3,11 +3,11 @@
 
 <head>
     <?php
-  require 'inc/config.php';
-  require 'inc/meta-header.php';
-  require 'inc/functions.php';
-  require 'inc/components/Who.php';
-  ?>
+    require 'inc/config.php';
+    require 'inc/meta-header.php';
+    require 'inc/functions.php';
+    require 'inc/components/Who.php';
+    ?>
     <title>Prod Mais</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -49,16 +49,12 @@
             </h1>
 
             <p class="p-about-text">O Prodmais é uma ferramenta que agrega informações sobre produções acadêmicas de
-                diversas
-                fontes, e dentre
-                elas, principalmente a base Lattes. Permite efetuar pesquisas específicas na base de dados e filtrar os
-                resultados com o apoio das diversas opções de filtros que a ferramenta possui. Também permite efetuar
-                buscas por
-                pesquisadores, e possui filtragens por área de atuação, Campus, idioma, data da publicação, nível de
-                formação,
-                enfim, várias opções. É possível exportar os resultados utilizando formatos suportados por diversos
-                softwares
-                bibliográficos, e também é possível exportar toda a informação de um perfil para o ORCID.
+                diversas fontes, e dentre elas, principalmente a base Lattes. Permite efetuar pesquisas específicas na
+                base de dados e filtrar os resultados com o apoio das diversas opções de filtros que a ferramenta
+                possui. Também permite efetuar buscas por pesquisadores, e possui filtragens por área de atuação,
+                Campus, idioma, data da publicação, nível de formação, enfim, várias opções. É possível exportar os
+                resultados utilizando formatos suportados por diversos softwares bibliográficos, e também é possível
+                exportar toda a informação de um perfil para o ORCID.
             </p>
 
 
@@ -119,34 +115,34 @@
 
             <div class="p-about-team">
                 <?php
-        Who::ppg(
-          $picture = "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4525821T0",
-          $name = 'Lidiane Cristina da Silva',
-          $title = 'Superintendente da TI',
-          $link = 'http://lattes.cnpq.br/2259956816336032'
-        );
+                Who::ppg(
+                    $picture = "http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4525821T0",
+                    $name = 'Lidiane Cristina da Silva',
+                    $title = 'Superintendente da TI',
+                    $link = 'http://lattes.cnpq.br/2259956816336032'
+                );
 
-        Who::ppg(
-          $picture = "https://souciencia.unifesp.br/images/equipe/Alexsandro.jpeg",
-          $name = 'Alexandro Cardoso Carvalho',
-          $title = 'Chefe da Divisão de Gestão da Informação',
-          $link = 'http://lattes.cnpq.br/6792408436784536'
-        );
+                Who::ppg(
+                    $picture = "https://souciencia.unifesp.br/images/equipe/Alexsandro.jpeg",
+                    $name = 'Alexandro Cardoso Carvalho',
+                    $title = 'Chefe da Divisão de Gestão da Informação',
+                    $link = 'http://lattes.cnpq.br/6792408436784536'
+                );
 
-        Who::ppg(
-          $picture = "https://avatars.githubusercontent.com/u/499115?v=4",
-          $name = 'Tiago Rodrigo Marçal Murakami',
-          $title = 'Bolsista FAP UNIFESP',
-          $link = 'http://lattes.cnpq.br/0306160176168674'
-        );
+                Who::ppg(
+                    $picture = "https://avatars.githubusercontent.com/u/499115?v=4",
+                    $name = 'Tiago Rodrigo Marçal Murakami',
+                    $title = 'Bolsista FAP UNIFESP',
+                    $link = 'http://lattes.cnpq.br/0306160176168674'
+                );
 
-        Who::ppg(
-          $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K1702294J9",
-          $name = 'Ricardo Ireno dos Santos',
-          $title = 'Bolsista FAP UNIFESP',
-          $link = 'http://lattes.cnpq.br/8604973833723919'
-        );
-        ?>
+                Who::ppg(
+                    $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K1702294J9",
+                    $name = 'Ricardo Ireno dos Santos',
+                    $title = 'Bolsista FAP UNIFESP',
+                    $link = 'http://lattes.cnpq.br/8604973833723919'
+                );
+                ?>
             </div>
         </section>
 
