@@ -2064,9 +2064,7 @@ class Facets
 
         $query = $this->query;
         $query["aggs"]["counts"]["terms"]["field"] = "$field.keyword";
-        if (!empty($_SESSION['oauthuserdata'])) {
-            $query["aggs"]["counts"]["terms"]["missing"] = "Não preenchido";
-        }
+        $query["aggs"]["counts"]["terms"]["missing"] = "Não informado";
         if (isset($sort)) {
             $query["aggs"]["counts"]["terms"]["order"][$sort_type] = $sort;
         }
