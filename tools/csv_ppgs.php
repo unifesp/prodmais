@@ -104,6 +104,7 @@ if (isset($_FILES['file'])) {
         unset($row);
     }
     fclose($fh);
+    echo '<script>window.location = \'ppgs.php?\'</script>';
 }
 
 function curlLattes($url_base, $queryParams)
