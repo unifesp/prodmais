@@ -156,7 +156,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <p>Para utilizar esta funcionalidade, é necessário utilizar o modelo abaixo do arquivo CSV e colocar
                         os dados do PPG</p>
-                    <p>Baixar <a href="tools/modelo.csv">Modelo CSV PPG</a></p>
+                    <p>Baixar <a href="tools/modelo_ppg.csv">Modelo CSV PPG</a></p>
                 </form>
 
 
