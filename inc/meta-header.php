@@ -5,17 +5,17 @@
 <link rel="stylesheet" href="/prodmais/inc/sass/main.css" />
 
 <?php if (file_exists('inc/js/vue.js')) : ?>
-<!-- Development -->
-<script src="inc/js/vue.js"></script><!-- https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js -->
-<!--Production -->
-<!--
+    <!-- Development -->
+    <script src="inc/js/vue.js"></script><!-- https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js -->
+    <!--Production -->
+    <!--
 <script src="inc/js/vue.min.js"></script>
 -->
 <?php else : ?>
-<!-- Development -->
-<script src="../inc/js/vue.js"></script><!-- https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js -->
-<!--Production -->
-<!--
+    <!-- Development -->
+    <script src="../inc/js/vue.js"></script><!-- https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js -->
+    <!--Production -->
+    <!--
 <script src="inc/js/vue.min.js"></script>
 -->
 <?php endif; ?>

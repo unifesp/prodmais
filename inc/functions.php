@@ -2054,7 +2054,7 @@ class Facets
 {
     public $query;
 
-    public function facet($fileName, $field, $size, $field_name, $sort, $sort_type, $get_search, $page_target, $alternative_index = null)
+    public function facet($id, $field, $size, $field_name, $sort, $sort_type, $get_search, $page_target, $alternative_index = null)
     {
         global $url_base;
 
@@ -2083,35 +2083,62 @@ class Facets
         }
 
         $facet_array = array();
-        $facet_array[] = '<details class="c-filterdrop">';
+        $facet_array_more = array();
+        $facet_array[] = '<details class="c-filterdrop" open="true">';
         $facet_array[] = '<summary class="c-filterdrop__header"><span class="c-filterdrop__name">' . $field_name . '</span></summary>';
         $facet_array[] = '<ul class="c-filterdrop__content" name="bloc1">';
 
+        $i_foreach = 0;
+        $facets = [];
         foreach ($response["aggregations"]["counts"]["buckets"] as $facets) {
 
-            $facet_array[] = '<li class="c-filterdrop__item">';
 
-            $facet_array[] = '<form action="' . $page_target . '" method="post">';
-            $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+            if ($i_foreach < 5) {
 
-            $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
-
-            if (isset($get_search['filter'])) {
-                if (count($get_search['filter']) > 0) {
-                    foreach ($get_search['filter'] as $filter) {
-                        $facet_array[] = '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
+                $facet_array[] = '<li class="c-filterdrop__item">';
+                $facet_array[] = '<form action="' . $page_target . '" method="post">';
+                $facet_array[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+                $facet_array[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
+                if (isset($get_search['filter'])) {
+                    if (count($get_search['filter']) > 0) {
+                        foreach ($get_search['filter'] as $filter) {
+                            $facet_array[] = '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
+                        }
                     }
                 }
+                $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
+                $facet_array[] = '</form>';
+                $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+                $facet_array[] = '</li>';
+            } else {
+                $facet_array_more[] = '<li class="c-filterdrop__item">';
+                $facet_array_more[] = '<form action="' . $page_target . '" method="post">';
+                $facet_array_more[] = '<input type="hidden" name="search" value="' . $get_search["search"] . '">';
+                $facet_array_more[] = '<input type="hidden" name="filter[]" value="' . $field . ':' . $facets['key'] . '">';
+                if (isset($get_search['filter'])) {
+                    if (count($get_search['filter']) > 0) {
+                        foreach ($get_search['filter'] as $filter) {
+                            $facet_array_more[] = '<input type="hidden" name="filter[]" value=\'' . $filter . '\'>';
+                        }
+                    }
+                }
+                $facet_array_more[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
+                $facet_array_more[] = '</form>';
+                $facet_array_more[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
+                $facet_array_more[] = '</li>';
             }
-            $facet_array[] = '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $facets['key'] . '" />';
-            $facet_array[] = '</form>';
 
-            $facet_array[] = '<span class="c-filterdrop__count">' . number_format($facets['doc_count'], 0, ',', '.') . '</span>';
-            $facet_array[] = '</li>';
 
-            unset($facets);
+            $i_foreach++;
         }
 
+
+        if (count($facet_array_more) > 0) {
+            $facet_array[] = '<button class="c-btn" style="height:1rem" @click="toggleDiv(' . (string)$id . ')">Mostrar/Ocultar restantes</button>';
+            $facet_array[] = '<div v-if="isVisible' . (string)$id . '">
+                ' . implode("", $facet_array_more) . '
+            </div>';
+        }
         $facet_array[] = '</ul>';
         $facet_array[] = '</details>';
         $facet_string = implode("", $facet_array);
