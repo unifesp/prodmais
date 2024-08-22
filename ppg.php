@@ -164,7 +164,7 @@ class PPG
                     <div class="">
                         <h1 class="t t-h1">Programa de Pós Graduação: <?php echo $ppg["NOME_PPG"]; ?></h1>
                         <p class="t t-b ty-light-a">
-                            <span>Campus <?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
+                            <span><?php echo $ppg["NOME_CAMPUS"]; ?></span><br />
                             <span><?php echo (isset($ppg["NOME_CAMARA"])) ? $ppg["NOME_CAMARA"] : ''; ?></span>
                         </p>
 
