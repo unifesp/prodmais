@@ -111,7 +111,7 @@
             $filter_name = str_replace('about:', 'Palavra-chave: ', $filter_name);
             $filter_name = str_replace('datePublished:', 'Ano de publicação: ', $filter_name);
 
-            echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $filter_name . ' (Remover)" />';
+            echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial; white-space: normal;" type="submit" value="' . $filter_name . ' (Remover)" />';
             echo '</form>';
             echo '</div>';
           }

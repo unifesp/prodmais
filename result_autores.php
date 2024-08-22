@@ -101,7 +101,7 @@ $get_data = $_GET;
                         $filter_name = str_replace('formacao_academica_titulacao_doutorado.nomeInstituicao:', 'Instituição: ', $filter_name);
                         $filter_name = str_replace('pais_de_nascimento:', 'País: ', $filter_name);
 
-                        echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial;" type="submit" value="' . $filter_name . ' (Remover)" />';
+                        echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial; white-space: normal;" type="submit" value="' . $filter_name . ' (Remover)" />';
                         echo '</form>';
                         echo '</div>';
                     }
