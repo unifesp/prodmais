@@ -136,8 +136,8 @@
           if ($mostrar_instituicao) {
             echo ($facets->facet(1, "vinculo.instituicao", 100, "Instituição", null, "_key", $_POST, "result.php"));
           }
-          echo ($facets->facet(2, "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(3, "vinculo.ppg_nome", 100, "Nome do PPG", null, "_key", $_POST, "result.php"));
+
+          echo ($facets->facet(3, "vinculo.ppg_nome", 100, "Nome do PPG", "desc", "_key", $_POST, "result.php"));
           if ($mostrar_area_concentracao) {
             echo ($facets->facet(4, "vinculo.area_concentracao", 100, "Área de concentração", null, "_key", $_POST, "result.php"));
           }
@@ -149,6 +149,7 @@
           echo ($facets->facet(7, "country", 200, "País de publicação", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(8, "datePublished", 120, "Ano de publicação", "desc", "_key", $_POST, "result.php"));
           echo ($facets->facet(9, "language", 40, "Idioma", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(2, "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
           // echo ($facets->facet(basename(__FILE__), "lattes.natureza", 100, "Natureza", null, "_key", $_POST, "result.php"));
           // echo ($facets->facet(basename(__FILE__), "lattes.meioDeDivulgacao", 100, "Meio de divulgação", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(10, "about", 100, "Palavras-chave", null, "_key", $_POST, "result.php"));
