@@ -110,6 +110,9 @@
             $filter_name = str_replace('language:', 'Idioma: ', $filter_name);
             $filter_name = str_replace('about:', 'Palavra-chave: ', $filter_name);
             $filter_name = str_replace('datePublished:', 'Ano de publicação: ', $filter_name);
+            $filter_name = str_replace('area_do_conhecimento.nomeGrandeAreaDoConhecimento:', 'Grande Área do Conhecimento: ', $filter_name);
+
+
 
             echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial; white-space: normal;" type="submit" value="' . $filter_name . ' (Remover)" />';
             echo '</form>';
