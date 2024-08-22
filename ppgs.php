@@ -150,7 +150,7 @@ class ListPPGs
                     <div class="p-ppg-main">
                         <?php
                         if (count($cursor['hits']['hits']) == 0) {
-                            echo '<div class="u-mt-20 u-mb-20">Ainda foi encontrado nenhum Programa de Pós-Graduação.</div>';
+                            echo '<div class="u-mt-20 u-mb-20">Não foi encontrado nenhum Programa de Pós-Graduação.</div>';
                         } else {
                             ListPPGs::listAll($cursor['hits']['hits']);
                         }
