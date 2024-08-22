@@ -381,6 +381,7 @@ class PPG
 
                                 // Verifique se a imagem existe no diretório
                                 if (file_exists($imagePath)) {
+                                    echo "entrou aqui";
                                     Who::ppg(
                                         $picture = $imagePath,
                                         $name = $value["_source"]["nome_completo"],
@@ -388,6 +389,7 @@ class PPG
                                         $link = "profile.php?lattesID=$id"
                                     );
                                 } else {
+                                    echo "entrou no else";
                                     Who::ppg(
                                         $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=$lattesID10",
                                         $name = $value["_source"]["nome_completo"],
