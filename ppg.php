@@ -49,6 +49,18 @@ if (!empty($_REQUEST["ID"])) {
         shuffle($resultppgtags);
     }
 
+    // Quantidade de obras por ano e por tipo
+    $facets = new Facets();
+    $producoes_ano = $facets->dataFacetbyYear("tipo", $query, 5, $ppg);
+
+    $infosToGraph = [];
+    $arrLegends_duplicated = [];
+    foreach ($producoes_ano["by_year"]["buckets"] as $producoes) {
+        $infosToGraph[$producoes['key']['year']]['year'] = $producoes['key']['year'];
+        $infosToGraph[$producoes['key']['year']][$producoes['key']['type']] = $producoes['doc_count'];
+    }
+
+    // Orientadores
     $query_orientadores["query"]["bool"]["filter"]["term"]["ppg_nome.keyword"] = trim($ppg['NOME_PPG']);
     $query_orientadores["sort"] = ["nome_completo.keyword" => ["order" => "asc"]];
     $params_orientadores = [];
@@ -57,30 +69,6 @@ if (!empty($_REQUEST["ID"])) {
     $params_orientadores["size"] = 500;
     $params_orientadores["body"] = $query_orientadores;
     $cursor_orientadores = $client->search($params_orientadores);
-
-    // Quantidade de obras por ano e por tipo
-    $facets = new Facets();
-    $producoes_ano = $facets->dataFacetbyYear("tipo", 50, $query, 5);
-
-    $infosToGraph = [];
-    $arrLegends_duplicated = [];
-    foreach ($producoes_ano["by_year"]["buckets"] as $producoes) {
-        //print("<pre>" . print_r($producoes, true) . "</pre>");
-        $info = [
-            'year' => $producoes['key'],
-            //'data' => []
-        ];
-        $i_producao = 0;
-        foreach ($producoes["by_type"]["buckets"] as $producao) {
-            //echo "<pre>" . print_r($producao, true) . "</pre>";
-            $arrLegends_duplicated[] = $producao['key'];
-            $info[$i_producao] = $producao['doc_count'];
-            $i_producao++;
-        }
-        $arrLegends = array_unique($arrLegends_duplicated);
-
-        $infosToGraph[] = $info;
-    }
 } else {
     echo '<script>window.location.href = "index.php";</script>';
     die();
@@ -121,7 +109,6 @@ class PPG
 <head>
     <?php
     require 'inc/meta-header.php';
-    require 'inc/components/GraphBar.php';
     require 'inc/components/SList.php';
     require 'inc/components/Who.php';
     require 'inc/components/PPGBadges.php';
@@ -132,6 +119,25 @@ class PPG
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="Prodmais" />
     <meta name="keywords" content="Produção acadêmica, lattes, ORCID" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .bar {
+            stroke: #000;
+        }
+
+        .legend {
+            font-size: 12px;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+        }
+    </style>
 
 </head>
 
@@ -144,7 +150,8 @@ class PPG
     }
     ?>
 
-    <?php require 'inc/navbar.php'; ?>
+    <?php //require 'inc/navbar.php'; 
+    ?>
     <main class="c-wrapper-container">
         <div class="c-wrapper-paper">
 
@@ -224,17 +231,103 @@ class PPG
                 </p>
 
                 <section class="l-ppg">
-                    <?php
-                    if (isset($arrLegends)) {
-                        if ($totalProducoes < 1000) {
-                            GraphBar::graph(
-                                $title = 'Produções por ano e por tipo',
-                                $arrData = $infosToGraph,
-                                $arrLegends
-                            );
-                        }
-                    }
-                    ?>
+
+                    <svg width="100%" height="500"></svg>
+
+
+                    <script>
+                        // Dados em PHP
+                        <?php
+
+                        echo "const data = " . json_encode($infosToGraph) . ";";
+                        ?>
+
+                        // Transformar os dados em um array de objetos
+                        const formattedData = Object.keys(data).map(year => {
+                            return {
+                                year: parseInt(year),
+                                ...data[year]
+                            };
+                        });
+
+                        const keys = ["Artigo publicado", "Capítulo de livro publicado", "Livro publicado ou organizado",
+                            "Patente", "Software", "Textos em jornais de notícias/revistas", "Trabalhos em eventos",
+                            "Tradução"
+                        ];
+
+                        const margin = {
+                                top: 20,
+                                right: 300,
+                                bottom: 40,
+                                left: 100
+                            },
+                            width = window.innerWidth - margin.left - margin.right,
+                            height = 600 - margin.top - margin.bottom;
+
+                        console.log(window.innerWidth);
+                        const svg = d3.select("svg")
+                            .attr('width', window.innerWidth - margin.left - margin.right)
+                            .attr('height', 600)
+                            .append("g")
+                            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+                        const x = d3.scaleBand()
+                            .domain(formattedData.map(d => d.year))
+                            .range([0, width])
+                            .padding(0.1);
+
+                        const y = d3.scaleLinear()
+                            .domain([0, d3.max(formattedData, d => d3.sum(keys, key => d[key]))])
+                            .nice()
+                            .range([height, 0]);
+
+                        const color = d3.scaleOrdinal()
+                            .domain(keys)
+                            .range(d3.schemeCategory10);
+
+                        svg.append("g")
+                            .selectAll("g")
+                            .data(d3.stack().keys(keys)(formattedData))
+                            .join("g")
+                            .attr("fill", d => color(d.key))
+                            .selectAll("rect")
+                            .data(d => d)
+                            .join("rect")
+                            .attr("x", d => x(d.data.year))
+                            .attr("y", d => y(d[1]))
+                            .attr("height", d => y(d[0]) - y(d[1]))
+                            .attr("width", x.bandwidth());
+
+                        svg.append("g")
+                            .attr("class", "x-axis")
+                            .attr("transform", `translate(0,${height})`)
+                            .call(d3.axisBottom(x));
+
+                        svg.append("g")
+                            .attr("class", "y-axis")
+                            .call(d3.axisLeft(y));
+
+                        // Adicionar legenda
+                        const legend = svg.append("g")
+                            .attr("class", "legend")
+                            .attr("transform", `translate(${width - 100}, 20)`); // Ajuste a posição conforme necessário
+
+                        keys.forEach((key, i) => {
+                            const legendRow = legend.append("g")
+                                .attr("transform", `translate(0, ${i * 20})`);
+
+                            legendRow.append("rect")
+                                .attr("width", 10)
+                                .attr("height", 10)
+                                .attr("fill", color(key));
+
+                            legendRow.append("text")
+                                .attr("x", 20)
+                                .attr("y", 10)
+                                .attr("text-anchor", "start")
+                                .text(key);
+                        });
+                    </script>
                 </section>
 
                 <!--
@@ -263,8 +356,8 @@ class PPG
 
                     <ul class="p-ppg__orientadores">
                         <?php foreach ($cursor_orientadores["hits"]["hits"] as $key => $value) { ?>
-                        <li>
-                            <?php
+                            <li>
+                                <?php
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
@@ -276,7 +369,7 @@ class PPG
                                     $link = "profile.php?lattesID=$id"
                                 )
                                 ?>
-                        </li>
+                            </li>
                         <?php } ?>
                     </ul>
 

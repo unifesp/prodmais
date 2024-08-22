@@ -2464,17 +2464,39 @@ class Facets
     //     return $responses;
     // }
 
-    public function dataFacetbyYear($field, $size, $get_search, $years)
+    public function dataFacetbyYear($field, $get_search, $years, $ppg)
     {
+        $years = date('Y-m-d', strtotime('-5 years'));
         $query = $get_search;
         $query["size"] = 0;
-        $query["aggs"]["by_year"]["terms"]["field"] = "datePublished.keyword";
-        $query["aggs"]["by_year"]["aggs"]["by_type"]["terms"]["field"] = "$field.keyword";
-        $query["aggs"]["by_year"]["terms"]["order"]["_key"] = "desc";
-        $query["aggs"]["by_year"]["terms"]["size"] = $years;
+        $query = [
+            "query" => [
+                "bool" => [
+                    "filter" => [
+                        [
+                            "range" => [
+                                "datePublished" => [
+                                    "gte" => $years
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $query["query"]["bool"]["filter"][] = ["term" => ["vinculo.ppg_nome.keyword" => trim($ppg['NOME_PPG'])]];
+        $query["aggs"]["by_year"] = [
+            "composite" => [
+                "sources" => [
+                    ["year" => ["terms" => ["field" => "datePublished.keyword", "order" => "desc"]]],
+                    ["type" => ["terms" => ["field" => "{$field}.keyword"]]]
+                ],
+                "size" => 60
+            ]
+        ];
         $response = Elasticsearch::search(null, 0, $query, null);
-        return $response["aggregations"];
         //print("<br/><br/><br/><br/><br/><pre>" . print_r($response["aggregations"], true) . "</pre>");
+        return $response["aggregations"];
     }
 }
 

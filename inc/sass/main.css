@@ -2992,47 +2992,36 @@ details[open] .c-filterlist-name--header:before {
 .c-gppg-bar[data-weight="26"] {
   --sizebar: 26;
 }
-
 .c-gppg-bar[data-weight="27"] {
   --sizebar: 27;
 }
-
 .c-gppg-bar[data-weight="28"] {
   --sizebar: 28;
 }
-
 .c-gppg-bar[data-weight="29"] {
   --sizebar: 29;
 }
-
 .c-gppg-bar[data-weight="30"] {
   --sizebar: 30;
 }
-
 .c-gppg-bar[data-weight="31"] {
   --sizebar: 31;
 }
-
 .c-gppg-bar[data-weight="32"] {
   --sizebar: 32;
 }
-
 .c-gppg-bar[data-weight="33"] {
   --sizebar: 33;
 }
-
 .c-gppg-bar[data-weight="34"] {
   --sizebar: 34;
 }
-
 .c-gppg-bar[data-weight="35"] {
   --sizebar: 35;
 }
-
 .c-gppg-bar[data-weight="36"] {
   --sizebar: 36;
 }
-
 .c-gppg-bar[data-weight="37"] {
   --sizebar: 37;
 }
@@ -3075,8 +3064,6 @@ details[open] .c-filterlist-name--header:before {
 .c-gppg-bar[data-weight="50"] {
   --sizebar: 50;
 }
-
-
 
 .c-gppg {
   align-items: center;
@@ -3200,18 +3187,35 @@ details[open] .c-filterlist-name--header:before {
 
 .c-gppg-bar[data-type="3"],
 .c-gppg-legend[data-number="3"] {
-  background-color: var(--c-pr-3);
+  background-color: var(--c-pr-5);
 }
 
 .c-gppg-bar[data-type="4"],
 .c-gppg-legend[data-number="4"] {
-  background-color: var(--c-pr-2);
+  background-color: var(--c-pr-4);
 }
 
 .c-gppg-bar[data-type="5"],
 .c-gppg-legend[data-number="5"] {
+  background-color: var(--c-pr-3);
+}
+
+.c-gppg-bar[data-type="6"],
+.c-gppg-legend[data-number="6"] {
+  background-color: var(--c-pr-2);
+}
+
+.c-gppg-bar[data-type="7"],
+.c-gppg-legend[data-number="7"] {
   background-color: var(--c-pr-1);
 }
+
+.c-gppg-bar[data-type="8"],
+.c-gppg-legend[data-number="8"] {
+  background-color: var(--c-pr-0);
+}
+
+
 
 .c-gppg-slice-tri .c-gppg-slice {
   margin: 0;
