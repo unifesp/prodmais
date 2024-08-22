@@ -180,13 +180,13 @@
 
           echo ($facets->facet(25, "vinculo.campus", 100, "Campus", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(26, "vinculo.desc_gestora", 100, "Gestora", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(27, "vinculo.unidade", 100, "Unidade", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(28, "vinculo.departamento", 100, "Departamento", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(29, "vinculo.divisao", 100, "Divisão", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(30, "vinculo.secao", 100, "Seção", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(27, "vinculo.unidade", 100, "Unidade", "asc", "_key", $_POST, "result.php"));
+          echo ($facets->facet(28, "vinculo.departamento", 100, "Departamento", "asc", "_key", $_POST, "result.php"));
+          echo ($facets->facet(29, "vinculo.divisao", 100, "Divisão", "asc", "_key", $_POST, "result.php"));
+          echo ($facets->facet(30, "vinculo.secao", 100, "Seção", "asc", "_key", $_POST, "result.php"));
           echo ($facets->facet(31, "vinculo.genero", 100, "Gênero", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(32, "vinculo.desc_nivel", 100, "Nível", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(33, "vinculo.desc_curso", 100, "Curso", null, "_key", $_POST, "result.php"));
+          echo ($facets->facet(33, "vinculo.desc_curso", 100, "Curso", "asc", "_key", $_POST, "result.php"));
 
           if ($mostrar_existe_doi) {
             echo ($facets->facetExistsField(basename(__FILE__), "doi", 2, "Possui DOI preenchido?", null, "_key", $_POST, "result.php"));
