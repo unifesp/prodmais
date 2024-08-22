@@ -360,13 +360,42 @@ class PPG
                                 $id = $value["_id"];
                                 $lattesID10 = lattesID10($value["_id"]);
 
+                                // URL da imagem
+                                $imageUrl = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&bcv=true&id=$lattesID10";
 
-                                Who::ppg(
-                                    $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=$lattesID10",
-                                    $name = $value["_source"]["nome_completo"],
-                                    $title = "",
-                                    $link = "profile.php?lattesID=$id"
-                                )
+                                // Diretório onde a imagem será salva
+                                $saveDir = 'data/images/';
+                                $imageName = 'foto_' . $lattesID10 . '.jpg';
+                                $imagePath = $saveDir . $imageName;
+
+                                // Crie o diretório se não existir
+                                if (!file_exists($saveDir)) {
+                                    mkdir($saveDir, 0777, true);
+                                }
+
+                                // Baixe a imagem e salve no diretório
+                                $imageContent = file_get_contents($imageUrl);
+                                if ($imageContent !== false) {
+                                    file_put_contents($imagePath, $imageContent);
+                                }
+
+                                // Verifique se a imagem existe no diretório
+                                if (file_exists($imagePath)) {
+                                    Who::ppg(
+                                        $picture = $imagePath,
+                                        $name = $value["_source"]["nome_completo"],
+                                        $title = "",
+                                        $link = "profile.php?lattesID=$id"
+                                    );
+                                } else {
+                                    Who::ppg(
+                                        $picture = "https://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;bcv=true&amp;id=$lattesID10",
+                                        $name = $value["_source"]["nome_completo"],
+                                        $title = "",
+                                        $link = "profile.php?lattesID=$id"
+                                    );
+                                }
+
                                 ?>
                         </li>
                         <?php } ?>
