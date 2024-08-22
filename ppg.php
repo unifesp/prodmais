@@ -375,7 +375,6 @@ class PPG
 
                                 // Baixe a imagem e salve no diretório
                                 $imageContent = file_get_contents($imageUrl);
-                                var_dump($imageContent);
                                 if ($imageContent !== false) {
                                     file_put_contents($imagePath, $imageContent);
                                 }
