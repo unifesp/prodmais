@@ -2291,7 +2291,7 @@ class Facets
         }
         $query["aggs"]["counts"]["terms"]["size"] = $size;
 
-        $response = Elasticsearch::elasticSearch(null, 0, $query);
+        $response = Elasticsearch::search(null, 0, $query);
 
         echo '<li class="uk-parent">';
         echo '<a href="#" style="color:#333">' . $nome_do_campo . '</a>';
