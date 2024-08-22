@@ -10,7 +10,10 @@ require 'inc/functions.php';
 $limit = 500;
 $params = [];
 $params["index"] = $index_ppg;
-
+if (isset($_REQUEST['CONCEITO_CAPES'])) {
+    $query["query"]["bool"]["filter"][0]["term"]["CONCEITO_CAPES.keyword"] = $_REQUEST['CONCEITO_CAPES'];
+    $params["body"] = $query;
+}
 $cursorTotal = $client->count($params);
 $total = $cursorTotal["count"];
 
@@ -110,6 +113,34 @@ class ListPPGs
         <div class="c-wrapper-paper">
             <div class="c-wrapper-inner">
                 <h1 class=" t t-h1 u-mb-20">Programas de Pós-Graduação</h1>
+
+                <h4 class=" t t-h4">Filtrar por conceito</h4>
+                <div class="p-result-search-ctn">
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="2">
+                        <button type="submit" class="c-btn" style="width: 1rem;">2</button>
+                    </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="3">
+                        <button type="submit" class="c-btn" style="width: 1rem;">3</button>
+                    </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="4">
+                        <button type="submit" class="c-btn" style="width: 1rem;">4</button>
+                    </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="5">
+                        <button type="submit" class="c-btn" style="width: 1rem;">5</button>
+                    </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="6">
+                        <button type="submit" class="c-btn" style="width: 1rem;">6</button>
+                    </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <input type="hidden" name="CONCEITO_CAPES" value="7">
+                        <button type="submit" class="c-btn" style="width: 1rem;">7</button>
+                    </form>
+                </div>
 
                 <div class="p-ppg-container">
                     <!-- <div class="p-ppg-tags">
