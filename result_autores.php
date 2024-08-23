@@ -163,7 +163,7 @@ $get_data = $_GET;
                     //echo ($facets->facet(28, "formacao_academica_titulacao_livreDocencia.nomeInstituicao", 100, "Instituição em que cursou livre docência", null, "_term", $_POST, "result_autores.php", $index_cv));
                     //echo ($facets->facet(29, "formacao_maxima", 10, "Maior formação que iniciou", null, "_term", $_POST, "result_autores.php", $index_cv));
                     //echo ($facets->facet(30, "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(31, "genero", 100, "Genero", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(31, "genero", 100, "Genero", null, "_term", $_POST, "result_autores.php", $index_cv));
                     //echo ($facets->facet(32, "pais_de_nascimento", 100, "País de nascimento", null, "_term", $_POST, "result_autores.php", $index_cv));
 
                     ?>
