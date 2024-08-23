@@ -125,19 +125,23 @@ $get_data = $_GET;
                     if ($mostrar_instituicao) {
                         echo ($facets->facet(1, "instituicao", 100, "Instituição", null, "_term", $_POST, "result_autores.php", $index_cv));
                     }
-                    echo ($facets->facet(2, "campus", 100, "Campus", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(3, "desc_gestora", 100, "Gestora", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(4, "unidade", 100, "Unidade", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(5, "departamento", 100, "Departamento", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(6, "divisao", 100, "Divisão", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(7, "secao", 100, "Seção", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(8, "ppg_nome", 100, "Nome do PPG", "asc", "_key", $_POST, "result_autores.php", $index_cv));
-                    if ($mostrar_area_concentracao) {
-                        echo ($facets->facet(9, "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    }
                     echo ($facets->facet(10, "tipvin", 100, "Tipo de vínculo", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(11, "desc_nivel", 100, "Nível", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(12, "desc_curso", 100, "Curso", null, "_term", $_POST, "result_autores.php", $index_cv));
+
+                    //echo ($facets->facet(2, "campus", 100, "Campus", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(3, "desc_gestora", 100, "Gestora", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(6, "divisao", 100, "Divisão", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(7, "secao", 100, "Seção", null, "_term", $_POST, "result_autores.php", $index_cv));
+
+                    if ($mostrar_area_concentracao) {
+                        //echo ($facets->facet(9, "area_concentracao", 100, "Área de concentração", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    }
+
+                    //echo ($facets->facet(11, "desc_nivel", 100, "Nível", null, "_term", $_POST, "result_autores.php", $index_cv));
+
 
                     //echo($facets->facet(13, "tag", 100, "Tag", null, "_term", $_POST, "result_autores.php", $index_cv));
                     // echo($facets->facet(14, "nacionalidade", 100, "Nacionalidade", null, "_term", $_POST, "result_autores.php", $index_cv));
@@ -148,19 +152,19 @@ $get_data = $_GET;
                     //echo($facets->facet(18, "endereco.endereco_profissional.pais", 100, "País do endereço profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
                     //echo($facets->facet(19, "endereco.endereco_profissional.cidade", 100, "Cidade do endereço profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
 
-                    echo ($facets->facet(20, "formacao_academica_titulacao_graduacao.nomeInstituicao", 100, "Instituição em que cursou graduação", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(21, "formacao_academica_titulacao_graduacao.nomeCurso", 100, "Nome do curso na graduação", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(22, "formacao_academica_titulacao_mestrado.nomeInstituicao", 100, "Instituição em que cursou mestrado", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(23, "formacao_academica_titulacao_mestrado.nomeCurso", 100, "Nome do curso no mestrado", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(24, "formacao_academica_titulacao_mestradoProfissionalizante.nomeInstituicao", 100, "Instituição em que cursou mestrado profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(25, "formacao_academica_titulacao_mestradoProfissionalizante.nomeCurso", 100, "Nome do curso no mestrado profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(26, "formacao_academica_titulacao_doutorado.nomeInstituicao", 100, "Instituição em que cursou doutorado", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(27, "formacao_academica_titulacao_doutorado.nomeCurso", 100, "Nome do curso no doutorado", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(28, "formacao_academica_titulacao_livreDocencia.nomeInstituicao", 100, "Instituição em que cursou livre docência", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(29, "formacao_maxima", 10, "Maior formação que iniciou", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(30, "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(20, "formacao_academica_titulacao_graduacao.nomeInstituicao", 100, "Instituição em que cursou graduação", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(21, "formacao_academica_titulacao_graduacao.nomeCurso", 100, "Nome do curso na graduação", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(22, "formacao_academica_titulacao_mestrado.nomeInstituicao", 100, "Instituição em que cursou mestrado", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(23, "formacao_academica_titulacao_mestrado.nomeCurso", 100, "Nome do curso no mestrado", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(24, "formacao_academica_titulacao_mestradoProfissionalizante.nomeInstituicao", 100, "Instituição em que cursou mestrado profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(25, "formacao_academica_titulacao_mestradoProfissionalizante.nomeCurso", 100, "Nome do curso no mestrado profissional", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(26, "formacao_academica_titulacao_doutorado.nomeInstituicao", 100, "Instituição em que cursou doutorado", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(27, "formacao_academica_titulacao_doutorado.nomeCurso", 100, "Nome do curso no doutorado", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(28, "formacao_academica_titulacao_livreDocencia.nomeInstituicao", 100, "Instituição em que cursou livre docência", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(29, "formacao_maxima", 10, "Maior formação que iniciou", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(30, "data_atualizacao", 100, "Data de atualização do currículo", null, "_term", $_POST, "result_autores.php", $index_cv));
                     echo ($facets->facet(31, "genero", 100, "Genero", null, "_term", $_POST, "result_autores.php", $index_cv));
-                    echo ($facets->facet(32, "pais_de_nascimento", 100, "País de nascimento", null, "_term", $_POST, "result_autores.php", $index_cv));
+                    //echo ($facets->facet(32, "pais_de_nascimento", 100, "País de nascimento", null, "_term", $_POST, "result_autores.php", $index_cv));
 
                     ?>
                 </div>
