@@ -142,7 +142,7 @@
 
           echo ($facets->facet(3, "vinculo.ppg_nome", 100, "Nome do PPG", "asc", "_key", $_POST, "result.php"));
           if ($mostrar_area_concentracao) {
-            echo ($facets->facet(4, "vinculo.area_concentracao", 100, "Área de concentração", null, "_key", $_POST, "result.php"));
+            //echo ($facets->facet(4, "vinculo.area_concentracao", 100, "Área de concentração", null, "_key", $_POST, "result.php"));
           }
           echo ($facets->facet(5, "tipo", 100, "Tipo de material", null, "_key", $_POST, "result.php"));
           echo ($facets->facet_author(basename(__FILE__), "author.person.name", 100, "Nome completo do autor", null, "_key", $_POST, "result.php"));
@@ -152,26 +152,26 @@
           echo ($facets->facet(7, "country", 200, "País de publicação", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(8, "datePublished", 120, "Ano de publicação", "desc", "_key", $_POST, "result.php"));
           echo ($facets->facet(9, "language", 40, "Idioma", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(2, "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(2, "vinculo.tipvin", 100, "Tipo de vínculo", null, "_key", $_POST, "result.php"));
           // echo ($facets->facet(basename(__FILE__), "lattes.natureza", 100, "Natureza", null, "_key", $_POST, "result.php"));
           // echo ($facets->facet(basename(__FILE__), "lattes.meioDeDivulgacao", 100, "Meio de divulgação", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(10, "about", 100, "Palavras-chave", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(10, "about", 100, "Palavras-chave", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(11, "agencia_de_fomento", 100, "Agências de fomento", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(12, "area_do_conhecimento.nomeGrandeAreaDoConhecimento", 100, "Nome da grande área do conhecimento", null, "_key", $_POST, "result.php"));
           //echo($facets->facet(basename(__FILE__), "area_do_conhecimento.nomeDaAreaDoConhecimento", 100, "Nome da Área do Conhecimento", null, "_key", $_POST, "result.php"));
           //echo($facets->facet(basename(__FILE__), "area_do_conhecimento.nomeDaSubAreaDoConhecimento", 100, "Nome da Sub Área do Conhecimento", null, "_key", $_POST, "result.php"));
           //echo($facets->facet(basename(__FILE__), "area_do_conhecimento.nomeDaEspecialidade", 100, "Nome da Especialidade", null, "_key", $_POST, "result.php"));
 
-          echo ($facets->facet(13, "trabalhoEmEventos.classificacaoDoEvento", 100, "Classificação do evento", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(14, "EducationEvent.name", 100, "Nome do evento", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(13, "trabalhoEmEventos.classificacaoDoEvento", 100, "Classificação do evento", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(14, "EducationEvent.name", 100, "Nome do evento", null, "_key", $_POST, "result.php"));
           //echo ($facets->facet("publisher.organization.location", 100, "Cidade", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(15, "trabalhoEmEventos.anoDeRealizacao", 100, "Ano de realização do evento", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(16, "trabalhoEmEventos.tituloDosAnaisOuProceedings", 100, "Título dos anais", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(17, "trabalhoEmEventos.isbn", 100, "ISBN dos anais", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(18, "trabalhoEmEventos.nomeDaEditora", 100, "Editora dos anais", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(15, "trabalhoEmEventos.anoDeRealizacao", 100, "Ano de realização do evento", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(16, "trabalhoEmEventos.tituloDosAnaisOuProceedings", 100, "Título dos anais", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(17, "trabalhoEmEventos.isbn", 100, "ISBN dos anais", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(18, "trabalhoEmEventos.nomeDaEditora", 100, "Editora dos anais", null, "_key", $_POST, "result.php"));
           //echo ($facets->facet(basename(__FILE__), "trabalhoEmEventos.cidadeDaEditora", 100, "Cidade da editora", null, "_key", $_POST, "result.php"));
 
-          echo ($facets->facet(19, "isPartOf.name", 100, "Título do periódico", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(19, "isPartOf.name", 100, "Título do periódico", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(20, "qualis.extrato", 100, "Extrato QUALIS", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(21, "qualis.area", 100, "Área QUALIS", null, "_key", $_POST, "result.php"));
 
@@ -181,14 +181,14 @@
           // echo($facets->facet(24, "ExternalData.crossref.message.funder.DOI", 100, "Crossref - Agência de financiamento - DOI", null, "_key", $_POST, "result.php"));
           // echo($facets->facet_range(basename(__FILE__), "ExternalData.crossref.message.is-referenced-by-count", 100, "Crossref - Número de citações obtidas", null, "_key", $_POST, "result.php"));
 
-          echo ($facets->facet(25, "vinculo.campus", 100, "Campus", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(26, "vinculo.desc_gestora", 100, "Gestora", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(27, "vinculo.unidade", 100, "Unidade", "asc", "_key", $_POST, "result.php"));
-          echo ($facets->facet(28, "vinculo.departamento", 100, "Departamento", "asc", "_key", $_POST, "result.php"));
-          echo ($facets->facet(29, "vinculo.divisao", 100, "Divisão", "asc", "_key", $_POST, "result.php"));
-          echo ($facets->facet(30, "vinculo.secao", 100, "Seção", "asc", "_key", $_POST, "result.php"));
-          echo ($facets->facet(31, "vinculo.genero", 100, "Gênero", null, "_key", $_POST, "result.php"));
-          echo ($facets->facet(32, "vinculo.desc_nivel", 100, "Nível", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(25, "vinculo.campus", 100, "Campus", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(26, "vinculo.desc_gestora", 100, "Gestora", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(27, "vinculo.unidade", 100, "Unidade", "asc", "_key", $_POST, "result.php"));
+          //echo ($facets->facet(28, "vinculo.departamento", 100, "Departamento", "asc", "_key", $_POST, "result.php"));
+          //echo ($facets->facet(29, "vinculo.divisao", 100, "Divisão", "asc", "_key", $_POST, "result.php"));
+          //echo ($facets->facet(30, "vinculo.secao", 100, "Seção", "asc", "_key", $_POST, "result.php"));
+          //echo ($facets->facet(31, "vinculo.genero", 100, "Gênero", null, "_key", $_POST, "result.php"));
+          //echo ($facets->facet(32, "vinculo.desc_nivel", 100, "Nível", null, "_key", $_POST, "result.php"));
           echo ($facets->facet(33, "vinculo.desc_curso", 100, "Curso", "asc", "_key", $_POST, "result.php"));
 
           if ($mostrar_existe_doi) {
