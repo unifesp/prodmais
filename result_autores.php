@@ -100,6 +100,10 @@ $get_data = $_GET;
                         $filter_name = str_replace('formacao_academica_titulacao_mestrado.nomeInstituicao:', 'Instituição: ', $filter_name);
                         $filter_name = str_replace('formacao_academica_titulacao_doutorado.nomeInstituicao:', 'Instituição: ', $filter_name);
                         $filter_name = str_replace('pais_de_nascimento:', 'País: ', $filter_name);
+                        $filter_name = str_replace('ppg_nome:', 'Programa de Pós Graduação: ', $filter_name);
+                        $filter_name = str_replace('departamento:', 'Departamento: ', $filter_name);
+                        $filter_name = str_replace('tipvin:', 'Típo de vínculo: ', $filter_name);
+                        $filter_name = str_replace('desc_curso:', 'Curso: ', $filter_name);
 
                         echo '<input class="c-filterdrop__item-name" style="text-decoration: none; color: initial; white-space: normal;" type="submit" value="' . $filter_name . ' (Remover)" />';
                         echo '</form>';
