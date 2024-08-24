@@ -6,7 +6,7 @@ require 'inc/functions.php';
 
 if (isset($_POST["search"]) & !empty($_POST["search"])) {
     if (!str_contains($_POST['search'], 'nome_completo')) {
-        $_POST["search"] = 'nome_completo:' . $_POST['search'] . '';
+        $_POST["search"] = 'nome_completo:(' . $_POST['search'] . ')';
     }
 } else {
     $_POST["search"] = '';
@@ -212,17 +212,17 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                    <?php
+                        <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                    <li class="c-card-author t t-b t-md">
-                        <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
-                            <?php echo $r["_source"]['nome_completo']; ?>
-                        </a>
-                    </li>
+                        <li class="c-card-author t t-b t-md">
+                            <a href="profile.php?lattesID=<?php echo $r['_source']['lattesID']; ?>">
+                                <?php echo $r["_source"]['nome_completo']; ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -234,68 +234,68 @@ $get_data = $_GET;
         </main>
 
         <script>
-        new Vue({
-            el: '#app',
-            data: {
-                isVisible1: false,
-                isVisible2: false,
-                isVisible3: false,
-                isVisible4: false,
-                isVisible5: false,
-                isVisible6: false,
-                isVisible7: false,
-                isVisible8: false,
-                isVisible8: false,
-                isVisible10: false,
-                isVisible11: false,
-                isVisible12: false,
-                isVisible13: false,
-                isVisible14: false,
-                isVisible15: false,
-                isVisible16: false,
-                isVisible17: false,
-                isVisible18: false,
-                isVisible19: false,
-                isVisible20: false,
-                isVisible21: false,
-                isVisible22: false,
-                isVisible23: false,
-                isVisible24: false,
-                isVisible25: false,
-                isVisible26: false,
-                isVisible27: false,
-                isVisible28: false,
-                isVisible29: false,
-                isVisible30: false,
-                isVisible31: false,
-                isVisible32: false,
-                isVisible33: false,
-                isVisible34: false,
-                isVisible35: false,
-                isVisible36: false,
-                isVisible37: false,
-                isVisible38: false,
-                isVisible39: false,
-                isVisible40: false,
-                isVisible41: false,
-                isVisible42: false,
-                isVisible43: false,
-                isVisible44: false,
-                isVisible45: false,
-                isVisible46: false,
-                isVisible47: false,
-                isVisible48: false,
-            },
-            methods: {
-                toggleDiv(id) {
-                    id.toString();
-                    var str = 'isVisible' + id;
-                    this[str] = !this[str];
-                    console.log(this.str);
+            new Vue({
+                el: '#app',
+                data: {
+                    isVisible1: false,
+                    isVisible2: false,
+                    isVisible3: false,
+                    isVisible4: false,
+                    isVisible5: false,
+                    isVisible6: false,
+                    isVisible7: false,
+                    isVisible8: false,
+                    isVisible8: false,
+                    isVisible10: false,
+                    isVisible11: false,
+                    isVisible12: false,
+                    isVisible13: false,
+                    isVisible14: false,
+                    isVisible15: false,
+                    isVisible16: false,
+                    isVisible17: false,
+                    isVisible18: false,
+                    isVisible19: false,
+                    isVisible20: false,
+                    isVisible21: false,
+                    isVisible22: false,
+                    isVisible23: false,
+                    isVisible24: false,
+                    isVisible25: false,
+                    isVisible26: false,
+                    isVisible27: false,
+                    isVisible28: false,
+                    isVisible29: false,
+                    isVisible30: false,
+                    isVisible31: false,
+                    isVisible32: false,
+                    isVisible33: false,
+                    isVisible34: false,
+                    isVisible35: false,
+                    isVisible36: false,
+                    isVisible37: false,
+                    isVisible38: false,
+                    isVisible39: false,
+                    isVisible40: false,
+                    isVisible41: false,
+                    isVisible42: false,
+                    isVisible43: false,
+                    isVisible44: false,
+                    isVisible45: false,
+                    isVisible46: false,
+                    isVisible47: false,
+                    isVisible48: false,
                 },
-            },
+                methods: {
+                    toggleDiv(id) {
+                        id.toString();
+                        var str = 'isVisible' + id;
+                        this[str] = !this[str];
+                        console.log(this.str);
+                    },
+                },
 
-        });
+            });
         </script>
 
     </div>
