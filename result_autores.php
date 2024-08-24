@@ -6,7 +6,7 @@ require 'inc/functions.php';
 
 if (isset($_POST["search"]) & !empty($_POST["search"])) {
     if (!str_contains($_POST['search'], 'nome_completo')) {
-        $_POST["search"] = 'nome_completo:(' . $_POST['search'] . ')';
+        $_POST["search"] = 'nome_completo:(' . trim($_POST['search']) . ')';
     }
 } else {
     $_POST["search"] = '';
