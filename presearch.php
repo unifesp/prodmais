@@ -56,13 +56,13 @@
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="Pré Busca" />
     <script type="application/ld+json">
-        {
-            "@type": "WebPage",
-            "description": "Pré Busca",
-            "url": "https://unifesp.br/prodmais/presearch.php",
-            "headline": "Pré Busca",
-            "@context": "https://schema.org"
-        }
+    {
+        "@type": "WebPage",
+        "description": "Pré Busca",
+        "url": "https://unifesp.br/prodmais/presearch.php",
+        "headline": "Pré Busca",
+        "@context": "https://schema.org"
+    }
     </script>
     <!-- End Jekyll SEO tag -->
 
@@ -77,8 +77,6 @@
     <br /><br /><br />
 
     <main class="p-predash-main">
-
-        <?php var_dump($_REQUEST); ?>
 
         <h2 class="t t-center">Resultados obtidos:</h2><br>
 
