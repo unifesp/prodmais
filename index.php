@@ -105,14 +105,14 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
         <!-- <h3 class="p-home-instituicao">< ?php echo ($instituicao); ?></h3> -->
 
         <?php if (paginaInicial::contar_registros_indice($index) == 0) : ?>
-        <div class="alert alert-warning" role="alert">
-            O Prod+ está em manutenção!
-        </div>
+            <div class="alert alert-warning" role="alert">
+                O Prod+ está em manutenção!
+            </div>
         <?php endif; ?>
 
         <div class="p-home-search">
 
-            <form class="p-home-form" class="" action="result.php" title="Pesquisa simples" method="post">
+            <form class="p-home-form" class="" action="presearch.php" title="Pesquisa simples" method="post">
 
                 <div class="c-searcher">
                     <input id="mainseach" name="search" type="search"
@@ -135,28 +135,28 @@ com este programa, Se não, veja <https://www.gnu.org/licenses/>.
     <?php include('inc/footer.php'); ?>
 
     <script>
-    var app = new Vue({
-        el: '#home',
+        var app = new Vue({
+            el: '#home',
 
-        data: {
-            showTips: false,
-            accOpened: '0'
-        }
-    })
-
-    let acc = document.getElementsByClassName("c-accordion");
-    let i
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            // this.classList.toggle("opened");
-            var body = this.nextElementSibling;
-            if (body.style.display === "block") {
-                body.style.display = "none";
-            } else {
-                body.style.display = "block";
+            data: {
+                showTips: false,
+                accOpened: '0'
             }
-        });
-    }
+        })
+
+        let acc = document.getElementsByClassName("c-accordion");
+        let i
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // this.classList.toggle("opened");
+                var body = this.nextElementSibling;
+                if (body.style.display === "block") {
+                    body.style.display = "none";
+                } else {
+                    body.style.display = "block";
+                }
+            });
+        }
     </script>
 
 

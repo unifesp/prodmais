@@ -13,7 +13,7 @@ if (isset($_POST["search"]) & !empty($_POST["search"])) {
 }
 
 if (isset($_POST["resumocv"])) {
-    $_POST["search"] = 'resumo_cv.texto_resumo_cv_rh:' . $_POST["resumocv"] . '';
+    $_POST["search"] = 'nome_completo:(' . trim($_POST['search']) . ') OR resumo_cv.texto_resumo_cv_rh:' . $_POST["resumocv"] . '';
 }
 
 if (isset($fields)) {
