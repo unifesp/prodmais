@@ -111,6 +111,7 @@
             $filter_name = str_replace('about:', 'Palavra-chave: ', $filter_name);
             $filter_name = str_replace('datePublished:', 'Ano de publicação: ', $filter_name);
             $filter_name = str_replace('area_do_conhecimento.nomeGrandeAreaDoConhecimento:', 'Grande Área do Conhecimento: ', $filter_name);
+            $filter_name = str_replace('qualis.extrato:', 'Extrato Qualis: ', $filter_name);
 
 
 
