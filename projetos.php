@@ -81,10 +81,14 @@ $get_data = $_GET;
 
             <div class="p-result-search-ctn">
 
-                <form class="u-100" action="projetos.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="search">
+                <form class="u-100" action="projetos.php" method="POST" accept-charset="utf-8"
+                    enctype="multipart/form-data" id="search">
 
                     <div class="c-searcher">
-                        <input class="" type="text" name="search" placeholder="Pesquise por palavras chave ou termos em projetos" aria-label="Pesquise por palavras chave ou termos em projetos" aria-describedby="button-addon2" />
+                        <input class="" type="text" name="search"
+                            placeholder="Pesquise por palavras chave ou termos em projetos"
+                            aria-label="Pesquise por palavras chave ou termos em projetos"
+                            aria-describedby="button-addon2" />
                     </div>
                 </form>
 
@@ -99,14 +103,14 @@ $get_data = $_GET;
             <div class="p-result-authors">
                 <ul class="c-authors-list">
                     <?php foreach ($cursor["hits"]["hits"] as $r) : ?>
-                        <?php
+                    <?php
                         if (empty($r["_source"]['datePublished'])) {
                             $r["_source"]['datePublished'] = "";
                         }
                         ?>
 
-                        <li class="c-card-author t t-b t-md">
-                            <?php
+                    <li class="c-card-author t t-b t-md">
+                        <?php
                             if (isset($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'])) {
                                 foreach ($r["_source"]['DADOS-DO-PROJETO']['EQUIPE-DO-PROJETO']['INTEGRANTES-DO-PROJETO'] as $integrantes) {
                                     if (isset($integrantes['@attributes'])) {
@@ -123,51 +127,51 @@ $get_data = $_GET;
                             ?>
 
 
-                            <div class='s-list'>
-                                <div class='s-list-bullet'>
-                                    <i class='i i-ppg-logo s-list-ico'></i>
-                                </div>
-
-                                <div class='s-list-content'>
-
-
-                                    <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
-                                        <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
-                                        ?>
-                                        <p class='t t-b'>
-                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
-                                        </p>
-                                        <p class='t t-gray'>
-                                            Descrição do projeto:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                        </p>
-                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                        <p class='t t-gray'>Situação:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
-                                        <p class='t t-gray'>
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
-                                    <?php else : ?>
-                                        <p class='t t-b'>
-                                            <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
-                                            </a>
-                                        </p>
-                                        <p class='t t-gray'>
-                                            Descrição do projeto:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
-                                        </p>
-                                        <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
-                                        <p class='t t-gray'>Situação:
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
-                                        <p class='t t-gray'>
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
-                                            <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
-                                    <?php endif ?>
-                                </div>
+                        <div class='s-list'>
+                            <div class='s-list-bullet'>
+                                <i class='i i-ppg-logo s-list-ico'></i>
                             </div>
-                        </li>
 
-                        <?php unset($integrantes_do_projeto_array); ?>
+                            <div class='s-list-content'>
+
+
+                                <?php if (isset($r["_source"]['DADOS-DO-PROJETO'][0])) : ?>
+                                <?php //print_r($r["_source"]['DADOS-DO-PROJETO']);
+                                        ?>
+                                <p class='t t-b'>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['NOME-DO-PROJETO'] ?>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO'][0]['@attributes']['ANO-FIM']; ?></p>
+                                <?php else : ?>
+                                <p class='t t-b'>
+                                    <a href="projeto.php?ID=<?php echo $r['_id']; ?>"><?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['NOME-DO-PROJETO'] ?>
+                                    </a>
+                                </p>
+                                <p class='t t-gray'>
+                                    Descrição do projeto:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['DESCRICAO-DO-PROJETO']; ?>
+                                </p>
+                                <p class='t t-gray'><i>Integrantes: <?php echo $integrantes_do_projeto ?></i></p>
+                                <p class='t t-gray'>Situação:
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['SITUACAO']; ?></p>
+                                <p class='t t-gray'>
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-INICIO']; ?> -
+                                    <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </li>
+
+                    <?php unset($integrantes_do_projeto_array); ?>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -179,68 +183,68 @@ $get_data = $_GET;
         </main>
 
         <script>
-            new Vue({
-                el: '#app',
-                data: {
-                    isVisible1: false,
-                    isVisible2: false,
-                    isVisible3: false,
-                    isVisible4: false,
-                    isVisible5: false,
-                    isVisible6: false,
-                    isVisible7: false,
-                    isVisible8: false,
-                    isVisible8: false,
-                    isVisible10: false,
-                    isVisible11: false,
-                    isVisible12: false,
-                    isVisible13: false,
-                    isVisible14: false,
-                    isVisible15: false,
-                    isVisible16: false,
-                    isVisible17: false,
-                    isVisible18: false,
-                    isVisible19: false,
-                    isVisible20: false,
-                    isVisible21: false,
-                    isVisible22: false,
-                    isVisible23: false,
-                    isVisible24: false,
-                    isVisible25: false,
-                    isVisible26: false,
-                    isVisible27: false,
-                    isVisible28: false,
-                    isVisible29: false,
-                    isVisible30: false,
-                    isVisible31: false,
-                    isVisible32: false,
-                    isVisible33: false,
-                    isVisible34: false,
-                    isVisible35: false,
-                    isVisible36: false,
-                    isVisible37: false,
-                    isVisible38: false,
-                    isVisible39: false,
-                    isVisible40: false,
-                    isVisible41: false,
-                    isVisible42: false,
-                    isVisible43: false,
-                    isVisible44: false,
-                    isVisible45: false,
-                    isVisible46: false,
-                    isVisible47: false,
-                    isVisible48: false,
+        new Vue({
+            el: '#app',
+            data: {
+                isVisible1: false,
+                isVisible2: false,
+                isVisible3: false,
+                isVisible4: false,
+                isVisible5: false,
+                isVisible6: false,
+                isVisible7: false,
+                isVisible8: false,
+                isVisible8: false,
+                isVisible10: false,
+                isVisible11: false,
+                isVisible12: false,
+                isVisible13: false,
+                isVisible14: false,
+                isVisible15: false,
+                isVisible16: false,
+                isVisible17: false,
+                isVisible18: false,
+                isVisible19: false,
+                isVisible20: false,
+                isVisible21: false,
+                isVisible22: false,
+                isVisible23: false,
+                isVisible24: false,
+                isVisible25: false,
+                isVisible26: false,
+                isVisible27: false,
+                isVisible28: false,
+                isVisible29: false,
+                isVisible30: false,
+                isVisible31: false,
+                isVisible32: false,
+                isVisible33: false,
+                isVisible34: false,
+                isVisible35: false,
+                isVisible36: false,
+                isVisible37: false,
+                isVisible38: false,
+                isVisible39: false,
+                isVisible40: false,
+                isVisible41: false,
+                isVisible42: false,
+                isVisible43: false,
+                isVisible44: false,
+                isVisible45: false,
+                isVisible46: false,
+                isVisible47: false,
+                isVisible48: false,
+            },
+            methods: {
+                toggleDiv(id) {
+                    id.toString();
+                    var str = 'isVisible' + id;
+                    this[str] = !this[str];
+                    console.log(this.str);
                 },
-                methods: {
-                    toggleDiv(id) {
-                        id.toString();
-                        var str = 'isVisible' + id;
-                        this[str] = !this[str];
-                        console.log(this.str);
-                    },
-                },
+            },
 
-            });
+        });
         </script>
 
     </div>

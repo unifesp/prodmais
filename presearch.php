@@ -34,12 +34,12 @@
     // Busca por projetos
 
 
-    $result_post = Requests::postParser($_POST);
+    $result_postProjetos = Requests::postParser($_POST);
     $limit_records = 50;
-    $page = $result_post['page'];
+    $page = $result_postProjetos['page'];
     $paramsProjetos = [];
     $paramsProjetos["index"] = $index_projetos;
-    $paramsProjetos["body"] = $result_post['query'];
+    $paramsProjetos["body"] = $result_postProjetos['query'];
     $cursorTotalProjetos = $client->count($paramsProjetos);
     $totalRecordsProjetos = $cursorTotalProjetos["count"];
 

@@ -2021,7 +2021,7 @@ class Requests
             $queryArray["query_string"]["query"] = $cleanQuery;
             $queryArray["query_string"]["analyze_wildcard"] = true;
             $queryArray["query_string"]["default_operator"] = "AND";
-            $queryArray["query_string"]["fields"] = ["name", "alternateName", "author.person.name", "author.organization.name", "about", "source", "description", "vinculo.lattes_id", "vinculo.nome"];
+            $queryArray["query_string"]["fields"] = ["name", "alternateName", "author.person.name", "author.organization.name", "about", "source", "description", "vinculo.lattes_id", "vinculo.nome", "DADOS-DO-PROJETO.@attributes.NOME-DO-PROJETO.keyword", "DADOS-DO-PROJETO.EQUIPE-DO-PROJETO.INTEGRANTES-DO-PROJETO.@attributes.NOME-COMPLETO.keyword", "DADOS-DO-PROJETO.@attributes.DESCRICAO-DO-PROJETO.keyword"];
         } else {
             $queryArray["query_string"]["query"] = "*";
         }
