@@ -140,6 +140,9 @@ class ListPPGs
                         <input type="hidden" name="CONCEITO_CAPES" value="7">
                         <button type="submit" class="c-btn" style="width: 1rem;">7</button>
                     </form>
+                    <form class="p-home-form" class="" action="ppgs.php" method="post">
+                        <button type="submit" class="c-btn" style="width: 1rem;">Todos</button>
+                    </form>
                 </div>
 
                 <div class="p-ppg-container">
