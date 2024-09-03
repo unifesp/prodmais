@@ -205,12 +205,12 @@ form {
 @media (prefers-color-scheme: dark) {
   :root,
   [data-theme=Prodmais] {
-    --c-bg-1: var(--c-mn-0);
+    /* --c-bg-1: var(--c-mn-0);
     --c-bg-2: var(--c-mn-20);
     --c-fg-1: var(--c-mn-70);
     --c-fg-2: var(--c-mn-80);
     --c-fg-3: var(--c-mn-90);
-    --c-paper: var(--c-mn-0);
+    --c-paper: var(--c-mn-0); */
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
     --c-siteheader-bg: var(--c-siteheader-bg-dark);
@@ -260,12 +260,12 @@ form {
 @media (prefers-color-scheme: dark) {
   :root,
   [data-theme=Waterbeach] {
-    --c-bg-1: var(--c-mn-0);
+    /* --c-bg-1: var(--c-mn-0);
     --c-bg-2: var(--c-mn-20);
     --c-fg-1: var(--c-mn-70);
     --c-fg-2: var(--c-mn-80);
     --c-fg-3: var(--c-mn-90);
-    --c-paper: var(--c-mn-0);
+    --c-paper: var(--c-mn-0); */
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
     --c-siteheader-bg: var(--c-siteheader-bg-dark);
@@ -315,12 +315,12 @@ form {
 @media (prefers-color-scheme: dark) {
   :root,
   [data-theme=Tomaton] {
-    --c-bg-1: var(--c-mn-0);
+    /* --c-bg-1: var(--c-mn-0);
     --c-bg-2: var(--c-mn-20);
     --c-fg-1: var(--c-mn-70);
     --c-fg-2: var(--c-mn-80);
     --c-fg-3: var(--c-mn-90);
-    --c-paper: var(--c-mn-0);
+    --c-paper: var(--c-mn-0); */
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
     --c-siteheader-bg: var(--c-siteheader-bg-dark);
@@ -370,12 +370,12 @@ form {
 @media (prefers-color-scheme: dark) {
   :root,
   [data-theme=Blueberry] {
-    --c-bg-1: var(--c-mn-0);
+    /* --c-bg-1: var(--c-mn-0);
     --c-bg-2: var(--c-mn-20);
     --c-fg-1: var(--c-mn-70);
     --c-fg-2: var(--c-mn-80);
     --c-fg-3: var(--c-mn-90);
-    --c-paper: var(--c-mn-0);
+    --c-paper: var(--c-mn-0); */
     --c-siteheader-logo: var(--c-pr-6);
     --c-siteheader-logo-hover: var(--c-mn-99);
     --c-siteheader-bg: var(--c-siteheader-bg-dark);
