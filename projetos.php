@@ -27,7 +27,7 @@ $get_data = $_GET;
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <?php
@@ -35,9 +35,6 @@ $get_data = $_GET;
     ?>
 
     <title><?php echo $branch; ?> - Projetos de pesquisa</title>
-
-
-    <link rel="stylesheet" href="inc/css/style.css" />
 
 </head>
 
@@ -49,11 +46,13 @@ $get_data = $_GET;
     }
     ?>
 
-    <!-- NAV -->
-    <?php require 'inc/navbar.php'; ?>
-    <!-- /NAV -->
 
-    <div id="app-result" class="p-result-container">
+
+    <div class="p-result-container">
+
+        <!-- NAV -->
+        <?php require 'inc/navbar.php'; ?>
+        <!-- /NAV -->
 
         <nav class="p-result-nav">
 
@@ -168,6 +167,7 @@ $get_data = $_GET;
                                     <?php echo $r["_source"]['DADOS-DO-PROJETO']['@attributes']['ANO-FIM']; ?></p>
                                 <?php endif ?>
                             </div>
+
                         </div>
                     </li>
 
