@@ -47,17 +47,19 @@ foreach ($cursor["hits"]["hits"] as $r) {
     // Sort response to get the most probable SDG
 
     $response = json_decode($response, true);
-    usort($response["predictions"], function ($a, $b) {
-        return $b['prediction'] <=> $a['prediction'];
-    });
+    if (isset($response["predictions"])) {
+        usort($response["predictions"], function ($a, $b) {
+            return $b['prediction'] <=> $a['prediction'];
+        });
 
-    $body["doc"]["aurorasdg"] = $response;
-    $body["doc"]["aurorasdg"]["most_probable_sdg"] = $response["predictions"][0]["sdg"]["name"];
-    $body["doc_as_upsert"] = true;
+        $body["doc"]["aurorasdg"] = $response;
+        $body["doc"]["aurorasdg"]["most_probable_sdg"] = $response["predictions"][0]["sdg"]["name"];
+        $body["doc_as_upsert"] = true;
 
-    //print("<pre>" . print_r($body, true) . "</pre>");
-    $upsert_aurorasdg = Elasticsearch::update($r["_id"], $body);
-    //print("<pre>" . print_r($upsert_openalex, true) . "</pre>");
-    ob_flush();
-    flush();
+        //print("<pre>" . print_r($body, true) . "</pre>");
+        $upsert_aurorasdg = Elasticsearch::update($r["_id"], $body);
+        //print("<pre>" . print_r($upsert_openalex, true) . "</pre>");
+        ob_flush();
+        flush();
+    }
 }
