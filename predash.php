@@ -58,13 +58,15 @@
         <div class="dh d-hc u-my-20">
             <p>
                 <a class="c-btn"
-                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
+                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/7cc146e0-9f9c-11ee-b989-9f6cdcc63b63?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()"
+                    target="_blank">
                     Produção Acadêmica
                 </a>
             </p>
             <p>
                 <a class="c-btn"
-                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/1a485b50-9fe9-11ee-a0e5-9b601263f818?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()">
+                    href="https://unifesp.br/prodmais/kibana/app/dashboards?auth_provider_hint=anonymous1#/view/1a485b50-9fe9-11ee-a0e5-9b601263f818?_g=(refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))&_a=()"
+                    target="_blank">
                     Perfil dos Pesquisadores
                 </a>
             </p>
