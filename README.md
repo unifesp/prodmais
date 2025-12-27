@@ -33,7 +33,7 @@ O Prodmais é uma ferramenta que agrega informações sobre produções acadêmi
 
 ## Autores:
 
-- Tiago Rodrigo Marçal Murakami
+- Tiago Rodrigo Marçal Murakami (in memoriam)
 - Jan Leduc de Lara
 - Alexsandro Cardoso Carvalho
 - Ricardo Ireno
