@@ -3839,3 +3839,9 @@ th {
 .s-nobullet {
   list-style: none;
 }/*# sourceMappingURL=main.css.map */
+
+#cy {
+  width: 100%;
+  height: 80vh;
+  display: block;
+}
