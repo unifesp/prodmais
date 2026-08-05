@@ -111,6 +111,8 @@ if (!empty($_REQUEST["lattesID"])) {
         $totalOrientacoes = $totalOrientacoes + count($profile['orientacoesconcluidas']);
     }
 
+    $conexoes = [];
+
     foreach ($profile['atuacoes_profissionais'] as $key => $atuacoes_profissionais) {
         foreach ($atuacoes_profissionais as $key => $atuacao_profissional_1) {
             if (isset($atuacao_profissional_1['ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO']['PARTICIPACAO-EM-PROJETO'])) {
@@ -340,7 +342,7 @@ if (!empty($_REQUEST["lattesID"])) {
                             <span class="c-profmenu-text">Sobre</span>
                         </button>
 
-                        <button id=" tab-btn-2" class="c-profmenu-btn" v-on:click="changeTab('2')" title="Produção"
+                        <button id="tab-btn-2" class="c-profmenu-btn" v-on:click="changeTab('2')" title="Produção"
                             alt="Produção">
                             <i class="i i-sm i-prodsymbol c-profmenu-ico"></i>
                             <span class="c-profmenu-text">Produção</span>
@@ -395,6 +397,13 @@ if (!empty($_REQUEST["lattesID"])) {
                             <span class="c-profmenu-text">Pesquisa</span>
                         </button>
                         <?php endif; ?>
+
+                        <button id="tab-btn-7" class="c-profmenu-btn" v-on:click="changeTab('7')" title="Conexões"
+                            alt="Conexões">
+                            <div class="i i-sm i-prodsymbol c-profmenu-ico"></div>
+                            <span class="c-profmenu-text">Conexões</span>
+                        </button>
+
                     </div><!-- end c-profmenu  -->
                 </div> <!-- end profile-tabs -->
                 <div class="c-wrapper-inner u-m-20">
@@ -639,6 +648,26 @@ if (!empty($_REQUEST["lattesID"])) {
                                             $authors = [];
                                             foreach ($work["_source"]["author"] as $author) {
                                                 $authors[] = $author["person"]["name"];
+                                                
+                                                $encontrouPesquisadorPrincipal = false;
+
+                                                if($profile['nome_completo'] == $author["person"]["name"]) $encontrouPesquisadorPrincipal = true;
+
+                                                if(!$encontrouPesquisadorPrincipal) {
+                                                    $nomesArray = explode(";", $profile["nome_em_citacoes_bibliograficas"]);
+    
+                                                    foreach($nomesArray as $nomeCitacao) {
+                                                        if($nomeCitacao == $author["person"]["name"]) {
+                                                            $encontrouPesquisadorPrincipal = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+
+                                                if ($encontrouPesquisadorPrincipal) continue;
+
+                                                if(!isset($conexoes[$author["person"]["name"]])) $conexoes[$author["person"]["name"]] = 0;
+                                                $conexoes[$author["person"]["name"]]++;
                                             }
                                             !empty($work['_source']['url']) ?
                                                 $url = $work['_source']['url'] : $url = '';
@@ -956,6 +985,60 @@ if (!empty($_REQUEST["lattesID"])) {
                             ?>
 
                         </div><!-- end tab-six -->
+                        <div id="tab-seven" class="c-tab-content" v-if="tabOpened == '7'">
+                            <h3 class="t t-h3 u-mb-20">Conexões</h3>
+                            <hr class="c-line"></hr>
+                            <div id="cy"></div>
+                            <hr class="c-line"></hr>
+                            <p class="t t-gray">
+                                <?php
+                                    $elementos = [];
+                                    $elementos[] = [
+                                        "data" => [
+                                            "id" => "pesquisador",
+                                            "label" => $profile["nome_completo"]
+                                        ]
+                                    ];
+
+                                    $maxColaboracoes = max($conexoes); // numero maximo de colaboracoes
+
+                                    foreach($conexoes as $nome => $qtd) {
+                                        if ($qtd / $maxColaboracoes <= 1 && $qtd / $maxColaboracoes > 0.8) {
+                                            $peso = 4;
+                                        } elseif ($qtd / $maxColaboracoes <= 0.8 && $qtd / $maxColaboracoes > 0.6) {
+                                            $peso = 3;
+                                        } elseif ($qtd / $maxColaboracoes <= 0.6 && $qtd / $maxColaboracoes > 0.4) {
+                                            $peso = 2;
+                                        } elseif ($qtd / $maxColaboracoes <= 0.4 && $qtd / $maxColaboracoes > 0.2) {
+                                            $peso = 1;
+                                        } else {
+                                            $peso = 0;
+                                        }
+
+                                        if($qtd > 1) echo $nome . ": " . $qtd . " colaborações" . "<br>";
+                                        else echo $nome . ": " . $qtd . " colaboração" . "<br>";
+
+                                        // vertice da conexao:
+                                        $elementos[] = [
+                                            "data" => [
+                                                "id" => $nome,
+                                                "label" => $nome,
+                                                "peso" => $peso
+                                            ]
+                                        ];
+
+                                        //aresta da conexao com o pesquisador:
+                                        $elementos[] = [
+                                            "data" => [
+                                                "source" => "pesquisador",
+                                                "target" => $nome
+                                            ]
+                                        ];
+                                    }
+                                ?>
+                            </p>
+                            <hr class="c-line"></hr>
+                        </div><!-- end tab-seven -->
 
 
                     </transition>
@@ -1001,13 +1084,122 @@ if (!empty($_REQUEST["lattesID"])) {
                 for (i = 0; i < tabs.length; i++)
                     tabs[i].className = tabs[i].className.replace("c-profmenu-active", "")
 
-                tabs[Number(tab) - 1].className += " c-profmenu-active"
+                var botao = document.getElementById("tab-btn-" + tab);
+                if(botao) botao.className += " c-profmenu-active";
+
+                if (tab !== '7' && cy) {
+                    cy.destroy();
+                    cy = null;
+                }
+
+                if (tab === '7') {
+                    this.$nextTick(() => {
+                        desenharGrafo();
+                    });
+                }
             }
         },
         mounted: function() {
             this.changeTab(1)
         },
     })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.34.0/cytoscape.min.js"></script>
+
+    <script>
+        let cy = null;
+
+        function desenharGrafo() {
+            const container = document.getElementById("cy");
+
+            const dadosGrafo = <?php echo json_encode($elementos); ?>;
+
+            const css = getComputedStyle(document.documentElement);
+            const cores = {
+                peso0: css.getPropertyValue("--c-pr-7"),
+                peso1: css.getPropertyValue("--c-pr-6"),
+                peso2: css.getPropertyValue("--c-pr-3"),
+                peso3: css.getPropertyValue("--c-pr-2"),
+                peso4: css.getPropertyValue("--c-pr-1")
+            };
+    
+            cy = cytoscape({
+    
+                container,
+    
+                elements: dadosGrafo,
+    
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'label': 'data(label)',
+                            'font-family': '"Lato", sans-serif',
+                            'width': 90,
+                            'height': 90,
+                            'text-valign': 'center',
+                            'text-halign': 'center',
+                            "text-wrap": "wrap",
+                            "text-max-width": 50,
+                        }
+                    },
+                    {
+                        selector: 'node[peso=0]',
+                        style: {
+                            'background-color': cores.peso0
+                        }
+                    },
+                    {
+                        selector: 'node[peso=1]',
+                        style: {
+                            'background-color': cores.peso1
+                        }
+                    },
+                    {
+                        selector: 'node[peso=2]',
+                        style: {
+                            'background-color': cores.peso2,
+                            "color": "#fff"
+                        }
+                    },
+                    {
+                        selector: 'node[peso=3]',
+                        style: {
+                            'background-color': cores.peso3,
+                            "color": "#fff"
+                        }
+                    },
+                    {
+                        selector: 'node[peso=4]',
+                        style: {
+                            'background-color': cores.peso4,
+                            "color": "#fff"
+                        }
+                    },
+    
+                    {
+                        selector: 'edge',
+                        style: {
+                            'width': 2,
+                            'curve-style': 'bezier',
+                            'line-color': "#000000",
+                            'target-arrow-color': '#000000',
+                            'target-arrow-shape': 'triangle',
+                        }
+                    }
+                ],
+    
+                layout: {
+                    name: 'concentric',
+                    minNodeSpacing: 50,
+                },
+
+                boxSelectionEnabled: false,
+                autounselectify: true,
+    
+            });
+        }
     </script>
 
 </body>
